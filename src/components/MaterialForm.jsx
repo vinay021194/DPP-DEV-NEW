@@ -12,6 +12,9 @@ import { Divider } from "primereact/divider";
 import { CountryService } from "../services/CountryService";
 import "./FormDemo.css";
 import { Link } from "react-router-dom";
+import { CategoryView  } from "./Categoryview";
+
+window.buyerId="";
 
 export const MaterialForm = () => {
   const [countries, setCountries] = useState([
@@ -21,12 +24,10 @@ export const MaterialForm = () => {
   ]);
   const [showMessage, setShowMessage] = useState(false);
   const [formData, setFormData] = useState({});
-  // const countryservice = new CountryService();
+  //const [buyerId, setbuyerId] = useState({});
 
-  // useEffect(() => {
-  //   countryservice.getCountries().then((data) => setCountries(data));
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  
   const formik = useFormik({
     initialValues: {
       country: null,
@@ -47,16 +48,12 @@ export const MaterialForm = () => {
       formik.resetForm();
     },
   });
+   
+  const handleChange = (e) => {
+    window.buyerId = e.value.name;
+  }
 
-  // const isFormFieldValid = (name) =>
-  //   !!(formik.touched[name] && formik.errors[name]);
-  // const getFormErrorMessage = (name) => {
-  //   return (
-  //     isFormFieldValid(name) && (
-  //       <small className="p-error">{formik.errors[name]}</small>
-  //     )
-  //   );
-  // };
+
 
   const dialogFooter = (
     <div className="p-d-flex p-jc-center">
@@ -68,19 +65,7 @@ export const MaterialForm = () => {
       />
     </div>
   );
-  // const passwordHeader = <h6>Pick a password</h6>;
-  // const passwordFooter = (
-  //   <React.Fragment>
-  //     <Divider />
-  //     <p className="p-mt-2">Suggestions</p>
-  //     <ul className="p-pl-2 p-ml-2 p-mt-0" style={{ lineHeight: "1.5" }}>
-  //       <li>At least one lowercase</li>
-  //       <li>At least one uppercase</li>
-  //       <li>At least one numeric</li>
-  //       <li>Minimum 8 characters</li>
-  //     </ul>
-  //   </React.Fragment>
-  // );
+ 
 
   return (
     <div className="form-demo">
@@ -117,7 +102,8 @@ export const MaterialForm = () => {
                   id="country"
                   name="country"
                   value={formik.values.country}
-                  onChange={formik.handleChange}
+                  onChange={handleChange}
+
                   options={countries}
                   optionLabel="name"
                 />

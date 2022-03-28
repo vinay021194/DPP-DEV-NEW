@@ -7,6 +7,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
+import buyerId  from "./MaterialForm";
 
 export class CategoryView extends Component {
   constructor(props) {
@@ -22,10 +23,11 @@ export class CategoryView extends Component {
   
 
   componentDidMount() {
-
+    console.log("buyerId====>",window.buyerId)
     this.procService
       .getCategoryTable({ material: this.props })
       .then((data) => {
+      data.data = data.data.filter((d)=> d.pur_grp === window.buyerId)  
       let  data1 =  data.data.map((row,i) => {
        row.avg_consumption = Math.round(row.avg_consumption)
        row.conslidated_demand = Math.round(row.conslidated_demand)
@@ -47,10 +49,11 @@ export class CategoryView extends Component {
   }
  
   statusBodyTemplate(rowData) {
-
+    console.log("statusBodyTemplate====>",rowData.material)
+    window.material = rowData.material
     return (
 
-      <Link to="/DemandAndInventoryAnalysis">
+      <Link to={{pathname:"/DemandAndInventoryAnalysis",state:{material:rowData.material}}}>
 
         <span style={{ color: "#009FDA" }}>View More </span>
 

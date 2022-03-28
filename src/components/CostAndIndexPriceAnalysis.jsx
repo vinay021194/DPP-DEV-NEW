@@ -161,7 +161,7 @@ export class CostAndIndexPriceAnalysis extends Component {
     // });
 
     this.procService.getMaterialInfo({ material: 6007049 }).then((data) => {
-      data = data.data.data.filter((d) => d.material === "6007049");
+      data = data.data.data.filter((d) => d.material === window.material);
       console.log("data====>", data);
 
       return this.setState({ materialInfo: data });
@@ -169,6 +169,7 @@ export class CostAndIndexPriceAnalysis extends Component {
 
     this.procService.getIcisForecastSummaryTable({ material: 6007049 }).then((data) => {
       console.log("getIcisForecastSummaryTable  ===>", data.data.Sheet1);
+      data.data.Sheet1 =  data.data.Sheet1.map((d) => d.material === window.material);
       data.data.Sheet1.forEach(function(r){
         let rValues = Object.entries(r);
         rValues.forEach(function(e){

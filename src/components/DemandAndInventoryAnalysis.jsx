@@ -16,6 +16,7 @@ export class DemandAndInventoryAnalysis extends Component {
       demandInfoRegressionSummaryTable: [],
       HistoricalConsumptionSeriesData: [],
       plants: [],
+      material: this.props.location.material
     };
 
     this.productService = new ProductService();
@@ -34,10 +35,12 @@ export class DemandAndInventoryAnalysis extends Component {
   }
 
   componentDidMount() {
+    console.log("this.props.location.material==>", window.material)
     this.procService
-      .getInventoryInfo({ material: 6007049 })
+      .getInventoryInfo({ material: window.material })
       .then((data) =>
       {
+        data.data.Sheet2 = data.data.Sheet2.filter((d)=> d.material === window.material)
         data.data.Sheet2.forEach(function(r){
           let rValues = Object.entries(r);
           rValues.forEach(function(e){
@@ -46,14 +49,21 @@ export class DemandAndInventoryAnalysis extends Component {
             if (!isNaN(n)) {
               r[e[0]] = n.toFixed(2);
             }
-          })
+          }) 
         })
        this.setState({ inventoryInfo: data.data.Sheet2 }
         )
 
       });
 
-    this.procService.getDemandUITable({ material: 6007049 }).then((data) => {
+    this.procService.getDemandUITable({ material:window.material }).then((data) => {
+        console.log("data in demand UI ===>",data)
+        let distnctPlant = [...new Set(data.data.Sheet2.map((d)=> d.plant))];
+        console.log("data in demand UI ===>",distnctPlant)
+        this.setState({plants:distnctPlant})
+        
+
+        data.data.Sheet2 = data.data.Sheet2.filter((d)=> d.material === window.material)
         data.data.Sheet2.forEach(function(r){
         let rValues = Object.entries(r);
         rValues.forEach(function(e){
@@ -67,16 +77,17 @@ export class DemandAndInventoryAnalysis extends Component {
       return this.setState({ demandUITable: data.data.Sheet2 });
     });
 
-    this.procService.getMaterialInfo({ material: 6007049 }).then((data) => {
+    this.procService.getMaterialInfo({ material:window.material }).then((data) => {
       console.log("data in getMaterialInfo===>",data)
-      data = data.data.data.filter((d)=> d.material === '6007049')
+      data = data.data.data.filter((d)=> d.material === window.material)
       return this.setState({ materialInfo: data });
     });
 
     this.procService
-      .getDemandInfoRegressionSummaryTable({ material: 6007049 })
+      .getDemandInfoRegressionSummaryTable({ material_number: window.material })
       .then((data) => {
-        console.log("demand chart data====>",data)
+        data.data.data = data.data.data.filter((d)=> d.material_number === window.material)
+
         return this.setState({
           demandInfoRegressionSummaryTable: data.data.data,
         });
