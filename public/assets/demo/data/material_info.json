@@ -1,0 +1,27 @@
+{
+  "data":
+  [
+    {
+      "material": "1623847",
+      "material_description_1": "CTLYST-INTR;PEROXIDE,WHITE,LIQUID,CAN",
+      "material_type": "UNBW",
+      "material_group": "12161600",
+      "industry_sector": "C",
+      "mdrm_class": "",
+      "unspsc_material_group_desc": "Catalysts",
+      "base_uom_original": "KG",
+      "base_unit_of_measure": "TO"
+    },
+    {
+      "material": "6007049",
+      "material_description_1": "ST-HPA:ANTIOXIDANT 1076,PO,001,BOX",
+      "material_type": "ROH",
+      "material_group": "DM060803",
+      "industry_sector": "C",
+      "mdrm_class": "STABILIZER HINDERED PHENOLS -AMINES",
+      "unspsc_material_group_desc": "Heat Stabilizers",
+      "base_uom_original": "KG",
+      "base_unit_of_measure": "TO"
+    }
+  ]
+}
