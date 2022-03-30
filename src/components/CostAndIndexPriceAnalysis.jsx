@@ -39,38 +39,64 @@ export class CostAndIndexPriceAnalysis extends Component {
     this.procService = new ProcService();
     // this.getWeekNumber = getWeekNumber();
 
-    this.seriesName = 
-    [
+  this.seriesName = [
       {
-          name:'Titanium Dioxide Spot  FOB China 4-6 Weeks',
-          code:'Titanium Dioxide Spot  FOB China 4-6 Weeks', 
+        name: "LLDPE Bulk Africa E Weekly",
+        code: "LLDPE Bulk Africa E Weekly",
       },
       {
-          name:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
-          code:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+        name: "Glycerine Vegetable Spot FOB Midwest",
+        code: "Glycerine Vegetable Spot FOB Midwest",
       },
       {
-           name:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
-          code:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+        name: "PE LLDPE Film Butene CFR Peru International 0 - 6 Weeks",
+        code: "PE LLDPE Film Butene CFR Peru International 0 - 6 Weeks",
       },
       {
-          name:'Group I SN150 Spot FOB USG 2-6 Weeks',
-          code:'Group I SN150 Spot FOB USG 2-6 Weeks',
+        name: "Flat Yarn Contract China Weekly",
+        code: "Flat Yarn Contract China Weekly",
       },
       {
-           name:'Group I SN500/550 Spot FOB USG 2-6 Weeks', 
-           code:'Group I SN500/550 Spot FOB USG 2-6 Weeks', 
+        name: "Propylene Bulk NWE Monthly",
+        code: "Propylene Bulk NWE Monthly",
       },
       {
-           name:'Naphthenic Plant Pale 200 Spot FOB US 2-6 Weeks',
-          code:'Naphthenic Plant Pale 200 Spot FOB US 2-6 Weeks',
+        name: "HDPE Blow Mould Posted EU Weekly",
+        code: "HDPE Blow Mould Posted EU Weekly",
       },
       {
-           name:'Naphthenic Plant Pale 300 Spot FOB US 2-6 Weeks', 
-           code:'Naphthenic Plant Pale 300 Spot FOB US 2-6 Weeks', 
+        name: "LDPE High Grade Contract US Monthly",
+        code: "LDPE High Grade Contract US Monthly",
       },
-      
-      ]
+      {
+        name: "Copolymer Film Contract US Monthly",
+        code: "Copolymer Film Contract US Monthly",
+      },
+      {
+        name: "LDPE Contract CFR Egypt Weekly",
+        code: "LDPE Contract CFR Egypt Weekly",
+      },
+      {
+        name: "Film Posted Bulk China Weekly",
+        code: "Film Posted Bulk China Weekly",
+      },
+      {
+        name: "HDPE Film Contract EU Weekly",
+        code: "HDPE Film Contract EU Weekly",
+      },
+      {
+        name: "LDPE High Grade Peru International Weekly",
+        code: "LDPE High Grade Peru International Weekly",
+      },
+      {
+        name: "HDPE Bulk Contract DEL US Monthly",
+        code: "HDPE Bulk Contract DEL US Monthly",
+      },
+      {
+        name: "Copolymer Domestic UK Weekly",
+        code: "Copolymer Domestic UK Weekly",
+      },
+    ];
       
       
     // [
@@ -352,9 +378,9 @@ export class CostAndIndexPriceAnalysis extends Component {
           });
         });
         var weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
-        var filterBySeriesNameData = seriesName.map((sr) => finaldatarray.filter((el) => el.series_name == sr));
+        var filterBySeriesNameData = seriesName.map((sr) => finaldatarray.filter((el) => el.series_name === sr));
         var res = filterBySeriesNameData.map((data) => {
-          var weeklyFilter = weeks.map((week) => data.filter((el) => el.currentWeek == week));
+          var weeklyFilter = weeks.map((week) => data.filter((el) => el.currentWeek === week));
           weeklyFilter = weeklyFilter.map((e) => {
             return Object.assign({}, ...e);
           });
@@ -556,20 +582,19 @@ export class CostAndIndexPriceAnalysis extends Component {
       },
 
       series: this.state.costDriverSeriesData,
-
       responsive: {
         rules: [
           {
             condition: {
               maxWidth: 600,
             },
-            chartOptions: {
-              // legend: {
-              //   layout: "horizontal",
-              //   align: "center",
-              //   verticalAlign: "bottom",
-              // },
-            },
+            // chartOptions: {
+            //   legend: {
+            //     layout: "horizontal",
+            //     align: "center",
+            //     verticalAlign: "bottom",
+            //   },
+            // },
           },
         ],
       },

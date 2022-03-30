@@ -20,11 +20,11 @@ code {
   background-color:   #74b9ff !important;
   border: 1px solid #74b9ff!important;
 }
-/* .layout-menu li a:active{
+.layout-menu li a:focus{
   background-color: #74b9ff!important;
-  border-radius: 50%;
+  border-radius: 15px;
   
-} */
+}
 /* .layout-menu li a:hover{
   background-color:  #74b9ff !important;
   transition: 0.2s;

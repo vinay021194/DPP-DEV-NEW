@@ -29,19 +29,23 @@
                 margin-left: auto;
             }
 
-            &:focus {
-                background-color: #74b9ff;
-                border-radius: 15px;
-            }
+            // &:focus {
+            //     background-color: #74b9ff;
+            //     border-radius: 15px;
+            // }
+            // &:active{
+            //     background-color: #74b9ff;
+            //     border-radius: 15px; 
+            // }
         }
 
-        // &.active-menuitem {
-        //     > a {
-        //         .menuitem-toggle-icon {
-        //             @include icon-override("\e933");
-        //         }
-        //     }
-        // }
+        &.active-menuitem {
+            > a {
+                .menuitem-toggle-icon {
+                    @include icon-override("\e933");
+                }
+            }
+        }
     }
 
     > li {

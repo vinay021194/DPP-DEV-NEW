@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* General */
 /* Menu Common */
 /* Menu Light */
@@ -313,9 +314,8 @@ a {
       margin-left: .5em; }
     .layout-menu li a .menuitem-toggle-icon {
       margin-left: auto; }
-    .layout-menu li a:focus {
-      background-color: #74b9ff;
-      border-radius: 15px; }
+  .layout-menu li.active-menuitem > a .menuitem-toggle-icon:before {
+    content: ""; }
   .layout-menu > li > a {
     padding: 1em; }
     .layout-menu > li > a span {
