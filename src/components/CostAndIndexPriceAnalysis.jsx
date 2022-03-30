@@ -22,6 +22,7 @@ export class CostAndIndexPriceAnalysis extends Component {
       costdriverChart: true,
       costDriver: [],
       costDriverSeries: [],
+      costDriverSeriesDropDown:[],
       icisForecastSummaryTable: [],
       allSeries: [],
       allcostDriver: [],
@@ -38,58 +39,92 @@ export class CostAndIndexPriceAnalysis extends Component {
     this.procService = new ProcService();
     // this.getWeekNumber = getWeekNumber();
 
-    this.seriesName = [
+    this.seriesName = 
+    [
       {
-        name: "Glycerine Vegetable Spot FOB Midwest",
-        code: "Glycerine Vegetable Spot FOB Midwest",
+          name:'Titanium Dioxide Spot  FOB China 4-6 Weeks',
+          code:'Titanium Dioxide Spot  FOB China 4-6 Weeks', 
       },
-      // {
-      //   name: "LLDPE Butene C4 Bagged Hybrid Spot/Contract FOT Mexico Domestic 2-4- Weeks",
-      //   code: "LLDPE Butene C4 Bagged Hybrid Spot/Contract FOT Mexico Domestic 2-4- Weeks",
-      // },
+      {
+          name:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+          code:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+      },
+      {
+           name:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+          code:'Group I SN 200/250 Spot FOB USG 2-6 Weeks',
+      },
+      {
+          name:'Group I SN150 Spot FOB USG 2-6 Weeks',
+          code:'Group I SN150 Spot FOB USG 2-6 Weeks',
+      },
+      {
+           name:'Group I SN500/550 Spot FOB USG 2-6 Weeks', 
+           code:'Group I SN500/550 Spot FOB USG 2-6 Weeks', 
+      },
+      {
+           name:'Naphthenic Plant Pale 200 Spot FOB US 2-6 Weeks',
+          code:'Naphthenic Plant Pale 200 Spot FOB US 2-6 Weeks',
+      },
+      {
+           name:'Naphthenic Plant Pale 300 Spot FOB US 2-6 Weeks', 
+           code:'Naphthenic Plant Pale 300 Spot FOB US 2-6 Weeks', 
+      },
       
-      {
-        name: "Propylene Bulk NWE Monthly",
-        code: "Propylene Bulk NWE Monthly",
-      },
+      ]
+      
+      
+    // [
+    //   {
+    //     name: "Glycerine Vegetable Spot FOB Midwest",
+    //     code: "Glycerine Vegetable Spot FOB Midwest",
+    //   },
+    //   // {
+    //   //   name: "LLDPE Butene C4 Bagged Hybrid Spot/Contract FOT Mexico Domestic 2-4- Weeks",
+    //   //   code: "LLDPE Butene C4 Bagged Hybrid Spot/Contract FOT Mexico Domestic 2-4- Weeks",
+    //   // },
+      
+    //   {
+    //     name: "Propylene Bulk NWE Monthly",
+    //     code: "Propylene Bulk NWE Monthly",
+    //   },
 
-      {
-        name: "Titanium Dioxide Spot  FOB China 4-6 Weeks",
-        code: "Titanium Dioxide Spot  FOB China 4-6 Weeks",
-      },
-      {
-        name: "LDPE High Grade Contract US Monthly",
-        code: "LDPE High Grade Contract US Monthly",
-      },
-      {
-        name: "Copolymer Film Contract US Monthly",
-        code: "Copolymer Film Contract US Monthly",
-      },
-      {
-        name: "LDPE Contract CFR Egypt Weekly",
-        code: "LDPE Contract CFR Egypt Weekly",
-      },
-      {
-        name: "Film Posted Bulk China Weekly",
-        code: "Film Posted Bulk China Weekly",
-      },
-      {
-        name: "HDPE Film Contract EU Weekly",
-        code: "HDPE Film Contract EU Weekly",
-      },
-      {
-        name: "LDPE High Grade Peru International Weekly",
-        code: "LDPE High Grade Peru International Weekly",
-      },
-      {
-        name: "HDPE Bulk Contract DEL US Monthly",
-        code: "HDPE Bulk Contract DEL US Monthly",
-      },
-      {
-        name: "Copolymer Domestic UK Weekly",
-        code: "Copolymer Domestic UK Weekly",
-      },
-    ];
+    //   {
+    //     name: "Titanium Dioxide Spot  FOB China 4-6 Weeks",
+    //     code: "Titanium Dioxide Spot  FOB China 4-6 Weeks",
+    //   },
+    //   {
+    //     name: "LDPE High Grade Contract US Monthly",
+    //     code: "LDPE High Grade Contract US Monthly",
+    //   },
+    //   {
+    //     name: "Copolymer Film Contract US Monthly",
+    //     code: "Copolymer Film Contract US Monthly",
+    //   },
+    //   {
+    //     name: "LDPE Contract CFR Egypt Weekly",
+    //     code: "LDPE Contract CFR Egypt Weekly",
+    //   },
+    //   {
+    //     name: "Film Posted Bulk China Weekly",
+    //     code: "Film Posted Bulk China Weekly",
+    //   },
+    //   {
+    //     name: "HDPE Film Contract EU Weekly",
+    //     code: "HDPE Film Contract EU Weekly",
+    //   },
+    //   {
+    //     name: "LDPE High Grade Peru International Weekly",
+    //     code: "LDPE High Grade Peru International Weekly",
+    //   },
+    //   {
+    //     name: "HDPE Bulk Contract DEL US Monthly",
+    //     code: "HDPE Bulk Contract DEL US Monthly",
+    //   },
+    //   {
+    //     name: "Copolymer Domestic UK Weekly",
+    //     code: "Copolymer Domestic UK Weekly",
+    //   },
+    // ];
 
     this.costDrivers = [
       {
@@ -162,14 +197,13 @@ export class CostAndIndexPriceAnalysis extends Component {
 
     this.procService.getMaterialInfo({ material: 6007049 }).then((data) => {
       data = data.data.data.filter((d) => d.material === window.material);
-      console.log("data====>", data);
-
       return this.setState({ materialInfo: data });
     });
 
     this.procService.getIcisForecastSummaryTable({ material: 6007049 }).then((data) => {
-      console.log("getIcisForecastSummaryTable  ===>", data.data.Sheet1);
-      data.data.Sheet1 =  data.data.Sheet1.map((d) => d.material === window.material);
+      let distinctCostDriver = data.data.Sheet1.map((data)=> data.material);
+      distinctCostDriver = [...new Set(distinctCostDriver)];
+      this.setState({costDrivers:distinctCostDriver})
       data.data.Sheet1.forEach(function(r){
         let rValues = Object.entries(r);
         rValues.forEach(function(e){
@@ -239,7 +273,6 @@ export class CostAndIndexPriceAnalysis extends Component {
 
   oncostDriverSeriesChange = (e) => {
     const { icisForecastSummaryTable } = this.state;
-    console.log("icisForecastSummaryTable====>", icisForecastSummaryTable);
     let seriesName = e.value.map((sr) => sr.name);
     // this.setState({allSeries:seriesName})
     let exampleData = e.value.map((sr) =>
@@ -272,7 +305,6 @@ export class CostAndIndexPriceAnalysis extends Component {
     });
 
     this.procService.getIcisForecastSummaryTable2({ sizeunit: "mt", dataset: "ICIS", material: "Base Oils (Americas)" }).then((data) => {
-      console.log("seriesName=====>",seriesName)
       data.data.Sheet1.forEach(function(r){
         let rValues = Object.entries(r);
         rValues.forEach(function(e){
@@ -283,49 +315,58 @@ export class CostAndIndexPriceAnalysis extends Component {
           }
         })
       })
+
+      let allSeriesname = data.data.Sheet1.map((d)=>d.serial_name)
+      allSeriesname = [...new Set(allSeriesname)]
       let exampleData = seriesName.map((sn) => data.data.Sheet1.filter((d) => d.series === sn));
-
+      var resultArray = Array.prototype.concat.apply([], exampleData);
+      console.log("resultArray===>",resultArray)
       //For the weekly data
-      console.log("exampleData====>", exampleData[0]);
-      exampleData = exampleData[0];
-      var allmonths = exampleData.map((m) => new Date(m.date).getMonth());
-      var allSeries = exampleData.map((m) => m.serial_name);
-      var uniqueDates = [...new Set(allmonths)];
-      var uniqueSeries = [...new Set(allSeries)];
-      var finaldatarray = [];
-
-      var finalGridData = uniqueDates.map((m, index) => {
-        uniqueSeries.map((series) => {
-          var filteredData = exampleData.filter((d) => {
-            var cDate = new Date(d.date);
-            var cMonth = cDate.getMonth() + 1;
-            if (m === cMonth && d.serial_name === series) {
-              return d;
-            }
-          });
-          var finalData = filteredData.map((e) => {
-            var monthCount = index + 1;
-            var data1 = {};
-            var currentWeek = "Week " + this.getWeekNumber(e.date);
-            data1["series_name"] = e.serial_name;
-            data1["currentWeek"] = currentWeek;
-            data1["month" + monthCount] = e.price;
-            finaldatarray.push(data1);
+      let gridData=[]
+      exampleData.map((innerData)=>{
+      //  exampleData = exampleData[0];
+        var allmonths = innerData.map((m) => new Date(m.date).getMonth());
+        var allSeries = innerData.map((m) => m.serial_name);
+        var uniqueDates = [...new Set(allmonths)];
+        var uniqueSeries = [...new Set(allSeries)];
+        var finaldatarray = [];
+  
+        var finalGridData = uniqueDates.map((m, index) => {
+          uniqueSeries.map((series) => {
+            var filteredData = innerData.filter((d) => {
+              var cDate = new Date(d.date);
+              var cMonth = cDate.getMonth() + 1;
+              if (m === cMonth && d.serial_name === series) {
+                return d;
+              }
+            });
+            var finalData = filteredData.map((e) => {
+              var monthCount = index + 1;
+              var data1 = {};
+              var currentWeek = "Week " + this.getWeekNumber(e.date);
+              data1["series_name"] = e.serial_name;
+              data1["currentWeek"] = currentWeek;
+              data1["month" + monthCount] = e.price;
+              finaldatarray.push(data1);
+            });
           });
         });
-      });
-      var weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
-      var filterBySeriesNameData = seriesName.map((sr) => finaldatarray.filter((el) => el.series_name == sr));
-      var res = filterBySeriesNameData.map((data) => {
-        var weeklyFilter = weeks.map((week) => data.filter((el) => el.currentWeek == week));
-        weeklyFilter = weeklyFilter.map((e) => {
-          return Object.assign({}, ...e);
+        var weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
+        var filterBySeriesNameData = seriesName.map((sr) => finaldatarray.filter((el) => el.series_name == sr));
+        var res = filterBySeriesNameData.map((data) => {
+          var weeklyFilter = weeks.map((week) => data.filter((el) => el.currentWeek == week));
+          weeklyFilter = weeklyFilter.map((e) => {
+            return Object.assign({}, ...e);
+          });
+          return weeklyFilter;
         });
-        return weeklyFilter;
-      });
+        
+        gridData = gridData.concat(...res);
 
-      var gridData = [].concat(...res);
-      this.setState({ AccuracyData: exampleData });
+      })
+      gridData = gridData.filter(values=> Object.keys(values).length !== 0);
+      console.log("exampleData====>",exampleData)
+      this.setState({ AccuracyData: resultArray });
       this.setState({ Predicted: gridData });
 
     });
@@ -334,6 +375,19 @@ export class CostAndIndexPriceAnalysis extends Component {
   onCostDriverChange = (e) => {
     //console.log("onCostDriverChange event ====>", e);
     this.setState({ costDriver: e.value });
+    let data = this.state.icisForecastSummaryTable;
+    let filteredSeries = [];
+    let selectedCostDriver = e.value;
+     this.state.costDriver.map((costdriver)=>{
+          data.filter((d)=>{
+             if(d.material === costdriver.name){
+               filteredSeries.push(d.serial_name)
+               return d.serial_name;
+             }
+         })
+     })
+    selectedCostDriver = [...new Set(filteredSeries)];
+    this.setState({costDriverSeriesDropDown:selectedCostDriver})
   };
 
   onUnit = (e) => {

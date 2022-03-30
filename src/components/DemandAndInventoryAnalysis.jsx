@@ -40,8 +40,9 @@ export class DemandAndInventoryAnalysis extends Component {
       .getInventoryInfo({ material: window.material })
       .then((data) =>
       {
-        data.data.Sheet2 = data.data.Sheet2.filter((d)=> d.material === window.material)
-        data.data.Sheet2.forEach(function(r){
+        data.data = data.data.filter((d)=> d.material_number === window.material)
+        console.log("data====>",data)
+        data.data.forEach(function(r){
           let rValues = Object.entries(r);
           rValues.forEach(function(e){
             // e[0] is the key and e[1] is the value
@@ -51,7 +52,7 @@ export class DemandAndInventoryAnalysis extends Component {
             }
           }) 
         })
-       this.setState({ inventoryInfo: data.data.Sheet2 }
+       this.setState({ inventoryInfo: data.data }
         )
 
       });
@@ -61,8 +62,6 @@ export class DemandAndInventoryAnalysis extends Component {
         let distnctPlant = [...new Set(data.data.Sheet2.map((d)=> d.plant))];
         console.log("data in demand UI ===>",distnctPlant)
         this.setState({plants:distnctPlant})
-        
-
         data.data.Sheet2 = data.data.Sheet2.filter((d)=> d.material === window.material)
         data.data.Sheet2.forEach(function(r){
         let rValues = Object.entries(r);
