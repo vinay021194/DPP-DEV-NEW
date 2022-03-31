@@ -29,14 +29,20 @@
                 margin-left: auto;
             }
 
-            // &:focus {
-            //     background-color: #74b9ff;
-            //     border-radius: 15px;
-            // }
+            &:focus {
+                background-color: #74b9ff;
+                border-radius: 15px;
+            }
             // &:active{
             //     background-color: #74b9ff;
             //     border-radius: 15px; 
             // }
+            &.active-route {
+                // font-weight: 700;
+                //color: var(--primary-color);
+                background-color: #74b9ff;
+                border-radius: 15px;
+            }
         }
 
         &.active-menuitem {
@@ -95,63 +101,63 @@
                 max-height: 1000px;
             }
 
-            // &.layout-submenu-wrapper-leave-active {
-            //     overflow: hidden;
-            //     transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
-            // }
+            &.layout-submenu-wrapper-leave-active {
+                overflow: hidden;
+                transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+            }
 
-            // &.layout-submenu-wrapper-enter-active {
-            //     overflow: hidden;
-            //     transition: max-height 1s ease-in-out;
-            // }
+            &.layout-submenu-wrapper-enter-active {
+                overflow: hidden;
+                transition: max-height 1s ease-in-out;
+            }
         }
     }
 }
 
-.layout-sidebar-light {
-    @include linear-gradient($menuBgColorFirst, $menuBgColorLast);
+// .layout-sidebar-light {
+//     @include linear-gradient($menuBgColorFirst, $menuBgColorLast);
 
-    // .layout-menu {
-    //     > li {
-    //         > a {
-    //             border-top: 1px solid $menuitemBorderColor;
-    //         }
+//     .layout-menu {
+//         > li {
+//             > a {
+//                 border-top: 1px solid $menuitemBorderColor;
+//             }
 
-    //         &:last-child {
-    //             > a {
-    //                 border-bottom: 1px solid $menuitemBorderColor;
-    //             }
-    //         }
+//             &:last-child {
+//                 > a {
+//                     border-bottom: 1px solid $menuitemBorderColor;
+//                 }
+//             }
 
-    //         ul {
-    //             background-color: $menuitemActiveBgColor;
-    //         }
-    //     }
+//             ul {
+//                 background-color: $menuitemActiveBgColor;
+//             }
+//         }
 
-    //     // li {
-    //     //     a {
-    //     //         color: $menuitemColor;
+//         li {
+//             a {
+//                 color: $menuitemColor;
 
-    //     //         &.active-route {
+//                 &.active-route {
                    
-    //     //             background-color: rgb(90, 143, 221);
-    //     //         }
+//                     background-color: rgb(90, 143, 221);
+//                 }
 
-    //     //         &:hover {
+//                 &:hover {
                    
-    //     //             background-color: rgb(90, 143, 221);
-    //     //         }
-    //     //     }
+//                     background-color: rgb(90, 143, 221);
+//                 }
+//             }
 
-    //     //     &.active-menuitem {
-    //     //         > a {
-    //     //             background-color: rgb(90, 143, 221);
+//             &.active-menuitem {
+//                 > a {
+//                     background-color: rgb(90, 143, 221);
                    
-    //     //         }
-    //     //     }
-    //     // }
-    // }
-}
+//                 }
+//             }
+//         }
+//     }
+// }
 
 // .layout-sidebar-light {
 //     @include linear-gradient($menuDarkBgColorFirst, $menuDarkBgColorLast);

@@ -314,6 +314,12 @@ a {
       margin-left: .5em; }
     .layout-menu li a .menuitem-toggle-icon {
       margin-left: auto; }
+    .layout-menu li a:focus {
+      background-color: #74b9ff;
+      border-radius: 15px; }
+    .layout-menu li a.active-route {
+      background-color: #74b9ff;
+      border-radius: 15px; }
   .layout-menu li.active-menuitem > a .menuitem-toggle-icon:before {
     content: ""; }
   .layout-menu > li > a {
@@ -339,14 +345,12 @@ a {
       max-height: 0; }
     .layout-menu > li ul.layout-submenu-wrapper-enter-to, .layout-menu > li ul.layout-submenu-wrapper-leave {
       max-height: 1000px; }
-
-.layout-sidebar-light {
-  background: #f3f4f9;
-  /* Old browsers */
-  background: linear-gradient(to bottom, #f3f4f9 0%, #d7dbe8 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
-  /* IE6-9 */ }
+    .layout-menu > li ul.layout-submenu-wrapper-leave-active {
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0, 1, 0, 1); }
+    .layout-menu > li ul.layout-submenu-wrapper-enter-active {
+      overflow: hidden;
+      transition: max-height 1s ease-in-out; }
 
 .layout-config {
   position: fixed;
