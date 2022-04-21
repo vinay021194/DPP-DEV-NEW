@@ -20,6 +20,7 @@ import demantData from "../data/demand_info_regression_summary.json"
 
 export const Materialdatachart = () => {
   const [products, setProducts] = useState([]);
+  const [products2, setProducts2] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
   //const toast = useRef(null);
   const isMounted = useRef(false);
@@ -158,11 +159,14 @@ export const Materialdatachart = () => {
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
-     setdemandInfoRegressionSummaryTable(demantData.Sheet1)
+    productService.getMaterialInfo().then(data => setProducts(data));
+    
+}, []); 
 
-   
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+useEffect(() => {
+  isMounted.current = true;
+  productService.getInventoryInfo().then(data => setProducts2(data));
+}, []);
 
   const onPlantChange = (e) => {
     setPlants(e.value);
@@ -212,44 +216,10 @@ export const Materialdatachart = () => {
     setExpandedRows(null);
   };
 
-  const formatCurrency = (value) => {
-    return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
-  };
+ 
 
-  const amountBodyTemplate = (rowData) => {
-    return formatCurrency(rowData.amount);
-  };
-
-  const statusOrderBodyTemplate = (rowData) => {
-    return <span className={`order-badge order-${rowData.status.toLowerCase()}`}>{rowData.status}</span>;
-  };
-
-  const searchBodyTemplate = () => {
-    return <Button icon="pi pi-check" className="p-button-rounded p-button-outlined" />;
-  };
-
-  const imageBodyTemplate = (rowData) => {
-    return (
-      <img
-        src={`images/product/${rowData.image}`}
-        onError={(e) => (e.target.src = "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")}
-        alt={rowData.image}
-        className="product-image"
-      />
-    );
-  };
-
-  const priceBodyTemplate = (rowData) => {
-    return formatCurrency(rowData.price);
-  };
-
-  const ratingBodyTemplate = (rowData) => {
-    return <Chip label="6% less then  the minimum" style={{ backgroundColor: "#feca57" }} />;
-  };
-
-  const statusBodyTemplate = (rowData) => {
-    return <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>;
-  };
+  
+  
 
   const onSidebarClick = () => {
     menuClick = true;
@@ -311,6 +281,11 @@ export const Materialdatachart = () => {
       <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Material Overview</h5>
     </div>
   );
+  const headers = (
+    <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Inventory</h5>
+    </div>
+  );
   const header2 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Plant2000</h5>
@@ -327,10 +302,10 @@ export const Materialdatachart = () => {
         {/* <h5>Orders for {data.name}</h5> */}
         <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
           <Column field="id" header="Plant Id(Name)" sortable></Column>
-          <Column field="name" header="Safety Stock" sortable body={statusOrderBodyTemplate}></Column>
-          <Column field="inventory" header="Inventory" sortable body={statusOrderBodyTemplate}></Column>
-          <Column field="status" header="WareHouse Capacity" body={statusOrderBodyTemplate} sortable></Column>
-          <Column field="status" header="Status" body={ratingBodyTemplate} sortable></Column>
+          <Column field="name" header="Safety Stock" sortable></Column>
+          <Column field="inventory" header="Inventory" sortable ></Column>
+          <Column field="status" header="WareHouse Capacity"  sortable></Column>
+          <Column field="status" header="Status"  sortable></Column>
           {/* <Column field="" header="" body={statusOrderBodyTemplate} sortable></Column> */}
         </DataTable>
       </div>
@@ -339,34 +314,47 @@ export const Materialdatachart = () => {
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
+      <AppTopbar onToggleMenu={onToggleMenu} />
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <div className="card">
-          <DataTable
-            value={products}
-            expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
-            onRowExpand={onRowExpand}
-            onRowCollapse={onRowCollapse}
-            responsiveLayout="scroll"
-            rowExpansionTemplate={rowExpansionTemplate}
-            dataKey="id"
-            header={header}
-            rows={1}
-          >
-            <Column expander style={{ width: "3em" }} />
-            <Column field="id" header="ID" sortable></Column>
-            <Column field="Discription" header="Discription" sortable body={priceBodyTemplate}></Column>
-            <Column field="UOM" header="UOM" sortable body={priceBodyTemplate}></Column>
-            <Column field="Aliases" header="Aliases" sortable body={priceBodyTemplate} />
-            <Column field="Criticality" header="Criticality" sortable body={searchBodyTemplate} />
-            <Column field="SAP" header="SAP" sortable body={priceBodyTemplate} />
-            <Column field="Organisation" header="Organisation" sortable body={searchBodyTemplate} />
-            <Column field="Class" header="Class" sortable body={priceBodyTemplate} />
-          </DataTable>
+        <DataTable value={products.Sheet2} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
+                    onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
+                    rowExpansionTemplate={rowExpansionTemplate} dataKey="" header={header}      rows={4}>
+                    <Column expander style={{ width: '3em' }} />
+                    <Column field="material" header="ID" sortable></Column>
+                    {/* <Column field="Discription" header="Discription" sortable ></Column> */}
+                    <Column field="base_unit_of_measure (UOM)" header="UOM" sortable ></Column>
+                    <Column field="aliases" header="Aliases" sortable/>
+                    {/* <Column field="Criticality" header="Criticality" sortable  /> */}
+                    <Column field="material_type (SAP)" header="SAP" sortable  />
+                    <Column field="material_group (organisation)" header="Organisation" sortable />
+                    <Column field="mdrm_class (class)" header="Class"  />
+                </DataTable>
 
         </div>
+        <div className='card'>
+           <DataTable 
+                   value={products2.Sheet3} 
+                  //  expandedRows={expandedRows}
+                    // onRowToggle={(e) => setExpandedRows(e.data)}
+                    // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
+                    // rowExpansionTemplate={rowExpansionTemplate} 
+                    dataKey="id"
+                    header={headers}
+                    rows={4}
+                    >
+                    {/* <Column expander style={{ width: '3em' }} /> */}
+                   
+                    <Column field="plant" header="PlantID(Name)" ></Column>
+                    <Column field="safety_stock" header="Safety Stock" ></Column>
+                    <Column field="opening_stock" header="Inventory"  />
+                    <Column field="warehouse_capacity" header="Warehouse capacity"  />
+                    <Column field="status_level_inventory" header="Status" />
+                    
+                   
+                </DataTable>
+                </div>
         <div className="card">
            <MultiSelect style={{ width: "49%", margin: "5px 10px" }} value={Plants} options={plantData}
             onChange={onPlantChange} optionLabel="label" placeholder="Select a Plant" display="chip" /> 
@@ -392,18 +380,18 @@ export const Materialdatachart = () => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
             <Column field="" header=""></Column>
-            <Column field="Discription" header="Jan21" body={priceBodyTemplate}></Column>
-            <Column field="UOM" header="Feb21" body={priceBodyTemplate}></Column>
-            <Column field="Aliases" header="Mar21" body={priceBodyTemplate} />
-            <Column field="Criticality" header="Apr21" body={searchBodyTemplate} />
-            <Column field="SAP" header="May21" body={priceBodyTemplate} />
-            <Column field="Organisation" header="Jun21" body={searchBodyTemplate} />
-            <Column field="Class" header="July21" body={priceBodyTemplate} />
-            <Column field="Aliases" header="Aug21" body={priceBodyTemplate} />
-            <Column field="Criticality" header="Sep21" body={searchBodyTemplate} />
-            <Column field="SAP" header="Oct21" body={priceBodyTemplate} />
-            <Column field="Organisation" header="Nov21" body={searchBodyTemplate} />
-            <Column field="Class" header="Dec21" body={priceBodyTemplate} />
+            <Column field="Discription" header="Jan21" ></Column>
+            <Column field="UOM" header="Feb21" ></Column>
+            <Column field="Aliases" header="Mar21"  />
+            <Column field="Criticality" header="Apr21"  />
+            <Column field="SAP" header="May21"  />
+            <Column field="Organisation" header="Jun21"  />
+            <Column field="Class" header="July21"  />
+            <Column field="Aliases" header="Aug21"  />
+            <Column field="Criticality" header="Sep21"  />
+            <Column field="SAP" header="Oct21"  />
+            <Column field="Organisation" header="Nov21"  />
+            <Column field="Class" header="Dec21"  />
           </DataTable>
         </div>
         <div className="card">
@@ -419,21 +407,35 @@ export const Materialdatachart = () => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
             <Column field="data" header=""></Column>
-            <Column field="Discription" header="Jan21" body={priceBodyTemplate}></Column>
-            <Column field="UOM" header="Feb21" body={priceBodyTemplate}></Column>
-            <Column field="Aliases" header="Mar21" body={priceBodyTemplate} />
-            <Column field="Criticality" header="Apr21" body={searchBodyTemplate} />
-            <Column field="SAP" header="May21" body={priceBodyTemplate} />
-            <Column field="Organisation" header="Jun21" body={searchBodyTemplate} />
-            <Column field="Class" header="July21" body={priceBodyTemplate} />
-            <Column field="Aliases" header="Aug21" body={priceBodyTemplate} />
-            <Column field="Criticality" header="Sep21" body={searchBodyTemplate} />
-            <Column field="SAP" header="Oct21" body={priceBodyTemplate} />
-            <Column field="Organisation" header="Nov21" body={searchBodyTemplate} />
-            <Column field="Class" header="Dec21" body={priceBodyTemplate} />
+            <Column field="Discription" header="Jan21" ></Column>
+            <Column field="UOM" header="Feb21" ></Column>
+            <Column field="Aliases" header="Mar21"  />
+            <Column field="Criticality" header="Apr21"  />
+            <Column field="SAP" header="May21"  />
+            <Column field="Organisation" header="Jun21"  />
+            <Column field="Class" header="July21"  />
+            <Column field="Aliases" header="Aug21"  />
+            <Column field="Criticality" header="Sep21"  />
+            <Column field="SAP" header="Oct21"  />
+            <Column field="Organisation" header="Nov21"  />
+            <Column field="Class" header="Dec21"  />
           </DataTable>
         </div>
       </div>
+      <div style={{ display:'flex',justifyContent:'center' }}>
+      <a href='/'>
+            <Button
+              label="Previous "
+              style={{ margin: "3px 15px"  }}
+            />
+            </a>
+            <a href='CostDriversAnalysis'>
+            <Button
+              label="Next"
+              style={{ margin: "3px 15px"  }}
+            />
+            </a>
+            </div>
       {/* <CSSTransition
         classNames="layout-sidebar"
         timeout={{ enter: 200, exit: 200 }}

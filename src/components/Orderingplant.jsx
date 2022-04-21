@@ -284,6 +284,14 @@ import supplierJsonData from "../data/supplierData.json"
           <AppMenu/>
         </div>
                 </CSSTransition> */}
+                 <div style={{ display:'flex',justifyContent:'center' }}>
+                  <a href='Inventory'>
+            <Button
+              label="Previous "
+              style={{ margin: "3px 15px"  }}
+            />
+            </a>
+            </div>
         </div>
        
        
