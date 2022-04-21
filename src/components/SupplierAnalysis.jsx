@@ -14,6 +14,7 @@ import { InputText } from "primereact/inputtext";
 import classNames from "classnames";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import dataHistorical from "../data/historicalunitpric.json"
 
 
 
@@ -55,6 +56,7 @@ export class SupplierAnalysis extends Component {
       selectedCity1: null,
       selectedCity2: null,
       filteredCities: null,
+      HistoricalChartData:[]
     };
 
     this.cities = [
@@ -77,12 +79,8 @@ export class SupplierAnalysis extends Component {
     ];
 
     this.plants = [
-      { label: "1200", value: "1200" },
-      { label: "1500", value: "1500" },
-      { label: "1800", value: "1800" },
-      { label: "2000", value: "2000" },
-      { label: "3300", value: "3300" },
-      { label: "4100", value: "4100" },
+      { name: "2000", code: "2000" },
+      { name: "3000", code: "3000" },
     ];
 
     this.countries = [
@@ -92,6 +90,52 @@ export class SupplierAnalysis extends Component {
       },
       { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
     ];
+
+    this.supplierFormula = [
+      {
+       "name": "A",
+       "code": "A",
+      },
+      {
+        "name": "A",
+       "code": "A",
+      },
+      {
+        "name": "A",
+       "code": "A",
+      },
+      {
+        "name": "A",
+       "code": "A",
+      }
+     ]
+
+     this.supplierFormulaData = [
+      {
+       "supplier_name": "A",
+       "formulae": "1.2 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 140",
+       "capacity": 1000,
+       "lead_time_months": 2
+      },
+      {
+       "supplier_name": "B",
+       "formulae": "1.5 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
+       "capacity": 980,
+       "lead_time_months": 1
+      },
+      {
+       "supplier_name": "C",
+       "formulae": "1.3 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
+       "capacity": 1200,
+       "lead_time_months": 2
+      },
+      {
+       "supplier_name": "D",
+       "formulae": "1.4 * [Polyethylene (US)-HDPE Bulk Contract DEL US Monthly] + 1.2 * [Polypropylene (US)-Copolymer Film Contract US Monthly] + 100",
+       "capacity": 1500,
+       "lead_time_months": 1
+      }
+     ]
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
@@ -130,6 +174,7 @@ export class SupplierAnalysis extends Component {
      // data = data.data.data.filter((d) => d.material === "7001733");
       return this.setState({ materialInfo: data });
     });
+   
 
     // this.procService
     //   .getPlants()
@@ -141,6 +186,7 @@ export class SupplierAnalysis extends Component {
     // console.log("Onsave", this.state.data);
 
     const { costDriver, seriesName, products, plant } = this.state;
+    console.log("products==>",products)
     this.props.history.push("/SupplierAnalysis", {
       costDriver,
       seriesName,
@@ -157,15 +203,51 @@ export class SupplierAnalysis extends Component {
     this.setState({ selectedCity1: e.target.value });
   };
 
+  
   onPlantChange = (e) => {
     this.setState(
       { plant: e.target.value }
       //console.log("e in onPlantChange", e)
     );
+
+    this.procService
+    .getHistoricalUnitPrice({ material: 7001733 })
+    .then((res) => {
+      const  plant  = e.target.value;
+      let resData = dataHistorical.Sheet2;
+      console.log("resData====>",resData)
+      console.log("plant====>",plant)
+      const filterByPlantData = resData.filter((el) => el.plant === plant.name);
+      console.log("filterByPlantData===>",filterByPlantData)
+      const unitPriceUSD = filterByPlantData.map((el) => {
+        let date = el.posting_date
+          .split("/") // 3/23/04  ===>
+          .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
+          .join("/"); //  [3, 23, 04] ==> 3/23/2004
+
+        date = new Date(date);
+        let milliseconds = date.getTime();
+
+        // console.log("date ==>", milliseconds);
+
+        return [milliseconds, Number(el.unit_price_usd)];
+      });
+
+      const chartData = [
+        {
+          name: plant,
+          data: unitPriceUSD.slice(-12),
+        },
+      ];
+
+       console.log("HistoricalUnitPrice chartData ====> ", chartData);
+      return this.setState({ HistoricalChartData: chartData });
+    });
   };
   // nextPath(path) {
   //   this.props.history.push(path);
   // }
+  
   searchCountry(event) {
     setTimeout(() => {
       let filteredCountries;
@@ -371,21 +453,200 @@ export class SupplierAnalysis extends Component {
   onInputChange(e, name) {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
+    console.log("product===>",product)
+    const data  = this.supplierFormulaData.filter((data)=>
+         data.supplier_name === e.value
+    )
+    console.log("data filtered====>",data)
+    product['name'] = data[0].supplier_name;
+    product['price'] = data[0].capacity;
+    product['quantity'] = data[0].formulae;
+    product['Percentage'] = data[0].lead_time_months;
 
-    //console.log("{product : ====>", product);
-
-    product[`${name}`] = val;
 
     this.setState({ product });
   }
 
   onInputNumberChange(e, name) {
-    const val = e.value || 0;
-    let product = { ...this.state.product };
-    product[`${name}`] = val;
-    //console.log("{product in onInputNumberChange : ====>", product);
-    this.setState({ product });
+    // const val = e.value || 0;
+    // let product = { ...this.state.product };
+    // product[`${name}`] = val;
+    // //console.log("{product in onInputNumberChange : ====>", product);
+    // this.setState({ product });
   }
+
+  convertData = () => {
+    const { data } = this.state;
+    if (data) {
+      let suppliers = this.state.products;
+      let forecastedObj = {};
+      let leadTimeObj = {};
+      let supplierMaxCapacity = {};
+      //console.log("suppliers  =====>", suppliers);
+      let convertedData = suppliers.map((el) => {
+        if (Number(el.quantity)) {
+          //console.log("its a Number");
+
+          forecastedObj = {
+            name: el.name,
+
+            field: "Forecasted Price",
+
+            month1: Number(el.quantity),
+
+            month2: Number(el.quantity),
+
+            month3: Number(el.quantity),
+
+            month4: Number(el.quantity),
+
+            month5: Number(el.quantity),
+
+            month6: Number(el.quantity),
+          };
+
+          leadTimeObj = {
+            name: el.name,
+
+            field: "Lead Time",
+
+            month1: el.Percentage,
+
+            month2: el.Percentage,
+
+            month3: el.Percentage,
+
+            month4: el.Percentage,
+
+            month5: el.Percentage,
+
+            month6: el.Percentage,
+          };
+
+          supplierMaxCapacity = {
+            name: el.name,
+
+            field: "Supplier Max. Capacity",
+
+            //OptimizeName : "Capacity",
+
+            month1: el.price,
+
+            month2: el.price,
+
+            month3: el.price,
+
+            month4: el.price,
+
+            month5: el.price,
+
+            month6: el.price,
+          };
+        } else {
+          //console.log("its not a Number");
+
+          //2*[1]+[2]
+          const { data } = this.state;
+
+          let seriesArr = data.seriesName.map((sr) => sr.name);
+
+          // console.log("seriesArr in func   =======>", seriesArr);
+
+          let str = el.quantity;
+
+          var regex = /\[/gi,
+            result,
+            indices = [];
+          while ((result = regex.exec(str))) {
+            indices.push(result.index);
+          }
+
+          // let seriesUsedInFormula = indices.map((el) => Number(str[el + 1])); // 2, 1, 3
+
+          let res = [];
+          for (let i = 0; i < 6; i++) {
+            let duplicate = el.quantity;
+            //console.log("duplicate el.quantity ===>", duplicate);
+            let duplicateSeriesArr = [...seriesArr];
+            let strArr = duplicate.split("");
+            while (strArr.indexOf("[") !== -1) {
+              let avgMonthData = this.weeklyValues[duplicateSeriesArr[0]][i];
+
+              let index = strArr.indexOf("[");
+              strArr.splice(index, 3, avgMonthData);
+              duplicateSeriesArr.shift();
+            }
+            //console.log("eval formul value " + i + "=====>", strArr.join(""));
+            res.push(Number(eval(strArr.join("")).toFixed(2)));
+          }
+
+          forecastedObj = {
+            name: el.name,
+
+            field: "Forecasted Price",
+
+            month1: res[0],
+
+            month2: res[1],
+
+            month3: res[2],
+
+            month4: res[3],
+
+            month5: res[4],
+
+            month6: res[5],
+          };
+
+          leadTimeObj = {
+            name: el.name,
+
+            field: "Lead Time",
+
+            month1: el.Percentage,
+
+            month2: el.Percentage,
+
+            month3: el.Percentage,
+
+            month4: el.Percentage,
+
+            month5: el.Percentage,
+
+            month6: el.Percentage,
+          };
+
+          supplierMaxCapacity = {
+            name: el.name,
+
+            field: "Supplier Max. Capacity",
+
+            //OptimizeName : "Capacity",
+
+            month1: el.price,
+
+            month2: el.price,
+
+            month3: el.price,
+
+            month4: el.price,
+
+            month5: el.price,
+
+            month6: el.price,
+          };
+        }
+        return { forecastedObj, supplierMaxCapacity, leadTimeObj };
+      });
+
+      //console.log("convertedData =====>", convertedData);
+
+      return this.setState({
+        supplierDetails: convertedData,
+        count: this.state.count + 1,
+      });
+    }
+  };
 
   
 
@@ -431,7 +692,60 @@ export class SupplierAnalysis extends Component {
       </React.Fragment>
     );
     
+
+
+    const historicalPricesOpthion = {
+      chart: {
+        zoomType: "x",
+      },
+      title: {
+        text: "Sabic Historical Prices",
+
+        align: "center",
+      },
+      yAxis: {
+        // type: "datetime",
+        title: {
+          text: "USD/Ton",
+        },
+      },
+      xAxis: {
+        type: "datetime",
+      },
+      legend: {
+        layout: "horizontal",
+        align: "center",
+        verticalAlign: "bottom",
+      },
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false,
+          },
+          pointStart: 2010,
+        },
+      },
+      series: this.state.HistoricalChartData,
+      responsive: {
+        rules: [
+          {
+            condition: {
+              maxWidth: 500,
+            },
+            chartOptions: {
+              legend: {
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom",
+              },
+            },
+          },
+        ],
+      },
+    };
+
    const chartoptions = {
+
       chart: {
         type: "spline"
       },
@@ -479,7 +793,7 @@ export class SupplierAnalysis extends Component {
              
 
               <DataTable
-              header={header2}
+                header={header2}
                 value={this.state.products}
                 paginator
                 rows={5}
@@ -532,9 +846,9 @@ export class SupplierAnalysis extends Component {
                 <div style={{ display: "flex", justifyContent:'center', margin: "5px 10px" ,fontFamily: "Poppins"}}>
                   <Dropdown
                     style={{ width: "30%", margin: "5px 10px" }}
-                    value={this.state.costDriver}
-                    options={this.costDrivers}
-                    onChange={(e) => this.onCostDriverChange(e)}
+                    value={this.state.plant}
+                    options={this.plants}
+                    onChange={(e) => this.onPlantChange(e)}
                     optionLabel="name"
                     placeholder="Choose Plants"
                     display="chip"
@@ -555,7 +869,7 @@ export class SupplierAnalysis extends Component {
             />
                 </div>
                 <div style={{ width: "100%" }}>
-                  <HighchartsReact highcharts={Highcharts} options={chartoptions} />
+                  <HighchartsReact highcharts={Highcharts} options={historicalPricesOpthion} />
                 </div>
                 
                 <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Supplier Priceing</h5>
@@ -570,9 +884,10 @@ export class SupplierAnalysis extends Component {
         <Dialog visible={this.state.productDialog} style={{ width: "600px" }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={this.hideDialog}>
           <div className="p-field">
             <label htmlFor="Material_Number">Supplier Name</label>
-            <InputText
+            <Dropdown
               id="name"
               value={this.state.product.name}
+              options={['A','B','C','D']}
               onChange={(e) => this.onInputChange(e, "name")}
               required
               autoFocus
@@ -592,13 +907,13 @@ export class SupplierAnalysis extends Component {
 
           <div className="p-field">
             <label htmlFor="price">Max Capacity</label>
-            <InputNumber id="price" value={this.state.product.price} onValueChange={(e) => this.onInputNumberChange(e, "price")} required />
+            <InputText id="price" value={this.state.product.price} onValueChange={(e) => this.onInputNumberChange(e, "price")} required />
             {this.state.submitted && !this.state.product.price && <small className="p-error">Max Capacity is required.</small>}
           </div>
 
           <div className="p-field">
             <label htmlFor="Percentage">Lead Time</label>
-            <InputNumber id="Percentage" value={this.state.product.Percentage} onValueChange={(e) => this.onInputNumberChange(e, "Percentage")} required />
+            <InputText id="Percentage" value={this.state.product.Percentage} onValueChange={(e) => this.onInputNumberChange(e, "Percentage")} required />
             {this.state.submitted && !this.state.product.Percentage && <small className="p-error">Lead Time is required.</small>}
           </div>
           {/* </div> */}
