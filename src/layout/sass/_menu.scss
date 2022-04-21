@@ -29,14 +29,14 @@
                 margin-left: auto;
             }
 
-            &:focus {
-                background-color: #74b9ff;
-                border-radius: 15px;
-            }
-            // &:active{
+            // &:focus {
             //     background-color: #74b9ff;
-            //     border-radius: 15px; 
+            //     border-radius: 15px;
             // }
+            &:hover{
+                background-color: #e8ebee;
+                border-radius: 15px; 
+            }
             &.active-route {
                 // font-weight: 700;
                 //color: var(--primary-color);

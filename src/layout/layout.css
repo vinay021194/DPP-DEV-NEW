@@ -314,8 +314,8 @@ a {
       margin-left: .5em; }
     .layout-menu li a .menuitem-toggle-icon {
       margin-left: auto; }
-    .layout-menu li a:focus {
-      background-color: #74b9ff;
+    .layout-menu li a:hover {
+      background-color: #e8ebee;
       border-radius: 15px; }
     .layout-menu li a.active-route {
       background-color: #74b9ff;
@@ -513,7 +513,6 @@ a {
   background-color: #ffffff;
   padding: 1em;
   margin-bottom: 16px;
-  border-radius: 15px;
   box-shadow: 0rem 0rem 0.5rem 0.5rem rgba(133, 130, 130, 0.08); }
   .card.card-w-title {
     padding-bottom: 2em; }

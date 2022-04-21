@@ -1,0 +1,74 @@
+{
+    "Sheet1": [
+        {
+            "undefined": "Warehouse Capacity",
+            "June": "7.25",
+            "July": "7.25",
+            "August": "7.25",
+            "September": "7.25",
+            "October": "7.25",
+            "November": "7.25",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "Safety Stock",
+            "June": "2.420000076",
+            "July": "2.420000076",
+            "August": "2.420000076",
+            "September": "2.420000076",
+            "October": "2.420000076",
+            "November": "2.420000076",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "Opening Stock",
+            "June": "8.409999847",
+            "July": "3.4099998",
+            "August": "2.4200001",
+            "September": "2.4200001",
+            "October": "2.4200001",
+            "November": "2.4200001",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "En Route",
+            "June": "0",
+            "July": "0",
+            "August": "0",
+            "September": "0",
+            "October": "0",
+            "November": "0",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "Forecasted Demand",
+            "June": "5",
+            "July": "5",
+            "August": "5",
+            "September": "5",
+            "October": "5",
+            "November": "5",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "Closing Stock",
+            "June": "3.409999847",
+            "July": "2.4200001",
+            "August": "2.4200001",
+            "September": "2.4200001",
+            "October": "2.4200001",
+            "November": "2.4200001",
+            "Plant": "2000"
+        },
+        {
+            "undefined": "To Arrive",
+            "June": "0",
+            "July": "4.0100002",
+            "August": "5",
+            "September": "5",
+            "October": "5",
+            "November": "5",
+            "Plant": "2000"
+        }
+    ]
+}

@@ -4,15 +4,6 @@ import { Route, Router, useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { AppTopbar } from "./components/AppTopbar";
 import { AppMenu } from "./components/AppMenu";
-// import { AppProfile } from "./components/AppProfile";
-// import { Table } from "./components/Table";
-// import { CustomTable } from "./components/CustomTable";
-// import { BarCharts } from "./components/BarCharts";
-// import { LineChart } from "./components/LineChart";
-// import { ScatterChart } from "./components/ScatterChart";
-//import { Charts } from "./components/Charts";
-import { MaterialForm } from "./components/MaterialForm";
-
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -24,15 +15,14 @@ import "prismjs/themes/prism-coy.css";
 import "./layout/flags/flags.css";
 import "./layout/layout.scss";
 import "./App.scss";
-import { DemandAndInventoryAnalysis } from "./components/DemandAndInventoryAnalysis";
-import { CategoryView } from "./components/Categoryview";
 
-import { CostAndIndexPriceAnalysis } from "./components/CostAndIndexPriceAnalysis";
-// import { Optimization } from "./components/Optimization";
-import { Forcast } from "./components/Forcast";
-import { EditOptimize } from "./components/EditOptimize";
-import { FinalResult } from "./components/FinalResult";
-import { Demo } from "./components/Demo";
+import {MaterialOverview} from "./components/MaterialOverview";
+import {Materialdatachart} from "./components/Materialdatachart";
+import {CostDriversAnalysis} from "./components/CostDriversAnalysis";
+import { LoginPage } from "./components/LoginPage";
+import { Orderingplant } from "./components/Orderingplant";
+import { Inventory } from "./components/Inventory"
+import { SupplierAnalysis } from "./components/SupplierAnalysis";
 
 const App = () => {
   const [layoutMode, setLayoutMode] = useState("static");
@@ -40,117 +30,79 @@ const App = () => {
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  // const [inputStyle, setInputStyle] = useState("outlined");
-  // const [ripple, setRipple] = useState(false);
-  const sidebar = useRef();
-  const history = useHistory();
-  let menuClick = false;
 
-  const menu = [
-    {
-      label: "Home",
-      icon: "pi pi-fw pi-home",
-      to: "/",
-    },
-    {
-      label: "Category View",
-      icon: "pi pi-fw pi-book",
-      to: "/CategoryView",
-    },
-    {
-      label: "Demand And Inventory Analysis",
-      icon: "pi pi-fw pi-clone",
-      to: "/DemandAndInventoryAnalysis",
-    },
+  // const sidebar = useRef();
+  // const history = useHistory();
+  // let menuClick = false;
 
-    {
-      label: "Cost And Index Price Analysis",
-      icon: "pi pi-fw pi-chart-line",
-      to: "/CostAndIndexPriceAnalysis",
-    },
-    {
-      label: "Optimization",
-      icon: "pi pi-fw pi-chart-bar",
-      to: "/Optimization",
-    },
-    
-  ];
+  // const wrapperClass = classNames("layout-wrapper", {
+  //   "layout-overlay": layoutMode === "overlay",
+  //   "layout-static": layoutMode === "static",
+  //   "layout-static-sidebar-inactive":
+  //     staticMenuInactive && layoutMode === "static",
+  //   "layout-overlay-sidebar-active":
+  //     overlayMenuActive && layoutMode === "overlay",
+  //   "layout-mobile-sidebar-active": mobileMenuActive,
+  //   // "p-input-filled": inputStyle === "filled",
+  //   // "p-ripple-disabled": ripple === false,
+  // });
 
-  const wrapperClass = classNames("layout-wrapper", {
-    "layout-overlay": layoutMode === "overlay",
-    "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive":
-      staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active":
-      overlayMenuActive && layoutMode === "overlay",
-    "layout-mobile-sidebar-active": mobileMenuActive,
-    // "p-input-filled": inputStyle === "filled",
-    // "p-ripple-disabled": ripple === false,
-  });
+  // const sidebarClassName = classNames("layout-sidebar", {
+  //   "layout-sidebar-dark": layoutColorMode === "dark",
+  //   "layout-sidebar-light": layoutColorMode === "light",
+  // });
 
-  const sidebarClassName = classNames("layout-sidebar", {
-    "layout-sidebar-dark": layoutColorMode === "dark",
-    "layout-sidebar-light": layoutColorMode === "light",
-  });
+  // const logo =
+  //   layoutColorMode === "dark"
+  //     ? "assets/layout/images/logo-white.svg"
+  //     : "assets/layout/images/logo.svg";
 
-  const logo =
-    layoutColorMode === "dark"
-      ? "assets/layout/images/logo-white.svg"
-      : "assets/layout/images/logo.svg";
+  // const isDesktop = () => {
+  //   return window.innerWidth > 1024;
+  // };
 
-  const onMenuItemClick = (event) => {
-    if (!event.item.items) {
-      setOverlayMenuActive(false);
-      setMobileMenuActive(false);
-    }
-  };
+  // const onToggleMenu = (event) => {
+  //   menuClick = true;
 
-  const isDesktop = () => {
-    return window.innerWidth > 1024;
-  };
+  //   if (isDesktop()) {
+  //     if (layoutMode === "overlay") {
+  //       setOverlayMenuActive((prevState) => !prevState);
+  //     } else if (layoutMode === "static") {
+  //       setStaticMenuInactive((prevState) => !prevState);
+  //     }
+  //   } else {
+  //     setMobileMenuActive((prevState) => !prevState);
+  //   }
+  //   event.preventDefault();
+  // };
 
-  const onToggleMenu = (event) => {
-    menuClick = true;
+  // const onWrapperClick = (event) => {
+  //   if (!menuClick) {
+  //     setOverlayMenuActive(false);
+  //     setMobileMenuActive(false);
+  //   }
+  //   menuClick = false;
+  // };
 
-    if (isDesktop()) {
-      if (layoutMode === "overlay") {
-        setOverlayMenuActive((prevState) => !prevState);
-      } else if (layoutMode === "static") {
-        setStaticMenuInactive((prevState) => !prevState);
-      }
-    } else {
-      setMobileMenuActive((prevState) => !prevState);
-    }
-    event.preventDefault();
-  };
+  // const onSidebarClick = () => {
+  //   menuClick = true;
+  // };
 
-  const onWrapperClick = (event) => {
-    if (!menuClick) {
-      setOverlayMenuActive(false);
-      setMobileMenuActive(false);
-    }
-    menuClick = false;
-  };
+  // const isSidebarVisible = () => {
+  //   if (isDesktop()) {
+  //     if (layoutMode === "static") return !staticMenuInactive;
+  //     else if (layoutMode === "overlay") return overlayMenuActive;
+  //     else return true;
+  //   }
 
-  const onSidebarClick = () => {
-    menuClick = true;
-  };
-
-  const isSidebarVisible = () => {
-    if (isDesktop()) {
-      if (layoutMode === "static") return !staticMenuInactive;
-      else if (layoutMode === "overlay") return overlayMenuActive;
-      else return true;
-    }
-
-    return true;
-  };
+  //   return true;
+  // };
 
   return (
-    <div className={wrapperClass} onClick={onWrapperClick}>
-      <AppTopbar onToggleMenu={onToggleMenu} />
+    <div >
+      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
 
-      <CSSTransition
+      {/* <CSSTransition
         classNames="layout-sidebar"
         timeout={{ enter: 200, exit: 200 }}
         in={isSidebarVisible()}
@@ -177,38 +129,29 @@ const App = () => {
               }}
             />
           </div>
-          {/* <AppProfile /> */}
-          <AppMenu model={menu} onMenuItemClick={onMenuItemClick} />
+          <AppMenu/>
         </div>
-      </CSSTransition>
+      </CSSTransition> */}
 
       {/* <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
                 layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} /> */}
 
-      <div className="layout-main">
+      <div className="">
         {/* <Router > */}
-        <Route path="/" exact component={MaterialForm} />
-        <Route
-          path="/DemandAndInventoryAnalysis"
-          exact
-          component={DemandAndInventoryAnalysis}
-        />
-        <Route
-          path="/CategoryView"
-          exact
-          component={CategoryView}
-        />
-        <Route
-          path="/CostAndIndexPriceAnalysis"
-          exact
-          component={CostAndIndexPriceAnalysis}
-        />
-        <Route path="/Optimization" exact component={Demo} />
-        <Route path="/Forcast" exact component={Forcast} />
-        <Route path="/EditOptimize" exact component={EditOptimize} />
-        <Route path="/FinalResult" exact component={FinalResult} />
+        <Route path="/" exact component={MaterialOverview} />
+        <Route path="/Materialdatachart" exact component={Materialdatachart} />
+        <Route path="/CostDriversAnalysis" exact component={CostDriversAnalysis} />
+        <Route path="/LoginPage" exact component={LoginPage} />
+        <Route path="/Orderingplant" exact component={Orderingplant} />
+        <Route path="/Inventory" exact component={Inventory} />
+        <Route path="/SupplierAnalysis" exact component={SupplierAnalysis} />
+        
+        
         {/* </Router> */}
+
       </div>
+      
+
     </div>
   );
 };

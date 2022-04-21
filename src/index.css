@@ -1,25 +1,30 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'poppins';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'poppins';
 }
 .p-datatable .p-datatable-thead > tr > th{
-  background-color:  #74b9ff !important;
-  color: white;
-  border-color: 2px  #74b9ff
+  /* background-color:  white !important; */
+  color: darkgrey;
+  border-color: 2px  white !important
 }
-.p-button {
+.p-datatable .p-datatable-header {
+  background-color: white!important;
+    color: #495057;
+    border: none;
+    border-width: 0 0 0 0;
+    padding: 1rem 1rem;
+    font-weight: 600;
+}
+/* .p-button {
   background-color:   #74b9ff !important;
   border: 1px solid #74b9ff!important;
-}
+} */
 /* .layout-menu li a:focus{
   background-color: #74b9ff!important;
   border-radius: 15px;
@@ -33,4 +38,7 @@ code {
 .resetbutton{
   background-color:  rgb(163, 162, 162) !important;
   border-color: rgb(163, 162, 162) !important
+}
+.p-component{
+  font-family: 'poppins'!important;
 }
