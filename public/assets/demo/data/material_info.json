@@ -1,67 +1,77 @@
 {
-  "data":
-  {
-    "Sheet2": [
-        {
-            "material": "700047",
-            "material_description_1": "Sodium Chloride",
-            "material_type (SAP)": "ROH",
-            "material_group (organisation)": "D11987",
-            "base_unit_of_measure (UOM)": "KG",
-            "industry_sector": "C",
-            "mdrm_class (class)": "GENERAL",
-            "aliases": "700233, 672219"
-        },
-        {
-            "material": "678456",
-            "material_description_1": "CA-OX",
-            "material_type (SAP)": "UNBW",
-            "material_group (organisation)": "12451600",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "CATALYST",
-            "aliases": "None"
-        },
-        {
-            "material": "789045",
-            "material_description_1": "CHRCL",
-            "material_type (SAP)": "ERSA",
-            "material_group (organisation)": "13111780",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "A",
-            "mdrm_class (class)": "GENERAL",
-            "aliases": "800576"
-        },
-        {
-            "material": "600234",
-            "material_description_1": "VX190",
-            "material_type (SAP)": "HALB",
-            "material_group (organisation)": "34893423",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "GENERAL",
-            "aliases": "712890, 742567"
-        },
-        {
-            "material": "645908",
-            "material_description_1": "Boiler Water",
-            "material_type (SAP)": "FHMI",
-            "material_group (organisation)": "89089000",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "CHEMICAL",
-            "aliases": "None"
-        },
-        {
-            "material": "768971",
-            "material_description_1": "Styrene Monomer",
-            "material_type (SAP)": "FHMI",
-            "material_group (organisation)": "34201615",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "B",
-            "mdrm_class (class)": "CATALYST",
-            "aliases": "None"
-        }
-    ]
-}
+    "data": {
+        "Sheet2": [{
+
+                "material": "700047",
+                "material_description_1": "Sodium Chloride",
+                "material_type (SAP)": "ROH",
+                "material_group (organisation)": "D11987",
+                "base_unit_of_measure (UOM)": "KG",
+                "industry_sector": "C",
+                "mdrm_class (class)": "GENERAL",
+                "aliases": "700233, 672219",
+                "child": [{
+                    "name": "Applications",
+                    "inventory": "100kb",
+                    "status": "Folder",
+                    "id": "M1"
+                }, {
+                    "name": "Applications",
+                    "inventory": "100kb",
+                    "status": "Folder",
+                    "id": "M2"
+                }]
+            },
+            {
+                "material": "678456",
+                "material_description_1": "CA-OX",
+                "material_type (SAP)": "UNBW",
+                "material_group (organisation)": "12451600",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "C",
+                "mdrm_class (class)": "CATALYST",
+                "aliases": "None"
+            },
+            {
+                "material": "789045",
+                "material_description_1": "CHRCL",
+                "material_type (SAP)": "ERSA",
+                "material_group (organisation)": "13111780",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "A",
+                "mdrm_class (class)": "GENERAL",
+                "aliases": "800576"
+            },
+            {
+                "material": "600234",
+                "material_description_1": "VX190",
+                "material_type (SAP)": "HALB",
+                "material_group (organisation)": "34893423",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "C",
+                "mdrm_class (class)": "GENERAL",
+                "aliases": "712890, 742567"
+            },
+            {
+                "material": "645908",
+                "material_description_1": "Boiler Water",
+                "material_type (SAP)": "FHMI",
+                "material_group (organisation)": "89089000",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "C",
+                "mdrm_class (class)": "CHEMICAL",
+                "aliases": "None"
+            },
+            {
+                "material": "768971",
+                "material_description_1": "Styrene Monomer",
+                "material_type (SAP)": "FHMI",
+                "material_group (organisation)": "34201615",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "B",
+                "mdrm_class (class)": "CATALYST",
+                "aliases": "None"
+            }
+        ]
+    }
 }

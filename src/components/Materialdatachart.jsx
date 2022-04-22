@@ -16,9 +16,9 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { Chip } from "primereact/chip";
 import { MultiSelect } from "primereact/multiselect";
-import demantData from "../data/demand_info_regression_summary.json"
+import demantData from "../data/demand_info_regression_summary.json";
 
-export const Materialdatachart = () => {
+export const Materialdatachart = (props) => {
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
@@ -30,29 +30,64 @@ export const Materialdatachart = () => {
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
-  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
+  const [
+    demandInfoRegressionSummaryTable,
+    setdemandInfoRegressionSummaryTable,
+  ] = useState([]);
+  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
+    useState([]);
   const [Plants, setPlants] = useState(false);
 
   const plantData = [
     { label: "2000", value: "2000" },
     { label: "3000", value: "3000" },
-  ]
-
+  ];
+  console.log("Materialdatachart props====>", props);
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
   let menuClick = false;
 
-  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   let date = new Date();
   let month = date.getMonth();
   let year = date.getFullYear();
-  let month1 = month > 11 ? months[month % 11] + "-" + year + 1 : months[month] + "-" + year;
-  let month2 = month + 1 > 11 ? months[(month + 1) % 11] + "-" + year + 1 : months[month + 1] + "-" + year;
-  let month3 = month + 2 > 11 ? months[(month + 2) % 11] + "-" + year + 1 : months[month + 2] + "-" + year;
-  let month4 = month + 3 > 11 ? months[(month + 3) % 11] + "-" + year + 1 : months[month + 3] + "-" + year;
-  let month5 = month + 4 > 11 ? months[(month + 4) % 11] + "-" + year + 1 : months[month + 4] + "-" + year;
-  let month6 = month + 5 > 11 ? months[(month + 5) % 11] + "-" + year + 1 : months[month + 5] + "-" + year;
+  let month1 =
+    month > 11
+      ? months[month % 11] + "-" + year + 1
+      : months[month] + "-" + year;
+  let month2 =
+    month + 1 > 11
+      ? months[(month + 1) % 11] + "-" + year + 1
+      : months[month + 1] + "-" + year;
+  let month3 =
+    month + 2 > 11
+      ? months[(month + 2) % 11] + "-" + year + 1
+      : months[month + 2] + "-" + year;
+  let month4 =
+    month + 3 > 11
+      ? months[(month + 3) % 11] + "-" + year + 1
+      : months[month + 3] + "-" + year;
+  let month5 =
+    month + 4 > 11
+      ? months[(month + 4) % 11] + "-" + year + 1
+      : months[month + 4] + "-" + year;
+  let month6 =
+    month + 5 > 11
+      ? months[(month + 5) % 11] + "-" + year + 1
+      : months[month + 5] + "-" + year;
 
   const options = {
     chart: {
@@ -152,25 +187,28 @@ export const Materialdatachart = () => {
 
   useEffect(() => {
     if (isMounted.current) {
-      const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
+      const summary =
+        expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
       //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
   }, [expandedRows]);
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getMaterialInfo().then(data => setProducts(data));
-    
-}, []); 
+    productService.getMaterialInfo().then((data) => setProducts(data));
+  }, []);
 
-useEffect(() => {
-  isMounted.current = true;
-  productService.getInventoryInfo().then(data => setProducts2(data));
-}, []);
+  useEffect(() => {
+    isMounted.current = true;
+    productService.getInventoryInfo().then((data) => setProducts2(data));
+  }, []);
 
   const onPlantChange = (e) => {
     setPlants(e.value);
-    console.log("demandInfoRegressionSummaryTable====>",demandInfoRegressionSummaryTable)
+    console.log(
+      "demandInfoRegressionSummaryTable====>",
+      demandInfoRegressionSummaryTable
+    );
     let convertedData = demandInfoRegressionSummaryTable.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
@@ -183,7 +221,9 @@ useEffect(() => {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
-    let exampleData = e.value.map((sr) => convertedData.filter((el) => el.plant === sr));
+    let exampleData = e.value.map((sr) =>
+      convertedData.filter((el) => el.plant === sr)
+    );
     console.log("exampleData in map ===>", exampleData);
 
     const chartData1 = e.value.map((sr, i) => {
@@ -216,11 +256,6 @@ useEffect(() => {
     setExpandedRows(null);
   };
 
- 
-
-  
-  
-
   const onSidebarClick = () => {
     menuClick = true;
   };
@@ -243,13 +278,18 @@ useEffect(() => {
   });
   const sidebar = useRef();
   const history = useHistory();
-  const logo = layoutColorMode === "dark" ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
+  const logo =
+    layoutColorMode === "dark"
+      ? "assets/layout/images/logo-white.svg"
+      : "assets/layout/images/logo.svg";
 
   const wrapperClass = classNames("layout-wrapper", {
     "layout-overlay": layoutMode === "overlay",
     "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
+    "layout-static-sidebar-inactive":
+      staticMenuInactive && layoutMode === "static",
+    "layout-overlay-sidebar-active":
+      overlayMenuActive && layoutMode === "overlay",
     "layout-mobile-sidebar-active": mobileMenuActive,
     // "p-input-filled": inputStyle === "filled",
     // "p-ripple-disabled": ripple === false,
@@ -278,22 +318,30 @@ useEffect(() => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Material Overview</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
+        Material Overview
+      </h5>
     </div>
   );
   const headers = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Inventory</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
+        Inventory
+      </h5>
     </div>
   );
   const header2 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Plant2000</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
+        Plant2000
+      </h5>
     </div>
   );
   const header3 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Plant3000</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
+        Plant3000
+      </h5>
     </div>
   );
   const rowExpansionTemplate = (data) => {
@@ -303,9 +351,9 @@ useEffect(() => {
         <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
           <Column field="id" header="Plant Id(Name)" sortable></Column>
           <Column field="name" header="Safety Stock" sortable></Column>
-          <Column field="inventory" header="Inventory" sortable ></Column>
-          <Column field="status" header="WareHouse Capacity"  sortable></Column>
-          <Column field="status" header="Status"  sortable></Column>
+          <Column field="inventory" header="Inventory" sortable></Column>
+          <Column field="status" header="WareHouse Capacity" sortable></Column>
+          <Column field="status" header="Status" sortable></Column>
           {/* <Column field="" header="" body={statusOrderBodyTemplate} sortable></Column> */}
         </DataTable>
       </div>
@@ -318,50 +366,83 @@ useEffect(() => {
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <div className="card">
-        <DataTable value={products.Sheet2} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)}
-                    onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                    rowExpansionTemplate={rowExpansionTemplate} dataKey="" header={header}      rows={4}>
-                    <Column expander style={{ width: '3em' }} />
-                    <Column field="material" header="ID" sortable></Column>
-                    {/* <Column field="Discription" header="Discription" sortable ></Column> */}
-                    <Column field="base_unit_of_measure (UOM)" header="UOM" sortable ></Column>
-                    <Column field="aliases" header="Aliases" sortable/>
-                    {/* <Column field="Criticality" header="Criticality" sortable  /> */}
-                    <Column field="material_type (SAP)" header="SAP" sortable  />
-                    <Column field="material_group (organisation)" header="Organisation" sortable />
-                    <Column field="mdrm_class (class)" header="Class"  />
-                </DataTable>
-
+          <DataTable
+            value={products.Sheet2}
+            expandedRows={expandedRows}
+            onRowToggle={(e) => setExpandedRows(e.data)}
+            onRowExpand={onRowExpand}
+            onRowCollapse={onRowCollapse}
+            responsiveLayout="scroll"
+            rowExpansionTemplate={rowExpansionTemplate}
+            dataKey=""
+            header={header}
+            rows={4}
+          >
+            <Column expander style={{ width: "3em" }} />
+            <Column field="material" header="ID" sortable></Column>
+            {/* <Column field="Discription" header="Discription" sortable ></Column> */}
+            <Column
+              field="base_unit_of_measure (UOM)"
+              header="UOM"
+              sortable
+            ></Column>
+            <Column field="aliases" header="Aliases" sortable />
+            {/* <Column field="Criticality" header="Criticality" sortable  /> */}
+            <Column field="material_type (SAP)" header="SAP" sortable />
+            <Column
+              field="material_group (organisation)"
+              header="Organisation"
+              sortable
+            />
+            <Column field="mdrm_class (class)" header="Class" />
+          </DataTable>
         </div>
-        <div className='card'>
-           <DataTable 
-                   value={products2.Sheet3} 
-                  //  expandedRows={expandedRows}
-                    // onRowToggle={(e) => setExpandedRows(e.data)}
-                    // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                    // rowExpansionTemplate={rowExpansionTemplate} 
-                    dataKey="id"
-                    header={headers}
-                    rows={4}
-                    >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
-                    <Column field="plant" header="PlantID(Name)" ></Column>
-                    <Column field="safety_stock" header="Safety Stock" ></Column>
-                    <Column field="opening_stock" header="Inventory"  />
-                    <Column field="warehouse_capacity" header="Warehouse capacity"  />
-                    <Column field="status_level_inventory" header="Status" />
-                    
-                   
-                </DataTable>
-                </div>
         <div className="card">
-           <MultiSelect style={{ width: "49%", margin: "5px 10px" }} value={Plants} options={plantData}
-            onChange={onPlantChange} optionLabel="label" placeholder="Select a Plant" display="chip" /> 
+          <DataTable
+            value={products2.Sheet3}
+            //  expandedRows={expandedRows}
+            // onRowToggle={(e) => setExpandedRows(e.data)}
+            // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
+            // rowExpansionTemplate={rowExpansionTemplate}
+            dataKey="id"
+            header={headers}
+            rows={4}
+          >
+            {/* <Column expander style={{ width: '3em' }} /> */}
+
+            <Column field="plant" header="PlantID(Name)"></Column>
+            <Column field="safety_stock" header="Safety Stock"></Column>
+            <Column field="opening_stock" header="Inventory" />
+            <Column field="warehouse_capacity" header="Warehouse capacity" />
+            <Column field="status_level_inventory" header="Status" />
+          </DataTable>
+        </div>
+        <div className="card">
+          <MultiSelect
+            style={{ width: "49%", margin: "5px 10px" }}
+            value={Plants}
+            options={plantData}
+            onChange={onPlantChange}
+            optionLabel="label"
+            placeholder="Select a Plant"
+            display="chip"
+          />
           <strong>From Year</strong>
-          <Calendar style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date1} onChange={(e) => setDate1(e.value)} />
+          <Calendar
+            style={{ width: "15%", margin: "5px 10px" }}
+            id="icon"
+            showIcon
+            value={date1}
+            onChange={(e) => setDate1(e.value)}
+          />
           <strong>To Year</strong>
-          <Calendar style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date2} onChange={(e) => setDate2(e.value)} />
+          <Calendar
+            style={{ width: "15%", margin: "5px 10px" }}
+            id="icon"
+            showIcon
+            value={date2}
+            onChange={(e) => setDate2(e.value)}
+          />
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
@@ -380,18 +461,18 @@ useEffect(() => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
             <Column field="" header=""></Column>
-            <Column field="Discription" header="Jan21" ></Column>
-            <Column field="UOM" header="Feb21" ></Column>
-            <Column field="Aliases" header="Mar21"  />
-            <Column field="Criticality" header="Apr21"  />
-            <Column field="SAP" header="May21"  />
-            <Column field="Organisation" header="Jun21"  />
-            <Column field="Class" header="July21"  />
-            <Column field="Aliases" header="Aug21"  />
-            <Column field="Criticality" header="Sep21"  />
-            <Column field="SAP" header="Oct21"  />
-            <Column field="Organisation" header="Nov21"  />
-            <Column field="Class" header="Dec21"  />
+            <Column field="Discription" header="Jan21"></Column>
+            <Column field="UOM" header="Feb21"></Column>
+            <Column field="Aliases" header="Mar21" />
+            <Column field="Criticality" header="Apr21" />
+            <Column field="SAP" header="May21" />
+            <Column field="Organisation" header="Jun21" />
+            <Column field="Class" header="July21" />
+            <Column field="Aliases" header="Aug21" />
+            <Column field="Criticality" header="Sep21" />
+            <Column field="SAP" header="Oct21" />
+            <Column field="Organisation" header="Nov21" />
+            <Column field="Class" header="Dec21" />
           </DataTable>
         </div>
         <div className="card">
@@ -407,35 +488,29 @@ useEffect(() => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
             <Column field="data" header=""></Column>
-            <Column field="Discription" header="Jan21" ></Column>
-            <Column field="UOM" header="Feb21" ></Column>
-            <Column field="Aliases" header="Mar21"  />
-            <Column field="Criticality" header="Apr21"  />
-            <Column field="SAP" header="May21"  />
-            <Column field="Organisation" header="Jun21"  />
-            <Column field="Class" header="July21"  />
-            <Column field="Aliases" header="Aug21"  />
-            <Column field="Criticality" header="Sep21"  />
-            <Column field="SAP" header="Oct21"  />
-            <Column field="Organisation" header="Nov21"  />
-            <Column field="Class" header="Dec21"  />
+            <Column field="Discription" header="Jan21"></Column>
+            <Column field="UOM" header="Feb21"></Column>
+            <Column field="Aliases" header="Mar21" />
+            <Column field="Criticality" header="Apr21" />
+            <Column field="SAP" header="May21" />
+            <Column field="Organisation" header="Jun21" />
+            <Column field="Class" header="July21" />
+            <Column field="Aliases" header="Aug21" />
+            <Column field="Criticality" header="Sep21" />
+            <Column field="SAP" header="Oct21" />
+            <Column field="Organisation" header="Nov21" />
+            <Column field="Class" header="Dec21" />
           </DataTable>
         </div>
       </div>
-      <div style={{ display:'flex',justifyContent:'center' }}>
-      <a href='/'>
-            <Button
-              label="Previous "
-              style={{ margin: "3px 15px"  }}
-            />
-            </a>
-            <a href='CostDriversAnalysis'>
-            <Button
-              label="Next"
-              style={{ margin: "3px 15px"  }}
-            />
-            </a>
-            </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <a href="/">
+          <Button label="Previous " style={{ margin: "3px 15px" }} />
+        </a>
+        <a href="CostDriversAnalysis">
+          <Button label="Next" style={{ margin: "3px 15px" }} />
+        </a>
+      </div>
       {/* <CSSTransition
         classNames="layout-sidebar"
         timeout={{ enter: 200, exit: 200 }}
