@@ -181,7 +181,7 @@ import supplierJsonData from "../data/supplierData.json"
 
     return ( 
         <div >
-             {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
+             <AppTopbar onToggleMenu={onToggleMenu} />
             {/* <Toast ref={toast} /> */}
           <div className='layout-main'>
              <div className="card">

@@ -15,7 +15,7 @@ import classNames from "classnames";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json"
-
+import { AppTopbar } from "../components/AppTopbar";
 
 
 import { MultiSelect } from "primereact/multiselect";
@@ -780,10 +780,13 @@ export class SupplierAnalysis extends Component {
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Enter Supplier Information </h5>
       </div>
   );
+  
 
     return (
+      <div>
+         <AppTopbar onToggleMenu={"onToggleMenu"} />
       <div className='layout-main'>
-
+ 
         <div className="card ">
         <h5 style={{ fontWeight:"bolder", fontFamily:'poppins' }}>Supplier Analysis</h5>
           <div className="row" style={{ display: "flex", justifyContent:'center', fontFamily: "Poppins" }}>
@@ -952,6 +955,7 @@ export class SupplierAnalysis extends Component {
             />
             </a>
             </div>
+      </div>
       </div>
       
     );

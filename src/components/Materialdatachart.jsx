@@ -245,15 +245,15 @@ useEffect(() => {
   const history = useHistory();
   const logo = layoutColorMode === "dark" ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
 
-  const wrapperClass = classNames("layout-wrapper", {
-    "layout-overlay": layoutMode === "overlay",
-    "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
-    "layout-mobile-sidebar-active": mobileMenuActive,
-    // "p-input-filled": inputStyle === "filled",
-    // "p-ripple-disabled": ripple === false,
-  });
+  // const wrapperClass = classNames("layout-wrapper", {
+  //   "layout-overlay": layoutMode === "overlay",
+  //   "layout-static": layoutMode === "static",
+  //   "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
+  //   "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
+  //   "layout-mobile-sidebar-active": mobileMenuActive,
+  //   // "p-input-filled": inputStyle === "filled",
+  //   // "p-ripple-disabled": ripple === false,
+  // });
   const onToggleMenu = (event) => {
     menuClick = true;
 
@@ -270,15 +270,15 @@ useEffect(() => {
   };
   const onWrapperClick = (event) => {
     if (!menuClick) {
-      setOverlayMenuActive(false);
-      setMobileMenuActive(false);
+     // setOverlayMenuActive(false);
+     // setMobileMenuActive(false);
     }
     menuClick = false;
   };
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Material Overview</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Demand Prediction</h5>
     </div>
   );
   const headers = (
@@ -313,7 +313,7 @@ useEffect(() => {
   };
 
   return (
-    <div>
+    <div className={'wrapperClass'} onClick={onWrapperClick}>
       <AppTopbar onToggleMenu={onToggleMenu} />
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
