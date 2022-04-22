@@ -15,7 +15,7 @@ import classNames from "classnames";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json"
-
+import { AppTopbar } from "../components/AppTopbar";
 
 
 import { MultiSelect } from "primereact/multiselect";
@@ -209,6 +209,14 @@ export class SupplierAnalysis extends Component {
   };
   onCityChange = (e) => {
     this.setState({ selectedCity1: e.target.value });
+  };
+
+  
+  optimize = () => {
+    console.log("this.supplierDetails====>",this.supplierDetails)
+    this.props.history.push("/Inventory", 
+    {supplierDetails:window.supplierObject}
+    );
   };
 
   
@@ -653,8 +661,9 @@ export class SupplierAnalysis extends Component {
         return { forecastedObj, supplierMaxCapacity, leadTimeObj };
       });
 
-      console.log("convertedData =====>", convertedData);
-
+      window.supplierObject = convertedData.map((data)=>data.forecastedObj)
+      console.log("convertedData =====>", window.supplierObject);
+    
       return this.setState({
         supplierDetails: convertedData,
         count: this.state.count + 1,
@@ -752,7 +761,8 @@ export class SupplierAnalysis extends Component {
             };
             //console.log("forcastSeriesData ====>", objData);
             return objData;
-          })
+          }
+          )
         : [];
 
     
@@ -924,10 +934,13 @@ export class SupplierAnalysis extends Component {
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Enter Supplier Information </h5>
       </div>
   );
+  
 
     return (
+      <div>
+         <AppTopbar onToggleMenu={"onToggleMenu"} />
       <div className='layout-main'>
-
+ 
         <div className="card ">
         <h5 style={{ fontWeight:"bolder", fontFamily:'poppins' }}>Supplier Analysis</h5>
           <div className="row" style={{ display: "flex", justifyContent:'center', fontFamily: "Poppins" }}>
@@ -1093,9 +1106,11 @@ export class SupplierAnalysis extends Component {
             <Button
               label="Next"
               style={{ margin: "3px 15px"  }}
+              onClick = {this.optimize}
             />
             </a>
             </div>
+      </div>
       </div>
       
     );

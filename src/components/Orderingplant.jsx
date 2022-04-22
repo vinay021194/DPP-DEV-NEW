@@ -52,7 +52,7 @@ import supplierJsonData from "../data/supplierData.json"
 
     useEffect(() => {
         isMounted.current = true;
-        productService.getProductsWithOrdersSmall().then(data => setProducts(data));
+        productService.getMaterialInfo().then(data => setProducts(data));
         setsupplierData(supplierJsonData.Sheet1)
         setplantData(plantJsonData.Sheet1)
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -181,26 +181,29 @@ import supplierJsonData from "../data/supplierData.json"
 
     return ( 
         <div >
-             {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
+             <AppTopbar onToggleMenu={onToggleMenu} />
             {/* <Toast ref={toast} /> */}
           <div className='layout-main'>
-             <div className="card">
+          <div className="card">
                 <DataTable 
-                value={products}
+                value={products.Sheet2}
                 //  expandedRows={expandedRows} 
                 // onRowToggle={(e) => setExpandedRows(e.data)}
                 //     onRowExpand={onRowExpand} 
                 //     onRowCollapse={onRowCollapse} 
                     responsiveLayout="scroll"
                    // rowExpansionTemplate={rowExpansionTemplate}
-                     dataKey="id" header={header}   
+                     dataKey="id" header={"Material Information"}   
                         rows={1}>
                    
-                    <Column field="Material Number" header="Material Number" ></Column>
-                    <Column field="Type" header="Type"  ></Column>
-                    <Column field="Discription" header="Discription"  ></Column>
-                    <Column field="UOM" header="UOM"  />
-                    <Column field="UNSPSC Description" header="  UNSPSC Description"   />
+                   <Column field="material" header="ID" sortable></Column>
+                    {/* <Column field="Discription" header="Discription" sortable ></Column> */}
+                    <Column field="base_unit_of_measure (UOM)" header="UOM" sortable ></Column>
+                    <Column field="aliases" header="Aliases" sortable/>
+                    {/* <Column field="Criticality" header="Criticality" sortable  /> */}
+                    <Column field="material_type (SAP)" header="SAP" sortable  />
+                    <Column field="material_group (organisation)" header="Organisation" sortable />
+                    <Column field="mdrm_class (class)" header="Class"  />
                 </DataTable>
             </div>
             <div className='card'>

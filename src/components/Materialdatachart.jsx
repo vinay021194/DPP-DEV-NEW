@@ -197,6 +197,7 @@ export const Materialdatachart = (props) => {
     isMounted.current = true;
     productService.getMaterialInfo().then((data) => setProducts(data));
   }, []);
+  setdemandInfoRegressionSummaryTable(demantData.Sheet1);
 
   useEffect(() => {
     isMounted.current = true;
@@ -205,10 +206,48 @@ export const Materialdatachart = (props) => {
 
   const onPlantChange = (e) => {
     setPlants(e.value);
+
+    // console.log("demandInfoRegressionSummaryTable====>",demandInfoRegressionSummaryTable)
+    // console.log("date1====>",date1)
+    // console.log("date2====>",date2)
+
+    // let convertedData = demandInfoRegressionSummaryTable.map((el) => {
+    //   let date = new Date(el.period);
+    //   let milliseconds = date.getTime();
+
+    //   return {
+    //     executedOn: el.executed_on,
+    //     plant: el.plant,
+    //     x: milliseconds,
+    //     y: Number(el.quantity),
+    //     total_cons_converted_mp_level: el.total_cons_converted_mp_level,
+    //   };
+    // });
+    // if(date1 && date2){
+    //   convertedData = convertedData.filter((data=> new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2)))
+    // }
+    // let exampleData = e.value.map((sr) => convertedData.filter((el) => el.plant === sr));
+    // console.log("exampleData in map ===>", exampleData);
+
+    // const chartData1 = e.value.map((sr, i) => {
+    //   return {
+    //     name: sr,
+    //     data: exampleData[i],
+    //   };
+    // });
+
+    setPlants(e.value);
+    //setHistoricalConsumptionSeriesData(chartData1);
+  };
+
+  const onsubmit = () => {
     console.log(
       "demandInfoRegressionSummaryTable====>",
       demandInfoRegressionSummaryTable
     );
+    console.log("date1====>", date1);
+    console.log("date2====>", date2);
+
     let convertedData = demandInfoRegressionSummaryTable.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
@@ -221,19 +260,30 @@ export const Materialdatachart = (props) => {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
-    let exampleData = e.value.map((sr) =>
+
+    // let exampleData = e.value.map((sr) =>
+    //   convertedData.filter((el) => el.plant === sr)
+    // );
+
+    let exampleData = Plants.map((sr) =>
       convertedData.filter((el) => el.plant === sr)
     );
-    console.log("exampleData in map ===>", exampleData);
 
-    const chartData1 = e.value.map((sr, i) => {
+    if (date1 && date2) {
+      convertedData = convertedData.filter(
+        (data) =>
+          new Date(data.executedOn) > new Date(date1) &&
+          new Date(data.executedOn) < new Date(date2)
+      );
+    }
+
+    const chartData1 = Plants.map((sr, i) => {
       return {
         name: sr,
         data: exampleData[i],
       };
     });
 
-    setPlants(e.value);
     setHistoricalConsumptionSeriesData(chartData1);
   };
 
@@ -294,6 +344,7 @@ export const Materialdatachart = (props) => {
     // "p-input-filled": inputStyle === "filled",
     // "p-ripple-disabled": ripple === false,
   });
+
   const onToggleMenu = (event) => {
     menuClick = true;
 
@@ -310,8 +361,8 @@ export const Materialdatachart = (props) => {
   };
   const onWrapperClick = (event) => {
     if (!menuClick) {
-      setOverlayMenuActive(false);
-      setMobileMenuActive(false);
+      // setOverlayMenuActive(false);
+      // setMobileMenuActive(false);
     }
     menuClick = false;
   };
@@ -320,6 +371,9 @@ export const Materialdatachart = (props) => {
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
         Material Overview
+      </h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>
+        Demand Prediction
       </h5>
     </div>
   );
@@ -361,7 +415,7 @@ export const Materialdatachart = (props) => {
   };
 
   return (
-    <div>
+    <div className={"wrapperClass"} onClick={onWrapperClick}>
       <AppTopbar onToggleMenu={onToggleMenu} />
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
@@ -436,6 +490,7 @@ export const Materialdatachart = (props) => {
             onChange={(e) => setDate1(e.value)}
           />
           <strong>To Year</strong>
+
           <Calendar
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
@@ -443,6 +498,19 @@ export const Materialdatachart = (props) => {
             value={date2}
             onChange={(e) => setDate2(e.value)}
           />
+          <Calendar
+            style={{ width: "15%", margin: "5px 10px" }}
+            id="icon"
+            showIcon
+            value={date2}
+            onChange={(e) => setDate2(e.value)}
+          />
+          <Button
+            label="submit"
+            style={{ margin: "3px 15px" }}
+            onClick={onsubmit}
+          />
+
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
