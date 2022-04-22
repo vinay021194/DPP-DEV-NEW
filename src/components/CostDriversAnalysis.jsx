@@ -29,6 +29,8 @@ export const CostDriversAnalysis = () => {
   const [costDriverSeries, setcostDriverSeries] = useState(false);
   const [source, setSource] = useState(false);
   const [products, setProducts] = useState([]);
+  const [seriesdropdown, setDropdown] = useState([]);
+
 
 
   
@@ -36,6 +38,19 @@ export const CostDriversAnalysis = () => {
 
   const onCostDriverChange = (event) => {
     console.log("onCostDriverChange event ====>", event.value);
+
+    let allseries = icisForecastSummaryTable.Sheet.filter((data)=>
+       event.value.some(
+         (data)=>data.material === event.value.name
+       )
+    )
+    allseries = allseries.map((data)=> data.series)
+    console.log("allseries===>",allseries)
+    allseries = [...new Set(allseries)]
+    console.log("allseries===>",allseries)
+    let result = seriesName.filter(o => allseries.some((data) => o.name === data));
+    console.log("results====>",result)
+    setDropdown(result)
     setcostDriver(event.value );
   };
 
@@ -106,6 +121,8 @@ export const CostDriversAnalysis = () => {
     },
   ];
 
+
+
   const costDrivers = [
     {
       name: "Polyethylene (Africa)",
@@ -150,7 +167,9 @@ export const CostDriversAnalysis = () => {
   // }, []);
   useEffect(() => {
     isMounted.current = true;
+    productService.getIcisForecastSummaryTable2().then(data => seticisForecastSummaryTable(data));
     productService.getIcisForecastSummaryTable2().then(data => setProducts(data));
+
 }, []); 
 
 
@@ -246,11 +265,14 @@ export const CostDriversAnalysis = () => {
   const oncostDriverSeriesChange = (e) => {
     console.log("on oncostDriverSeriesChange event  ==>", e);
     const  icisForecastSummaryTabledata  = icisForecastSummaryTable;
-    console.log("icisForecastSummaryTable====>",icisForecastSummaryTable)
-
+    let allmaterial = icisForecastSummaryTable.Sheet.map((data)=>{
+      return data.serial_name
+    })
+    allmaterial = [...new Set(allmaterial)]
+    console.log("allmaterial====>",allmaterial)
     let exampleData = e.value.map((sr) =>
     
-    icisForecastSummaryTabledata
+    icisForecastSummaryTabledata.Sheet
         .filter((el) => el.serial_name === sr.name)
         .map((d) => {
           // console.log("data in map ===>", d);
@@ -370,17 +392,17 @@ export const CostDriversAnalysis = () => {
                 <MultiSelect 
                   style={{ width: "49%", margin: "5px 10px" }}
                   value={costDriverSeries}
-                  options={seriesName}
+                  options={seriesdropdown}
                   onChange={oncostDriverSeriesChange}
                   optionLabel="name"
                   placeholder="Select a Series"
                   display="chip"
                 />
               </div>
-            <Button
+            {/* <Button
               label="Submit"
               style={{ margin: "3px 15px" }}
-            />
+            /> */}
           <div style={{ width: "99%" }}>
           <HighchartsReact highcharts={Highcharts} options={costDriverAnalysisChart} />
           </div>

@@ -18,7 +18,8 @@ import HighchartsReact from "highcharts-react-official";
 import { Chip } from 'primereact/chip';
 import { CostDriversAnalysis } from './CostDriversAnalysis';
 
- export const Inventory = () => {
+ export const Inventory = (props) => {
+   console.log("props===>",props.location.state.supplierDetails)
     const [products, setProducts] = useState([]);
     const [products2, setProducts2] = useState([]);
     const [expandedRows, setExpandedRows] = useState(null);
@@ -34,6 +35,8 @@ import { CostDriversAnalysis } from './CostDriversAnalysis';
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
+  const [supplierObject, setsupplierObject] = useState(null);
+
     let menuClick = false;
     const options = {
       chart: {
@@ -48,14 +51,14 @@ import { CostDriversAnalysis } from './CostDriversAnalysis';
         }
       ]
       
-      
     };
-
+ 
     useEffect(() => {
         if (isMounted.current) {
             const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
             //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
         }
+        setsupplierObject(props.location.state.supplierDetails)
     }, [expandedRows]);
 
     useEffect(() => {
@@ -312,32 +315,9 @@ const header6 = (
                 </div>
                 <div className='card'>
                
-           <DataTable 
-                   value={products} 
-                  //  expandedRows={expandedRows}
-                  //   onRowToggle={(e) => setExpandedRows(e.data)}
-                  //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                  //   rowExpansionTemplate={rowExpansionTemplate} 
-                    dataKey="id"
-                    header={header4}
-                    rows={2}
-                    >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
-                    <Column field="Discription" header=""  body={priceBodyTemplate}></Column>
-                    <Column field="UOM" header="Jan21"  body={priceBodyTemplate}></Column>
-                    <Column field="Feb22" header="Feb21"  body={priceBodyTemplate} />
-                    <Column field="Mar22" header="Mar21"  body={searchBodyTemplate} />
-                    <Column field="Apr22" header="Apr21"  body={priceBodyTemplate} />
-                    <Column field="May22" header="May21" body={searchBodyTemplate} />
-                    <Column field="Jun22" header="Jun21"  body={priceBodyTemplate} />
-                    
-                </DataTable>
-                </div>
-                <div className='card'>
                
            <DataTable 
-                   value={products} 
+                   value={supplierObject} 
                   //  expandedRows={expandedRows}
                   //   onRowToggle={(e) => setExpandedRows(e.data)}
                   //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
@@ -348,39 +328,19 @@ const header6 = (
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
-                    <Column field="Discription" header=""  body={priceBodyTemplate}></Column>
-                    <Column field="UOM" header="Jan21"  body={priceBodyTemplate}></Column>
-                    <Column field="Feb22" header="Feb21"  body={priceBodyTemplate} />
-                    <Column field="Mar22" header="Mar21"  body={searchBodyTemplate} />
-                    <Column field="Apr22" header="Apr21"  body={priceBodyTemplate} />
-                    <Column field="May22" header="May21" body={searchBodyTemplate} />
-                    <Column field="Jun22" header="Jun21"  body={priceBodyTemplate} />
+                    <Column field="name" header="Supplier" ></Column>
+                    <Column field="month1" header="Jan21" ></Column>
+                    <Column field="month2" header="Feb21"   />
+                    <Column field="month3" header="Mar21"   />
+                    <Column field="month4" header="Apr21"   />
+                    <Column field="month5" header="May21"  />
+                    <Column field="month6" header="Jun21"  />
                     
                 </DataTable>
                 </div>
                 <div className='card'>
                
-           <DataTable 
-                   value={products} 
-                  //  expandedRows={expandedRows}
-                  //   onRowToggle={(e) => setExpandedRows(e.data)}
-                  //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                  //   rowExpansionTemplate={rowExpansionTemplate} 
-                    dataKey="id"
-                    header={header6}
-                    rows={3}
-                    >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
-                    <Column field="Discription" header=""  body={priceBodyTemplate}></Column>
-                    <Column field="UOM" header="Jan21"  body={priceBodyTemplate}></Column>
-                    <Column field="Feb22" header="Feb21"  body={priceBodyTemplate} />
-                    <Column field="Mar22" header="Mar21"  body={searchBodyTemplate} />
-                    <Column field="Apr22" header="Apr21"  body={priceBodyTemplate} />
-                    <Column field="May22" header="May21" body={searchBodyTemplate} />
-                    <Column field="Jun22" header="Jun21"  body={priceBodyTemplate} />
-                    
-                </DataTable>
+     
                 </div>
                 <div style={{ display:'flex',justifyContent:'center' }}>
                 <a href='SupplierAnalysis'>

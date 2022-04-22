@@ -160,6 +160,7 @@ export const Materialdatachart = () => {
   useEffect(() => {
     isMounted.current = true;
     productService.getMaterialInfo().then(data => setProducts(data));
+    setdemandInfoRegressionSummaryTable(demantData.Sheet1)
     
 }, []); 
 
@@ -170,7 +171,44 @@ useEffect(() => {
 
   const onPlantChange = (e) => {
     setPlants(e.value);
+    // console.log("demandInfoRegressionSummaryTable====>",demandInfoRegressionSummaryTable)
+    // console.log("date1====>",date1)
+    // console.log("date2====>",date2)
+
+    // let convertedData = demandInfoRegressionSummaryTable.map((el) => {
+    //   let date = new Date(el.period);
+    //   let milliseconds = date.getTime();
+
+    //   return {
+    //     executedOn: el.executed_on,
+    //     plant: el.plant,
+    //     x: milliseconds,
+    //     y: Number(el.quantity),
+    //     total_cons_converted_mp_level: el.total_cons_converted_mp_level,
+    //   };
+    // });
+    // if(date1 && date2){
+    //   convertedData = convertedData.filter((data=> new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2)))
+    // }
+    // let exampleData = e.value.map((sr) => convertedData.filter((el) => el.plant === sr));
+    // console.log("exampleData in map ===>", exampleData);
+
+    // const chartData1 = e.value.map((sr, i) => {
+    //   return {
+    //     name: sr,
+    //     data: exampleData[i],
+    //   };
+    // });
+
+    setPlants(e.value);
+    //setHistoricalConsumptionSeriesData(chartData1);
+  };
+
+  const onsubmit=()=>{
     console.log("demandInfoRegressionSummaryTable====>",demandInfoRegressionSummaryTable)
+    console.log("date1====>",date1)
+    console.log("date2====>",date2)
+
     let convertedData = demandInfoRegressionSummaryTable.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
@@ -183,19 +221,25 @@ useEffect(() => {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
-    let exampleData = e.value.map((sr) => convertedData.filter((el) => el.plant === sr));
+    console.log("convertedData before===>",convertedData)
+    if(date1 && date2){
+      convertedData = convertedData.filter((data=> new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2)))
+    }
+    console.log("convertedData after===>",convertedData)
+
+    let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
     console.log("exampleData in map ===>", exampleData);
 
-    const chartData1 = e.value.map((sr, i) => {
+    const chartData1 = Plants.map((sr, i) => {
       return {
         name: sr,
         data: exampleData[i],
       };
     });
 
-    setPlants(e.value);
     setHistoricalConsumptionSeriesData(chartData1);
-  };
+  
+  }
 
   const onRowExpand = (event) => {
     //toast.current.show({severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000});
@@ -362,6 +406,11 @@ useEffect(() => {
           <Calendar style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date1} onChange={(e) => setDate1(e.value)} />
           <strong>To Year</strong>
           <Calendar style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date2} onChange={(e) => setDate2(e.value)} />
+          <Button
+                 label="submit"
+                 style={{ margin: "3px 15px"  }}
+                 onClick={onsubmit}
+            />
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
@@ -394,33 +443,7 @@ useEffect(() => {
             <Column field="Class" header="Dec21"  />
           </DataTable>
         </div>
-        <div className="card">
-          <DataTable
-            value={products}
-            //  expandedRows={expandedRows}
-            //   onRowToggle={(e) => setExpandedRows(e.data)}
-            //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-            //   rowExpansionTemplate={rowExpansionTemplate}
-            dataKey="id"
-            header={header3}
-            rows={5}
-          >
-            {/* <Column expander style={{ width: '3em' }} /> */}
-            <Column field="data" header=""></Column>
-            <Column field="Discription" header="Jan21" ></Column>
-            <Column field="UOM" header="Feb21" ></Column>
-            <Column field="Aliases" header="Mar21"  />
-            <Column field="Criticality" header="Apr21"  />
-            <Column field="SAP" header="May21"  />
-            <Column field="Organisation" header="Jun21"  />
-            <Column field="Class" header="July21"  />
-            <Column field="Aliases" header="Aug21"  />
-            <Column field="Criticality" header="Sep21"  />
-            <Column field="SAP" header="Oct21"  />
-            <Column field="Organisation" header="Nov21"  />
-            <Column field="Class" header="Dec21"  />
-          </DataTable>
-        </div>
+      
       </div>
       <div style={{ display:'flex',justifyContent:'center' }}>
       <a href='/'>

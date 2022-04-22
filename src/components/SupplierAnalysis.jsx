@@ -212,6 +212,14 @@ export class SupplierAnalysis extends Component {
   };
 
   
+  optimize = () => {
+    console.log("this.supplierDetails====>",this.supplierDetails)
+    this.props.history.push("/Inventory", 
+    {supplierDetails:window.supplierObject}
+    );
+  };
+
+  
   onPlantChange = (e) => {
     this.setState(
       { plant: e.target.value }
@@ -653,8 +661,9 @@ export class SupplierAnalysis extends Component {
         return { forecastedObj, supplierMaxCapacity, leadTimeObj };
       });
 
-      console.log("convertedData =====>", convertedData);
-
+      window.supplierObject = convertedData.map((data)=>data.forecastedObj)
+      console.log("convertedData =====>", window.supplierObject);
+    
       return this.setState({
         supplierDetails: convertedData,
         count: this.state.count + 1,
@@ -752,7 +761,8 @@ export class SupplierAnalysis extends Component {
             };
             //console.log("forcastSeriesData ====>", objData);
             return objData;
-          })
+          }
+          )
         : [];
 
     
@@ -1093,6 +1103,7 @@ export class SupplierAnalysis extends Component {
             <Button
               label="Next"
               style={{ margin: "3px 15px"  }}
+              onClick = {this.optimize}
             />
             </a>
             </div>
