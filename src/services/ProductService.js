@@ -67,6 +67,8 @@ getMaterialInfo() {
 getInventoryInfo() {
     return fetch('/assets/demo/data/inventory_info.json').then(res => res.json()).then(d => d.data);
 }
-
+getIcisForecastSummaryTable2() {
+ return fetch('/assets/demo/data/icis_forecast_summary_table_2.json').then(res => res.json()).then(d => d.data);
+    }
 
 }

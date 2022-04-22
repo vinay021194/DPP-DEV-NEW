@@ -66,7 +66,9 @@ import { CostDriversAnalysis } from './CostDriversAnalysis';
     useEffect(() => {
       isMounted.current = true;
       productService.getInventoryInfo().then(data => setProducts2(data));
-  }, []);// eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+  
+  // eslint-disable-line react-hooks/exhaustive-deps
 
     const onRowExpand = (event) => {
         //toast.current.show({severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000});
@@ -380,18 +382,20 @@ const header6 = (
                     
                 </DataTable>
                 </div>
-                <a href='Inventory'>
+                <div style={{ display:'flex',justifyContent:'center' }}>
+                <a href='SupplierAnalysis'>
             <Button
-              label="Back"
+              label="Previous"
               style={{ margin: "3px 15px"  }}
             />
             </a>
                 <a href='Orderingplant'>
             <Button
-              label="Orderingplant"
+              label="Next"
               style={{ margin: "3px 15px"  }}
             />
             </a>
+            </div>
             </div>
             
                 {/* <CSSTransition

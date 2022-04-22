@@ -21,6 +21,7 @@ import{Inventory} from "../components/Inventory"
     //const toast = useRef(null);
     const isMounted = useRef(false);
     const productService = new ProductService();
+    const toast = useRef(null);
 
   
   const [layoutMode, setLayoutMode] = useState("static");
@@ -32,7 +33,7 @@ import{Inventory} from "../components/Inventory"
 
     useEffect(() => {
         if (isMounted.current) {
-            const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
+            //const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
             //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
         }
     }, [expandedRows]);
@@ -49,7 +50,7 @@ import{Inventory} from "../components/Inventory"
     }
 
     const onRowCollapse = (event) => {
-       // toast.current.show({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
+        //toast.current.show({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
     }
 
     // const expandAll = () => {
@@ -168,13 +169,13 @@ import{Inventory} from "../components/Inventory"
             <div className="orders-subtable">
                 {/* <h5>Orders for {data.name}</h5> */}
                 <DataTable value={data.orders} responsiveLayout="scroll">
-                    <Column field="id" header="ID" sortable></Column>
-                    <Column field="name" header="Name" sortable  body={statusBodyTemplate}></Column>
-                    <Column field="inventory" header="Inventory" sortable  body={statusOrderBodyTemplate}></Column>
-                    <Column field="status" header="Status" body={amountBodyTemplate} sortable></Column>
-                    <Column field="" header=""></Column>
                     <Column field="focus" header="Focus"  sortable></Column>
-                    
+                    <Column field="id" header="ID" sortable></Column>
+                    <Column field="name" header="Name" sortable  ></Column>
+                    <Column field="inventory" header="Inventory" sortable  ></Column>
+                    <Column field="status" header="Status" sortable></Column>
+                    <Column field="" header=""></Column>
+                   
                 </DataTable>
             </div>
         );
@@ -190,11 +191,13 @@ import{Inventory} from "../components/Inventory"
                   
             <div className="card">
               
-                <DataTable value={products.Sheet2} expandedRows={expandedRows}
-                 onRowToggle={(e) => setExpandedRows(e.data)}
-               
-                    onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                    rowExpansionTemplate={rowExpansionTemplate} dataKey="id" header={header}>
+                <DataTable value={products.Sheet2}
+                           expandedRows={expandedRows}
+                           onRowToggle={(e) => setExpandedRows(e.data)}
+                            onRowExpand={onRowExpand} 
+                             onRowCollapse={onRowCollapse} 
+                    responsiveLayout="scroll"
+                    rowExpansionTemplate={rowExpansionTemplate} dataKey="" header={header}>
                     <Column expander style={{ width: '3em' }} />
                     <Column field="material" header="material"  sortable></Column>
                     <Column field="material_description_1" header="material_description_1" sortable></Column>
@@ -205,12 +208,14 @@ import{Inventory} from "../components/Inventory"
                    
                 </DataTable>
             </div>
+            <div style={{ display:'flex',justifyContent:'center' }}>
             <a href='Materialdatachart'>
             <Button
-              label="Demand Prediction "
+              label="Next "
               style={{ margin: "3px 15px"  }}
             />
             </a>
+            </div>
             </div>
                <CSSTransition
         classNames="layout-sidebar"

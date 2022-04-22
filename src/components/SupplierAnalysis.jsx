@@ -930,18 +930,20 @@ export class SupplierAnalysis extends Component {
             {this.state.product && <span>Are you sure you want to delete the selected products?</span>}
           </div>
         </Dialog>
-        <a href='SupplierAnalysis'>
+        <div style={{ display:'flex',justifyContent:'center' }}>
+        <a href='CostDriversAnalysis'>
             <Button
-              label="Back"
+              label="Previous"
               style={{ margin: "3px 15px"  }}
             />
             </a>
         <a href='Inventory'>
             <Button
-              label="Inventory"
+              label="Next"
               style={{ margin: "3px 15px"  }}
             />
             </a>
+            </div>
       </div>
       
     );

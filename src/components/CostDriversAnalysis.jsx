@@ -28,6 +28,7 @@ export const CostDriversAnalysis = () => {
   const [costDriver, setcostDriver] = useState(false);
   const [costDriverSeries, setcostDriverSeries] = useState(false);
   const [source, setSource] = useState(false);
+  const [products, setProducts] = useState([]);
 
 
   
@@ -137,16 +138,20 @@ export const CostDriversAnalysis = () => {
   let month1 = Date.UTC(year, month, 1);
   let month6 = Date.UTC(year, month + 5, 1);
 
+  // useEffect(() => {
+  //   isMounted.current = true;
+  //   productService.getIcisForecastSummaryTable().then(data =>{
+  //     const materialOptions = (data.map((d)=>{
+  //      return d.material;
+  //     }));
+  //     //materialOptions = [...new Set(materialOptions.map(item=>item))]
+  //     console.log(materialOptions)
+  //     seticisForecastSummaryTable(data)});
+  // }, []);
   useEffect(() => {
     isMounted.current = true;
-    productService.getIcisForecastSummaryTable().then(data =>{
-      const materialOptions = (data.map((d)=>{
-       return d.material;
-      }));
-      //materialOptions = [...new Set(materialOptions.map(item=>item))]
-      console.log(materialOptions)
-      seticisForecastSummaryTable(data)});
-  }, []);
+    productService.getIcisForecastSummaryTable2().then(data => setProducts(data));
+}, []); 
 
 
 
@@ -384,7 +389,7 @@ export const CostDriversAnalysis = () => {
         <div className="card">
         
           <DataTable
-            value={"this.state.demandUITable"}
+            value={products.Sheet}
             //paginator
             header={header}   
             rows={5}
@@ -394,20 +399,19 @@ export const CostDriversAnalysis = () => {
             <Column field="plant" header="" />
             <Column field="model" header="Model" />
             <Column
-              field="top 3 influsencial indices"
+              field="top_influencers"
               header="top 3 influsencial indices"
             />
             <Column
-              field="test"
+              field="test_month_accuracy"
               header="test"
             />
-         
-            <Column field="Discription" header="Jan21"  ></Column>
-                    <Column field="UOM" header="Feb21"  ></Column>
-                    <Column field="Aliases" header="Mar21" />
-                    <Column field="Criticality" header="Apr21" />
-                    <Column field="SAP" header="May21" />
-                    <Column field="Organisation" header="Jun21" />
+                  <Column field="first_month_accuracy" header="Jan21"  ></Column>
+                    <Column field="second_month_accuracy" header="Feb21"  ></Column>
+                    <Column field="third_month_accuracy" header="Mar21" />
+                    <Column field="fourth_month_accuracy" header="Apr21" />
+                    <Column field="fifth_month_accuracy" header="May21" />
+                    <Column field="sixth_month_accuracy" header="Jun21" />
             {/* <Column field="2022_10_01" header={`${month8}`} />
             <Column field="2022_11_01" header={`${month9}`} />
             <Column field="2022_12_01" header={`${month10}`} />
@@ -417,7 +421,20 @@ export const CostDriversAnalysis = () => {
           </DataTable>
         </div>
       </div>
-      
+      <div style={{ display:'flex',justifyContent:'center' }}>
+      <a href='Materialdatachart'>
+            <Button
+              label="Previous "
+              style={{ margin: "3px 15px"  }}
+            />
+            </a>
+            <a href='SupplierAnalysis'>
+            <Button
+              label="Next"
+              style={{ margin: "3px 15px"  }}
+            />
+            </a>
+            </div>
     </div>
 
 
