@@ -195,7 +195,6 @@ export default class ProcService {
         params: params,
       })
       .then((res) => {
-        console.log("getIcisForecastSummaryTable ==>", res);
         return res;
       })
       .catch((e) =>

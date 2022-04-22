@@ -56,7 +56,9 @@ export class SupplierAnalysis extends Component {
       selectedCity1: null,
       selectedCity2: null,
       filteredCities: null,
-      HistoricalChartData:[]
+      HistoricalChartData:[],
+      ForecastedData:[],
+      supplierDetails:[]
     };
 
     this.cities = [
@@ -165,7 +167,7 @@ export class SupplierAnalysis extends Component {
     this.hideDeleteProductsDialog = this.hideDeleteProductsDialog.bind(this);
     this.onCityChange = this.onCityChange.bind(this);
     this.weeklyValues = {
-      'Polypropylene (US)-Homopolymer Bulk US Monthl':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
+      'Polyethylene (Africa)-LLDPE Bulk Africa E Weekly':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
       
       'Polypropylene (US)-Homopolymer Bulk US Monthly':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
       
@@ -179,10 +181,9 @@ export class SupplierAnalysis extends Component {
 
   componentDidMount() {
     this.procService.getMaterialCostDriverOutput({ material: 7001733 }).then((data) => this.setState({ materialCostDriverOutput: data.data.Sheet3 }));
+    this.procService.getIcisForecastSummaryTable().then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
 
     this.procService.getMaterialInfo({ material: 7001733 }).then((data) => {
-      console.log("data in optimization=====>", data);
-     // data = data.data.data.filter((d) => d.material === "7001733");
       return this.setState({ materialInfo: data });
     });
     
@@ -190,7 +191,7 @@ export class SupplierAnalysis extends Component {
  
 
   Onsave = () => {
-    // console.log("Onsave", this.state.data);
+     console.log("Onsave", this.state.data);
 
     const { costDriver, seriesName, products, plant } = this.state;
     console.log("products==>",products)
@@ -242,7 +243,7 @@ export class SupplierAnalysis extends Component {
 
       const chartData = [
         {
-          name: plant,
+          name: plant.name,
           data: unitPriceUSD.slice(-12),
         },
       ];
@@ -378,9 +379,9 @@ export class SupplierAnalysis extends Component {
     this.setState({ deleteProductsDialog: false });
   }
 
+
   saveProduct() {
     let state = { submitted: true };
-
     if (this.state.product.name.trim()) {
       let products = [...this.state.products];
       let product = { ...this.state.product };
@@ -395,9 +396,12 @@ export class SupplierAnalysis extends Component {
           life: 3000,
         });
       } else {
+        console.log("inside else")
         product.id = this.createId();
         product.image = "product-placeholder.svg";
         products.push(product);
+        console.log("this.state.products===>",products)
+        this.convertData(products)
         this.toast.show({
           severity: "success",
           summary: "Successful",
@@ -406,6 +410,8 @@ export class SupplierAnalysis extends Component {
         });
       }
 
+
+
       state = {
         ...state,
         products,
@@ -413,10 +419,8 @@ export class SupplierAnalysis extends Component {
         product: this.emptyProduct,
       };
     }
-
     this.setState(state);
   }
-
   createId() {
     let id = "";
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -460,11 +464,9 @@ export class SupplierAnalysis extends Component {
   onInputChange(e, name) {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
-    console.log("product===>",product)
     const data  = this.supplierFormulaData.filter((data)=>
          data.supplier_name === e.value
     )
-    console.log("data filtered====>",data)
     product['name'] = data[0].supplier_name;
     product['price'] = data[0].capacity;
     product['quantity'] = data[0].formulae;
@@ -482,18 +484,17 @@ export class SupplierAnalysis extends Component {
     // this.setState({ product });
   }
 
-  convertData = () => {
-    const { data } = this.state;
+  convertData = (products) => {
+    //const { data } = this.state;
+    let data = dataHistorical.Sheet2;
     if (data) {
-      let suppliers = this.state.products;
+      let suppliers = products;
       let forecastedObj = {};
       let leadTimeObj = {};
       let supplierMaxCapacity = {};
       //console.log("suppliers  =====>", suppliers);
       let convertedData = suppliers.map((el) => {
         if (Number(el.quantity)) {
-          //console.log("its a Number");
-
           forecastedObj = {
             name: el.name,
 
@@ -511,7 +512,6 @@ export class SupplierAnalysis extends Component {
 
             month6: Number(el.quantity),
           };
-
           leadTimeObj = {
             name: el.name,
 
@@ -529,7 +529,6 @@ export class SupplierAnalysis extends Component {
 
             month6: el.Percentage,
           };
-
           supplierMaxCapacity = {
             name: el.name,
 
@@ -550,24 +549,47 @@ export class SupplierAnalysis extends Component {
             month6: el.price,
           };
         } else {
-          const { data } = this.state;
-          let seriesArr = data.seriesName.map((sr) => sr.name);
-          let str = el.quantity;
+          let data = this.state.ForecastedData;
+
           var regex = /\[/gi,
-            result,
-            indices = [];
+          result,
+          indices = [];
+          
+          let allseries = suppliers.map((p)=>{
+            console.log("inside data===>",p.quantity)
+           let startIndex = p.quantity.indexOf('[')
+           let lastIndex = p.quantity.indexOf(']') 
+
+           let seriesname =  p.quantity.substring(startIndex+1,lastIndex)
+           return seriesname;
+          })
+
+
+         // let seriesArr = data.seriesName.map((sr) => sr.name);
+          let str = el.quantity;
+         
           while ((result = regex.exec(str))) {
             indices.push(result.index);
           }
+          console.log("indices===>",indices)
           let res = [];
           for (let i = 0; i < 6; i++) {
+            let startIndex = el.quantity.indexOf('[')
+            let lastIndex = el.quantity.indexOf(']') 
+            
+            let seriesname =  el.quantity.substring(startIndex+1,lastIndex)
             let duplicate = el.quantity;
-            let duplicateSeriesArr = [...seriesArr];
+            let duplicateSeriesArr = [...allseries];
             let strArr = duplicate.split("");
             while (strArr.indexOf("[") !== -1) {
-              let avgMonthData = this.weeklyValues[duplicateSeriesArr[0]][i];
+
+              let avgMonthData = this.weeklyValues[seriesname][i];
               let index = strArr.indexOf("[");
-              strArr.splice(index, 3, avgMonthData);
+              let startIndex = strArr.indexOf('[')
+              let lastIndex = strArr.indexOf(']') 
+              //let seriesname =  p.quantity.substring(startIndex+1,lastIndex)
+              
+              strArr.splice(startIndex, lastIndex+1, avgMonthData);
               duplicateSeriesArr.shift();
             }
             res.push(Number(eval(strArr.join("")).toFixed(2)));
@@ -631,7 +653,7 @@ export class SupplierAnalysis extends Component {
         return { forecastedObj, supplierMaxCapacity, leadTimeObj };
       });
 
-      //console.log("convertedData =====>", convertedData);
+      console.log("convertedData =====>", convertedData);
 
       return this.setState({
         supplierDetails: convertedData,
@@ -654,7 +676,137 @@ export class SupplierAnalysis extends Component {
 
   render() {
     //console.log("state in Demo", this.state);
+    
     let seriesData = [];
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "month2",
+    ];
+
+    let date = new Date();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let month1 =
+      month > 11
+        ? months[month % 11] + "-" + year + 1
+        : months[month] + "-" + year;
+    let month2 =
+      month + 1 > 11
+        ? months[(month + 1) % 11] + "-" + year + 1
+        : months[month + 1] + "-" + year;
+    let month3 =
+      month + 2 > 11
+        ? months[(month + 2) % 11] + "-" + year + 1
+        : months[month + 2] + "-" + year;
+    let month4 =
+      month + 3 > 11
+        ? months[(month + 3) % 11] + "-" + year + 1
+        : months[month + 3] + "-" + year;
+    let month5 =
+      month + 4 > 11
+        ? months[(month + 4) % 11] + "-" + year + 1
+        : months[month + 4] + "-" + year;
+    let month6 =
+      month + 5 > 11
+        ? months[(month + 5) % 11] + "-" + year + 1
+        : months[month + 5] + "-" + year;
+
+    const {
+      data,
+      InventoryInfo,
+      icisForecastErrorInfoUpdated,
+      supplierDetails,
+      count,
+    } = this.state;
+
+    if (count < 2 && data) this.convertData();
+
+    const forcastedValues =
+      supplierDetails.length > 0
+        ? supplierDetails.map((supplier) => supplier.forecastedObj)
+        : [];
+
+    const forcastSeriesData =
+      supplierDetails.length > 0
+        ? supplierDetails.map((supplier) => {
+            let objData = {
+              name: supplier.forecastedObj.name,
+              data: [
+                [month1, supplier.forecastedObj.month1],
+                [month2, supplier.forecastedObj.month2],
+                [month3, supplier.forecastedObj.month3],
+                [month4, supplier.forecastedObj.month4],
+                [month5, supplier.forecastedObj.month5],
+                [month6, supplier.forecastedObj.month6],
+              ],
+            };
+            //console.log("forcastSeriesData ====>", objData);
+            return objData;
+          })
+        : [];
+
+    
+        const forecastedSupplierPriceOpthin = {
+          chart: {
+            zoomType: "x",
+          },
+          title: {
+            // text: "Sabic Historical Prices",
+            text: "Forecasted Supplier Price Trend",
+            align: "center",
+          },
+          yAxis: {
+            // type: "datetime",
+            title: {
+              text: "USD/Ton",
+            },
+          },
+          xAxis: {
+            categories: [month1, month2, month3, month4, month5, month6],
+            title: {
+              text: "Dates",
+            },
+          },
+          legend: {
+            layout: "horizontal",
+            align: "center",
+            verticalAlign: "bottom",
+          },
+          plotOptions: {
+            series: {
+              label: {
+                connectorAllowed: false,
+              },
+            },
+          },
+          series: forcastSeriesData,
+          responsive: {
+            rules: [
+              {
+                condition: {
+                  maxWidth: 500,
+                },
+                chartOptions: {
+                  legend: {
+                    layout: "horizontal",
+                    align: "center",
+                    verticalAlign: "bottom",
+                  },
+                },
+              },
+            ],
+          },
+        };
     // console.log("costDriver", this.state.costDriver);
     // console.log(this.state.products);
     // console.log("MYPROPS", this.props);
@@ -855,10 +1007,10 @@ export class SupplierAnalysis extends Component {
                     placeholder="Region"
                     display="chip"
                   />
-                  <Button
+                  {/* <Button
                  label="submit"
                  style={{ margin: "3px 15px"  }}
-            />
+            /> */}
                 </div>
                 <div style={{ width: "100%" }}>
                   <HighchartsReact highcharts={Highcharts} options={historicalPricesOpthion} />
@@ -867,7 +1019,7 @@ export class SupplierAnalysis extends Component {
                 <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Supplier Priceing</h5>
                 <div style={{ width: "100%" }}>
                   
-                  <HighchartsReact highcharts={Highcharts} options={chartoptions} />
+                  <HighchartsReact highcharts={Highcharts} options={forecastedSupplierPriceOpthin} />
                 </div>
               </div>
 
