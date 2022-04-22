@@ -164,6 +164,17 @@ export class SupplierAnalysis extends Component {
     this.hideDeleteProductDialog = this.hideDeleteProductDialog.bind(this);
     this.hideDeleteProductsDialog = this.hideDeleteProductsDialog.bind(this);
     this.onCityChange = this.onCityChange.bind(this);
+    this.weeklyValues = {
+      'Polypropylene (US)-Homopolymer Bulk US Monthl':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
+      
+      'Polypropylene (US)-Homopolymer Bulk US Monthly':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
+      
+      'Polypropylene (Middle East)-Film Posted Bulk China Weekly'
+      :[1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667],
+      
+      'Polyethylene (US)-HDPE Bulk Contract DEL US Monthly'
+      :[1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3]
+      }
   }
 
   componentDidMount() {
@@ -174,11 +185,7 @@ export class SupplierAnalysis extends Component {
      // data = data.data.data.filter((d) => d.material === "7001733");
       return this.setState({ materialInfo: data });
     });
-   
-
-    // this.procService
-    //   .getPlants()
-    //   .then((data) => console.log("getPlants =====>", data));
+    
   }
  
 
@@ -543,43 +550,28 @@ export class SupplierAnalysis extends Component {
             month6: el.price,
           };
         } else {
-          //console.log("its not a Number");
-
-          //2*[1]+[2]
           const { data } = this.state;
-
           let seriesArr = data.seriesName.map((sr) => sr.name);
-
-          // console.log("seriesArr in func   =======>", seriesArr);
-
           let str = el.quantity;
-
           var regex = /\[/gi,
             result,
             indices = [];
           while ((result = regex.exec(str))) {
             indices.push(result.index);
           }
-
-          // let seriesUsedInFormula = indices.map((el) => Number(str[el + 1])); // 2, 1, 3
-
           let res = [];
           for (let i = 0; i < 6; i++) {
             let duplicate = el.quantity;
-            //console.log("duplicate el.quantity ===>", duplicate);
             let duplicateSeriesArr = [...seriesArr];
             let strArr = duplicate.split("");
             while (strArr.indexOf("[") !== -1) {
               let avgMonthData = this.weeklyValues[duplicateSeriesArr[0]][i];
-
               let index = strArr.indexOf("[");
               strArr.splice(index, 3, avgMonthData);
               duplicateSeriesArr.shift();
             }
-            //console.log("eval formul value " + i + "=====>", strArr.join(""));
             res.push(Number(eval(strArr.join("")).toFixed(2)));
           }
-
           forecastedObj = {
             name: el.name,
 
