@@ -31,18 +31,18 @@ export const CostDriversAnalysis = () => {
 
   console.log('products',products)
 
-  products = products.Sheet1.length>0 && products.map(ele=>{
-    return{
+  // products = products.Sheet1.length>0 && products.map(ele=>{
+  //   return{
       
-      fifth_month_accuracy:(ele.fifth_month_accuracy*1).toFixed(2),
-      first_month_accuracy:(ele.first_month_accuracy*1).toFixed(2),  
-      fourth_month_accuracy:(ele.fourth_month_accuracy*1).toFixed(2),
-      second_month_accuracy:(ele.second_month_accuracy*1).toFixed(2),
-      sixth_month_accuracy:(ele.sixth_month_accuracy*1).toFixed(2),
-      test_month_accuracy:(ele.test_month_accuracy*1).toFixed(2),
-      third_month_accuracy:(ele.third_month_accuracy*1).toFixed(2),
-    }
-  })
+  //     fifth_month_accuracy:(ele.fifth_month_accuracy*1).toFixed(2),
+  //     first_month_accuracy:(ele.first_month_accuracy*1).toFixed(2),  
+  //     fourth_month_accuracy:(ele.fourth_month_accuracy*1).toFixed(2),
+  //     second_month_accuracy:(ele.second_month_accuracy*1).toFixed(2),
+  //     sixth_month_accuracy:(ele.sixth_month_accuracy*1).toFixed(2),
+  //     test_month_accuracy:(ele.test_month_accuracy*1).toFixed(2),
+  //     third_month_accuracy:(ele.third_month_accuracy*1).toFixed(2),
+  //   }
+  // })
 //  
 // top_influencers: "Acrylate Esters (Europe)Butyl Acrylate Spot Weekly MTBE (Europe)Raffinate 1 Spot WeeklyRaffinate 1 (Europe)Raffinate 1 Spot Weekly"
 

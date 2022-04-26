@@ -63,3 +63,12 @@ code {
   border-radius: 10px !important;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: #00AC4F !important;
+  background: #ffffff !important;
+}
+.p-checkbox .p-checkbox-box .p-checkbox-icon {
+  transition-duration: 0.2s;
+  color: #00AC4F !important;
+  font-size: 14px;
+}
