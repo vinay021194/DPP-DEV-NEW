@@ -116,12 +116,15 @@ export const MaterialOverview = (props) => {
   const statusOrderBodyTemplate = (rowData) => {
     return (
       <span
-        className={`order-badge order-${rowData.status_level_plant.toLowerCase()}`}
+        className={`product-badge status-${rowData.plant.toLowerCase()}`}
       >
         {rowData.status_level_plant}
       </span>
     );
   };
+  const statusBodyTemplate = (data) => {
+    return <span style={{backgroundColor:'#FF8064'}} >{data.status_level_material}</span>
+}
 
   const next = () => {
     console.log("selectedPlant====>", selectedPlant);
@@ -139,9 +142,9 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
-          paginator
+          //paginator
           rows={10}
-          rowsPerPageOptions={[5, 10, 25]}
+         // rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate=" {first} to {last} of {totalRecords}"
         >
@@ -151,6 +154,7 @@ export const MaterialOverview = (props) => {
             // header="Focus"
             // sortable
           ></Column>
+          
           <Column field="plant" header="ID" sortable></Column>
           <Column field="plant_name" header="Name" sortable></Column>
           <Column
@@ -178,9 +182,9 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
-            paginator
+            //paginator
             rows={10}
-            rowsPerPageOptions={[5, 10, 25]}
+           // rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
           >
@@ -192,12 +196,13 @@ export const MaterialOverview = (props) => {
               sortable
             ></Column>
             <Column field="opening_stock" header="Inventory" sortable />
-            <Column field="status_level_material" header="Status" sortable />
+            <Column field="status_level_material" header="Status" sortable body={statusBodyTemplate}/>
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <a href="Materialdatachart">
             <Button
+            className='nextbutton'
               label="Next "
               style={{ margin: "3px 15px" }}
               onClick={next}

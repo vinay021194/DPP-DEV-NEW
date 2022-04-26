@@ -213,7 +213,7 @@ export class SupplierAnalysis extends Component {
 
   
   optimize = () => {
-    console.log("this.supplierDetails====>",this.supplierDetails)
+   // console.log("this.supplierDetails====>",this.supplierDetails)
     this.props.history.push("/Inventory", 
     {supplierDetails:window.supplierObject}
     );
@@ -772,7 +772,7 @@ export class SupplierAnalysis extends Component {
           },
           title: {
             // text: "Sabic Historical Prices",
-            text: "Forecasted Supplier Price Trend",
+            text: "",
             align: "center",
           },
           yAxis: {
@@ -853,7 +853,7 @@ export class SupplierAnalysis extends Component {
         zoomType: "x",
       },
       title: {
-        text: "Sabic Historical Prices",
+        text: "",
 
         align: "center",
       },
@@ -1098,18 +1098,20 @@ export class SupplierAnalysis extends Component {
         <div style={{ display:'flex',justifyContent:'center' }}>
         <a href='CostDriversAnalysis'>
             <Button
+            className='previousbutton'
               label="Previous"
-              style={{ margin: "3px 15px"  }}
+              style={{ marginRight: " 15px"  }}
             />
             </a>
         <a href='Inventory'>
             <Button
+            className='nextbutton'
               label="Next"
-              style={{ margin: "3px 15px"  }}
+              style={{ marginLeft: " 15px"  }}
               onClick = {this.optimize}
             />
             </a>
-            </div>
+        </div>
       </div>
       </div>
       

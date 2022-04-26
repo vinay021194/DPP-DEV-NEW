@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 // import store from "./redux/store";
 
 ReactDOM.render(
-  <BrowserRouter basename={"/dpp_demo"}>
+  <BrowserRouter >
     {/* <Provider store={store}> */}
     <App />
     {/* </Provider> */}

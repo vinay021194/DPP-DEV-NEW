@@ -37,8 +37,13 @@ export class ProductService {
       .then((d) => d.Sheet1);
   }
 
-  getMaterialInfo() {
+   getMaterialInfo() {
     return fetch("/assets/demo/data/overview.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
+  getMaterial() {
+    return fetch("/assets/demo/data/material_info.json")
       .then((res) => res.json())
       .then((d) => d.data);
   }
@@ -49,6 +54,16 @@ export class ProductService {
   }
   getIcisForecastSummaryTable2() {
     return fetch("/assets/demo/data/icis_forecast_summary_table_2.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
+  getdemandSummaryTable2() {
+    return fetch("/assets/demo/data/demand_regrwssion_summary_table_2.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
+  getplantdata() {
+    return fetch("/assets/demo/data/plant_data.json")
       .then((res) => res.json())
       .then((d) => d.data);
   }
