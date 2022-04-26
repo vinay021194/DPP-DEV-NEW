@@ -31,6 +31,21 @@ export const CostDriversAnalysis = () => {
 
   console.log('products',products)
 
+  products = products.Sheet1.length>0 && products.map(ele=>{
+    return{
+      
+      fifth_month_accuracy:(ele.fifth_month_accuracy*1).toFixed(2),
+      first_month_accuracy:(ele.first_month_accuracy*1).toFixed(2),  
+      fourth_month_accuracy:(ele.fourth_month_accuracy*1).toFixed(2),
+      second_month_accuracy:(ele.second_month_accuracy*1).toFixed(2),
+      sixth_month_accuracy:(ele.sixth_month_accuracy*1).toFixed(2),
+      test_month_accuracy:(ele.test_month_accuracy*1).toFixed(2),
+      third_month_accuracy:(ele.third_month_accuracy*1).toFixed(2),
+    }
+  })
+//  
+// top_influencers: "Acrylate Esters (Europe)Butyl Acrylate Spot Weekly MTBE (Europe)Raffinate 1 Spot WeeklyRaffinate 1 (Europe)Raffinate 1 Spot Weekly"
+
  const onCostDriverChange = (event) => {
     //console.log("onCostDriverChange event ====>", event.value);
 
@@ -392,12 +407,6 @@ export const CostDriversAnalysis = () => {
                     <Column field="fourth_month_accuracy" header="Apr21" />
                     <Column field="fifth_month_accuracy" header="May21" />
                     <Column field="sixth_month_accuracy" header="Jun21" />
-            {/* <Column field="2022_10_01" header={`${month8}`} />
-            <Column field="2022_11_01" header={`${month9}`} />
-            <Column field="2022_12_01" header={`${month10}`} />
-            <Column field="2023_01_01" header={`${month11}`} />
-            <Column field="2023_02_01" header={`${month12}`} /> */}
-           
           </DataTable>
         </div>
         <div style={{ display:'flex',justifyContent:'center' }}>
