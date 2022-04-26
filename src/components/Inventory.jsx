@@ -96,7 +96,7 @@ import { AppTopbar } from "./AppTopbar";
     // }
 
     const statusOrderBodyTemplate = (rowData) => {
-        return <span className={`product-badge status-${rowData.safety_stock.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
+        return <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
     }
 
    
