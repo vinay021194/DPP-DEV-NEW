@@ -79,4 +79,10 @@ export class ProductService {
       .then((res) => res.json())
       .then((d) => d.data);
   }
+
+  getIcisForecastSummaryTable2NEW() {
+    return fetch("/assets/demo/data/icis_forecast_summary_table_2_NEW.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
 }

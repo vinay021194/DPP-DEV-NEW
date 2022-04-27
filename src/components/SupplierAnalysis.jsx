@@ -14,15 +14,14 @@ import { InputText } from "primereact/inputtext";
 import classNames from "classnames";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import dataHistorical from "../data/historicalunitpric.json"
+import dataHistorical from "../data/historicalunitpric.json";
 import { AppTopbar } from "../components/AppTopbar";
-
 
 import { MultiSelect } from "primereact/multiselect";
 // import { Dropdown } from 'primereact/dropdown';
 
 import ProcService from "../services/ProcService";
-import {ProductService} from "../services/ProductService";
+import { ProductService } from "../services/ProductService";
 
 export class SupplierAnalysis extends Component {
   emptyProduct = {
@@ -40,10 +39,16 @@ export class SupplierAnalysis extends Component {
     this.state = {
       materialCostDriverOutput: [],
       materialInfo: [],
-      costDriver: this.props.location.state ? this.props.location.state.costDriver : null,
-      seriesName: this.props.location.state ? this.props.location.state.seriesName : [],
+      costDriver: this.props.location.state
+        ? this.props.location.state.costDriver
+        : null,
+      seriesName: this.props.location.state
+        ? this.props.location.state.seriesName
+        : [],
       plant: this.props.location.state ? this.props.location.state.plant : null,
-      products: this.props.location.state ? this.props.location.state.products : [],
+      products: this.props.location.state
+        ? this.props.location.state.products
+        : [],
       countries: [],
       product: this.emptyProduct,
       productDialog: false,
@@ -56,9 +61,9 @@ export class SupplierAnalysis extends Component {
       selectedCity1: null,
       selectedCity2: null,
       filteredCities: null,
-      HistoricalChartData:[],
-      ForecastedData:[],
-      supplierDetails:[]
+      HistoricalChartData: [],
+      ForecastedData: [],
+      supplierDetails: [],
     };
 
     this.cities = [
@@ -95,49 +100,53 @@ export class SupplierAnalysis extends Component {
 
     this.supplierFormula = [
       {
-       "name": "A",
-       "code": "A",
+        name: "A",
+        code: "A",
       },
       {
-        "name": "A",
-       "code": "A",
+        name: "A",
+        code: "A",
       },
       {
-        "name": "A",
-       "code": "A",
+        name: "A",
+        code: "A",
       },
       {
-        "name": "A",
-       "code": "A",
-      }
-     ]
+        name: "A",
+        code: "A",
+      },
+    ];
 
-     this.supplierFormulaData = [
+    this.supplierFormulaData = [
       {
-       "supplier_name": "A",
-       "formulae": "1.2 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 140",
-       "capacity": 1000,
-       "lead_time_months": 2
+        supplier_name: "A",
+        formulae:
+          "1.2 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 140",
+        capacity: 1000,
+        lead_time_months: 2,
       },
       {
-       "supplier_name": "B",
-       "formulae": "1.5 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
-       "capacity": 980,
-       "lead_time_months": 1
+        supplier_name: "B",
+        formulae:
+          "1.5 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
+        capacity: 980,
+        lead_time_months: 1,
       },
       {
-       "supplier_name": "C",
-       "formulae": "1.3 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
-       "capacity": 1200,
-       "lead_time_months": 2
+        supplier_name: "C",
+        formulae:
+          "1.3 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
+        capacity: 1200,
+        lead_time_months: 2,
       },
       {
-       "supplier_name": "D",
-       "formulae": "1.4 * [Polyethylene (US)-HDPE Bulk Contract DEL US Monthly] + 1.2 * [Polypropylene (US)-Copolymer Film Contract US Monthly] + 100",
-       "capacity": 1500,
-       "lead_time_months": 1
-      }
-     ]
+        supplier_name: "D",
+        formulae:
+          "1.4 * [Polyethylene (US)-HDPE Bulk Contract DEL US Monthly] + 1.2 * [Polypropylene (US)-Copolymer Film Contract US Monthly] + 100",
+        capacity: 1500,
+        lead_time_months: 1,
+      },
+    ];
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
@@ -153,7 +162,7 @@ export class SupplierAnalysis extends Component {
     this.editProduct = this.editProduct.bind(this);
     this.confirmDeleteProduct = this.confirmDeleteProduct.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
-   // this.leftToolbarTemplate = this.leftToolbarTemplate.bind(this);
+    // this.leftToolbarTemplate = this.leftToolbarTemplate.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
 
     ///////////////////////////////// Aashish
@@ -167,34 +176,47 @@ export class SupplierAnalysis extends Component {
     this.hideDeleteProductsDialog = this.hideDeleteProductsDialog.bind(this);
     this.onCityChange = this.onCityChange.bind(this);
     this.weeklyValues = {
-      'Polyethylene (Africa)-LLDPE Bulk Africa E Weekly':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
-      
-      'Polypropylene (US)-Homopolymer Bulk US Monthly':[1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
-      
-      'Polypropylene (Middle East)-Film Posted Bulk China Weekly'
-      :[1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667],
-      
-      'Polyethylene (US)-HDPE Bulk Contract DEL US Monthly'
-      :[1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3]
-      }
+      "Polyethylene (Africa)-LLDPE Bulk Africa E Weekly": [
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836,
+        1319.4754098360656, 1313.8387096774193, 1348.5833333333333,
+      ],
+
+      "Polypropylene (US)-Homopolymer Bulk US Monthly": [
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836,
+        1319.4754098360656, 1313.8387096774193, 1348.5833333333333,
+      ],
+
+      "Polypropylene (Middle East)-Film Posted Bulk China Weekly": [
+        1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417,
+        1387.1666666666667,
+      ],
+
+      "Polyethylene (US)-HDPE Bulk Contract DEL US Monthly": [
+        1448.2105263157894, 1436.72131147541, 1440.0166666666667,
+        1451.3387096774193, 1456.4354838709678, 1457.3,
+      ],
+    };
   }
 
   componentDidMount() {
-    this.procService.getMaterialCostDriverOutput({ material: 7001733 }).then((data) => this.setState({ materialCostDriverOutput: data.data.Sheet3 }));
-    this.procService.getIcisForecastSummaryTable().then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
+    this.procService
+      .getMaterialCostDriverOutput({ material: 7001733 })
+      .then((data) =>
+        this.setState({ materialCostDriverOutput: data.data.Sheet3 })
+      );
+    this.procService
+      .getIcisForecastSummaryTable()
+      .then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
 
     this.procService.getMaterialInfo({ material: 7001733 }).then((data) => {
       return this.setState({ materialInfo: data });
     });
-    
   }
- 
 
   Onsave = () => {
-     console.log("Onsave", this.state.data);
+    //  console.log("Onsave", this.state.data);
 
     const { costDriver, seriesName, products, plant } = this.state;
-    console.log("products==>",products)
     this.props.history.push("/SupplierAnalysis", {
       costDriver,
       seriesName,
@@ -211,15 +233,13 @@ export class SupplierAnalysis extends Component {
     this.setState({ selectedCity1: e.target.value });
   };
 
-  
   optimize = () => {
-   // console.log("this.supplierDetails====>",this.supplierDetails)
-    this.props.history.push("/Inventory", 
-    {supplierDetails:window.supplierObject}
-    );
+    // console.log("this.supplierDetails====>",this.supplierDetails)
+    this.props.history.push("/Inventory", {
+      supplierDetails: window.supplierObject,
+    });
   };
 
-  
   onPlantChange = (e) => {
     this.setState(
       { plant: e.target.value }
@@ -227,43 +247,45 @@ export class SupplierAnalysis extends Component {
     );
 
     this.procService
-    .getHistoricalUnitPrice({ material: 7001733 })
-    .then((res) => {
-      const  plant  = e.target.value;
-      let resData = dataHistorical.Sheet2;
-      console.log("resData====>",resData)
-      console.log("plant====>",plant)
-      const filterByPlantData = resData.filter((el) => el.plant === plant.name);
-      console.log("filterByPlantData===>",filterByPlantData)
-      const unitPriceUSD = filterByPlantData.map((el) => {
-        let date = el.posting_date
-          .split("/") // 3/23/04  ===>
-          .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
-          .join("/"); //  [3, 23, 04] ==> 3/23/2004
+      .getHistoricalUnitPrice({ material: 7001733 })
+      .then((res) => {
+        const plant = e.target.value;
+        let resData = dataHistorical.Sheet2;
+        console.log("resData====>", resData);
+        console.log("plant====>", plant);
+        const filterByPlantData = resData.filter(
+          (el) => el.plant === plant.name
+        );
+        console.log("filterByPlantData===>", filterByPlantData);
+        const unitPriceUSD = filterByPlantData.map((el) => {
+          let date = el.posting_date
+            .split("/") // 3/23/04  ===>
+            .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
+            .join("/"); //  [3, 23, 04] ==> 3/23/2004
 
-        date = new Date(date);
-        let milliseconds = date.getTime();
+          date = new Date(date);
+          let milliseconds = date.getTime();
 
-        // console.log("date ==>", milliseconds);
+          // console.log("date ==>", milliseconds);
 
-        return [milliseconds, Number(el.unit_price_usd)];
+          return [milliseconds, Number(el.unit_price_usd)];
+        });
+
+        const chartData = [
+          {
+            name: plant.name,
+            data: unitPriceUSD.slice(-12),
+          },
+        ];
+
+        console.log("HistoricalUnitPrice chartData ====> ", chartData);
+        return this.setState({ HistoricalChartData: chartData });
       });
-
-      const chartData = [
-        {
-          name: plant.name,
-          data: unitPriceUSD.slice(-12),
-        },
-      ];
-
-       console.log("HistoricalUnitPrice chartData ====> ", chartData);
-      return this.setState({ HistoricalChartData: chartData });
-    });
   };
   // nextPath(path) {
   //   this.props.history.push(path);
   // }
-  
+
   searchCountry(event) {
     setTimeout(() => {
       let filteredCountries;
@@ -273,7 +295,9 @@ export class SupplierAnalysis extends Component {
         filteredCountries = this.countries.filter((country) => {
           // console.log('MyCountry' , country);
           // console.log("ab", country.name);
-          return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+          return country.name
+            .toLowerCase()
+            .startsWith(event.query.toLowerCase());
         });
       }
 
@@ -298,14 +322,28 @@ export class SupplierAnalysis extends Component {
         style={{ width: "100%" }}
         placeholder="Select a Status"
         itemTemplate={(option) => {
-          return <span className={`product-badge status-${option.value.toLowerCase()}`}>{option.label}</span>;
+          return (
+            <span
+              className={`product-badge status-${option.value.toLowerCase()}`}
+            >
+              {option.label}
+            </span>
+          );
         }}
       />
     );
   }
 
   inputTextEditor(productKey, props, field) {
-    return <InputText type="text" value={props.rowData[field]} onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)} />;
+    return (
+      <InputText
+        type="text"
+        value={props.rowData[field]}
+        onChange={(e) =>
+          this.onEditorValueChange(productKey, props, e.target.value)
+        }
+      />
+    );
   }
 
   nameEditor(productKey, props) {
@@ -324,15 +362,35 @@ export class SupplierAnalysis extends Component {
       //     this.onEditorValueChange(productKey, props, e.value)
       //   }
       // />
-      <InputText type="text" value={props.rowData["quantity"]} onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)} />
+      <InputText
+        type="text"
+        value={props.rowData["quantity"]}
+        onChange={(e) =>
+          this.onEditorValueChange(productKey, props, e.target.value)
+        }
+      />
     );
   }
 
   priceEditor(productKey, props) {
-    return <InputNumber value={props.rowData["price"]} onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)} />;
+    return (
+      <InputNumber
+        value={props.rowData["price"]}
+        onValueChange={(e) =>
+          this.onEditorValueChange(productKey, props, e.value)
+        }
+      />
+    );
   }
   leadTime = (productKey, props) => {
-    return <InputNumber value={props.rowData["Percentage"]} onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)} />;
+    return (
+      <InputNumber
+        value={props.rowData["Percentage"]}
+        onValueChange={(e) =>
+          this.onEditorValueChange(productKey, props, e.value)
+        }
+      />
+    );
   };
 
   onEditorSubmit(e) {
@@ -387,7 +445,6 @@ export class SupplierAnalysis extends Component {
     this.setState({ deleteProductsDialog: false });
   }
 
-
   saveProduct() {
     let state = { submitted: true };
     if (this.state.product.name.trim()) {
@@ -404,12 +461,12 @@ export class SupplierAnalysis extends Component {
           life: 3000,
         });
       } else {
-        console.log("inside else")
+        console.log("inside else");
         product.id = this.createId();
         product.image = "product-placeholder.svg";
         products.push(product);
-        console.log("this.state.products===>",products)
-        this.convertData(products)
+        console.log("this.state.products===>", products);
+        this.convertData(products);
         this.toast.show({
           severity: "success",
           summary: "Successful",
@@ -417,8 +474,6 @@ export class SupplierAnalysis extends Component {
           life: 3000,
         });
       }
-
-
 
       state = {
         ...state,
@@ -431,7 +486,8 @@ export class SupplierAnalysis extends Component {
   }
   createId() {
     let id = "";
-    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (let i = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
@@ -455,7 +511,9 @@ export class SupplierAnalysis extends Component {
   }
 
   deleteProduct() {
-    let products = this.state.products.filter((val) => val.id !== this.state.product.id);
+    let products = this.state.products.filter(
+      (val) => val.id !== this.state.product.id
+    );
     this.setState({
       products,
       deleteProductDialog: false,
@@ -472,14 +530,13 @@ export class SupplierAnalysis extends Component {
   onInputChange(e, name) {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
-    const data  = this.supplierFormulaData.filter((data)=>
-         data.supplier_name === e.value
-    )
-    product['name'] = data[0].supplier_name;
-    product['price'] = data[0].capacity;
-    product['quantity'] = data[0].formulae;
-    product['Percentage'] = data[0].lead_time_months;
-
+    const data = this.supplierFormulaData.filter(
+      (data) => data.supplier_name === e.value
+    );
+    product["name"] = data[0].supplier_name;
+    product["price"] = data[0].capacity;
+    product["quantity"] = data[0].formulae;
+    product["Percentage"] = data[0].lead_time_months;
 
     this.setState({ product });
   }
@@ -560,44 +617,42 @@ export class SupplierAnalysis extends Component {
           let data = this.state.ForecastedData;
 
           var regex = /\[/gi,
-          result,
-          indices = [];
-          
-          let allseries = suppliers.map((p)=>{
-            console.log("inside data===>",p.quantity)
-           let startIndex = p.quantity.indexOf('[')
-           let lastIndex = p.quantity.indexOf(']') 
+            result,
+            indices = [];
 
-           let seriesname =  p.quantity.substring(startIndex+1,lastIndex)
-           return seriesname;
-          })
+          let allseries = suppliers.map((p) => {
+            console.log("inside data===>", p.quantity);
+            let startIndex = p.quantity.indexOf("[");
+            let lastIndex = p.quantity.indexOf("]");
 
+            let seriesname = p.quantity.substring(startIndex + 1, lastIndex);
+            return seriesname;
+          });
 
-         // let seriesArr = data.seriesName.map((sr) => sr.name);
+          // let seriesArr = data.seriesName.map((sr) => sr.name);
           let str = el.quantity;
-         
+
           while ((result = regex.exec(str))) {
             indices.push(result.index);
           }
-          console.log("indices===>",indices)
+          console.log("indices===>", indices);
           let res = [];
           for (let i = 0; i < 6; i++) {
-            let startIndex = el.quantity.indexOf('[')
-            let lastIndex = el.quantity.indexOf(']') 
-            
-            let seriesname =  el.quantity.substring(startIndex+1,lastIndex)
+            let startIndex = el.quantity.indexOf("[");
+            let lastIndex = el.quantity.indexOf("]");
+
+            let seriesname = el.quantity.substring(startIndex + 1, lastIndex);
             let duplicate = el.quantity;
             let duplicateSeriesArr = [...allseries];
             let strArr = duplicate.split("");
             while (strArr.indexOf("[") !== -1) {
-
               let avgMonthData = this.weeklyValues[seriesname][i];
               let index = strArr.indexOf("[");
-              let startIndex = strArr.indexOf('[')
-              let lastIndex = strArr.indexOf(']') 
+              let startIndex = strArr.indexOf("[");
+              let lastIndex = strArr.indexOf("]");
               //let seriesname =  p.quantity.substring(startIndex+1,lastIndex)
-              
-              strArr.splice(startIndex, lastIndex+1, avgMonthData);
+
+              strArr.splice(startIndex, lastIndex + 1, avgMonthData);
               duplicateSeriesArr.shift();
             }
             res.push(Number(eval(strArr.join("")).toFixed(2)));
@@ -661,9 +716,9 @@ export class SupplierAnalysis extends Component {
         return { forecastedObj, supplierMaxCapacity, leadTimeObj };
       });
 
-      window.supplierObject = convertedData.map((data)=>data.forecastedObj)
+      window.supplierObject = convertedData.map((data) => data.forecastedObj);
       console.log("convertedData =====>", window.supplierObject);
-    
+
       return this.setState({
         supplierDetails: convertedData,
         count: this.state.count + 1,
@@ -671,12 +726,15 @@ export class SupplierAnalysis extends Component {
     }
   };
 
-  
-
   actionBodyTemplate(rowData) {
     return (
       <React.Fragment>
-        <Button icon="pi pi-trash" className="p-button-text p-button-secondary" onClick={() => this.confirmDeleteProduct(rowData)} style={{ width: "30px" }} />
+        <Button
+          icon="pi pi-trash"
+          className="p-button-text p-button-secondary"
+          onClick={() => this.confirmDeleteProduct(rowData)}
+          style={{ width: "30px" }}
+        />
       </React.Fragment>
     );
   }
@@ -685,7 +743,7 @@ export class SupplierAnalysis extends Component {
 
   render() {
     //console.log("state in Demo", this.state);
-    
+
     let seriesData = [];
     let months = [
       "Jan",
@@ -761,62 +819,60 @@ export class SupplierAnalysis extends Component {
             };
             //console.log("forcastSeriesData ====>", objData);
             return objData;
-          }
-          )
+          })
         : [];
 
-    
-        const forecastedSupplierPriceOpthin = {
-          chart: {
-            zoomType: "x",
+    const forecastedSupplierPriceOpthin = {
+      chart: {
+        zoomType: "x",
+      },
+      title: {
+        // text: "Sabic Historical Prices",
+        text: "",
+        align: "center",
+      },
+      yAxis: {
+        // type: "datetime",
+        title: {
+          text: "USD/Ton",
+        },
+      },
+      xAxis: {
+        categories: [month1, month2, month3, month4, month5, month6],
+        title: {
+          text: "Dates",
+        },
+      },
+      legend: {
+        layout: "horizontal",
+        align: "center",
+        verticalAlign: "bottom",
+      },
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false,
           },
-          title: {
-            // text: "Sabic Historical Prices",
-            text: "",
-            align: "center",
-          },
-          yAxis: {
-            // type: "datetime",
-            title: {
-              text: "USD/Ton",
+        },
+      },
+      series: forcastSeriesData,
+      responsive: {
+        rules: [
+          {
+            condition: {
+              maxWidth: 500,
             },
-          },
-          xAxis: {
-            categories: [month1, month2, month3, month4, month5, month6],
-            title: {
-              text: "Dates",
-            },
-          },
-          legend: {
-            layout: "horizontal",
-            align: "center",
-            verticalAlign: "bottom",
-          },
-          plotOptions: {
-            series: {
-              label: {
-                connectorAllowed: false,
+            chartOptions: {
+              legend: {
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom",
               },
             },
           },
-          series: forcastSeriesData,
-          responsive: {
-            rules: [
-              {
-                condition: {
-                  maxWidth: 500,
-                },
-                chartOptions: {
-                  legend: {
-                    layout: "horizontal",
-                    align: "center",
-                    verticalAlign: "bottom",
-                  },
-                },
-              },
-            ],
-          },
-        };
+        ],
+      },
+    };
     // console.log("costDriver", this.state.costDriver);
     // console.log(this.state.products);
     // console.log("MYPROPS", this.props);
@@ -829,24 +885,52 @@ export class SupplierAnalysis extends Component {
     // <Forcast />;
     const productDialogFooter = (
       <React.Fragment>
-        <Button label="Cancel" icon="pi pi-times" className="p-button-text" onClick={this.hideDialog} />
-        <Button label="Save" icon="pi pi-check" className="p-button-text" onClick={this.saveProduct} />
+        <Button
+          label="Cancel"
+          icon="pi pi-times"
+          className="p-button-text"
+          onClick={this.hideDialog}
+        />
+        <Button
+          label="Save"
+          icon="pi pi-check"
+          className="p-button-text"
+          onClick={this.saveProduct}
+        />
       </React.Fragment>
     );
     const deleteProductDialogFooter = (
       <React.Fragment>
-        <Button label="No" icon="pi pi-times" className="p-button-text" onClick={this.hideDeleteProductDialog} />
-        <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={this.deleteProduct} />
+        <Button
+          label="No"
+          icon="pi pi-times"
+          className="p-button-text"
+          onClick={this.hideDeleteProductDialog}
+        />
+        <Button
+          label="Yes"
+          icon="pi pi-check"
+          className="p-button-text"
+          onClick={this.deleteProduct}
+        />
       </React.Fragment>
     );
     const deleteProductsDialogFooter = (
       <React.Fragment>
-        <Button label="No" icon="pi pi-times" className="p-button-text" onClick={this.hideDeleteProductsDialog} />
-        <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={this.deleteSelectedProducts} />
+        <Button
+          label="No"
+          icon="pi pi-times"
+          className="p-button-text"
+          onClick={this.hideDeleteProductsDialog}
+        />
+        <Button
+          label="Yes"
+          icon="pi pi-check"
+          className="p-button-text"
+          onClick={this.deleteSelectedProducts}
+        />
       </React.Fragment>
     );
-    
-
 
     const historicalPricesOpthion = {
       chart: {
@@ -898,223 +982,325 @@ export class SupplierAnalysis extends Component {
       },
     };
 
-   const chartoptions = {
-
+    const chartoptions = {
       chart: {
-        type: "spline"
+        type: "spline",
       },
       title: {
-        text: ''
+        text: "",
       },
       series: [
         {
-          data: [1,3,2,7,5,11,9]
-        }
-      ]
-      
-      
+          data: [1, 3, 2, 7, 5, 11, 9],
+        },
+      ],
     };
     const chartoptions2 = {
       chart: {
-        type: "spline"
+        type: "spline",
       },
       title: {
-        text: ''
+        text: "",
       },
       series: [
         {
-          data: [3,1,2,8,5,1,9]
-        }
-      ]
-      
-      
+          data: [3, 1, 2, 8, 5, 1, 9],
+        },
+      ],
     };
     const header2 = (
       <div className="table-header-container">
-         <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Enter Supplier Information </h5>
+        <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+          Enter Supplier Information{" "}
+        </h5>
       </div>
-  );
-  
+    );
 
     return (
       <div>
-         <AppTopbar onToggleMenu={"onToggleMenu"} />
-      <div className='layout-main'>
- 
-        <div className="card ">
-        <h5 style={{ fontWeight:"bolder", fontFamily:'poppins' }}>Supplier Analysis</h5>
-          <div className="row" style={{ display: "flex", justifyContent:'center', fontFamily: "Poppins" }}>
-            <div className="col-8" style={{ width: "63%" }}>
-              <Toast ref={(el) => (this.toast = el)} />
+        <AppTopbar onToggleMenu={"onToggleMenu"} />
+        <div className="layout-main">
+          <div className="card ">
+            <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
+              Supplier Analysis
+            </h5>
+            <div
+              className="row"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontFamily: "Poppins",
+              }}
+            >
+              <div className="col-8" style={{ width: "63%" }}>
+                <Toast ref={(el) => (this.toast = el)} />
 
-             
+                <DataTable
+                  header={header2}
+                  value={this.state.products}
+                  paginator
+                  rows={5}
+                  rowsPerPageOptions={[5, 10, 20]}
+                  paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                  editMode="row"
+                  dataKey="id"
+                  onRowEditInit={this.onRowEditInit}
+                  onRowEditCancel={this.onRowEditCancel}
+                >
+                  <Column
+                    field="name"
+                    header="Supplier Name"
+                    editor={(props) => this.nameEditor("products", props)}
+                  />
 
-              <DataTable
-                header={header2}
-                value={this.state.products}
-                paginator
-                rows={5}
-                rowsPerPageOptions={[5, 10, 20]}
-                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                editMode="row"
-                dataKey="id"
-                onRowEditInit={this.onRowEditInit}
-                onRowEditCancel={this.onRowEditCancel}
-              >
-                <Column field="name" header="Supplier Name" editor={(props) => this.nameEditor("products", props)} />
-
-                <Column field="quantity" header="Formula/Fixed Price" editor={(props) => this.quatityEditor("products", props)} />
-                <Column field="price" header="Max Capacity" editor={(props) => this.priceEditor("products", props)} />
-                <Column field="Percentage" header="Lead Time" editor={(props) => this.leadTime("products", props)} />
-                <Column
-                  rowEditor
-                  style={{ width: "13%" }}
-                  // headerStyle={{ width: "7rem" }}
-                  // bodyStyle={{ textAlign: "center" }}
-                ></Column>
-                <Column body={this.actionBodyTemplate} style={{ width: "10%" }}></Column>
-              </DataTable>
-              <div style={{ float: "",display:'flex',justifyContent:'space-between', margin: "10px 30px" }}>
-                <Button
-                label="Add More Supplier"
-                icon="pi pi-plus"
-               // className="p-mr-2"
-               onClick={this.openNew}
-                 />
-                <Button
-                  className="btn btn-success btn-lg float-right"
-                  // onClick={() => this.nextPath("/Forcast")}
-                  label="Submit"
-                  onClick={this.Onsave}
-                />
-               
-               
+                  <Column
+                    field="quantity"
+                    header="Formula/Fixed Price"
+                    editor={(props) => this.quatityEditor("products", props)}
+                  />
+                  <Column
+                    field="price"
+                    header="Max Capacity"
+                    editor={(props) => this.priceEditor("products", props)}
+                  />
+                  <Column
+                    field="Percentage"
+                    header="Lead Time"
+                    editor={(props) => this.leadTime("products", props)}
+                  />
+                  <Column
+                    rowEditor
+                    style={{ width: "13%" }}
+                    // headerStyle={{ width: "7rem" }}
+                    // bodyStyle={{ textAlign: "center" }}
+                  ></Column>
+                  <Column
+                    body={this.actionBodyTemplate}
+                    style={{ width: "10%" }}
+                  ></Column>
+                </DataTable>
+                <div
+                  style={{
+                    float: "",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    margin: "10px 30px",
+                  }}
+                >
+                  <Button
+                    label="Add More Supplier"
+                    icon="pi pi-plus"
+                    // className="p-mr-2"
+                    onClick={this.openNew}
+                  />
+                  <Button
+                    className="btn btn-success btn-lg float-right"
+                    // onClick={() => this.nextPath("/Forcast")}
+                    label="Submit"
+                    onClick={this.Onsave}
+                  />
+                </div>
               </div>
+
+              {/* ======================right coloumn=============================== */}
+
+              {/* ===================================================== */}
             </div>
-
-            {/* ======================right coloumn=============================== */}
-           
-
-            {/* ===================================================== */}
           </div>
-        </div>
-        <div className="card">
-        <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Historical Unit Prices</h5>
-                <div style={{ display: "flex", justifyContent:'center', margin: "5px 10px" ,fontFamily: "Poppins"}}>
-                  <Dropdown
-                    style={{ width: "30%", margin: "5px 10px" }}
-                    value={this.state.plant}
-                    options={this.plants}
-                    onChange={(e) => this.onPlantChange(e)}
-                    optionLabel="name"
-                    placeholder="Choose Plants"
-                    display="chip"
-                  />
+          <div className="card">
+            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+              Historical Unit Prices
+            </h5>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "5px 10px",
+                fontFamily: "Poppins",
+              }}
+            >
+              <Dropdown
+                style={{ width: "30%", margin: "5px 10px" }}
+                value={this.state.plant}
+                options={this.plants}
+                onChange={(e) => this.onPlantChange(e)}
+                optionLabel="name"
+                placeholder="Choose Plants"
+                display="chip"
+              />
 
-                  <Dropdown
-                    style={{ width: "30%", margin: "5px 10px",fontFamily: "Poppins" }}
-                    value={this.state.costDriverSeries}
-                    options={this.seriesName}
-                    onChange={(e) => this.oncostDriverSeriesChange(e)}
-                    optionLabel="name"
-                    placeholder="Region"
-                    display="chip"
-                  />
-                  {/* <Button
+              <Dropdown
+                style={{
+                  width: "30%",
+                  margin: "5px 10px",
+                  fontFamily: "Poppins",
+                }}
+                value={this.state.costDriverSeries}
+                options={this.seriesName}
+                onChange={(e) => this.oncostDriverSeriesChange(e)}
+                optionLabel="name"
+                placeholder="Region"
+                display="chip"
+              />
+              {/* <Button
                  label="submit"
                  style={{ margin: "3px 15px"  }}
             /> */}
-                </div>
-                <div style={{ width: "100%" }}>
-                  <HighchartsReact highcharts={Highcharts} options={historicalPricesOpthion} />
-                </div>
-                
-                <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Supplier Priceing</h5>
-                <div style={{ width: "100%" }}>
-                  
-                  <HighchartsReact highcharts={Highcharts} options={forecastedSupplierPriceOpthin} />
-                </div>
-              </div>
+            </div>
+            <div style={{ width: "100%" }}>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={historicalPricesOpthion}
+              />
+            </div>
 
-        {/* ===================================================== */}
-
-        <Dialog visible={this.state.productDialog} style={{ width: "600px" }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={this.hideDialog}>
-          <div className="p-field">
-            <label htmlFor="Material_Number">Supplier Name</label>
-            <Dropdown
-              id="name"
-              value={this.state.product.name}
-              options={['A','B','C','D']}
-              onChange={(e) => this.onInputChange(e, "name")}
-              required
-              autoFocus
-              className={classNames({
-                "p-invalid": this.state.submitted && !this.state.product.name,
-              })}
-            />
-            {this.state.submitted && !this.state.product.name && <small className="p-error">Supplier Name is required.</small>}
+            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+              Forecasted Supplier Priceing
+            </h5>
+            <div style={{ width: "100%" }}>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={forecastedSupplierPriceOpthin}
+              />
+            </div>
           </div>
 
-          {/* <div className="p-formgrid p-grid"> */}
-          <div className="p-field">
-            <label htmlFor="quantity">Formula/Fixed Price</label>
-            <InputText id="quantity" value={this.state.product.quantity} onChange={(e) => this.onInputChange(e, "quantity")} required />
-            {this.state.submitted && !this.state.product.quantity && <small className="p-error">Formula/Fixed Price is required.</small>}
-          </div>
+          {/* ===================================================== */}
 
-          <div className="p-field">
-            <label htmlFor="price">Max Capacity</label>
-            <InputText id="price" value={this.state.product.price} onValueChange={(e) => this.onInputNumberChange(e, "price")} required />
-            {this.state.submitted && !this.state.product.price && <small className="p-error">Max Capacity is required.</small>}
-          </div>
+          <Dialog
+            visible={this.state.productDialog}
+            style={{ width: "600px" }}
+            header="Product Details"
+            modal
+            className="p-fluid"
+            footer={productDialogFooter}
+            onHide={this.hideDialog}
+          >
+            <div className="p-field">
+              <label htmlFor="Material_Number">Supplier Name</label>
+              <Dropdown
+                id="name"
+                value={this.state.product.name}
+                options={["A", "B", "C", "D"]}
+                onChange={(e) => this.onInputChange(e, "name")}
+                required
+                autoFocus
+                className={classNames({
+                  "p-invalid": this.state.submitted && !this.state.product.name,
+                })}
+              />
+              {this.state.submitted && !this.state.product.name && (
+                <small className="p-error">Supplier Name is required.</small>
+              )}
+            </div>
 
-          <div className="p-field">
-            <label htmlFor="Percentage">Lead Time</label>
-            <InputText id="Percentage" value={this.state.product.Percentage} onValueChange={(e) => this.onInputNumberChange(e, "Percentage")} required />
-            {this.state.submitted && !this.state.product.Percentage && <small className="p-error">Lead Time is required.</small>}
-          </div>
-          {/* </div> */}
-        </Dialog>
+            {/* <div className="p-formgrid p-grid"> */}
+            <div className="p-field">
+              <label htmlFor="quantity">Formula/Fixed Price</label>
+              <InputText
+                id="quantity"
+                value={this.state.product.quantity}
+                onChange={(e) => this.onInputChange(e, "quantity")}
+                required
+              />
+              {this.state.submitted && !this.state.product.quantity && (
+                <small className="p-error">
+                  Formula/Fixed Price is required.
+                </small>
+              )}
+            </div>
 
-        {/* ======================================================= */}
+            <div className="p-field">
+              <label htmlFor="price">Max Capacity</label>
+              <InputText
+                id="price"
+                value={this.state.product.price}
+                onValueChange={(e) => this.onInputNumberChange(e, "price")}
+                required
+              />
+              {this.state.submitted && !this.state.product.price && (
+                <small className="p-error">Max Capacity is required.</small>
+              )}
+            </div>
 
-        <Dialog visible={this.state.deleteProductDialog} style={{ width: "450px" }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={this.hideDeleteProductDialog}>
-          <div className="confirmation-content">
-            <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: "2rem" }} />
-            {this.state.product && (
-              <span>
-                Are you sure you want to delete <b>{this.state.product.name}</b>?
-              </span>
-            )}
-          </div>
-        </Dialog>
+            <div className="p-field">
+              <label htmlFor="Percentage">Lead Time</label>
+              <InputText
+                id="Percentage"
+                value={this.state.product.Percentage}
+                onValueChange={(e) => this.onInputNumberChange(e, "Percentage")}
+                required
+              />
+              {this.state.submitted && !this.state.product.Percentage && (
+                <small className="p-error">Lead Time is required.</small>
+              )}
+            </div>
+            {/* </div> */}
+          </Dialog>
 
-        <Dialog visible={this.state.deleteProductsDialog} style={{ width: "450px" }} header="Confirm" modal footer={deleteProductsDialogFooter} onHide={this.hideDeleteProductsDialog}>
-          <div className="confirmation-content">
-            <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: "2rem" }} />
-            {this.state.product && <span>Are you sure you want to delete the selected products?</span>}
-          </div>
-        </Dialog>
-        <div style={{ display:'flex',justifyContent:'center' }}>
-        <a href='CostDriversAnalysis'>
-            <Button
-            className='previousbutton'
-              label="Previous"
-              style={{ marginRight: " 15px"  }}
-            />
+          {/* ======================================================= */}
+
+          <Dialog
+            visible={this.state.deleteProductDialog}
+            style={{ width: "450px" }}
+            header="Confirm"
+            modal
+            footer={deleteProductDialogFooter}
+            onHide={this.hideDeleteProductDialog}
+          >
+            <div className="confirmation-content">
+              <i
+                className="pi pi-exclamation-triangle p-mr-3"
+                style={{ fontSize: "2rem" }}
+              />
+              {this.state.product && (
+                <span>
+                  Are you sure you want to delete{" "}
+                  <b>{this.state.product.name}</b>?
+                </span>
+              )}
+            </div>
+          </Dialog>
+
+          <Dialog
+            visible={this.state.deleteProductsDialog}
+            style={{ width: "450px" }}
+            header="Confirm"
+            modal
+            footer={deleteProductsDialogFooter}
+            onHide={this.hideDeleteProductsDialog}
+          >
+            <div className="confirmation-content">
+              <i
+                className="pi pi-exclamation-triangle p-mr-3"
+                style={{ fontSize: "2rem" }}
+              />
+              {this.state.product && (
+                <span>
+                  Are you sure you want to delete the selected products?
+                </span>
+              )}
+            </div>
+          </Dialog>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <a href="CostDriversAnalysis">
+              <Button
+                className="previousbutton"
+                label="Previous"
+                style={{ marginRight: " 15px" }}
+              />
             </a>
-        <a href='Inventory'>
-            <Button
-            className='nextbutton'
-              label="Next"
-              style={{ marginLeft: " 15px"  }}
-              onClick = {this.optimize}
-            />
+            <a href="Inventory">
+              <Button
+                className="nextbutton"
+                label="Next"
+                style={{ marginLeft: " 15px" }}
+                onClick={this.optimize}
+              />
             </a>
+          </div>
         </div>
       </div>
-      </div>
-      
     );
   }
 }

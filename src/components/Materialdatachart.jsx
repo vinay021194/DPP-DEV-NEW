@@ -26,6 +26,9 @@ export const Materialdatachart = () => {
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [transposedData, setTransposedData] = useState([]);
+  const [filteredTransposedData, setFilteredTransposedData] = useState([]);
+  const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
+
   const [isSubmited, setIsSubmited] = useState(false);
   const [
     demandInfoRegressionSummaryTable,
@@ -43,6 +46,9 @@ export const Materialdatachart = () => {
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
   });
+
+  // console.log("plantData==>", plantData);
+  // console.log("Plants==>", Plants);
 
   let convertedData = demandInfoRegressionSummaryTable.map((el) => {
     let date = new Date(el.period);
@@ -214,13 +220,11 @@ export const Materialdatachart = () => {
   };
 
   const onsubmit = () => {
-    // console.log("transposedData==>", transposedData);
     setIsSubmited(true);
 
     let convertedData = demandInfoRegressionSummaryTable.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
-
       return {
         executedOn: el.executed_on,
         plant: el.plant,
@@ -229,7 +233,7 @@ export const Materialdatachart = () => {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
-    // console.log("convertedData before===>",convertedData)
+
     if (date1 && date2) {
       convertedData = convertedData.filter(
         (data) =>
@@ -237,12 +241,13 @@ export const Materialdatachart = () => {
           new Date(data.executedOn) < new Date(date2)
       );
     }
-    // console.log("convertedData after===>",convertedData)
 
     let exampleData = Plants.map((sr) =>
       convertedData.filter((el) => el.plant === sr)
     );
-    // console.log("exampleData in map ===>", exampleData);
+    let filterData = Plants.map((sr) =>
+      transposedData.filter((el) => el.key_mp.includes(sr))
+    );
 
     const chartData1 = Plants.map((sr, i) => {
       return {
@@ -251,6 +256,15 @@ export const Materialdatachart = () => {
       };
     });
 
+    let filterYearlyData = Plants.map((sr) =>
+      products2.Sheet3.filter((el) => el.plant.includes(sr))
+    );
+
+    filterData = [].concat(...filterData);
+    filterYearlyData = [].concat(...filterYearlyData);
+    console.log("filterData===>", filterData);
+    setAverageYearlyConsumption(filterYearlyData);
+    setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
   };
 
@@ -304,16 +318,7 @@ export const Materialdatachart = () => {
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory</h5>
     </div>
   );
-  const header2 = (
-    <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Plant2000</h5>
-    </div>
-  );
-  const header3 = (
-    <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Plant3000</h5>
-    </div>
-  );
+
   const statusOrderBodyTemplate = (rowData) => {
     return (
       <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>
@@ -335,16 +340,6 @@ export const Materialdatachart = () => {
         </DataTable>
       </div>
     );
-  };
-  const headerTemplate = (data) => {
-    return (
-      <React.Fragment>
-        <span className="image-text">{data.key_mp}</span>
-      </React.Fragment>
-    );
-  };
-  const footerTemplate = (data) => {
-    return <React.Fragment></React.Fragment>;
   };
 
   return (
@@ -441,37 +436,41 @@ export const Materialdatachart = () => {
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
-          <div className="">
-            <h5
-              style={{
-                fontWeight: "bolder",
-                fontFamily: "poppins",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              Average yearly Consumption
-            </h5>
-          </div>
-          <DataTable
-            style={{
-              width: "30%",
-              display: "flex",
-              justifyContent: "center",
-              marginLeft: "35%",
-            }}
-            value={products2.Sheet3}
-            dataKey="id"
-            rows={2}
-          >
-            <Column field="plant" header=""></Column>
-            <Column field="safety_stock" header="" showGridlines></Column>
-          </DataTable>
+          {isSubmited && (
+            <>
+              <div className="">
+                <h5
+                  style={{
+                    fontWeight: "bolder",
+                    fontFamily: "poppins",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  Average yearly Consumption
+                </h5>
+              </div>
+              <DataTable
+                style={{
+                  width: "30%",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginLeft: "35%",
+                }}
+                value={averageYearlyConsumption} //products2.Sheet3
+                dataKey="id"
+                rows={2}
+              >
+                <Column field="plant" header=""></Column>
+                <Column field="safety_stock" header="" showGridlines></Column>
+              </DataTable>
+            </>
+          )}
         </div>
         {isSubmited && (
           <div className="card">
             <DataTable
-              value={transposedData}
+              value={filteredTransposedData}
               paginator
               rows={12}
               rowsPerPageOptions={[4, 12, 20]}

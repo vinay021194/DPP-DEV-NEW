@@ -24,7 +24,7 @@ export const CostDriversAnalysis = () => {
   const [seriesdropdown, setDropdown] = useState([]);
   const [AccuraciesTableData, setAccuraciesTableData] = useState([]);
   const [costDriversChartData, setCostDriversChartData] = useState([]);
-
+  const [accuraciesJsonData, setAccuraciesJsonData] = useState([]);
   const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] =
     useState([]);
 
@@ -164,6 +164,7 @@ export const CostDriversAnalysis = () => {
           date: ele.date,
         };
       });
+      console.log("data=====>", data);
       setProducts(modifieData);
     });
 
@@ -174,6 +175,30 @@ export const CostDriversAnalysis = () => {
     productService
       .getIcisForecastSummaryTable()
       .then((data) => setCostDriversChartData(data));
+
+    productService.getIcisForecastSummaryTable2NEW().then((data) => {
+      let modifieData = data.Sheet.map((ele) => {
+        return {
+          key: ele.key,
+          best_model: ele.best_model,
+          top_influencers: ele.top_influencers
+            .replaceAll("[", "")
+            .replaceAll("]", "")
+            .split(","),
+          fifth_month_accuracy: (ele.fifth_month_accuracy * 1).toFixed(2),
+          first_month_accuracy: (ele.first_month_accuracy * 1).toFixed(2),
+          fourth_month_accuracy: (ele.fourth_month_accuracy * 1).toFixed(2),
+          second_month_accuracy: (ele.second_month_accuracy * 1).toFixed(2),
+          sixth_month_accuracy: (ele.sixth_month_accuracy * 1).toFixed(2),
+          test_month_accuracy: (ele.test_month_accuracy * 1).toFixed(2),
+          third_month_accuracy: (ele.third_month_accuracy * 1).toFixed(2),
+          serial_name: ele.serial_name,
+          material: ele.material,
+          date: ele.date,
+        };
+      });
+      setAccuraciesJsonData(modifieData);
+    });
   }, []);
 
   let plotBandsStart = new Date("2021-10-01 03:00:00").getTime();
@@ -257,7 +282,7 @@ export const CostDriversAnalysis = () => {
         .map((d) => {
           // console.log("data in map ===>", d);
           let date = d.date
-            .split("/") // 3/23/04  ===>
+            .split("/") // 3/23/04    ===>
             .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
             .join("/"); //  [3, 23, 04] ==> 3/23/2004
           date = new Date(date);
@@ -271,12 +296,14 @@ export const CostDriversAnalysis = () => {
     const chartData1 = e.value.map((sr, i) => {
       return {
         name: sr.name,
-        data: exampleData[i].splice(-150),
+        data: exampleData[i],
       };
     });
 
+    console.log("accuraciesJsonData ===>", accuraciesJsonData);
+
     let filterAccuraciesTableData = costDriver.map((sr) =>
-      products.filter((el) => el.material === sr.name)
+      accuraciesJsonData.filter((el) => el.material === sr.name)
     );
 
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
@@ -284,8 +311,13 @@ export const CostDriversAnalysis = () => {
     filterAccuraciesTableData = e.value.map((sr) =>
       filterAccuraciesTableData.filter((el) => el.serial_name === sr.name)
     );
+    filterAccuraciesTableData = filterAccuraciesTableData.filter(
+      (el) => el.length > 0
+    );
 
-    filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
+    console.log("filterAccuraciesTableData===>", filterAccuraciesTableData);
+
+    filterAccuraciesTableData = filterAccuraciesTableData.map((ele) => ele[0]);
 
     setAccuraciesTableData(filterAccuraciesTableData);
     setcostDriverSeries(e.value);
@@ -320,10 +352,8 @@ export const CostDriversAnalysis = () => {
   );
 
   const topInfluencersTemplate = (rowData) => {
-    // console.log("rowData==>", rowData);
-    if (!rowData.top_influencers) {
-      return "";
-    } else {
+    console.log("rowData==>", rowData);
+    if (rowData && rowData.top_influencers) {
       return (
         <div>
           {rowData.top_influencers[0] && (
@@ -340,6 +370,8 @@ export const CostDriversAnalysis = () => {
           <br />
         </div>
       );
+    } else {
+      return <div></div>;
     }
   };
 
