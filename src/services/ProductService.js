@@ -37,7 +37,7 @@ export class ProductService {
       .then((d) => d.Sheet1);
   }
 
-   getMaterialInfo() {
+  getMaterialInfo() {
     return fetch("/assets/demo/data/overview.json")
       .then((res) => res.json())
       .then((d) => d.data);
@@ -57,6 +57,7 @@ export class ProductService {
       .then((res) => res.json())
       .then((d) => d.data);
   }
+
   getdemandSummaryTable2() {
     return fetch("/assets/demo/data/demand_regrwssion_summary_table_2.json")
       .then((res) => res.json())
@@ -64,6 +65,17 @@ export class ProductService {
   }
   getplantdata() {
     return fetch("/assets/demo/data/plant_data.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
+  getdemandRegressionSummaryTable2() {
+    return fetch("/assets/demo/data/demandRegressionSummaryTableData2.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
+
+  gettransposedData() {
+    return fetch("/assets/demo/data/transposedData.json")
       .then((res) => res.json())
       .then((d) => d.data);
   }
