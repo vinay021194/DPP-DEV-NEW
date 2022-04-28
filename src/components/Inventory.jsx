@@ -231,12 +231,12 @@ const header6 = (
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
                     <Column field="undefined" header="" ></Column>
-                    <Column field="June" header="Jan21" ></Column>
-                    <Column field="July" header="Feb21"  />
-                    <Column field="August" header="Mar21"   />
-                    <Column field="September" header="Apr21"  />
-                    <Column field="October" header="May21" />
-                    <Column field="November" header="Jun21"  />
+                    <Column field="June" header="May22" ></Column>
+                    <Column field="July" header="Jun22"  />
+                    <Column field="August" header="July22"   />
+                    <Column field="September" header="Aug22"  />
+                    <Column field="October" header="Sep22" />
+                    <Column field="November" header="Oct22"  />
                    
                     
                 </DataTable>
@@ -257,12 +257,12 @@ const header6 = (
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
                     <Column field="name" header="Supplier" ></Column>
-                    <Column field="month1" header="Jan21" ></Column>
-                    <Column field="month2" header="Feb21"   />
-                    <Column field="month3" header="Mar21"   />
-                    <Column field="month4" header="Apr21"   />
-                    <Column field="month5" header="May21"  />
-                    <Column field="month6" header="Jun21"  />
+                    <Column field="month1" header="May22" ></Column>
+                    <Column field="month2" header="June22"   />
+                    <Column field="month3" header="July22"   />
+                    <Column field="month4" header="Aug22"   />
+                    <Column field="month5" header="Sep22"  />
+                    <Column field="month6" header="Oct22"  />
                     
                 </DataTable>
                 </div>

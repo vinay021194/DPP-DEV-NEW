@@ -436,17 +436,17 @@ export const CostDriversAnalysis = () => {
             <Column field="best_model" header="Model" />
             <Column
               field="top_influencers"
-              header="top 3 influsencial indices"
+              header="Most influsencial indices"
               body={topInfluencersTemplate}
               style={{ width: "20em" }}
             />
-            <Column field="test_month_accuracy" header="test" />
-            <Column field="first_month_accuracy" header="Jan21"></Column>
-            <Column field="second_month_accuracy" header="Feb21"></Column>
-            <Column field="third_month_accuracy" header="Mar21" />
-            <Column field="fourth_month_accuracy" header="Apr21" />
-            <Column field="fifth_month_accuracy" header="May21" />
-            <Column field="sixth_month_accuracy" header="Jun21" />
+            <Column field="test_month_accuracy" header="Test" />
+            <Column field="first_month_accuracy" header="May21"></Column>
+            <Column field="second_month_accuracy" header="June21"></Column>
+            <Column field="third_month_accuracy" header="July21" />
+            <Column field="fourth_month_accuracy" header="Aug21" />
+            <Column field="fifth_month_accuracy" header="Sep21" />
+            <Column field="sixth_month_accuracy" header="Oct21" />
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
