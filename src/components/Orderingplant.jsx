@@ -141,12 +141,13 @@ import supplierJsonData from "../data/supplierData.json"
                    
                     <Column field="Plant" header="Plant"  ></Column>
                     <Column field="Supplier" header="Supplier Name"  ></Column>
-                    <Column field="June" header="Feb22"  />
-                    <Column field="July" header="Mar22"  />
-                    <Column field="August" header="Apr22" />
-                    <Column field="September" header="May22"  />
-                    <Column field="October" header="Jun22"   />
-                    <Column field="November" header="July22"  />
+                    <Column field="May" header="May22"  />
+                    <Column field="June" header="June22"  />
+                    <Column field="July" header="July22"  />
+                    <Column field="August" header="August22" />
+                    <Column field="September" header="September22"  />
+                    <Column field="October" header="October22"   />
+                   
                     <Column field="Total Quantity" header="Total Quantities From Supplier"   />
                    
                 </DataTable>
@@ -167,13 +168,13 @@ import supplierJsonData from "../data/supplierData.json"
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
                     <Column field="Plant" header="Plant"  ></Column>
-                    <Column field="undefined" header="Name"  ></Column>
-                    <Column field="June" header="Feb22"  />
-                    <Column field="July" header="Mar22"  />
-                    <Column field="August" header="Apr22" />
-                    <Column field="September" header="May22"  />
-                    <Column field="October" header="Jun22"   />
-                    <Column field="November" header="July22"  />
+                    <Column field="Unnamed: 0" header="Name"  ></Column>
+                    <Column field="May" header="May22"  />
+                    <Column field="June" header="June22"  />
+                    <Column field="July" header="July22" />
+                    <Column field="August" header="August22"  />
+                    <Column field="September" header="September22"   />
+                    <Column field="October" header="October22"  />
                     
                 </DataTable>
                 </div>

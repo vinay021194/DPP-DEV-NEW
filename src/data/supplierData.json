@@ -1,15 +1,16 @@
 {
-    "Sheet1": [
+    "Sheet1":
+    [
         {
-            "Supplier": "s1",
-            "June": "0",
-            "July": "4.0100002",
-            "August": "5",
-            "September": "5",
-            "October": "5",
-            "November": "5",
-            "Total Quantity": "24.0100002",
-            "Plant": "2000"
+           "Supplier": "s1",
+           "May": 0,
+           "June": 4.01,
+           "July": 5,
+           "August": 5,
+           "September": 5,
+           "October": 5,
+           "Total Quantity": 24.01,
+           "Plant": 2000
         }
-    ]
+     ]
 }

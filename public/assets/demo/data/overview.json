@@ -1,7 +1,9 @@
 {
-    "data": [{
+    "data": 
+    [
+        {
             "material": "700047",
-            "material_description_1": "Sodium Chloride",
+            "material_description_1": "Polyethylene",
             "opening_stock": "62",
             "status_level_material": "Urgent",
             "material_type (SAP)": "ROH",
@@ -17,7 +19,8 @@
             "overall_incoming_quantity": "0",
             "on_route_curr_mon": "0",
             "status_level_inventory": "24% above safety stock",
-            "expend": [{
+            "expend": [
+                {
                 "material": "700047",
                 "plant": "2000",
                 "plant_name": "Edison",
@@ -27,7 +30,40 @@
                 "plant": "3000",
                 "plant_name": "Kansas",
                 "status_level_plant": "Sufficient for the next 2 months"
-            }]
+            }
+        ]
+        },
+        {
+            "material": "700047",
+            "material_description_1": "Polyethylene",
+            "opening_stock": "65",
+            "status_level_material": "Urgent",
+            "material_type (SAP)": "ROH",
+            "material_group (organisation)": "D11987",
+            "base_unit_of_measure (UOM)": "KG",
+            "industry_sector": "C",
+            "mdrm_class (class)": "GENERAL",
+            "aliases": "700233, 672219",
+            "openning_stock_uom": "TO",
+            "safety_stock": "50",
+            "warehouse_capacity": "100",
+            "safety_warehouse_uom": "TO",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_inventory": "24% above safety stock",
+            "expend": [
+                {
+                "material": "700047",
+                "plant": "2000",
+                "plant_name": "Edison",
+                "status_level_plant": "Sufficient for the next 0 months"
+            }, {
+                "material": "700047",
+                "plant": "3000",
+                "plant_name": "Kansas",
+                "status_level_plant": "Sufficient for the next 2 months"
+            }
+        ]
         },
         {
             "material": "678456",
