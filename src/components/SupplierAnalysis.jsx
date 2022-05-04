@@ -12,7 +12,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 // import { classNames } from "primereact/utils";
 import classNames from "classnames";
-import Highcharts from "highcharts";
+import Highcharts, { Globals } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json";
 import { AppTopbar } from "../components/AppTopbar";
@@ -64,7 +64,11 @@ export class SupplierAnalysis extends Component {
       HistoricalChartData: [],
       ForecastedData: [],
       supplierDetails: [],
+      value:{name: 'Global', code: 'Global'}
     };
+
+      
+      this.values = [{name: 'Global', code: 'Global'}]
 
     this.cities = [
       {
@@ -1018,6 +1022,7 @@ export class SupplierAnalysis extends Component {
 
     return (
       <div>
+        {console.log(this.state.plant,"==========> this.state.plant")}
         <AppTopbar onToggleMenu={"onToggleMenu"} />
         <div className="layout-main">
           <div className="card ">
@@ -1135,9 +1140,9 @@ export class SupplierAnalysis extends Component {
                   margin: "5px 10px",
                   fontFamily: "Poppins",
                 }}
-                value={this.state.costDriverSeries}
-                options={this.seriesName}
-                onChange={(e) => this.oncostDriverSeriesChange(e)}
+                value={this.state.value}
+                options={this.values}
+                //onChange={(e) => this.oncostDriverSeriesChange(e)}
                 optionLabel="name"
                 placeholder="Region"
                 display="chip"
@@ -1155,7 +1160,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-              Forecasted Supplier Priceing
+              Forecasted Prices
             </h5>
             <div style={{ width: "100%" }}>
               <HighchartsReact

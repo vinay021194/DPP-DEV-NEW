@@ -152,15 +152,15 @@ export const MaterialOverview = (props) => {
             selectionMode="multiple"
             // field="focus"
             // header="Focus"
-            // sortable
+            // 
           ></Column>
           
-          <Column field="plant" header="ID" sortable></Column>
-          <Column field="plant_name" header="Name" sortable></Column>
+          <Column field="plant" header="ID" ></Column>
+          <Column field="plant_name" header="Name" ></Column>
           <Column
             field="status_level_plant"
             header="Status"
-            sortable
+            
             body={statusOrderBodyTemplate}
           ></Column>
         </DataTable>
@@ -189,14 +189,14 @@ export const MaterialOverview = (props) => {
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
           >
             <Column expander style={{ width: "3em" }} />
-            <Column field="material" header="ID" sortable></Column>
+            <Column field="material" header="ID" ></Column>
             <Column
               field="material_description_1"
               header="Name"
-              sortable
+              
             ></Column>
-            <Column field="opening_stock" header="Inventory" sortable />
-            <Column field="status_level_material" header="Status" sortable body={statusBodyTemplate}/>
+            <Column field="opening_stock" header="Inventory"  />
+            <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>

@@ -1,9 +1,10 @@
 import react from 'react'
 import './App.css'
 import { Link } from 'react-router-dom';
+//import { Button } from 'primereact/button';
+import {MaterialOverview} from '../components/MaterialOverview'
 
   export const LoginPage=()=>{
-
   
   return (
     <div className="limiter">
@@ -13,13 +14,12 @@ import { Link } from 'react-router-dom';
        
       </div> */}
 			<div className="wrap-login100">
-				<form className="login100-form validate-form">
+				<div className="login100-form validate-form">
 					<span className="login100-form-title p-b-43">
 						Login
 					</span>
 					
-					
-					<div className="wrap-input100 validate-input" data-validate = "Valid  is required: ex@abc.xyz" >
+					<div className="wrap-input100 validate-input" data-validate = "Valid  is required: ex@abc.xyz" required >
 						<input className="input100" type="text" placeholder="Purchase Group" />
 						<span className="focus-input100"></span>
 					
@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 					
 					
 					<div className="wrap-input100 validate-input" data-validate="Password is required">
-						<input className="input100" type="password" name="pass" placeholder="Password" />
+						<input className="input100" type="password" name="pass" placeholder="Password" required />
 						<span className="focus-input100"></span>
 					
 					</div>
@@ -40,14 +40,14 @@ import { Link } from 'react-router-dom';
 						</div>
 					</div> 
 					
-					<a href='MaterialOverview'>
+				    <a href='MaterialOverview'>
 					<div className="container-login100-form-btn">
 						<button className="login100-form-btn">
 						Login
 						</button>
-						
 					</div>
-            </a>
+                    </a> 
+			
 					
 					{/* <div className="text-center p-t-46 p-b-20">
 						<span className="txt2">
@@ -64,7 +64,7 @@ import { Link } from 'react-router-dom';
 							<i className="fa fa-twitter" aria-hidden="true"></i>
 						</a> */}
 					</div>
-				</form>
+				</div>
 
 				<div className="login100-more">
 				</div>

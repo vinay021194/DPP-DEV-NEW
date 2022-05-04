@@ -10,7 +10,7 @@ code {
 }
 .p-datatable .p-datatable-thead > tr > th{
   /* background-color:  white !important; */
-  color: darkgrey;
+  color: #6b6a6a;
   border-color: 2px  white !important
 }
 .p-datatable .p-datatable-header {
@@ -72,3 +72,6 @@ code {
   color: #00AC4F !important;
   font-size: 14px;
 }
+/* .card .row-accessories {
+  background-color: rgba(201, 24, 24, 0.795) !important;
+} */

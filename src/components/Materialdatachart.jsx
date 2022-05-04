@@ -25,7 +25,7 @@ export const Materialdatachart = () => {
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [transposedData, setTransposedData] = useState([]);
+  const [transposedColorData, setTransposedColorData] = useState([]);
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
 
@@ -195,6 +195,48 @@ export const Materialdatachart = () => {
     }
   }, [expandedRows]);
 
+//   const rowClass = (data) => {
+//       let flag= false;
+//     if(data.keys === 'Projected Inventory'){
+//       console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
+//       if(parseInt(products2.Sheet3[0].safety_stock) <60){
+//         console.log("inside color",)
+//         // flag = true
+//         return(
+//           <span className={`productss-badge status-${50}`}>
+//         {data.Month1}
+        
+//       </span>
+//         )
+//       }
+//     }
+//     // return {
+//     //     'row-accessories': flag
+//     //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
+//     // }
+// }
+// const rowClasss = (data) => {
+//   let flag= false;
+// if(data.keys === 'Projected Inventory'){
+//   console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
+//   if(parseInt(products2.Sheet3[0].safety_stock) <60){
+//     console.log("inside color",)
+//     // flag = true
+//     return(
+//       <span className={`productss-badge status-${50}`}>
+//     {data.Month2}
+    
+//   </span>
+//     )
+//   }
+// }
+// // return {
+// //     'row-accessories': flag
+// //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
+// // }
+// }
+
+ 
   useEffect(() => {
     isMounted.current = true;
     productService.getMaterialInfo().then((data) => setProducts(data));
@@ -202,7 +244,29 @@ export const Materialdatachart = () => {
 
     productService
       .gettransposedData()
-      .then((data) => setTransposedData(data.Sheet));
+      .then((data) =>{
+        let TransposedColorData = data.Sheet.map((ele)=>{
+          return{
+            id:ele.id,
+            key_mp: ele.key_mp,
+            keys: ele.keys,
+            Month1:ele.Month1 ,
+            Month2: ele.Month2,
+            Month3:ele.Month3 ,
+            Month4: ele.Month4,
+            Month5: ele.Month5,
+            Month6: ele.Month6,
+            Month7:ele.Month7 ,
+            Month8:ele.Month8 ,
+            Month9:ele.Month9 ,
+            Month10:ele.Month10,
+            Month11:ele.Month11,
+            Month12:ele.Month12 
+          }
+        })
+        setTransposedColorData(TransposedColorData);
+      })
+       
   }, []);
 
   useEffect(() => {
@@ -246,7 +310,7 @@ export const Materialdatachart = () => {
       convertedData.filter((el) => el.plant === sr)
     );
     let filterData = Plants.map((sr) =>
-      transposedData.filter((el) => el.key_mp.includes(sr))
+      transposedColorData.filter((el) => el.key_mp.includes(sr))
     );
 
     const chartData1 = Plants.map((sr, i) => {
@@ -262,7 +326,7 @@ export const Materialdatachart = () => {
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
-    console.log("filterData===>", filterData);
+    //console.log("filterData===>", filterData);
     setAverageYearlyConsumption(filterYearlyData);
     setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
@@ -331,12 +395,12 @@ export const Materialdatachart = () => {
       <div className="orders-subtable">
         {/* <h5>Orders for {data.name}</h5> */}
         <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
-          <Column field="id" header="Plant Id(Name)" sortable></Column>
-          <Column field="name" header="Safety Stock" sortable></Column>
-          <Column field="inventory" header="Inventory" sortable></Column>
-          <Column field="status" header="WareHouse Capacity" sortable></Column>
-          <Column field="status" header="Status" sortable></Column>
-          {/* <Column field="" header="" body={statusOrderBodyTemplate} sortable></Column> */}
+          <Column field="id" header="Plant Id(Name)" ></Column>
+          <Column field="name" header="Safety Stock" ></Column>
+          <Column field="inventory" header="Inventory" ></Column>
+          <Column field="status" header="WareHouse Capacity" ></Column>
+          <Column field="status" header="Status" ></Column>
+          {/* <Column field="" header="" body={statusOrderBodyTemplate} ></Column> */}
         </DataTable>
       </div>
     );
@@ -360,20 +424,20 @@ export const Materialdatachart = () => {
             rows={1}
           >
             <Column style={{ width: "3em" }} />
-            <Column field="material" header="ID" sortable></Column>
-            {/* <Column field="Discription" header="Discription" sortable ></Column> */}
+            <Column field="material" header="ID" ></Column>
+            {/* <Column field="Discription" header="Discription"  ></Column> */}
             <Column
               field="base_unit_of_measure (UOM)"
               header="UOM"
-              sortable
+              
             ></Column>
-            <Column field="aliases" header="Aliases" sortable />
-            {/* <Column field="Criticality" header="Criticality" sortable  /> */}
-            <Column field="material_type (SAP)" header="SAP" sortable />
+            <Column field="aliases" header="Aliases"  />
+            {/* <Column field="Criticality" header="Criticality"   /> */}
+            <Column field="material_type (SAP)" header="SAP"  />
             <Column
               field="material_group (organisation)"
-              header="Organisation"
-              sortable
+              header="Organization"
+              
             />
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
@@ -418,6 +482,7 @@ export const Materialdatachart = () => {
             id="icon"
             showIcon
             value={date1}
+            placeholder="01-01-2018"
             onChange={(e) => setDate1(e.value)}
           />
           <strong>To Year</strong>
@@ -426,6 +491,7 @@ export const Materialdatachart = () => {
             id="icon"
             showIcon
             value={date2}
+            placeholder="01-01-2023"
             onChange={(e) => setDate2(e.value)}
           />
           <Button
@@ -481,13 +547,15 @@ export const Materialdatachart = () => {
               sortField="key_mp"
               sortOrder={1}
               responsiveLayout="scroll"
+             // rowClassName={rowClass}
+              //style={{ color: getColor(filteredTransposedData) }}
             >
               {/* <Column expander style={{ width: '3em' }} /> */}
               <Column field="key_mp" header="Material-Plant"></Column>
               <Column field="keys" header=""></Column>
               <Column field="Month1" header="May22" />
               <Column field="Month2" header="Jun22" />
-              <Column field="Month3" header="July22" />
+              <Column field="Month3" header="Jul22" />
               <Column field="Month4" header="Aug22" />
               <Column field="Month5" header="Sep22" />
               <Column field="Month6" header="Oct22" />
@@ -495,8 +563,8 @@ export const Materialdatachart = () => {
               <Column field="Month8" header="Dec22" />
               <Column field="Month9" header="Jan23" />
               <Column field="Month10" header="Feb23" />
-              <Column field="Month11" header="March23" />
-              <Column field="Month12" header="April23" />
+              <Column field="Month11" header="Mar23" />
+              <Column field="Month12" header="Apr23" />
             </DataTable>
           </div>
         )}

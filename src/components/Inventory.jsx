@@ -129,17 +129,17 @@ import { AppTopbar } from "./AppTopbar";
   );
   const header3 = (
     <div className="table-header-container">
-       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant2000</h5>
+       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000</h5>
     </div>
 );
 const header4 = (
   <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant3000</h5>
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
   </div>
 );
 const header5 = (
   <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Supplier</h5>
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
   </div>
 );
 const header6 = (
@@ -184,13 +184,13 @@ const header6 = (
                      dataKey="id" header={header1}   
                         rows={1}>
                    
-                   <Column field="material" header="ID" sortable></Column>
-                    {/* <Column field="Discription" header="Discription" sortable ></Column> */}
-                    <Column field="base_unit_of_measure (UOM)" header="UOM" sortable ></Column>
-                    <Column field="aliases" header="Aliases" sortable/>
-                    {/* <Column field="Criticality" header="Criticality" sortable  /> */}
-                    <Column field="material_type (SAP)" header="SAP" sortable  />
-                    <Column field="material_group (organisation)" header="Organisation" sortable />
+                   <Column field="material" header="ID" ></Column>
+                    {/* <Column field="Discription" header="Discription"  ></Column> */}
+                    <Column field="base_unit_of_measure (UOM)" header="UOM"  ></Column>
+                    <Column field="aliases" header="Aliases" />
+                    {/* <Column field="Criticality" header="Criticality"   /> */}
+                    <Column field="material_type (SAP)" header="SAP"   />
+                    <Column field="material_group (organisation)" header="Organization"  />
                     <Column field="mdrm_class (class)" header="Class"  />
                 </DataTable>
             </div>
@@ -233,7 +233,7 @@ const header6 = (
                     <Column field="undefined" header="" ></Column>
                     <Column field="June" header="May22" ></Column>
                     <Column field="July" header="Jun22"  />
-                    <Column field="August" header="July22"   />
+                    <Column field="August" header="Jul22"   />
                     <Column field="September" header="Aug22"  />
                     <Column field="October" header="Sep22" />
                     <Column field="November" header="Oct22"  />
@@ -258,8 +258,8 @@ const header6 = (
                    
                     <Column field="name" header="Supplier" ></Column>
                     <Column field="month1" header="May22" ></Column>
-                    <Column field="month2" header="June22"   />
-                    <Column field="month3" header="July22"   />
+                    <Column field="month2" header="Jun22"   />
+                    <Column field="month3" header="Jul22"   />
                     <Column field="month4" header="Aug22"   />
                     <Column field="month5" header="Sep22"  />
                     <Column field="month6" header="Oct22"  />

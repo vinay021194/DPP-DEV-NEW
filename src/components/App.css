@@ -1208,3 +1208,8 @@ input.input100 {
   margin-top: 8%;
   margin-left: 25px;
 }
+.productss-badge.status-50{
+    /* font-weight: 800; */
+    background-color: #ff9999!important;
+    /* text-decoration: line-through !important; */
+}

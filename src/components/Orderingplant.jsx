@@ -92,7 +92,7 @@ import supplierJsonData from "../data/supplierData.json"
 
     const header = (
         <div className="table-header-container">
-           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Buyer Group - 07J, Material - 949555 information</h5>
+           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Buyer Group - 07J, Material - 700047 information</h5>
         </div>
     );
     const header2 = (
@@ -118,11 +118,11 @@ import supplierJsonData from "../data/supplierData.json"
                      dataKey="id" header={header}   
                         rows={1}>
                    
-                   <Column field="material" header="ID" sortable></Column>
-                   <Column field="material_type (SAP)" header="Type" sortable  />
-                    <Column field="material_description_1" header="Discription" sortable ></Column>
-                    <Column field="base_unit_of_measure (UOM)" header="UOM" sortable ></Column>
-                    <Column field="mdrm_class (class)" header="UNSPSC Discription" sortable />
+                   <Column field="material" header="ID" ></Column>
+                   <Column field="material_type (SAP)" header="Type"   />
+                    <Column field="material_description_1" header="Description"  ></Column>
+                    <Column field="base_unit_of_measure (UOM)" header="UOM"  ></Column>
+                    <Column field="mdrm_class (class)" header="UNSPSC Description"  />
                    
                 </DataTable>
             </div>
@@ -142,11 +142,11 @@ import supplierJsonData from "../data/supplierData.json"
                     <Column field="Plant" header="Plant"  ></Column>
                     <Column field="Supplier" header="Supplier Name"  ></Column>
                     <Column field="May" header="May22"  />
-                    <Column field="June" header="June22"  />
-                    <Column field="July" header="July22"  />
-                    <Column field="August" header="August22" />
-                    <Column field="September" header="September22"  />
-                    <Column field="October" header="October22"   />
+                    <Column field="June" header="Jun22"  />
+                    <Column field="July" header="Jul22"  />
+                    <Column field="August" header="Aug22" />
+                    <Column field="September" header="Sep22"  />
+                    <Column field="October" header="Oct22"   />
                    
                     <Column field="Total Quantity" header="Total Quantities From Supplier"   />
                    
@@ -170,11 +170,11 @@ import supplierJsonData from "../data/supplierData.json"
                     <Column field="Plant" header="Plant"  ></Column>
                     <Column field="Unnamed: 0" header="Name"  ></Column>
                     <Column field="May" header="May22"  />
-                    <Column field="June" header="June22"  />
-                    <Column field="July" header="July22" />
-                    <Column field="August" header="August22"  />
-                    <Column field="September" header="September22"   />
-                    <Column field="October" header="October22"  />
+                    <Column field="June" header="Jun22"  />
+                    <Column field="July" header="Jul22" />
+                    <Column field="August" header="Aug22"  />
+                    <Column field="September" header="Sep22"   />
+                    <Column field="October" header="Oct22"  />
                     
                 </DataTable>
                 </div>

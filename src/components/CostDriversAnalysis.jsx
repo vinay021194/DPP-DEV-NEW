@@ -183,6 +183,7 @@ export const CostDriversAnalysis = () => {
           best_model: ele.best_model,
           top_influencers: ele.top_influencers
             .replaceAll("[", "")
+            .replaceAll("'","")
             .replaceAll("]", "")
             .split(","),
           fifth_month_accuracy: (ele.fifth_month_accuracy * 1).toFixed(2),
@@ -201,7 +202,7 @@ export const CostDriversAnalysis = () => {
     });
   }, []);
 
-  let plotBandsStart = new Date("2021-10-01 03:00:00").getTime();
+  let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
   let plotBandsEnd = new Date("2023-05-01 03:00:00").getTime();
   // plotBandsStart = Math.min(...filteredData.map((item) => item.x));
   // plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
@@ -436,17 +437,17 @@ export const CostDriversAnalysis = () => {
             <Column field="best_model" header="Model" />
             <Column
               field="top_influencers"
-              header="Most influsencial indices"
+              header="Most Influencial  Indices"
               body={topInfluencersTemplate}
               style={{ width: "20em" }}
             />
             <Column field="test_month_accuracy" header="Test" />
-            <Column field="first_month_accuracy" header="May21"></Column>
-            <Column field="second_month_accuracy" header="June21"></Column>
-            <Column field="third_month_accuracy" header="July21" />
-            <Column field="fourth_month_accuracy" header="Aug21" />
-            <Column field="fifth_month_accuracy" header="Sep21" />
-            <Column field="sixth_month_accuracy" header="Oct21" />
+            <Column field="first_month_accuracy" header="May22"></Column>
+            <Column field="second_month_accuracy" header="Jun22"></Column>
+            <Column field="third_month_accuracy" header="Jul22" />
+            <Column field="fourth_month_accuracy" header="Aug22" />
+            <Column field="fifth_month_accuracy" header="Sep22" />
+            <Column field="sixth_month_accuracy" header="Oct22" />
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>

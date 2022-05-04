@@ -138,10 +138,10 @@ const App = () => {
 
       <div className="">
         {/* <Router > */}
-        <Route path="/" exact component={MaterialOverview} />
+        <Route path="/MaterialOverview" exact component={MaterialOverview} />
         <Route path="/Materialdatachart" exact component={Materialdatachart} />
         <Route path="/CostDriversAnalysis" exact component={CostDriversAnalysis} />
-        <Route path="/LoginPage" exact component={LoginPage} />
+        <Route path="/" exact component={LoginPage} />
         <Route path="/Orderingplant" exact component={Orderingplant} />
         <Route path="/Inventory" exact component={Inventory} />
         <Route path="/SupplierAnalysis" exact component={SupplierAnalysis} />
