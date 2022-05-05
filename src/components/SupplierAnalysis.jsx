@@ -838,7 +838,7 @@ export class SupplierAnalysis extends Component {
       yAxis: {
         // type: "datetime",
         title: {
-          text: "USD/Ton",
+          text: "USD/MT",
         },
       },
       xAxis: {

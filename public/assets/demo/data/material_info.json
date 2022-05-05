@@ -1,26 +1,16 @@
 {
     "data": {
-        "Sheet3": [{
-
+        "Sheet3":
+        [
+            {
                 "material": "700047",
-                "material_description_1": "Sodium Chloride",
+                "material_description_1": "Polyethylene",
                 "material_type (SAP)": "ROH",
                 "material_group (organisation)": "D11987",
-                "base_unit_of_measure (UOM)": "KG",
+                "base_unit_of_measure (UOM)": "TO",
                 "industry_sector": "C",
                 "mdrm_class (class)": "GENERAL",
-                "aliases": "700233, 672219",
-                "child": [{
-                    "name": "Applications",
-                    "inventory": "100kb",
-                    "status": "Folder",
-                    "id": "M1"
-                }, {
-                    "name": "Applications",
-                    "inventory": "100kb",
-                    "status": "Folder",
-                    "id": "M2"
-                }]
+                "aliases": "700233, 672219"
             },
             {
                 "material": "678456",

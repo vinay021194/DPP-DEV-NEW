@@ -347,7 +347,7 @@ export const CostDriversAnalysis = () => {
   const header = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-        Accuracies
+        Accuracies(Percentage)
       </h5>
     </div>
   );

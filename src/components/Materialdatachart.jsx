@@ -373,7 +373,7 @@ export const Materialdatachart = () => {
   const header = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
-        Demand Prediction
+        Demand Prediction(Tons)
       </h5>
     </div>
   );

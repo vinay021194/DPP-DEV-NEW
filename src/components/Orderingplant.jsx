@@ -164,6 +164,7 @@ import supplierJsonData from "../data/supplierData.json"
                     dataKey="id"
                     //header={header3}
                     rows={5}
+                    editMode="cell"
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    

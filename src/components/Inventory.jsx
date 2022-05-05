@@ -129,17 +129,17 @@ import { AppTopbar } from "./AppTopbar";
   );
   const header3 = (
     <div className="table-header-container">
-       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000</h5>
+       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000(Tons)</h5>
     </div>
 );
 const header4 = (
   <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000(Tons)</h5>
   </div>
 );
 const header5 = (
   <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices(USD)</h5>
   </div>
 );
 const header6 = (
