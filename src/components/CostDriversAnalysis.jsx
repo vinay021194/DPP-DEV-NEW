@@ -443,7 +443,7 @@ export const CostDriversAnalysis = () => {
               body={topInfluencersTemplate}
               style={{ width: "40em" }}
             />
-            <Column field="test_month_accuracy" header="Test" />
+            <Column field="test_month_accuracy" header="Accuracy (%)" />
             {/* <Column field="first_month_accuracy" header="May22"></Column>
             <Column field="second_month_accuracy" header="Jun22"></Column>
             <Column field="third_month_accuracy" header="Jul22" />
@@ -461,15 +461,15 @@ export const CostDriversAnalysis = () => {
            // rowsPerPageOptions={[5, 10, 20]}
            // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           >
-             <Column field="accuracy_var" header="Accuracies"></Column>
+             {/* <Column field="accuracy_var" header="Accuracies"></Column>
             <Column field="accuracy_arima" header="ARIMA"></Column>
-            <Column field="accuracy_vecm" header="VECM"></Column>
-            <Column field="2022-05" header="May22($)"></Column>
-            <Column field="2022-06" header="Jun22($)"></Column>
-            <Column field="2022-07" header="Jul22($)" />
-            <Column field="2022-08" header="Aug22($)" />
-            <Column field="2022-09" header="Sep22($)" />
-            <Column field="2022-10" header="Oct22($)" />
+            <Column field="accuracy_vecm" header="VECM"></Column> */}
+           <Column field="first_month_accuracy" header="May22($)"></Column>
+            <Column field="second_month_accuracy" header="Jun22($)"></Column>
+            <Column field="third_month_accuracy" header="Jul22($)" />
+            <Column field="fourth_month_accuracy" header="Aug22($)" />
+            <Column field="fifth_month_accuracy" header="Sep22($)" />
+            <Column field="sixth_month_accuracy" header="Oct22($)" /> 
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
