@@ -107,7 +107,7 @@ export const MaterialOverview = (props) => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , display:'flex', justifyContent:'center' }}>
         Material Overview
       </h5>
     </div>
