@@ -2,76 +2,76 @@
     "data":{
     "Sheet1": 
     [
-        {
-           "Unnamed: 0": "Warehouse Capacity",
-           "May": 7.25,
-           "June": 7.25,
-           "July": 7.25,
-           "August": 7.25,
-           "September": 7.25,
-           "October": 7.25,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "Safety Stock",
-           "May": 2.42,
-           "June": 2.42,
-           "July": 2.42,
-           "August": 2.42,
-           "September": 2.42,
-           "October": 2.42,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "Opening Stock",
-           "May": 8.40,
-           "June": 3.40,
-           "July": 2.42,
-           "August": 2.42,
-           "September": 2.42,
-           "October": 2.42,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "En Route",
-           "May": 0,
-           "June": 0,
-           "July": 0,
-           "August": 0,
-           "September": 0,
-           "October": 0,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "Forecasted Demand",
-           "May": 5,
-           "June": 5,
-           "July": 5,
-           "August": 5,
-           "September": 5,
-           "October": 5,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "Closing Stock",
-           "May": 3.40,
-           "June": 2.42,
-           "July": 2.42,
-           "August": 2.42,
-           "September": 2.42,
-           "October": 2.42,
-           "Plant": 2000
-        },
-        {
-           "Unnamed: 0": "To Arrive",
-           "May": 0,
-           "June": 4.01,
-           "July": 5,
-           "August": 5,
-           "September": 5,
-           "October": 5,
-           "Plant": 2000
-        }
-     ]
+      {
+          "undefined": "Warehouse Capacity",
+          "May": "100",
+          "June": "100",
+          "July": "100",
+          "August": "100",
+          "September": "100",
+          "October": "100",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "Safety Stock",
+          "May": "40",
+          "June": "40",
+          "July": "40",
+          "August": "40",
+          "September": "40",
+          "October": "40",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "Opening Stock",
+          "May": "62",
+          "June": "40.154401",
+          "July": "40",
+          "August": "56.074888",
+          "September": "40",
+          "October": "60.075117",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "En Route",
+          "May": "0",
+          "June": "0",
+          "July": "0",
+          "August": "0",
+          "September": "0",
+          "October": "0",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "Forecasted Demand",
+          "May": "21.8455987",
+          "June": "19.8654855",
+          "July": "25.70397844",
+          "August": "16.07488774",
+          "September": "9.865810195",
+          "October": "20.07511732",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "Closing Stock",
+          "May": "40.1544013",
+          "June": "40",
+          "July": "56.074888",
+          "August": "40",
+          "September": "60.075117",
+          "October": "40",
+          "Plant": "2000"
+      },
+      {
+          "undefined": "To Arrive",
+          "May": "0",
+          "June": "19.711084",
+          "July": "41.778866",
+          "August": "0",
+          "September": "29.940928",
+          "October": "0",
+          "Plant": "2000"
+      }
+  ]
 }
 }

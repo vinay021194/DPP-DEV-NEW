@@ -514,7 +514,7 @@ export const Materialdatachart = () => {
           />
           <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
-        Historical & Forecasted Consumption
+      Material Consumption at Plant(s)
       </h5>
     </div>
           <div>

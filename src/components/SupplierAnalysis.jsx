@@ -119,20 +119,21 @@ export class SupplierAnalysis extends Component {
       },
     ];
 
-    this.supplierFormulaData = [
+    this.supplierFormulaData = 
+    [
       {
         supplier_name: "A",
         formulae:
           "1.2 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 140",
         capacity: 1000,
-        lead_time_months: 2,
+        lead_time_months: 1,
       },
       {
         supplier_name: "B",
         formulae:
-          "1.5 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
+          "1.19 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
         capacity: 980,
-        lead_time_months: 1,
+        lead_time_months: 2,
       },
       {
         supplier_name: "C",
@@ -236,9 +237,11 @@ export class SupplierAnalysis extends Component {
   };
 
   optimize = () => {
-    // console.log("this.supplierDetails====>",this.supplierDetails)
+   console.log("this.supplierDetails====>",window.supplierObject
+   )
     this.props.history.push("/Inventory", {
-      supplierDetails: window.supplierObject,
+      supplierDetails:
+       window.supplierObject,
     });
   };
 
@@ -1294,14 +1297,14 @@ export class SupplierAnalysis extends Component {
                 style={{ marginRight: " 15px" }}
               />
             </Link>
-            <Link to="/Inventory">
+            <a href ="/Inventory">
               <Button
                 className="nextbutton"
                 label="Next"
                 style={{ marginLeft: " 15px" }}
                 onClick={this.optimize}
               />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

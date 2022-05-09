@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 
  export const Inventory = (props) => {
- //console.log("props===>",props.location.state.supplierDetails)
+ console.log("props===>",props)
     const [products, setProducts] = useState([]);
     const [products2, setProducts2] = useState([]);
     const [products3, setProducts3] = useState([]);
@@ -127,6 +127,8 @@ import { Link } from "react-router-dom";
     const header2 = (
       <div className="table-header-container">
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Inventory</h5>
+       <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>Quantities are in Tonnes</h10>
+         
       </div>
   );
   const header3 = (

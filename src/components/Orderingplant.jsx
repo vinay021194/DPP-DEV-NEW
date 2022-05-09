@@ -8,6 +8,7 @@ import { AppTopbar } from "./AppTopbar";
 import plantJsonData from "../data/plantData.json"
 import supplierJsonData from "../data/supplierData.json"
 import { Link } from "react-router-dom";
+import { MultiSelect } from "primereact/multiselect";
 
 
  export const Orderingplant = () => {
@@ -28,6 +29,10 @@ import { Link } from "react-router-dom";
   const [date2, setDate2] = useState(null);
   const [supplierData, setsupplierData] = useState(null);
   const [plantData, setplantData] = useState(null);
+  const [Plants, setPlants] = useState('2000');
+  const onPlantChange = (e) => {
+    setPlants(e.value);
+  };
 
  console.log("plantJsonData===>",plantJsonData)
  console.log("supplierJsonData===>",supplierJsonData)
@@ -99,7 +104,7 @@ import { Link } from "react-router-dom";
     const header2 = (
       <div className="table-header-container">
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule</h5>
-         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>sub heading</h10>
+         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All Units is in Tonnes</h10>
       </div>
   );
   const footer = (
@@ -138,6 +143,15 @@ import { Link } from "react-router-dom";
                    
                 </DataTable>
             </div>
+            <MultiSelect
+            style={{ width: "30%", margin: "5px 10px" ,display:'flex',justifyContent:'center' }}
+           // value={Plants}
+            //options={plantData}
+            //onChange={onPlantChange}
+            optionLabel="label"
+            placeholder="2000"
+            display="chip"
+          />
             <div className='card'>
            <DataTable 
                    value={supplierData} 
@@ -182,7 +196,7 @@ import { Link } from "react-router-dom";
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
                     <Column field="Plant" header="Plant"  ></Column>
-                    <Column field="Unnamed: 0" header="Name"  ></Column>
+                    <Column field="undefined" header="Name"  ></Column>
                     <Column field="May" header="May22"  />
                     <Column field="June" header="Jun22"  />
                     <Column field="July" header="Jul22" />
