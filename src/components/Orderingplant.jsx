@@ -7,6 +7,7 @@ import './App.css';
 import { AppTopbar } from "./AppTopbar";
 import plantJsonData from "../data/plantData.json"
 import supplierJsonData from "../data/supplierData.json"
+import { Link } from "react-router-dom";
 
 
  export const Orderingplant = () => {
@@ -92,13 +93,20 @@ import supplierJsonData from "../data/supplierData.json"
 
     const header = (
         <div className="table-header-container">
-           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Buyer Group - 07J, Material - 700047 information</h5>
+           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Material</h5>
         </div>
     );
     const header2 = (
       <div className="table-header-container">
-         <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule Plant(Tons)</h5>
+         <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule</h5>
+         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>sub heading</h10>
       </div>
+  );
+  const footer = (
+    <div className="table-header">
+        All Units is in TO
+        
+    </div>
   );
 
     return ( 
@@ -106,6 +114,9 @@ import supplierJsonData from "../data/supplierData.json"
              <AppTopbar onToggleMenu={onToggleMenu} />
             {/* <Toast ref={toast} /> */}
           <div className='layout-main'>
+          <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" , display:'flex', justifyContent:'center' ,marginBottom:'20px'}}>
+          Ordering Schedule
+          </h5>
           <div className="card">
                 <DataTable 
                 value={products3.Sheet3}
@@ -119,6 +130,7 @@ import supplierJsonData from "../data/supplierData.json"
                         rows={1}>
                    
                    <Column field="material" header="ID" ></Column>
+                   <Column field="" header="Buyer-Group" ></Column>
                    <Column field="material_type (SAP)" header="Type"   />
                     <Column field="material_description_1" header="Description"  ></Column>
                     <Column field="base_unit_of_measure (UOM)" header="UOM"  ></Column>
@@ -139,8 +151,8 @@ import supplierJsonData from "../data/supplierData.json"
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
-                    <Column field="Plant" header="Plant"  ></Column>
-                    <Column field="Supplier" header="Supplier Name"  ></Column>
+                    <Column field="Plant" header="Plant"></Column>
+                    <Column field="Supplier" header="Supplier Name"></Column>
                     <Column field="May" header="May22"  />
                     <Column field="June" header="Jun22"  />
                     <Column field="July" header="Jul22"  />
@@ -148,7 +160,7 @@ import supplierJsonData from "../data/supplierData.json"
                     <Column field="September" header="Sep22"  />
                     <Column field="October" header="Oct22"   />
                    
-                    <Column field="Total Quantity" header="Total Quantities From Supplier"   />
+                    <Column field="Total Quantity" header="Total Quantities"   />
                    
                 </DataTable>
                 </div>
@@ -162,6 +174,7 @@ import supplierJsonData from "../data/supplierData.json"
                   //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
                   //   rowExpansionTemplate={rowExpansionTemplate} 
                     dataKey="id"
+                   // footer={footer}
                     //header={header3}
                     rows={5}
                     editMode="cell"
@@ -180,20 +193,20 @@ import supplierJsonData from "../data/supplierData.json"
                 </DataTable>
                 </div>
                 <div style={{ display:'flex', justifyContent:'center' }}>
-           <a href='Inventory'>
+           <Link to='/Inventory'>
             <Button
             className='previousbutton'
               label="Previous "
               style={{ marginRight: " 15px"  }}
             />
-            </a>
-            <a href=' '>
+            </Link>
+            <Link to=' '>
             <Button
               className='nextbutton'
               label="Download Ordering schedule "
               style={{ marginLeft: " 15px"  }}
             />
-             </a>
+             </Link>
             </div>
             </div>
                

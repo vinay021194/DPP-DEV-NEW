@@ -1426,14 +1426,14 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "1/7/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1020",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "1/24/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1040",
             "material_uom": "TO"
         },
         {
@@ -1447,7 +1447,7 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "3/14/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1075",
             "material_uom": "TO"
         },
         {
@@ -1482,7 +1482,7 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "5/28/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1045",
             "material_uom": "TO"
         },
         {
@@ -1503,14 +1503,14 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "8/1/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1050",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "8/28/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1040",
             "material_uom": "TO"
         },
         {
@@ -1531,7 +1531,7 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "11/12/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1100",
             "material_uom": "TO"
         },
         {
@@ -1566,77 +1566,77 @@
             "material": "700047",
             "plant": "2000",
             "posting_date": "3/10/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1030",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "4/4/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1025",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "4/28/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1010",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "5/20/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1020",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "6/16/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1035",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "7/8/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1025",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "8/16/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1040",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "9/2/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1060",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "10/1/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1050",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "10/21/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1090",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "2000",
             "posting_date": "11/4/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1110",
             "material_uom": "TO"
         },
         {
@@ -2714,7 +2714,7 @@
             "material": "700047",
             "plant": "3000",
             "posting_date": "8/22/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1070",
             "material_uom": "TO"
         },
         {
@@ -2735,7 +2735,7 @@
             "material": "700047",
             "plant": "3000",
             "posting_date": "12/3/19",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1070",
             "material_uom": "TO"
         },
         {
@@ -2749,84 +2749,84 @@
             "material": "700047",
             "plant": "3000",
             "posting_date": "2/27/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1050",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "3/23/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1000",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "3/31/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1000",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "5/23/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1020",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "6/9/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1030",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "8/9/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1025",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "9/15/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1040",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "10/15/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1035",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "11/15/20",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1035",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "1/24/21",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1050",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "2/3/21",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1040",
             "material_uom": "TO"
         },
         {
             "material": "700047",
             "plant": "3000",
             "posting_date": "3/23/21",
-            "unit_price_usd": "1080",
+            "unit_price_usd": "1055",
             "material_uom": "TO"
         },
         {

@@ -8,6 +8,7 @@ import { Button } from "primereact/button";
 import "./App.css";
 import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
+import { Link } from "react-router-dom";
 export const CostDriversAnalysis = () => {
   const productService = new ProductService();
   const [layoutMode, setLayoutMode] = useState("static");
@@ -223,7 +224,7 @@ export const CostDriversAnalysis = () => {
 
     xAxis: {
       title: {
-        text: "Day of Date",
+        text: "Date",
       },
       //categories: data2,
       plotBands: [
@@ -245,7 +246,7 @@ export const CostDriversAnalysis = () => {
           this.series.name +
           "</b> </br> Avg Price :  <b>" +
           this.y +
-          "</b> </br> Day of Date : <b>" +
+          "</b> </br> Date : <b>" +
           new Date(this.x).toUTCString() +
           "</b>"
         );
@@ -347,7 +348,7 @@ export const CostDriversAnalysis = () => {
   const header = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-        Accuracies(Percentage)
+      Accuracy (%)
       </h5>
     </div>
   );
@@ -381,10 +382,11 @@ export const CostDriversAnalysis = () => {
       <AppTopbar onToggleMenu={onToggleMenu} />
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
-        <div className="card">
-          <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" , display:'flex', justifyContent:'center' ,marginBottom:'20px'}}>
             Cost Drivers Analysis
           </h5>
+        <div className="card">
+         
           {/* <strong>Source</strong> */}
           <div style={{ display: "flex", margin: "5px 10px" }}>
             <MultiSelect
@@ -427,44 +429,64 @@ export const CostDriversAnalysis = () => {
         <div className="card">
           <DataTable
             value={AccuraciesTableData}
-            paginator
+            //paginator
             header={header}
             rows={10}
-            rowsPerPageOptions={[5, 10, 20]}
-            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+           // rowsPerPageOptions={[5, 10, 20]}
+           // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           >
             <Column field="key" header="Index" />
-            <Column field="best_model" header="Model" />
+            <Column field="best_model" header=" AI Model" />
             <Column
               field="top_influencers"
-              header="Most Influencial  Indices"
+              header="Most Influencial Predictor"
               body={topInfluencersTemplate}
-              style={{ width: "20em" }}
+              style={{ width: "40em" }}
             />
             <Column field="test_month_accuracy" header="Test" />
-            <Column field="first_month_accuracy" header="May22"></Column>
+            {/* <Column field="first_month_accuracy" header="May22"></Column>
             <Column field="second_month_accuracy" header="Jun22"></Column>
             <Column field="third_month_accuracy" header="Jul22" />
             <Column field="fourth_month_accuracy" header="Aug22" />
             <Column field="fifth_month_accuracy" header="Sep22" />
-            <Column field="sixth_month_accuracy" header="Oct22" />
+            <Column field="sixth_month_accuracy" header="Oct22" /> */}
+          </DataTable>
+        </div>
+        <div className="card">
+          <DataTable
+            value={AccuraciesTableData}
+            //paginator
+            //header={header}
+            rows={10}
+           // rowsPerPageOptions={[5, 10, 20]}
+           // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+          >
+             <Column field="accuracy_var" header="Accuracies"></Column>
+            <Column field="accuracy_arima" header="ARIMA"></Column>
+            <Column field="accuracy_vecm" header="VECM"></Column>
+            <Column field="2022-05" header="May22($)"></Column>
+            <Column field="2022-06" header="Jun22($)"></Column>
+            <Column field="2022-07" header="Jul22($)" />
+            <Column field="2022-08" header="Aug22($)" />
+            <Column field="2022-09" header="Sep22($)" />
+            <Column field="2022-10" header="Oct22($)" />
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <a href="Materialdatachart">
+          <Link to="/Materialdatachart">
             <Button
               className="previousbutton"
               label="Previous "
               style={{ marginRight: " 15px" }}
             />
-          </a>
-          <a href="SupplierAnalysis">
+          </Link>
+          <Link to="/SupplierAnalysis">
             <Button
               className="nextbutton"
               label="Next"
               style={{ marginLeft: " 15px" }}
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

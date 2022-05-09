@@ -16,7 +16,8 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Sufficient for the next 0 months",
             "status_level_material": "Urgent",
-            "status_level_inventory": "24% above safety stock"
+            "status_level_inventory": "24% above safety stock",
+            "average-value":"19.8T"
         },
         {
             "material": "700047",
@@ -31,7 +32,8 @@
             "on_route_curr_mon": "112",
             "status_level_plant": "Sufficient for the next 2 months",
             "status_level_material": "Urgent",
-            "status_level_inventory": "17% below safety stock"
+            "status_level_inventory": "17% below safety stock",
+            "average-value":"10.2T"
         }
     ]
 }

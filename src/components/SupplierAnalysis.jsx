@@ -16,13 +16,11 @@ import Highcharts, { Globals } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json";
 import { AppTopbar } from "../components/AppTopbar";
-
+import { Link } from "react-router-dom";
 import { MultiSelect } from "primereact/multiselect";
 // import { Dropdown } from 'primereact/dropdown';
-
 import ProcService from "../services/ProcService";
 import { ProductService } from "../services/ProductService";
-
 export class SupplierAnalysis extends Component {
   emptyProduct = {
     id: null,
@@ -471,12 +469,12 @@ export class SupplierAnalysis extends Component {
         products.push(product);
         console.log("this.state.products===>", products);
         this.convertData(products);
-        this.toast.show({
-          severity: "success",
-          summary: "Successful",
-          detail: "Product Created",
-          life: 3000,
-        });
+        // this.toast.show({
+        //   severity: "success",
+        //   summary: "Successful",
+        //   detail: "Product Created",
+        //   life: 3000,
+        // });
       }
 
       state = {
@@ -838,13 +836,13 @@ export class SupplierAnalysis extends Component {
       yAxis: {
         // type: "datetime",
         title: {
-          text: "USD/MT",
+          text: "USD/TO",
         },
       },
       xAxis: {
         categories: [month1, month2, month3, month4, month5, month6],
         title: {
-          text: "Dates",
+          text: "Date",
         },
       },
       legend: {
@@ -948,11 +946,14 @@ export class SupplierAnalysis extends Component {
       yAxis: {
         // type: "datetime",
         title: {
-          text: "USD/Ton",
+          text: "USD/TO",
         },
       },
       xAxis: {
         type: "datetime",
+        title: {
+          text: "Date",
+        },
       },
       legend: {
         layout: "horizontal",
@@ -1014,7 +1015,7 @@ export class SupplierAnalysis extends Component {
     };
     const header2 = (
       <div className="table-header-container">
-        <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+        <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , display:'flex',justifyContent:'left'}}>
           Enter Supplier Information{" "}
         </h5>
       </div>
@@ -1022,13 +1023,12 @@ export class SupplierAnalysis extends Component {
 
     return (
       <div>
-        {console.log(this.state.plant,"==========> this.state.plant")}
         <AppTopbar onToggleMenu={"onToggleMenu"} />
         <div className="layout-main">
-          <div className="card ">
-            <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
+        <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" ,display:'flex' ,justifyContent:'center',marginBottom:'20px'}}>
               Supplier Analysis
             </h5>
+          <div className="card ">
             <div
               className="row"
               style={{
@@ -1039,14 +1039,13 @@ export class SupplierAnalysis extends Component {
             >
               <div className="col-8" style={{ width: "63%" }}>
                 <Toast ref={(el) => (this.toast = el)} />
-
                 <DataTable
                   header={header2}
                   value={this.state.products}
-                  paginator
+                  //paginator
                   rows={5}
-                  rowsPerPageOptions={[5, 10, 20]}
-                  paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                 // rowsPerPageOptions={[5, 10, 20]}
+                 // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                   editMode="row"
                   dataKey="id"
                   onRowEditInit={this.onRowEditInit}
@@ -1060,17 +1059,17 @@ export class SupplierAnalysis extends Component {
 
                   <Column
                     field="quantity"
-                    header="Formula/Fixed Price"
+                    header="Formula/Fixed Price(USD/TO)"
                     editor={(props) => this.quatityEditor("products", props)}
                   />
                   <Column
                     field="price"
-                    header="Max Capacity"
+                    header="Max Capacity(TO)"
                     editor={(props) => this.priceEditor("products", props)}
                   />
                   <Column
                     field="Percentage"
-                    header="Lead Time"
+                    header="Lead Time(Months)"
                     editor={(props) => this.leadTime("products", props)}
                   />
                   <Column
@@ -1113,7 +1112,7 @@ export class SupplierAnalysis extends Component {
             </div>
           </div>
           <div className="card">
-            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , margin:'15px'}}>
               Historical Unit Prices
             </h5>
             <div
@@ -1159,7 +1158,7 @@ export class SupplierAnalysis extends Component {
               />
             </div>
 
-            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , margin:'15px'}}>
               Forecasted Prices
             </h5>
             <div style={{ width: "100%" }}>
@@ -1175,7 +1174,7 @@ export class SupplierAnalysis extends Component {
           <Dialog
             visible={this.state.productDialog}
             style={{ width: "600px" }}
-            header="Product Details"
+            header="Please Select"
             modal
             className="p-fluid"
             footer={productDialogFooter}
@@ -1201,7 +1200,7 @@ export class SupplierAnalysis extends Component {
 
             {/* <div className="p-formgrid p-grid"> */}
             <div className="p-field">
-              <label htmlFor="quantity">Formula/Fixed Price</label>
+              <label htmlFor="quantity">Formula/Fixed Price(USD/TO)</label>
               <InputText
                 id="quantity"
                 value={this.state.product.quantity}
@@ -1216,7 +1215,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <div className="p-field">
-              <label htmlFor="price">Max Capacity</label>
+              <label htmlFor="price">Max Capacity(TO)</label>
               <InputText
                 id="price"
                 value={this.state.product.price}
@@ -1229,7 +1228,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <div className="p-field">
-              <label htmlFor="Percentage">Lead Time</label>
+              <label htmlFor="Percentage">Lead Time(Months)</label>
               <InputText
                 id="Percentage"
                 value={this.state.product.Percentage}
@@ -1288,21 +1287,21 @@ export class SupplierAnalysis extends Component {
             </div>
           </Dialog>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <a href="CostDriversAnalysis">
+            <Link to="/CostDriversAnalysis">
               <Button
                 className="previousbutton"
                 label="Previous"
                 style={{ marginRight: " 15px" }}
               />
-            </a>
-            <a href="Inventory">
+            </Link>
+            <Link to="/Inventory">
               <Button
                 className="nextbutton"
                 label="Next"
                 style={{ marginLeft: " 15px" }}
                 onClick={this.optimize}
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

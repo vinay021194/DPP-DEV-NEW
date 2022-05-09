@@ -34,19 +34,21 @@ import {MaterialOverview} from '../components/MaterialOverview'
 
 					<div className="flex-sb-m w-full p-t-3 p-b-32">
 						<div>
-							<a href="#" className="txt1">
+							<a href="# " className="txt1">
 								Forgot Password?
 							</a>
 						</div>
 					</div> 
 					
-				    <a href='MaterialOverview'>
+				    {/* <a href='/MaterialOverview'> */}
+					<Link to='/MaterialOverview'>
 					<div className="container-login100-form-btn">
 						<button className="login100-form-btn">
 						Login
 						</button>
 					</div>
-                    </a> 
+					</Link>
+                    {/* </a>  */}
 			
 					
 					{/* <div className="text-center p-t-46 p-b-20">

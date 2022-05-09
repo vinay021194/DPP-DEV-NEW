@@ -11,6 +11,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
+import { Link } from "react-router-dom";
 
 export const Materialdatachart = () => {
   const [products, setProducts] = useState([]);
@@ -118,12 +119,12 @@ export const Materialdatachart = () => {
     },
     yAxis: {
       title: {
-        text: "Quantity",
+        text: "Quantity(TO)",
       },
     },
     xAxis: {
       title: {
-        text: "Period",
+        text: "Date",
       },
       plotBands: [
         {
@@ -146,15 +147,15 @@ export const Materialdatachart = () => {
       //verticalAlign: 'bottom',
       formatter: function () {
         return (
-          "Color :  <b>" +
-          this.point.color +
+          // "Color :  <b>" +
+          // this.point.color +
           "</b> </br> Executed on :  <b>" +
           this.point.executedOn +
-          "</b> </br>  Period : <b>" +
+          "</b> </br>  Date : <b>" +
           new Date(this.x).toUTCString() +
           " </b> </br> Plant :  <b>" +
           this.series.name +
-          "</b> </br> Quantity :  <b>" +
+          "</b> </br> Quantity(TO) :  <b>" +
           this.y +
           "</b>"
         );
@@ -372,14 +373,16 @@ export const Materialdatachart = () => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
-        Demand Prediction(Tons)
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins", display:'flex', justifyContent:'left' }}>
+        Material 
       </h5>
     </div>
   );
   const headers = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory</h5>
+      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>Quantities are in Tonnes</h10>
+      
     </div>
   );
 
@@ -409,8 +412,15 @@ export const Materialdatachart = () => {
   return (
     <div>
       <AppTopbar onToggleMenu={onToggleMenu} />
+      
       <div className="layout-main">
+      <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins", display:'flex', justifyContent:'center',marginBottom:'20px'}}>
+        Demand Prediction
+      </h5>
+    </div>
         <div className="card">
+          
           <DataTable
             value={products3.Sheet3}
             // expandedRows={expandedRows}
@@ -443,6 +453,7 @@ export const Materialdatachart = () => {
           </DataTable>
         </div>
         <div className="card">
+          
           <DataTable
             value={products2.Sheet3}
             //  expandedRows={expandedRows}
@@ -455,9 +466,10 @@ export const Materialdatachart = () => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
 
-            <Column field="plant" header="PlantID(Name)"></Column>
+            <Column field="plant" header="Plant ID"></Column>
+            <Column field="plant_name" header="Plant Name"></Column>
             <Column field="safety_stock" header="Safety Stock"></Column>
-            <Column field="opening_stock" header="Inventory" />
+            <Column field="opening_stock" header="Unrestricted Stock" />
             <Column field="warehouse_capacity" header="Warehouse capacity" />
             <Column
               field="status_level_inventory"
@@ -467,8 +479,9 @@ export const Materialdatachart = () => {
           </DataTable>
         </div>
         <div className="card">
+        
           <MultiSelect
-            style={{ width: "49%", margin: "5px 10px" }}
+            style={{ width: "40%", margin: "5px 10px" }}
             value={Plants}
             options={plantData}
             onChange={onPlantChange}
@@ -499,6 +512,11 @@ export const Materialdatachart = () => {
             style={{ margin: "3px 15px" }}
             onClick={onsubmit}
           />
+          <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
+        Historical & Forecasted Consumption
+      </h5>
+    </div>
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
@@ -510,37 +528,46 @@ export const Materialdatachart = () => {
                     fontWeight: "bolder",
                     fontFamily: "poppins",
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "left",
+                    margin:'20px'
+
+                    
                   }}
                 >
-                  Average yearly Consumption
+                  Average Yearly Consumption
                 </h5>
               </div>
               <DataTable
                 style={{
                   width: "30%",
                   display: "flex",
-                  justifyContent: "center",
-                  marginLeft: "35%",
+                  justifyContent: "left",
+                  
+                  
                 }}
                 value={averageYearlyConsumption} //products2.Sheet3
                 dataKey="id"
                 rows={2}
               >
                 <Column field="plant" header=""></Column>
-                <Column field="safety_stock" header="" showGridlines></Column>
+                <Column field="average-value" header="" showGridlines></Column>
               </DataTable>
             </>
           )}
         </div>
         {isSubmited && (
           <div className="card">
+            <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
+        Inventory Status In Future (Without Buyer Action)
+      </h5>
+    </div>
             <DataTable
               value={filteredTransposedData}
-              paginator
+              //paginator
               rows={12}
-              rowsPerPageOptions={[4, 12, 20]}
-              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+              //rowsPerPageOptions={[4, 12, 20]}
+              //paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rowGroupMode="rowspan"
               groupRowsBy="key_mp"
               sortMode="single"
@@ -569,20 +596,20 @@ export const Materialdatachart = () => {
           </div>
         )}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <a href="/">
+          <Link to="/MaterialOverview">
             <Button
               className="previousbutton"
               label="Previous "
               style={{ marginRight: " 15px" }}
             />
-          </a>
-          <a href="CostDriversAnalysis">
+          </Link>
+          <Link to="/CostDriversAnalysis">
             <Button
               className="nextbutton"
               label="Next"
               style={{ marginLeft: " 15px" }}
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

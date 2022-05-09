@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { DataTable } from "primereact/datatable";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Column } from "primereact/column";
 import { ProductService } from "../services/ProductService";
 import { Button } from "primereact/button";
@@ -200,14 +200,14 @@ export const MaterialOverview = (props) => {
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <a href="Materialdatachart">
+          <Link to="/Materialdatachart">
             <Button
-            className='nextbutton'
+              className='nextbutton'
               label="Next "
               style={{ margin: "3px 15px" }}
               onClick={next}
             />
-          </a>
+          </Link>
         </div>
       </div>
       <CSSTransition

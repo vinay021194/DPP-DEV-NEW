@@ -5,6 +5,8 @@ import { ProductService } from '../services/ProductService';
 import { Button } from 'primereact/button';
 import './App.css';
 import { AppTopbar } from "./AppTopbar";
+import { Link } from "react-router-dom";
+
 
  export const Inventory = (props) => {
  //console.log("props===>",props.location.state.supplierDetails)
@@ -119,7 +121,7 @@ import { AppTopbar } from "./AppTopbar";
       };
     const header1 = (
         <div className="table-header-container">
-           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Material Overview</h5>
+           <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Material</h5>
         </div>
     );
     const header2 = (
@@ -129,24 +131,28 @@ import { AppTopbar } from "./AppTopbar";
   );
   const header3 = (
     <div className="table-header-container">
-       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000(Tons)</h5>
+       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000</h5>
+       <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in Tonnes</h10>
     </div>
+    
 );
-const header4 = (
-  <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000(Tons)</h5>
-  </div>
-);
+
+// const header4 = (
+//   <div className="table-header-container">
+//      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000(TO)</h5>
+//   </div>
+// );
 const header5 = (
   <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices(USD)</h5>
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in US$</h10>
   </div>
 );
-const header6 = (
-  <div className="table-header-container">
-     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Supplier02</h5>
-  </div>
-);
+// const header6 = (
+//   <div className="table-header-container">
+//      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Supplier02</h5>
+//   </div>
+// );
 //   const header3 = (
 //     <div className="table-header-container">
 //        <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Plant3000</h5>
@@ -207,7 +213,8 @@ const header6 = (
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
-                    <Column field="plant" header="PlantID(Name)" ></Column>
+                    <Column field="plant" header="Plant ID" ></Column>
+                    <Column field="plant_name" header="Plant Name" ></Column>
                     <Column field="safety_stock" header="Safety Stock" ></Column>
                     <Column field="opening_stock" header="Inventory"  />
                     <Column field="warehouse_capacity" header="Warehouse capacity"  />
@@ -267,21 +274,30 @@ const header6 = (
                 </DataTable>
                 </div>
                 
-                <div style={{ display:'flex',justifyContent:'center' }}>
-                <a href='SupplierAnalysis'>
+                <div style={{ display:'flex',justifyContent:'space-evenly'}}>
+          <Link to='/SupplierAnalysis'>
             <Button
               className='previousbutton'
               label="Previous"
-              style={{ marginRight: '15px'  }}
+              style={{   }}
             />
-            </a>
-                <a href='Orderingplant'>
+            </Link>
+            <Link to='|'>
+            <Button
+              className='nextbutton'
+              label="Edit"
+              style={{ }}
+            />
+            </Link>
+            <Link to='/Orderingplant'>
             <Button
             className='nextbutton'
               label="Generate ordering schedule"
-              style={{ marginLeft: " 15px"  }}
+              //style={{ marginLeft: " 15px"  }}
             />
-            </a>
+            </Link>
+           
+            
             </div>
             </div>
             
