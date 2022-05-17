@@ -121,9 +121,16 @@ export const MaterialOverview = (props) => {
       </span>
     );
   };
-  const statusBodyTemplate = (data) => {
-    return <span style={{backgroundColor:'#FF8064'}} >{data.status_level_material}</span>
-}
+  const statusBodyTemplate = (rowData) => {
+    return(
+<span
+        className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}
+      >
+        {rowData.status_level_material}
+      </span>
+    ) ;
+    
+};
 
   const next = () => {
    // console.log("selectedPlant====>", selectedPlant);
@@ -131,6 +138,15 @@ export const MaterialOverview = (props) => {
       selectedPlant: selectedPlant,
     });
   };
+  const rowClass = (rowData) => {
+    return {
+        'row-accessories': rowData.material !== "700047"
+        // 'row-accessories': rowData.material === "789045"
+        // 'row-accessories': rowData.material === "600234",
+        // 'row-accessories': rowData.material === "645908	",
+        // 'row-accessories': rowData.material === "768971"
+    }
+}
 
   const rowExpansionTemplate = (data) => {
     return (
@@ -175,6 +191,7 @@ export const MaterialOverview = (props) => {
       <div className="layout-main">
         <div className="card">
           <DataTable
+            rowClassName={rowClass} 
             value={products}
             expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
@@ -194,7 +211,7 @@ export const MaterialOverview = (props) => {
               field="material_description_1"
               header="Name"
             ></Column>
-            <Column field="opening_stock" header="Inventory"  />
+            <Column field="inventory_material_level" header="Inventory"  />
             <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>
           </DataTable>
         </div>
