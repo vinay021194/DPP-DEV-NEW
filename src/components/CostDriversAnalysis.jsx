@@ -34,14 +34,23 @@ export const CostDriversAnalysis = () => {
     useState([]);
 
   const onCostDriverChange = (event) => {
+    let allCostDrivers = event.value.map(d=>d.name)
     let allseries = icisForecastSummaryTable.Sheet.filter((data) =>
-      event.value.some((data) => data.material === event.value.name)
+     {
+       console.log("data====>",data)
+       console.log("allCostDrivers====>",allCostDrivers)
+
+       return allCostDrivers.includes(data.material)
+      }
     );
     allseries = allseries.map((data) => data.series);
+    console.log("allseries====>",allseries)
+
     allseries = [...new Set(allseries)];
     let result = seriesName.filter((o) =>
       allseries.some((data) => o.name === data)
     );
+    console.log("results===>",result)
     setDropdown(result);
     setcostDriver(event.value);
   };

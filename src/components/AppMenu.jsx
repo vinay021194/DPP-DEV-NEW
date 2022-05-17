@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import { Checkbox } from 'primereact/checkbox';
-import { MultiSelect } from 'primereact/multiselect';
+import { MultiSelect} from 'primereact/multiselect';
 import { color } from "highcharts";
+import { Dropdown } from "primereact/dropdown";
+
 // const AppSubmenu = (props) => {
 //   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -113,30 +115,28 @@ export const AppMenu = (props) => {
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
   const city = [
-    { name: '700215',  },
-    { name: '700154', },
-    { name: '700354',  },
-    { name: '700547',  },
-    { name: '700963',  }
+    { name: '700047',  },
+    { name: '678456', },
+    { name: '789045',  },
+    { name: '600234',  },
+    { name: '645908',  },
+    { name: '768971',  }
+
 ];
 const state = [
-  { name: '700215',  },
-  { name: '700154', },
-  { name: '700354',  },
-  { name: '700547',  },
-  { name: '700963',  }
+  { name: '700047',  },
+  { name: '678456', },
+  { name: '789045',  },
+  { name: '600234',  },
+  { name: '645908',  },
+  { name: '768971',  }
 ];
-const town = [
-  { name: '700215',  },
-  { name: '700154', },
-  { name: '700354',  },
-  { name: '700547',  },
-  { name: '700963',  }
-];
+
  
 
 
   const onCityChange = (e) => {
+    console.log("e=====>",e)
     let selectedCities = [...cities];
     if(e.checked)
         selectedCities.push(e.value);
@@ -144,6 +144,14 @@ const town = [
         selectedCities.splice(selectedCities.indexOf(e.value), 1);
 
     setCities(selectedCities);
+  props.handlefilter(selectedCities,"checkbox")
+
+}
+
+const onMaterialChange = (e) => {
+  console.log("ee=====>",e)
+  setSelectedCities1(e.value)
+  props.handlefilter(e.value,"Multiselect")
 }
   return (
     <div className="layout-menu-container">
@@ -192,7 +200,11 @@ const town = [
         <strong>Material ID</strong>
         </div>
 <div className="gridcol">
-<MultiSelect value={selectedCities1} options={city} onChange={(e) => setSelectedCities1(e.value)} optionLabel="name" placeholder="Select ID" maxSelectedLabels={5}  />
+<MultiSelect
+    value={selectedCities1} options={city} 
+    onChange={onMaterialChange} optionLabel="name"
+    placeholder="Select ID" 
+    maxSelectedLabels={5}  />
   </div>
   <hr/>
   <div style={{marginLeft:'25px',fontFamily:'Poppins'}}>
