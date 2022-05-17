@@ -119,7 +119,7 @@ export const Materialdatachart = () => {
     },
     yAxis: {
       title: {
-        text: "Quantity(TO)",
+        text: "Quantity(T)",
       },
     },
     xAxis: {
@@ -128,7 +128,7 @@ export const Materialdatachart = () => {
       },
       plotBands: [
         {
-          color: "#C8FDFB",
+          color: "#D5DFE9",
           from: plotBandsStart,
           to: plotBandsEnd,
         },
@@ -155,7 +155,7 @@ export const Materialdatachart = () => {
           new Date(this.x).toUTCString() +
           " </b> </br> Plant :  <b>" +
           this.series.name +
-          "</b> </br> Quantity(TO) :  <b>" +
+          "</b> </br> Quantity(T) :  <b>" +
           this.y +
           "</b>"
         );
@@ -491,21 +491,27 @@ export const Materialdatachart = () => {
           />
           <strong>From Year</strong>
           <Calendar
+          className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date1}
             placeholder="01-01-2018"
             onChange={(e) => setDate1(e.value)}
+            disabled
+            
+            
           />
           <strong>To Year</strong>
           <Calendar
+            className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date2}
             placeholder="01-01-2023"
             onChange={(e) => setDate2(e.value)}
+            disabled
           />
           <Button
             label="submit"
@@ -561,6 +567,9 @@ export const Materialdatachart = () => {
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
         Inventory Status In Future (Without Buyer Action)
       </h5>
+      <h10 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
+      All values are in Tonnes
+      </h10>
     </div>
             <DataTable
               value={filteredTransposedData}

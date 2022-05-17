@@ -34,8 +34,8 @@ import { MultiSelect } from "primereact/multiselect";
     setPlants(e.value);
   };
 
- console.log("plantJsonData===>",plantJsonData)
- console.log("supplierJsonData===>",supplierJsonData)
+ //console.log("plantJsonData===>",plantJsonData)
+ //console.log("supplierJsonData===>",supplierJsonData)
 
     let menuClick = false;
     
@@ -109,7 +109,7 @@ import { MultiSelect } from "primereact/multiselect";
   );
   const footer = (
     <div className="table-header">
-        All Units is in TO
+        All Units is in Tonnes
         
     </div>
   );
@@ -135,7 +135,7 @@ import { MultiSelect } from "primereact/multiselect";
                         rows={1}>
                    
                    <Column field="material" header="ID" ></Column>
-                   <Column field="" header="Buyer-Group" ></Column>
+                   {/* <Column field="" header="Buyer-Group" ></Column> */}
                    <Column field="material_type (SAP)" header="Type"   />
                     <Column field="material_description_1" header="Description"  ></Column>
                     <Column field="base_unit_of_measure (UOM)" header="UOM"  ></Column>
@@ -144,6 +144,7 @@ import { MultiSelect } from "primereact/multiselect";
                 </DataTable>
             </div>
             <MultiSelect
+            className="p-dropdow"
             style={{ width: "30%", margin: "5px 10px" ,display:'flex',justifyContent:'center' }}
            // value={Plants}
             //options={plantData}
@@ -151,6 +152,7 @@ import { MultiSelect } from "primereact/multiselect";
             optionLabel="label"
             placeholder="2000"
             display="chip"
+            disabled
           />
             <div className='card'>
            <DataTable 
@@ -214,13 +216,14 @@ import { MultiSelect } from "primereact/multiselect";
               style={{ marginRight: " 15px"  }}
             />
             </Link>
-            <Link to=' '>
+            
             <Button
               className='nextbutton'
               label="Download Ordering schedule "
               style={{ marginLeft: " 15px"  }}
+              icon="pi pi-lock"
             />
-             </Link>
+            
             </div>
             </div>
                

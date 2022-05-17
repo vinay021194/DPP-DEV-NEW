@@ -16,7 +16,6 @@ export const MaterialOverview = (props) => {
   //const toast = useRef(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
-
   const [layoutMode, setLayoutMode] = useState("static");
   const [layoutColorMode, setLayoutColorMode] = useState("dark");
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
@@ -127,7 +126,7 @@ export const MaterialOverview = (props) => {
 }
 
   const next = () => {
-    console.log("selectedPlant====>", selectedPlant);
+   // console.log("selectedPlant====>", selectedPlant);
     props.history.push("/Materialdatachart", {
       selectedPlant: selectedPlant,
     });
@@ -169,11 +168,12 @@ export const MaterialOverview = (props) => {
   };
 
   return (
-    <div className={wrapperClass} onClick={onWrapperClick}>
+    <div 
+    className={wrapperClass} onClick={onWrapperClick}
+    >
       <AppTopbar onToggleMenu={onToggleMenu} />
       <div className="layout-main">
         <div className="card">
-          {}
           <DataTable
             value={products}
             expandedRows={expandedRows}
@@ -193,7 +193,6 @@ export const MaterialOverview = (props) => {
             <Column
               field="material_description_1"
               header="Name"
-              
             ></Column>
             <Column field="opening_stock" header="Inventory"  />
             <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>

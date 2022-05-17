@@ -9,9 +9,12 @@ import "./App.css";
 import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
+import { Checkbox } from 'primereact/checkbox';
 export const CostDriversAnalysis = () => {
   const productService = new ProductService();
   const [layoutMode, setLayoutMode] = useState("static");
+  const [checked, setChecked] = useState(false);
+  const [check, setCheck] = useState(false);
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
@@ -26,23 +29,19 @@ export const CostDriversAnalysis = () => {
   const [AccuraciesTableData, setAccuraciesTableData] = useState([]);
   const [costDriversChartData, setCostDriversChartData] = useState([]);
   const [accuraciesJsonData, setAccuraciesJsonData] = useState([]);
+  const [pricePridectionTable, setPricePridectionTableData] = useState([]);
   const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] =
     useState([]);
 
   const onCostDriverChange = (event) => {
-    //console.log("onCostDriverChange event ====>", event.value);
-
     let allseries = icisForecastSummaryTable.Sheet.filter((data) =>
       event.value.some((data) => data.material === event.value.name)
     );
     allseries = allseries.map((data) => data.series);
-    //console.log("allseries===>",allseries)
     allseries = [...new Set(allseries)];
-    //console.log("allseries===>",allseries)
     let result = seriesName.filter((o) =>
       allseries.some((data) => o.name === data)
     );
-    //console.log("results====>",result)
     setDropdown(result);
     setcostDriver(event.value);
   };
@@ -141,7 +140,9 @@ export const CostDriversAnalysis = () => {
     isMounted.current = true;
     productService
       .getIcisForecastSummaryTable2()
+      
       .then((data) => seticisForecastSummaryTable(data));
+      
 
     productService.getIcisForecastSummaryTable2().then((data) => {
       // console.log("data.Sheet===>", data.Sheet);
@@ -165,43 +166,55 @@ export const CostDriversAnalysis = () => {
           date: ele.date,
         };
       });
-      console.log("data=====>", data);
+     // console.log("data=====>", data);
       setProducts(modifieData);
     });
 
     productService
       .getdemandRegressionSummaryTable2()
       .then((data) => setdemandRegressionSummaryTable2(data));
+      
+  productService  
+  .getPricePridectionTable()
+  .then((data) => setPricePridectionTableData(data.Sheet));
+   
+   
 
-    productService
-      .getIcisForecastSummaryTable()
-      .then((data) => setCostDriversChartData(data));
+  productService
+  .getIcisForecastSummaryTable()
+  .then((data) => setCostDriversChartData(data));
 
-    productService.getIcisForecastSummaryTable2NEW().then((data) => {
-      let modifieData = data.Sheet.map((ele) => {
+  //  productService.getIcisForecastSummaryTable2NEW().then((data) => {
+    productService.getPricePridectionTable().then((data) => {
+    
+  let modifieData = data.Sheet.map((ele) => {
+       console.log("element====>",ele['2022-05'])
         return {
-          key: ele.key,
-          best_model: ele.best_model,
-          top_influencers: ele.top_influencers
+          key: ele?.key,
+          best_model: ele?.best_model,
+          top_influencers: ele?.top_influencers
             .replaceAll("[", "")
             .replaceAll("'","")
             .replaceAll("]", "")
             .split(","),
-          fifth_month_accuracy: (ele.fifth_month_accuracy * 1).toFixed(2),
-          first_month_accuracy: (ele.first_month_accuracy * 1).toFixed(2),
-          fourth_month_accuracy: (ele.fourth_month_accuracy * 1).toFixed(2),
-          second_month_accuracy: (ele.second_month_accuracy * 1).toFixed(2),
-          sixth_month_accuracy: (ele.sixth_month_accuracy * 1).toFixed(2),
-          test_month_accuracy: (ele.test_month_accuracy * 1).toFixed(2),
-          third_month_accuracy: (ele.third_month_accuracy * 1).toFixed(2),
-          serial_name: ele.serial_name,
-          material: ele.material,
-          date: ele.date,
+          fifth_month_accuracy: (ele?.['2022-09'] * 1).toFixed(2),
+          first_month_accuracy: (ele?.['2022-05'] * 1).toFixed(2),
+          fourth_month_accuracy: (ele?.['2022-08'] * 1).toFixed(2),
+          second_month_accuracy: (ele?.['2022-06'] * 1).toFixed(2),
+          sixth_month_accuracy: (ele?.['2022-10'] * 1).toFixed(2),
+          //test_month_accuracy: (ele.ele['2022-05'] * 1).toFixed(2),
+          third_month_accuracy: (ele?.['2022-07'] * 1).toFixed(2),
+          serial_name: ele?.series_name,
+          material: ele?.material_name,
+          Accuracy_var: (ele?.accuracy_var * 1).toFixed(2)
         };
       });
       setAccuraciesJsonData(modifieData);
     });
+    
   }, []);
+  
+  
 
   let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
   let plotBandsEnd = new Date("2023-05-01 03:00:00").getTime();
@@ -229,7 +242,7 @@ export const CostDriversAnalysis = () => {
       //categories: data2,
       plotBands: [
         {
-          color: "#C8FDFB",
+          color: "#D5DFE9",
           from: plotBandsStart,
           to: plotBandsEnd,
         },
@@ -277,12 +290,10 @@ export const CostDriversAnalysis = () => {
       return data.serial_name;
     });
     allmaterial = [...new Set(allmaterial)];
-    // console.log("allmaterial====>", allmaterial);
     let exampleData = e.value.map((sr) =>
       icisForecastSummaryTabledata
         .filter((el) => el.serial_name === sr.name)
         .map((d) => {
-          // console.log("data in map ===>", d);
           let date = d.date
             .split("/") // 3/23/04    ===>
             .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
@@ -307,6 +318,8 @@ export const CostDriversAnalysis = () => {
     let filterAccuraciesTableData = costDriver.map((sr) =>
       accuraciesJsonData.filter((el) => el.material === sr.name)
     );
+
+    console.log("filterAccuraciesTableData11====>",filterAccuraciesTableData)
 
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
 
@@ -347,14 +360,14 @@ export const CostDriversAnalysis = () => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+      {/* <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
       Accuracy (%)
-      </h5>
+      </h5> */}
     </div>
   );
 
   const topInfluencersTemplate = (rowData) => {
-    console.log("rowData==>", rowData);
+    //.log("rowData==>", rowData);
     if (rowData && rowData.top_influencers) {
       return (
         <div>
@@ -418,7 +431,20 @@ export const CostDriversAnalysis = () => {
               display="chip"
             />
           </div>
-
+          {/* <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" , display:'flex', justifyContent:'center' ,marginBottom:'20px'}}>
+            Alert Mechamism
+          </h5> */}
+          {/* <div 
+          style={{display:'flex',justifyContent:'center', margin:'20px'}}>
+                    <Checkbox inputId="binary" 
+                     checked={check} 
+                     onChange={e => setCheck(e.checked)} />
+                      <label style={{marginRight:'25px'}} htmlFor="binary">Monthly</label>
+                    <Checkbox inputId="binar" 
+                     checked={checked} 
+                     onChange={e => setChecked(e.checked)} />
+                     <label htmlFor="binar"> Weekly</label>
+                    </div> */}
           <div style={{ width: "99%" }}>
             <HighchartsReact
               highcharts={Highcharts}
@@ -441,15 +467,15 @@ export const CostDriversAnalysis = () => {
               field="top_influencers"
               header="Most Influencial Predictor"
               body={topInfluencersTemplate}
-              style={{ width: "40em" }}
+              style={{ width: "25em" }}
             />
-            <Column field="test_month_accuracy" header="Accuracy (%)" />
-            {/* <Column field="first_month_accuracy" header="May22"></Column>
-            <Column field="second_month_accuracy" header="Jun22"></Column>
-            <Column field="third_month_accuracy" header="Jul22" />
-            <Column field="fourth_month_accuracy" header="Aug22" />
-            <Column field="fifth_month_accuracy" header="Sep22" />
-            <Column field="sixth_month_accuracy" header="Oct22" /> */}
+            <Column field="Accuracy_var" header="Accuracy (%)" />
+            <Column field="first_month_accuracy" header="May22($)"></Column>
+            <Column field="second_month_accuracy" header="Jun22($)"></Column>
+            <Column field="third_month_accuracy" header="Jul22($)" />
+            <Column field="fourth_month_accuracy" header="Aug22($)" />
+            <Column field="fifth_month_accuracy" header="Sep22($)" />
+            <Column field="sixth_month_accuracy" header="Oct22($)" />
           </DataTable>
         </div>
        

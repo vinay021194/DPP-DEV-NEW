@@ -85,4 +85,9 @@ export class ProductService {
       .then((res) => res.json())
       .then((d) => d.data);
   }
+  getPricePridectionTable() {
+    return fetch("/assets/demo/data/price_pridection_table.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
 }

@@ -12,7 +12,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 // import { classNames } from "primereact/utils";
 import classNames from "classnames";
-import Highcharts, { Globals } from "highcharts";
+import Highcharts, { color, Globals } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json";
 import { AppTopbar } from "../components/AppTopbar";
@@ -237,8 +237,8 @@ export class SupplierAnalysis extends Component {
   };
 
   optimize = () => {
-   console.log("this.supplierDetails====>",window.supplierObject
-   )
+  //  console.log("this.supplierDetails====>",window.supplierObject
+  //  )
     this.props.history.push("/Inventory", {
       supplierDetails:
        window.supplierObject,
@@ -256,12 +256,12 @@ export class SupplierAnalysis extends Component {
       .then((res) => {
         const plant = e.target.value;
         let resData = dataHistorical.Sheet2;
-        console.log("resData====>", resData);
-        console.log("plant====>", plant);
+        // console.log("resData====>", resData);
+        // console.log("plant====>", plant);
         const filterByPlantData = resData.filter(
           (el) => el.plant === plant.name
         );
-        console.log("filterByPlantData===>", filterByPlantData);
+       // console.log("filterByPlantData===>", filterByPlantData);
         const unitPriceUSD = filterByPlantData.map((el) => {
           let date = el.posting_date
             .split("/") // 3/23/04  ===>
@@ -283,7 +283,7 @@ export class SupplierAnalysis extends Component {
           },
         ];
 
-        console.log("HistoricalUnitPrice chartData ====> ", chartData);
+        //console.log("HistoricalUnitPrice chartData ====> ", chartData);
         return this.setState({ HistoricalChartData: chartData });
       });
   };
@@ -466,11 +466,11 @@ export class SupplierAnalysis extends Component {
           life: 3000,
         });
       } else {
-        console.log("inside else");
+        //console.log("inside else");
         product.id = this.createId();
         product.image = "product-placeholder.svg";
         products.push(product);
-        console.log("this.state.products===>", products);
+        //console.log("this.state.products===>", products);
         this.convertData(products);
         // this.toast.show({
         //   severity: "success",
@@ -626,7 +626,7 @@ export class SupplierAnalysis extends Component {
             indices = [];
 
           let allseries = suppliers.map((p) => {
-            console.log("inside data===>", p.quantity);
+            //console.log("inside data===>", p.quantity);
             let startIndex = p.quantity.indexOf("[");
             let lastIndex = p.quantity.indexOf("]");
 
@@ -640,7 +640,7 @@ export class SupplierAnalysis extends Component {
           while ((result = regex.exec(str))) {
             indices.push(result.index);
           }
-          console.log("indices===>", indices);
+          //console.log("indices===>", indices);
           let res = [];
           for (let i = 0; i < 6; i++) {
             let startIndex = el.quantity.indexOf("[");
@@ -722,7 +722,7 @@ export class SupplierAnalysis extends Component {
       });
 
       window.supplierObject = convertedData.map((data) => data.forecastedObj);
-      console.log("convertedData =====>", window.supplierObject);
+      //console.log("convertedData =====>", window.supplierObject);
 
       return this.setState({
         supplierDetails: convertedData,
@@ -839,7 +839,7 @@ export class SupplierAnalysis extends Component {
       yAxis: {
         // type: "datetime",
         title: {
-          text: "USD/TO",
+          text: "USD/T",
         },
       },
       xAxis: {
@@ -949,7 +949,7 @@ export class SupplierAnalysis extends Component {
       yAxis: {
         // type: "datetime",
         title: {
-          text: "USD/TO",
+          text: "USD/T",
         },
       },
       xAxis: {
@@ -1062,12 +1062,12 @@ export class SupplierAnalysis extends Component {
 
                   <Column
                     field="quantity"
-                    header="Formula/Fixed Price(USD/TO)"
+                    header="Formula/Fixed Price(USD/T)"
                     editor={(props) => this.quatityEditor("products", props)}
                   />
                   <Column
                     field="price"
-                    header="Max Capacity(TO)"
+                    header="Max Capacity(T)"
                     editor={(props) => this.priceEditor("products", props)}
                   />
                   <Column
@@ -1126,19 +1126,35 @@ export class SupplierAnalysis extends Component {
                 fontFamily: "Poppins",
               }}
             >
+              <label   style={{
+                  // width: "30%",
+                  margin: "13px",
+                  fontFamily: "Poppins",
+                  fontWeight: "bold",
+                  color:'darkslategray'
+                }}>Plants</label>
               <Dropdown
-                style={{ width: "30%", margin: "5px 10px" }}
+               
+                style={{ width: "20%", margin: "5px 10px"  }}
                 value={this.state.plant}
                 options={this.plants}
                 onChange={(e) => this.onPlantChange(e)}
                 optionLabel="name"
                 placeholder="Choose Plants"
                 display="chip"
+                
               />
-
+             <label   style={{
+                  // width: "30%",
+                  margin: "13px",
+                  fontFamily: "Poppins",
+                  fontWeight: "bold",
+                  color:'darkslategray'
+                }}>Supplier's Region</label>
               <Dropdown
+              className="p-dropdow"
                 style={{
-                  width: "30%",
+                  width: "20%",
                   margin: "5px 10px",
                   fontFamily: "Poppins",
                 }}
@@ -1148,6 +1164,7 @@ export class SupplierAnalysis extends Component {
                 optionLabel="name"
                 placeholder="Region"
                 display="chip"
+                disabled
               />
               {/* <Button
                  label="submit"
@@ -1203,7 +1220,7 @@ export class SupplierAnalysis extends Component {
 
             {/* <div className="p-formgrid p-grid"> */}
             <div className="p-field">
-              <label htmlFor="quantity">Formula/Fixed Price(USD/TO)</label>
+              <label htmlFor="quantity">Formula/Fixed Price(USD/T)</label>
               <InputText
                 id="quantity"
                 value={this.state.product.quantity}
@@ -1218,7 +1235,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <div className="p-field">
-              <label htmlFor="price">Max Capacity(TO)</label>
+              <label htmlFor="price">Max Capacity(T)</label>
               <InputText
                 id="price"
                 value={this.state.product.price}

@@ -109,7 +109,6 @@ import { color } from "highcharts";
 
 export const AppMenu = (props) => {
   const [cities, setCities] = useState([]);
-  
   const [selectedCities1, setSelectedCities1] = useState(null);
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
@@ -152,23 +151,39 @@ const town = [
       <span>Filter By</span>
       </div>
       <hr/>
-     
       <div style={{marginLeft:'25px' ,fontFamily:'Poppins'}}>
         <strong>Material status</strong>
         </div>
-     <div className="gridcheck">
-    <Checkbox inputId="cb1" value="Urgent" onChange={onCityChange} checked={cities.includes('Urgent')} style={{marginRight:'15px'}}></Checkbox>
+ <div className="gridcheck">
+    <Checkbox inputId="cb1" 
+     value="Urgent"
+     onChange={onCityChange} 
+     checked={cities.includes('Urgent')}
+     style={{marginRight:'15px'}}>
+      </Checkbox>
     <label htmlFor="cb1" className="p-checkbox-label">Urgent</label>
    
 </div>
 <div className="gridcheck">
-    <Checkbox inputId="cb2" value="Depleting fast" onChange={onCityChange} checked={cities.includes('Depleting fast')}  style={{marginRight:'15px'}}></Checkbox>
-    <label htmlFor="cb2" className="p-checkbox-label">Depleting fast</label>
+    <Checkbox inputId="cb2"
+     value="Depleting fast" 
+     onChange={onCityChange} 
+     checked={cities.includes('Depleting fast')}  
+     style={{marginRight:'15px'}}>
+     </Checkbox>
+    <label htmlFor="cb2" 
+    className="p-checkbox-label">Depleting fast</label>
 
 
 </div>
 <div className="gridcheck">
-    <Checkbox inputId="cb3" value="Sufficient" onChange={onCityChange} checked={cities.includes('Sufficient')}  style={{marginRight:'15px'}}></Checkbox>
+    <Checkbox 
+     inputId="cb3"
+     value="Sufficient" 
+     onChange={onCityChange} 
+     checked={cities.includes('Sufficient')} 
+     style={{marginRight:'15px'}}>
+      </Checkbox>
     <label htmlFor="cb3" className="p-checkbox-label">Sufficient</label>
     
 </div>
@@ -186,13 +201,13 @@ const town = [
   <div className="gridcol">
 <MultiSelect value={selectedState1} options={state} onChange={(e) => setSelectedState1(e.value)} optionLabel="name" placeholder="Select ID" maxSelectedLabels={5} />
   </div>
-  <hr/>
-  <div style={{marginLeft:'25px',fontFamily:'Sans-serif'}}>
+  
+  {/* <div style={{marginLeft:'25px',fontFamily:'Sans-serif'}}>
         <strong>Tags</strong>
-        </div>
-  <div className="gridcol">
+        </div> */}
+  {/* <div className="gridcol">
 <MultiSelect value={selectedTown1} options={town} onChange={(e) => setSelectedTown1(e.value)} optionLabel="name" placeholder="SELECT ID" maxSelectedLabels={5} />
-  </div>
+  </div> */}
  
     </div>
   );

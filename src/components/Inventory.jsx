@@ -6,13 +6,14 @@ import { Button } from 'primereact/button';
 import './App.css';
 import { AppTopbar } from "./AppTopbar";
 import { Link } from "react-router-dom";
+import plantJsonData from "../data/plantData.json"
 
 
  export const Inventory = (props) => {
- console.log("props===>",props)
+ //console.log("props===>",props.location.state.supplierDetails)
     const [products, setProducts] = useState([]);
     const [products2, setProducts2] = useState([]);
-    const [products3, setProducts3] = useState([]);
+    const [plantData, setPlantData] = useState([]);
     const [expandedRows, setExpandedRows] = useState(null);
     //const toast = useRef(null);
     const isMounted = useRef(false);
@@ -65,7 +66,7 @@ import { Link } from "react-router-dom";
   }, []);
   useEffect(() => {
     isMounted.current = true;
-    productService.getplantdata().then(data => setProducts3(data));
+    productService.getplantdata().then(data =>  setPlantData(plantJsonData.data.Sheet1));
 }, []);
   
   // eslint-disable-line react-hooks/exhaustive-deps
@@ -127,8 +128,6 @@ import { Link } from "react-router-dom";
     const header2 = (
       <div className="table-header-container">
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Inventory</h5>
-       <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>Quantities are in Tonnes</h10>
-         
       </div>
   );
   const header3 = (
@@ -228,7 +227,7 @@ const header5 = (
                 <div className='card'>
                
            <DataTable 
-                   value={products3.Sheet1} 
+                   value={plantData} 
                   //  expandedRows={expandedRows}
                   //   onRowToggle={(e) => setExpandedRows(e.data)}
                   //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
@@ -240,12 +239,12 @@ const header5 = (
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
                     <Column field="undefined" header="" ></Column>
-                    <Column field="June" header="May22" ></Column>
-                    <Column field="July" header="Jun22"  />
-                    <Column field="August" header="Jul22"   />
-                    <Column field="September" header="Aug22"  />
-                    <Column field="October" header="Sep22" />
-                    <Column field="November" header="Oct22"  />
+                    <Column field="May" header="May22" ></Column>
+                    <Column field="June" header="Jun22"  />
+                    <Column field="July" header="Jul22"   />
+                    <Column field="August" header="Aug22"  />
+                    <Column field="September" header="Sep22" />
+                    <Column field="October" header="Oct22"  />
                    
                     
                 </DataTable>
@@ -276,7 +275,7 @@ const header5 = (
                 </DataTable>
                 </div>
                 
-                <div style={{ display:'flex',justifyContent:'space-evenly'}}>
+                <div style={{ display:'flex',justifyContent:'center'}}>
           <Link to='/SupplierAnalysis'>
             <Button
               className='previousbutton'
@@ -284,20 +283,20 @@ const header5 = (
               style={{   }}
             />
             </Link>
-            <Link to='|'>
             <Button
               className='nextbutton'
               label="Edit"
-              style={{ }}
+              style={{marginLeft: " 15px" }}
             />
-            </Link>
-            <Link to='/Orderingplant'>
+             <Link to='/Orderingplant'>
             <Button
             className='nextbutton'
               label="Generate ordering schedule"
-              //style={{ marginLeft: " 15px"  }}
+            style={{ marginLeft: " 15px"  }}
+           
             />
             </Link>
+           
            
             
             </div>
