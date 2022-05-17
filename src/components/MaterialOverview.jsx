@@ -150,6 +150,7 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
+         
           //paginator
           rows={10}
           // rowsPerPageOptions={[5, 10, 25]}
@@ -215,6 +216,7 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
+            rowClassName={rowClass} 
             //paginator
             rows={10}
             // rowsPerPageOptions={[5, 10, 25]}
