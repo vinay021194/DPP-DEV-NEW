@@ -124,9 +124,6 @@ export const MaterialOverview = (props) => {
     ) ;
     
 };
-  // const statusBodyTemplate = (data) => {
-  //   return <span style={{ backgroundColor: "#FF8064" }}>{data.status_level_material}</span>;
-  // };
 
   const next = () => {
     // console.log("selectedPlant====>", selectedPlant);
@@ -211,11 +208,7 @@ export const MaterialOverview = (props) => {
       <div className="layout-main">
         <div className="card">
           <DataTable
-
-            rowClassName={rowClass} 
-            value={products}
-            //value={productsFiltered}
-
+            value={productsFiltered}
             expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
             responsiveLayout="scroll"
@@ -229,17 +222,13 @@ export const MaterialOverview = (props) => {
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
           >
             <Column expander style={{ width: "3em" }} />
-
-            
-{/*            
+            <Column field="material" header="ID" ></Column>
+            <Column
+              field="material_description_1"
+              header="Name"
+            ></Column>
             <Column field="inventory_material_level" header="Inventory"  />
-            <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/> */}
-
-            <Column field="material" header="ID"></Column>
-            <Column field="material_description_1" header="Name"></Column>
-            <Column field="inventory_material_level" header="Inventory" />
-            <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
-
+            <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
