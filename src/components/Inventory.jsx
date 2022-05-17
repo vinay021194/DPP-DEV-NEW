@@ -158,7 +158,7 @@ const header4 = (
 const header5 = (
   <div className="table-header-container">
      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
-     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in US$</h10>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>'All prices are in US$/Tonne</h10>
   </div>
 );
 
