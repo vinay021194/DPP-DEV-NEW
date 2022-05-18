@@ -1,0 +1,79 @@
+{
+    "data":{
+    "Sheet1": 
+    [
+        {
+            "key_mp": "700047-2000",
+            "material_number": "700047",
+            "plant": "2000",
+            "data": "En Route",
+            "month_1": "0",
+            "month_2": "0",
+            "month_3": "0",
+            "month_4": "0",
+            "month_5": "0",
+            "month_6": "0",
+            "month_7": "0",
+            "month_8": "0",
+            "month_9": "0",
+            "month_10": "0",
+            "month_11": "0",
+            "month_12": "0"
+        },
+        {
+            "key_mp": "700047-2000",
+            "material_number": "700047",
+            "plant": "2000",
+            "data": "Forecasted Demand",
+            "month_1": "21.84",
+            "month_2": "19.86",
+            "month_3": "25.70",
+            "month_4": "16.07",
+            "month_5": "9.86",
+            "month_6": "20.07",
+            "month_7": "12.15",
+            "month_8": "10.84",
+            "month_9": "7.53",
+            "month_10": "12",
+            "month_11": "15",
+            "month_12": "13"
+        },
+        {
+            "key_mp": "700047-3000",
+            "material_number": "700047",
+            "plant": "3000",
+            "data": "En Route",
+            "month_1": "0",
+            "month_2": "0",
+            "month_3": "0",
+            "month_4": "0",
+            "month_5": "0",
+            "month_6": "0",
+            "month_7": "0",
+            "month_8": "0",
+            "month_9": "0",
+            "month_10": "0",
+            "month_11": "0",
+            "month_12": "0"
+        },
+        {
+            "key_mp": "700047-3000",
+            "material_number": "700047",
+            "plant": "3000",
+            "data": "Forecasted Demand",
+            "month_1": "16.73",
+            "month_2": "5.88",
+            "month_3": "11.63",
+            "month_4": "13.53",
+            "month_5": "14.10",
+            "month_6": "12.37",
+            "month_7": "16.14",
+            "month_8": "17.68",
+            "month_9": "19.23",
+            "month_10": "15",
+            "month_11": "14.61",
+            "month_12": "13.27"
+        }
+    ]
+}
+}

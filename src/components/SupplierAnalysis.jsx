@@ -43,7 +43,7 @@ export class SupplierAnalysis extends Component {
       seriesName: this.props.location.state
         ? this.props.location.state.seriesName
         : [],
-      plant: this.props.location.state ? this.props.location.state.plant : null,
+      plant:   { name: "2000", code: "2000" },
       products: this.props.location.state
         ? this.props.location.state.products
         : [],
@@ -214,6 +214,8 @@ export class SupplierAnalysis extends Component {
     this.procService.getMaterialInfo({ material: 7001733 }).then((data) => {
       return this.setState({ materialInfo: data });
     });
+
+    this.onPlantChange2(this.state.plant)
   }
 
   Onsave = () => {
@@ -244,6 +246,59 @@ export class SupplierAnalysis extends Component {
        window.supplierObject,
     });
   };
+
+  
+
+
+
+
+
+  onPlantChange2 = (plantValue) => {
+    this.setState(
+      { plant: plantValue}
+      //console.log("e in onPlantChange", e)
+    );
+
+    this.procService
+      .getHistoricalUnitPrice({ material: 7001733 })
+      .then((res) => {
+        const plant = plantValue;
+        let resData = dataHistorical.Sheet2;
+        // console.log("resData====>", resData);
+        // console.log("plant====>", plant);
+        const filterByPlantData = resData.filter(
+          (el) => el.plant === plant.name
+        );
+       // console.log("filterByPlantData===>", filterByPlantData);
+        const unitPriceUSD = filterByPlantData.map((el) => {
+          let date = el.posting_date
+            .split("/") // 3/23/04  ===>
+            .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
+            .join("/"); //  [3, 23, 04] ==> 3/23/2004
+
+          date = new Date(date);
+          let milliseconds = date.getTime();
+
+          // console.log("date ==>", milliseconds);
+
+          return [milliseconds, Number(el.unit_price_usd)];
+        });
+
+        const chartData = [
+          {
+            name: plant.name,
+            data: unitPriceUSD.slice(-12),
+          },
+        ];
+
+        //console.log("HistoricalUnitPrice chartData ====> ", chartData);
+        return this.setState({ HistoricalChartData: chartData });
+      });
+  };
+  
+
+
+
 
   onPlantChange = (e) => {
     this.setState(
@@ -955,7 +1010,7 @@ export class SupplierAnalysis extends Component {
       xAxis: {
         type: "datetime",
         title: {
-          text: "Date",
+          text: "Year",
         },
       },
       legend: {
@@ -1142,8 +1197,10 @@ export class SupplierAnalysis extends Component {
                 optionLabel="name"
                 placeholder="Choose Plants"
                 display="chip"
+                //defaultValue={this.plants[0]}
+        />
                 
-              />
+              
              <label   style={{
                   // width: "30%",
                   margin: "13px",

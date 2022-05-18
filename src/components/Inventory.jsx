@@ -25,6 +25,9 @@ import plantJsonData from "../data/plantData.json"
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
+  const [plantData2000,setplantData2000] = useState([]);
+  const [plantData3000,setplantData3000] = useState([])
+
   const [supplierObject, setsupplierObject] = useState(null);
 
     let menuClick = false;
@@ -64,9 +67,17 @@ import plantJsonData from "../data/plantData.json"
       isMounted.current = true;
       productService.getInventoryInfo().then(data => setProducts2(data));
   }, []);
+
   useEffect(() => {
     isMounted.current = true;
-    productService.getplantdata().then(data =>  setPlantData(plantJsonData.data.Sheet1));
+    productService.getPlantinventoryTable().then(data =>  setPlantData(data));
+    productService.getPlantinventoryTable().then(data =>  setplantData2000(data.Sheet1.filter(data=> data.plant==="2000")));
+    productService.getPlantinventoryTable().then(data =>  setplantData3000(data.Sheet1.filter(data=> data.plant==="3000")));
+
+
+    // let datap = plantData.filter(data=> data.plant =  "2000")
+    // console.log('datap',datap)
+
 }, []);
   
   // eslint-disable-line react-hooks/exhaustive-deps
@@ -97,7 +108,7 @@ import plantJsonData from "../data/plantData.json"
     // const amountBodyTemplate = (rowData) => {
     //     return formatCurrency(rowData.amount);
     // }
-
+    
     const statusOrderBodyTemplate = (rowData) => {
         return <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
     }
@@ -138,47 +149,22 @@ import plantJsonData from "../data/plantData.json"
     
 );
 
-// const header4 = (
-//   <div className="table-header-container">
-//      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000(TO)</h5>
-//   </div>
-// );
+const header4 = (
+  <div className="table-header-container">
+     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in Tonnes</h10>
+  </div>
+);
 const header5 = (
   <div className="table-header-container">
      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
-     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in US$</h10>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>'All prices are in US$/Tonne</h10>
   </div>
 );
-// const header6 = (
-//   <div className="table-header-container">
-//      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Supplier02</h5>
-//   </div>
-// );
-//   const header3 = (
-//     <div className="table-header-container">
-//        <h5 style={{ fontWeight: "bolder", fontFamily: "Sans-serif" }}>Plant3000</h5>
-//     </div>
-// );
-    // const rowExpansionTemplate = (data) => {
-    //     return (
-    //         <div className="orders-subtable">
-    //             {/* <h5>Orders for {data.name}</h5> */}
-    //             <DataTable value={data.orders} responsiveLayout="scroll"  rows={1} >
-    //                 <Column field="id" header="Plant Id(Name)" ></Column>
-    //                 <Column field="name" header="Safety Stock"   body={statusOrderBodyTemplate}></Column>
-    //                 <Column field="inventory" header="Inventory"   body={statusOrderBodyTemplate}></Column>
-    //                 <Column field="status" header="WareHouse Capacity" body={statusOrderBodyTemplate} ></Column>
-    //                 <Column field="status" header="Status"  body={ratingBodyTemplate} ></Column>
-    //                 {/* <Column field="" header="" body={statusOrderBodyTemplate} ></Column> */}
-                    
-    //             </DataTable>
-    //         </div>
-    //     );
-    // }
-    
 
     return ( 
-        <div >
+    
+    <div >
              <AppTopbar onToggleMenu={onToggleMenu} />
             {/* <Toast ref={toast} /> */}
           <div className='layout-main'>
@@ -204,16 +190,10 @@ const header5 = (
             <div className='card'>
            <DataTable 
                    value={products2.Sheet3} 
-                  //  expandedRows={expandedRows}
-                    // onRowToggle={(e) => setExpandedRows(e.data)}
-                    // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                    // rowExpansionTemplate={rowExpansionTemplate} 
                     dataKey="id"
                     header={header2}
                     rows={4}
                     >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
                     <Column field="plant" header="Plant ID" ></Column>
                     <Column field="plant_name" header="Plant Name" ></Column>
                     <Column field="safety_stock" header="Safety Stock" ></Column>
@@ -227,43 +207,45 @@ const header5 = (
                 <div className='card'>
                
            <DataTable 
-                   value={plantData} 
-                  //  expandedRows={expandedRows}
-                  //   onRowToggle={(e) => setExpandedRows(e.data)}
-                  //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                  //   rowExpansionTemplate={rowExpansionTemplate} 
+                   value={plantData2000} 
                     dataKey="key"
                     header={header3}
                     rows={2}
                     >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
-                    <Column field="undefined" header="" ></Column>
-                    <Column field="May" header="May22" ></Column>
-                    <Column field="June" header="Jun22"  />
-                    <Column field="July" header="Jul22"   />
-                    <Column field="August" header="Aug22"  />
-                    <Column field="September" header="Sep22" />
-                    <Column field="October" header="Oct22"  />
+                    <Column field="data" header="" ></Column>
+                    <Column field="month_1" header="May22" ></Column>
+                    <Column field="month_2" header="Jun22"  />
+                    <Column field="month_3" header="Jul22"   />
+                    <Column field="month_4" header="Aug22"  />
+                    <Column field="month_5" header="Sep22" />
+                    <Column field="month_6" header="Oct22"  />
                    
                     
                 </DataTable>
                 </div>
                 <div className='card'>
-               
-               
-           <DataTable 
+               <DataTable 
+                       value={plantData3000} 
+                        dataKey="key"
+                        header={header4}
+                        rows={2}
+                        >
+                        <Column field="data" header="" ></Column>
+                        <Column field="month_1" header="May22" ></Column>
+                        <Column field="month_2" header="Jun22"  />
+                        <Column field="month_3" header="Jul22"   />
+                        <Column field="month_4" header="Aug22"  />
+                        <Column field="month_5" header="Sep22" />
+                        <Column field="month_6" header="Oct22"  />
+                    </DataTable>
+                    </div>
+                <div className='card'>
+              <DataTable 
                    value={supplierObject} 
-                  //  expandedRows={expandedRows}
-                  //   onRowToggle={(e) => setExpandedRows(e.data)}
-                  //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-                  //   rowExpansionTemplate={rowExpansionTemplate} 
                     dataKey="id"
                     header={header5}
                     rows={3}
                     >
-                    {/* <Column expander style={{ width: '3em' }} /> */}
-                   
                     <Column field="name" header="Supplier" ></Column>
                     <Column field="month1" header="May22" ></Column>
                     <Column field="month2" header="Jun22"   />
@@ -287,6 +269,7 @@ const header5 = (
               className='nextbutton'
               label="Edit"
               style={{marginLeft: " 15px" }}
+              icon= "pi pi-lock"
             />
              <Link to='/Orderingplant'>
             <Button

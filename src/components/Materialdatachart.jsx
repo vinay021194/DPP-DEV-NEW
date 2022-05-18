@@ -567,7 +567,7 @@ export const Materialdatachart = () => {
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
         Inventory Status In Future (Without Buyer Action)
       </h5>
-      <h10 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
+      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins",margin:"20px" }}>
       All values are in Tonnes
       </h10>
     </div>

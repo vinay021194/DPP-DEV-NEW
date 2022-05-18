@@ -75,3 +75,14 @@ code {
 /* .card .row-accessories {
   background-color: rgba(201, 24, 24, 0.795) !important;
 } */
+
+
+.productss-badge.status-urgent{
+  background-color: #FF8064;
+}
+.productss-badge.status-sufficient{
+  background-color:#f1a22c;
+}
+.productss-badge.status-depleting.fast{
+  background-color: rgb(41, 241, 164);
+}

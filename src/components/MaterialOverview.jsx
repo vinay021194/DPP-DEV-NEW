@@ -114,9 +114,16 @@ export const MaterialOverview = (props) => {
   const statusOrderBodyTemplate = (rowData) => {
     return <span className={`product-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_plant}</span>;
   };
-  const statusBodyTemplate = (data) => {
-    return <span style={{ backgroundColor: "#FF8064" }}>{data.status_level_material}</span>;
-  };
+  const statusBodyTemplate = (rowData) => {
+    return(
+<span
+        className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}
+      >
+        {rowData.status_level_material}
+      </span>
+    ) ;
+    
+};
 
   const next = () => {
     // console.log("selectedPlant====>", selectedPlant);
@@ -124,6 +131,15 @@ export const MaterialOverview = (props) => {
       selectedPlant: selectedPlant,
     });
   };
+  const rowClass = (rowData) => {
+    return {
+        'row-accessories': rowData.material !== "700047"
+        // 'row-accessories': rowData.material === "789045"
+        // 'row-accessories': rowData.material === "600234",
+        // 'row-accessories': rowData.material === "645908	",
+        // 'row-accessories': rowData.material === "768971"
+    }
+}
 
   const rowExpansionTemplate = (data) => {
     return (
@@ -134,6 +150,7 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
+         
           //paginator
           rows={10}
           // rowsPerPageOptions={[5, 10, 25]}
@@ -199,6 +216,7 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
+            rowClassName={rowClass} 
             //paginator
             rows={10}
             // rowsPerPageOptions={[5, 10, 25]}
@@ -206,10 +224,13 @@ export const MaterialOverview = (props) => {
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
           >
             <Column expander style={{ width: "3em" }} />
-            <Column field="material" header="ID"></Column>
-            <Column field="material_description_1" header="Name"></Column>
-            <Column field="opening_stock" header="Inventory" />
-            <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
+            <Column field="material" header="ID" ></Column>
+            <Column
+              field="material_description_1"
+              header="Name"
+            ></Column>
+            <Column field="inventory_material_level" header="Inventory"  />
+            <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>

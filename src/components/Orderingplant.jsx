@@ -104,7 +104,7 @@ import { MultiSelect } from "primereact/multiselect";
     const header2 = (
       <div className="table-header-container">
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule</h5>
-         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All Units is in Tonnes</h10>
+         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes'</h10>
       </div>
   );
   const footer = (

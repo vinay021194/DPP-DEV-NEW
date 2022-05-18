@@ -93,13 +93,13 @@
   font-weight: 700;
   font-size: 12px;
   letter-spacing: .3px; }
-  .list-demo .product-badge.status-instock {
+  .products-badge-status-Urgent {
     background: #C8E6C9;
     color: #256029; }
-  .list-demo .product-badge.status-outofstock {
+  .products-badge-status-Sufficient {
     background: #FFCDD2;
     color: #C63737; }
-  .list-demo .product-badge.status-lowstock {
+  .products-badge-status-Depleting-fast {
     background: #FEEDAF;
     color: #8A5340; }
 
@@ -1216,4 +1216,17 @@ input.input100 {
 .p-dropdow{
   background-color: #c7c2c2 !important;
  
+}
+.row-accessories {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+.row-access {
+  background-color: rgba(196, 24, 24, 0.15) !important;
+}
+div.layout-wrapper {
+  /* padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  min-height: 0vh;
 }

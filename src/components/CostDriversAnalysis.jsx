@@ -427,6 +427,7 @@ export const CostDriversAnalysis = () => {
               optionLabel="name"
               placeholder="Select a source"
               display="chip"
+              optionDisabled={options=> options.name ==='IHS'}
             />
             <MultiSelect
               style={{ width: "49%", margin: "5px 10px" }}

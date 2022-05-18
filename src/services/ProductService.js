@@ -90,4 +90,9 @@ export class ProductService {
       .then((res) => res.json())
       .then((d) => d.data);
   }
+  getPlantinventoryTable() {
+    return fetch("/assets/demo/data/plantinventory.json")
+      .then((res) => res.json())
+      .then((d) => d.data);
+  }
 }
