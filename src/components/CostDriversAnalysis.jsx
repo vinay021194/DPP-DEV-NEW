@@ -37,32 +37,39 @@ export const CostDriversAnalysis = () => {
     let allCostDrivers = event.value.map(d=>d.name)
     let allseries = icisForecastSummaryTable.Sheet.filter((data) =>
      {
-       console.log("data====>",data)
-       console.log("allCostDrivers====>",allCostDrivers)
-
        return allCostDrivers.includes(data.material)
       }
     );
-    allseries = allseries.map((data) => data.series);
-    console.log("allseries====>",allseries)
+   // allseries = allseries.map((data) => data.series);
+    allseries = allseries.map((data) => 
+    {
+      let obj = {
+        name:data.series,
+        code:data.key
+      }
+      return obj;
+    });
 
     allseries = [...new Set(allseries)];
-    let result = seriesName.filter((o) =>
-      allseries.some((data) => o.name === data)
-    );
-    console.log("results===>",result)
-    setDropdown(result);
+
+    // let result = seriesName.filter((o) =>
+    //   allseries.some((data) => o.name === data)
+    // );
+    // console.log("results===>",result)
+
+    var unique = Array.from(new Set(allseries.map(JSON.stringify))).map(JSON.parse);
+    setDropdown(unique);
     setcostDriver(event.value);
   };
 
   const sourceOption = [
     {
       name: "IHS",
-      code: "IHS",
+      code: "123",
     },
     {
       name: "ICIS",
-      code: "ICIS",
+      code: "345",
     },
   ];
   const seriesName = [
@@ -197,7 +204,6 @@ export const CostDriversAnalysis = () => {
     productService.getPricePridectionTable().then((data) => {
     
   let modifieData = data.Sheet.map((ele) => {
-       console.log("element====>",ele['2022-05'])
         return {
           key: ele?.key,
           best_model: ele?.best_model,
@@ -290,18 +296,20 @@ export const CostDriversAnalysis = () => {
   };
 
   const onSourcechange = (e) => {
+    console.log(e.value)
     setSource(e.value);
   };
 
   const oncostDriverSeriesChange = (e) => {
     const icisForecastSummaryTabledata = costDriversChartData;
     let allmaterial = icisForecastSummaryTable.Sheet.map((data) => {
-      return data.serial_name;
+      return data.serial_name;//key
     });
-    allmaterial = [...new Set(allmaterial)];
+    console.log("icisForecastSummaryTabledata===>",e)
+    allmaterial = [...new Set(allmaterial)];//distinct key
     let exampleData = e.value.map((sr) =>
       icisForecastSummaryTabledata
-        .filter((el) => el.serial_name === sr.name)
+        .filter((el) => el.key === sr.code)
         .map((d) => {
           let date = d.date
             .split("/") // 3/23/04    ===>
@@ -333,7 +341,7 @@ export const CostDriversAnalysis = () => {
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
 
     filterAccuraciesTableData = e.value.map((sr) =>
-      filterAccuraciesTableData.filter((el) => el.serial_name === sr.name)
+      filterAccuraciesTableData.filter((el) => el.key === sr.code)
     );
     filterAccuraciesTableData = filterAccuraciesTableData.filter(
       (el) => el.length > 0
