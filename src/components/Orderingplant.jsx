@@ -40,10 +40,13 @@ import { MultiSelect } from "primereact/multiselect";
     let menuClick = false;
     
     useEffect(() => {
+        console.log("window.supplierObject===>",window.supplierObject)
         if (isMounted.current) {
             const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
             //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
         }
+        window.supplierObject2 = window.supplierObject;
+
     }, [expandedRows]);
     useEffect(() => {
       isMounted.current = true;
@@ -104,7 +107,7 @@ import { MultiSelect } from "primereact/multiselect";
     const header2 = (
       <div className="table-header-container">
          <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule</h5>
-         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes'</h10>
+         <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h10>
       </div>
   );
   const footer = (

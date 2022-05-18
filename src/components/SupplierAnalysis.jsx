@@ -1117,17 +1117,17 @@ export class SupplierAnalysis extends Component {
 
                   <Column
                     field="quantity"
-                    header="Formula/Fixed Price(USD/T)"
+                    header="Formula/Fixed Price (USD/T)"
                     editor={(props) => this.quatityEditor("products", props)}
                   />
                   <Column
                     field="price"
-                    header="Max Capacity(T)"
+                    header="Max Capacity (T)"
                     editor={(props) => this.priceEditor("products", props)}
                   />
                   <Column
                     field="Percentage"
-                    header="Lead Time(Months)"
+                    header="Lead Time (Months)"
                     editor={(props) => this.leadTime("products", props)}
                   />
                   <Column

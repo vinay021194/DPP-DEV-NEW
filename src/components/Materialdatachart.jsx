@@ -37,7 +37,7 @@ export const Materialdatachart = () => {
   ] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
     useState([]);
-  const [Plants, setPlants] = useState(false);
+  const [Plants, setPlants] = useState(["2000"]);
 
   let plantData = [
     ...new Map(
@@ -194,7 +194,10 @@ export const Materialdatachart = () => {
         expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
       //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
+    
+    
   }, [expandedRows]);
+  
 
 //   const rowClass = (data) => {
 //       let flag= false;
@@ -267,7 +270,6 @@ export const Materialdatachart = () => {
         })
         setTransposedColorData(TransposedColorData);
       })
-       
   }, []);
 
   useEffect(() => {
@@ -279,6 +281,7 @@ export const Materialdatachart = () => {
     isMounted.current = true;
     productService.getMaterial().then((data) => setProducts3(data));
   }, []);
+
 
   const onPlantChange = (e) => {
     setPlants(e.value);
@@ -385,7 +388,6 @@ export const Materialdatachart = () => {
       
     </div>
   );
-
   const statusOrderBodyTemplate = (rowData) => {
     return (
       <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>

@@ -60,7 +60,8 @@ import plantJsonData from "../data/plantData.json"
     useEffect(() => {
         isMounted.current = true;
         productService.getMaterial().then(data => setProducts(data));
-        setsupplierObject(props.location.state?.supplierDetails)
+        setsupplierObject(props.location.state?.supplierDetails?props.location.state?.supplierDetails:window.supplierObject2)
+        window.supplierObject = props.location.state?.supplierDetails;
     }, []); 
     
     useEffect(() => {
@@ -158,7 +159,7 @@ const header4 = (
 const header5 = (
   <div className="table-header-container">
      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
-     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>'All prices are in US$/Tonne</h10>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All prices are in US$/Tonne</h10>
   </div>
 );
 
