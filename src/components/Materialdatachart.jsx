@@ -12,6 +12,7 @@ import HighchartsReact from "highcharts-react-official";
 import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
 import { Link } from "react-router-dom";
+import plantjsondata from "../data/inventory_info.json"
 
 export const Materialdatachart = () => {
   const [products, setProducts] = useState([]);
@@ -29,7 +30,7 @@ export const Materialdatachart = () => {
   const [transposedColorData, setTransposedColorData] = useState([]);
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
-
+  const buttonRef = useRef(null);
   const [isSubmited, setIsSubmited] = useState(false);
   const [
     demandInfoRegressionSummaryTable,
@@ -187,7 +188,6 @@ export const Materialdatachart = () => {
       ],
     },
   };
-
   useEffect(() => {
     if (isMounted.current) {
       const summary =
@@ -245,7 +245,6 @@ export const Materialdatachart = () => {
     isMounted.current = true;
     productService.getMaterialInfo().then((data) => setProducts(data));
     setdemandInfoRegressionSummaryTable(demantData.Sheet1);
-
     productService
       .gettransposedData()
       .then((data) =>{
@@ -278,6 +277,7 @@ export const Materialdatachart = () => {
   }, []);
 
   useEffect(() => {
+     onsubmit();
     isMounted.current = true;
     productService.getMaterial().then((data) => setProducts3(data));
   }, []);
@@ -289,8 +289,9 @@ export const Materialdatachart = () => {
 
   const onsubmit = () => {
     setIsSubmited(true);
-
-    let convertedData = demandInfoRegressionSummaryTable.map((el) => {
+    console.log("demandInfoRegressionSummaryTable===>",demantData.Sheet1)
+    let proudctdata= plantjsondata;
+    let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
       return {
@@ -323,9 +324,9 @@ export const Materialdatachart = () => {
         data: exampleData[i],
       };
     });
-
+    console.log("proudctdata===>",proudctdata.data.Sheet3)
     let filterYearlyData = Plants.map((sr) =>
-      products2.Sheet3.filter((el) => el.plant.includes(sr))
+    proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr))
     );
 
     filterData = [].concat(...filterData);
@@ -343,17 +344,6 @@ export const Materialdatachart = () => {
   const onRowCollapse = (event) => {
     // toast.current.show({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
   };
-
-  // const expandAll = () => {
-  //   let _expandedRows = {};
-  //   products.forEach((p) => (_expandedRows[`${p.id}`] = true));
-
-  //   setExpandedRows(_expandedRows);
-  // };
-
-  // const collapseAll = () => {
-  //   setExpandedRows(null);
-  // };
 
   const isDesktop = () => {
     return window.innerWidth > 1024;
@@ -516,6 +506,7 @@ export const Materialdatachart = () => {
             disabled
           />
           <Button
+            id="btn"
             label="submit"
             style={{ margin: "3px 15px" }}
             onClick={onsubmit}
