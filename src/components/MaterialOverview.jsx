@@ -173,8 +173,6 @@ export const MaterialOverview = (props) => {
   };
 
   const handlefilter = (filters, types) => {
-    console.log("filters===>", filters);
-    console.log("types===>", types);
     if (types === "Multiselect") {
       if (filters.length > 0) {
         let allMaterial = filters.map((d) => d.name);
@@ -183,14 +181,13 @@ export const MaterialOverview = (props) => {
             //console.log("data====>",data)
             return allMaterial.includes(data.material);
           });
-          console.log("filteredData===>", filteredData);
           setproductsFiltered(filteredData);
         }
       } else {
         setproductsFiltered(products);
       }
     } else {
-      console.log("inside else part");
+
       if (filters.length > 0) {
         let filteredData = products.filter((data) => {
           //console.log("data====>",data)
@@ -223,7 +220,7 @@ export const MaterialOverview = (props) => {
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
           >
-            <Column expander style={{ width: "3em" }} />
+            <Column expander={productsFiltered.material !== "700047"?true:false} style={{ width: "3em" }} />
             <Column field="material" header="ID" ></Column>
             <Column
               field="material_description_1"
