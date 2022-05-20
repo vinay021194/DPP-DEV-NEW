@@ -578,7 +578,7 @@ export const Materialdatachart = () => {
                 rows={2}
               >
                 <Column field="plant" header=""></Column>
-                <Column field="19.8" header="" showGridlines></Column>
+                <Column field="averagedata" header="" showGridlines></Column>
               </DataTable>
             </>
           
