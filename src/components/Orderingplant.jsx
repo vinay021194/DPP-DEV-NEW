@@ -29,10 +29,14 @@ import { MultiSelect } from "primereact/multiselect";
   const [date2, setDate2] = useState(null);
   const [supplierData, setsupplierData] = useState(null);
   const [plantData, setplantData] = useState(null);
-  const [Plants, setPlants] = useState('2000');
+  const [selectedCities1, setSelectedCities1] = useState(null);
   const onPlantChange = (e) => {
-    setPlants(e.value);
+    setSelectedCities1(e.value);
   };
+  const city = [
+    {name: '2000', code: '2000'},
+   
+];
 
  //console.log("plantJsonData===>",plantJsonData)
  //console.log("supplierJsonData===>",supplierJsonData)
@@ -149,10 +153,10 @@ import { MultiSelect } from "primereact/multiselect";
             <MultiSelect
             className=""
             style={{ width: "30%", margin: "5px 10px" ,display:'flex',justifyContent:'center' }}
-            //value={'2000'}
-            //options={plantData}
-            //onChange={onPlantChange}
-            optionLabel="label"
+            value={selectedCities1}
+            options={city}
+            onChange={onPlantChange}
+            optionLabel="name"
             placeholder="2000"
             display="chip"
            
