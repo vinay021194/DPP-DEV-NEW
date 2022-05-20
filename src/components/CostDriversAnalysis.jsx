@@ -34,6 +34,8 @@ export const CostDriversAnalysis = () => {
     useState([]);
 
   const onCostDriverChange = (event) => {
+    setcostDriverSeries([]);
+    setcostDriverSeriesData([]);
     let allCostDrivers = event.value.map(d=>d.name)
     let allseries = icisForecastSummaryTable.Sheet.filter((data) =>
      {
