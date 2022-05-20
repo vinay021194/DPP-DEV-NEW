@@ -183,8 +183,6 @@ export const MaterialOverview = (props) => {
   };
 
   const handlefilter = (filters, types) => {
-    console.log("filters===>", filters);
-    console.log("types===>", types);
     if (types === "Multiselect") {
       if (filters.length > 0) {
         let allMaterial = filters.map((d) => d.name);
@@ -193,14 +191,13 @@ export const MaterialOverview = (props) => {
             //console.log("data====>",data)
             return allMaterial.includes(data.material);
           });
-          console.log("filteredData===>", filteredData);
           setproductsFiltered(filteredData);
         }
       } else {
         setproductsFiltered(products);
       }
     } else {
-      console.log("inside else part");
+
       if (filters.length > 0) {
         let filteredData = products.filter((data) => {
           //console.log("data====>",data)

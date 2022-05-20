@@ -2,10 +2,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
-import { Checkbox } from 'primereact/checkbox';
-import { MultiSelect} from 'primereact/multiselect';
+import { Checkbox } from "primereact/checkbox";
+import { MultiSelect } from "primereact/multiselect";
 import { color } from "highcharts";
 import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
 
 // const AppSubmenu = (props) => {
 //   const [activeIndex, setActiveIndex] = useState(null);
@@ -114,45 +115,29 @@ export const AppMenu = (props) => {
   const [selectedCities1, setSelectedCities1] = useState(null);
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
-  const city = [
-    { name: '700047',  },
-    { name: '678456', },
-    { name: '789045',  },
-    { name: '600234',  },
-    { name: '645908',  },
-    { name: '768971',  }
-
-];
-const state = [
-  { name: '700047',  },
-  { name: '678456', },
-  { name: '789045',  },
-  { name: '600234',  },
-  { name: '645908',  },
-  { name: '768971',  }
-];
-
- 
-
+  const city = [{ name: "700047" }, { name: "678456" }, { name: "789045" }, { name: "600234" }, { name: "645908" }, { name: "768971" }];
+  const state = [{ name: "700047" }, { name: "678456" }, { name: "789045" }, { name: "600234" }, { name: "645908" }, { name: "768971" }];
 
   const onCityChange = (e) => {
-    console.log("e=====>",e)
+    console.log("e=====>", e.target?.innerText);
     let selectedCities = [...cities];
-    if(e.checked)
-        selectedCities.push(e.value);
-    else
-        selectedCities.splice(selectedCities.indexOf(e.value), 1);
+    if(e.target?.innerText === "CLEAR ALL" ) {
+      console.log("inside clear all")
+      selectedCities = [];
+    }
+    else if (e.checked) selectedCities.push(e.value);
+    else selectedCities.splice(selectedCities.indexOf(e.value), 1);
+    console.log("selectedCities====>",selectedCities)
 
     setCities(selectedCities);
-  props.handlefilter(selectedCities,"checkbox")
+    props.handlefilter(selectedCities, "checkbox");
+  };
 
-}
-
-const onMaterialChange = (e) => {
-  console.log("ee=====>",e)
-  setSelectedCities1(e.value)
-  props.handlefilter(e.value,"Multiselect")
-}
+  const onMaterialChange = (e) => {
+    console.log("ee=====>", e.target.value);
+    setSelectedCities1(e.value);
+    props.handlefilter(e.value, "Multiselect");
+  };
   return (
     <div className="layout-menu-container">
       <div style={{marginLeft:'50px', fontSize:'20px' ,fontFamily:'Poppins', color:'lightgray'}} >
@@ -195,6 +180,13 @@ const onMaterialChange = (e) => {
     <label htmlFor="cb3" className="p-checkbox-label">Sufficient</label>
     
 </div>
+<div className="gridcheck">
+
+        <Button className="nextbutton" label="Clear All " value="clear"
+
+         onClick={onCityChange} />
+
+      </div>
 <hr/>
 <div style={{marginLeft:'25px',fontFamily:'Poppins'}}>
         <strong>Material ID</strong>
@@ -219,10 +211,9 @@ const onMaterialChange = (e) => {
   {/* <div style={{marginLeft:'25px',fontFamily:'Sans-serif'}}>
         <strong>Tags</strong>
         </div> */}
-  {/* <div className="gridcol">
+      {/* <div className="gridcol">
 <MultiSelect value={selectedTown1} options={town} onChange={(e) => setSelectedTown1(e.value)} optionLabel="name" placeholder="SELECT ID" maxSelectedLabels={5} />
   </div> */}
- 
     </div>
   );
 };
