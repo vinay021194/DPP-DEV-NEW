@@ -13,7 +13,7 @@ import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
 import { Link } from "react-router-dom";
 import plantjsondata from "../data/inventory_info.json"
-
+import transportdata from "../data/transportdata.json"
 export const Materialdatachart = () => {
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
@@ -302,7 +302,6 @@ export const Materialdatachart = () => {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
-
     if (date1 && date2) {
       convertedData = convertedData.filter(
         (data) =>
@@ -314,9 +313,33 @@ export const Materialdatachart = () => {
     let exampleData = Plants.map((sr) =>
       convertedData.filter((el) => el.plant === sr)
     );
+    console.log("transportdata====>",transportdata)
+    let tdata =  transportdata.data.Sheet.map((ele)=>{
+      return{
+        id:ele.id,
+        key_mp: ele.key_mp,
+        keys: ele.keys,
+        Month1:ele.Month1 ,
+        Month2: ele.Month2,
+        Month3:ele.Month3 ,
+        Month4: ele.Month4,
+        Month5: ele.Month5,
+        Month6: ele.Month6,
+        Month7:ele.Month7 ,
+        Month8:ele.Month8 ,
+        Month9:ele.Month9 ,
+        Month10:ele.Month10,
+        Month11:ele.Month11,
+        Month12:ele.Month12 
+      }
+    })
     let filterData = Plants.map((sr) =>
-      transposedColorData.filter((el) => el.key_mp.includes(sr))
+    tdata.filter((el) => el.key_mp.includes(sr))
     );
+    console.log("filterData==>",filterData)
+    console.log("transposedColorData==>",transposedColorData)
+
+
 
     const chartData1 = Plants.map((sr, i) => {
       return {
@@ -324,14 +347,13 @@ export const Materialdatachart = () => {
         data: exampleData[i],
       };
     });
-    console.log("proudctdata===>",proudctdata.data.Sheet3)
     let filterYearlyData = Plants.map((sr) =>
     proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr))
     );
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
-    //console.log("filterData===>", filterData);
+    console.log("filterData===>", filterData);
     setAverageYearlyConsumption(filterYearlyData);
     setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
