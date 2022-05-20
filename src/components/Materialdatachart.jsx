@@ -378,6 +378,13 @@ export const Materialdatachart = () => {
       
     </div>
   );
+  const headers2 = (
+    <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory Status In Future (Without Buyer Action)</h5>
+      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}> All values are in Tonnes</h10>
+      
+    </div>
+  );
   const statusOrderBodyTemplate = (rowData) => {
     return (
       <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>
@@ -519,7 +526,7 @@ export const Materialdatachart = () => {
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
-          {isSubmited && (
+           
             <>
               <div className="">
                 <h5
@@ -549,21 +556,14 @@ export const Materialdatachart = () => {
                 rows={2}
               >
                 <Column field="plant" header=""></Column>
-                <Column field="average-value" header="" showGridlines></Column>
+                <Column field="19.8" header="" showGridlines></Column>
               </DataTable>
             </>
-          )}
+          
         </div>
         {isSubmited && (
           <div className="card">
-            <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
-        Inventory Status In Future (Without Buyer Action)
-      </h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins",margin:"20px" }}>
-      All values are in Tonnes
-      </h10>
-    </div>
+            
             <DataTable
               value={filteredTransposedData}
               //paginator
@@ -576,6 +576,7 @@ export const Materialdatachart = () => {
               sortField="key_mp"
               sortOrder={1}
               responsiveLayout="scroll"
+              header={headers2}
              // rowClassName={rowClass}
               //style={{ color: getColor(filteredTransposedData) }}
             >

@@ -21,8 +21,7 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Urgent",
             "status_level_material": "Urgent",
-            "status_level_inventory": "55.0% above safety stock",
-            "inventory_material_level": "127",
+            "inventory_material_level": "62",
             "expend": [
                 {
                 "material": "700047",
@@ -53,13 +52,44 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Depleting fast",
             "status_level_material": "Depleting fast",
-            "status_level_inventory": "54.7% above safety stock",
             "inventory_material_level": "110",
             "expend": [
                 {
                 "material": "768971",
-                "plant": "2000",
+                "plant": "3000",
                 "plant_name": "Kansas City",
+                "status_level_plant": "Depleting fast"
+            }
+           
+        ]
+            
+        },
+        {
+            "material": "768971",
+            "material_description_1": "Styrene Monomer",
+            "material_type (SAP)": "FHMI",
+            "material_group (organisation)": "34201615",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "B",
+            "mdrm_class (class)": "CATALYST",
+            "aliases": "None",
+            "plant": "3100",
+            "plant_name": "Topeka",
+            "opening_stock": "45",
+            "openning_stock_uom": "T",
+            "safety_stock": "40",
+            "warehouse_capacity": "80",
+            "safety_warehouse_uom": "T",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Urgent",
+            "status_level_material": "Depleting fast",
+            "inventory_material_level": "110",
+            "expend": [
+                {
+                "material": "768971",
+                "plant": "3100",
+                "plant_name": "Topeka",
                 "status_level_plant": "Depleting fast"
             }
            
@@ -85,14 +115,15 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
-            "inventory_material_level": "210",
+            "inventory_material_level": "100",
             "expend": [
                 {
                 "material": "678456",
-                "plant": "2000",
+                "plant": "4000",
                 "plant_name": "Tulsa",
                 "status_level_plant": "Sufficient"
-            }          
+            }
+           
         ]
         },
         {
@@ -106,7 +137,7 @@
             "aliases": "800576",
             "plant": "2100",
             "plant_name": "Nashville",
-            "opening_stock": "100",
+            "opening_stock": "110",
             "openning_stock_uom": "T",
             "safety_stock": "42",
             "warehouse_capacity": "115",
@@ -115,14 +146,15 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
-            "inventory_material_level": "204",
+            "inventory_material_level": "110",
             "expend": [
                 {
                 "material": "789045",
-                "plant": "2000",
+                "plant": "2100",
                 "plant_name": "Nashville",
                 "status_level_plant": "Sufficient"
             }
+           
         ]
         },
         {
@@ -134,8 +166,27 @@
             "industry_sector": "C",
             "mdrm_class (class)": "GENERAL",
             "aliases": "712890, 742567",
+            "plant": "2100",
+            "plant_name": "Nashville",
+            "opening_stock": "100",
+            "openning_stock_uom": "T",
+            "safety_stock": "42",
+            "warehouse_capacity": "110",
+            "safety_warehouse_uom": "T",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
-            "inventory_material_level": "198"
+            "inventory_material_level": "100",
+            "expend": [
+                {
+                "material": "600234",
+                "plant": "2100",
+                "plant_name": "Nashville",
+                "status_level_plant": "Sufficient"
+            }
+           
+        ]
         }
     ]
 }
