@@ -147,15 +147,15 @@ import { MultiSelect } from "primereact/multiselect";
                 </DataTable>
             </div>
             <MultiSelect
-            className="p-dropdow"
+            className=""
             style={{ width: "30%", margin: "5px 10px" ,display:'flex',justifyContent:'center' }}
-           // value={Plants}
+            //value={'2000'}
             //options={plantData}
             //onChange={onPlantChange}
             optionLabel="label"
             placeholder="2000"
             display="chip"
-            disabled
+           
           />
             <div className='card'>
            <DataTable 
