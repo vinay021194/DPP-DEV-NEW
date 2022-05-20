@@ -174,7 +174,6 @@ export const AppMenu = (props) => {
      style={{marginRight:'15px'}}>
       </Checkbox>
     <label htmlFor="cb1" className="p-checkbox-label">Urgent</label>
-   
 </div>
 <div className="gridcheck">
     <Checkbox inputId="cb2"
