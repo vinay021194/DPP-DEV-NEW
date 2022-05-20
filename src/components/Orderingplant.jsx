@@ -195,7 +195,7 @@ import { MultiSelect } from "primereact/multiselect";
                     dataKey="id"
                    // footer={footer}
                     //header={header3}
-                    rows={5}
+                    rows={6}
                     //editMode="cell"
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}

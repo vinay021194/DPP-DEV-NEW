@@ -293,9 +293,6 @@ a {
     .layout-sidebar-dark .layout-profile ul li button:hover {
       color: #0388e5; }
 
-.layout-menu-container {
-  padding-bottom: 20px; }
-
 .layout-menu {
   list-style-type: none;
   margin: 0;

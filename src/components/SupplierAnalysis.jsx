@@ -1267,7 +1267,7 @@ export class SupplierAnalysis extends Component {
 
             {/* <div className="p-formgrid p-grid"> */}
             <div className="p-field">
-              <label htmlFor="quantity">Formula/Fixed Price(USD/T)</label>
+              <label htmlFor="quantity">Formula/Fixed Price (USD/T)</label>
               <InputText
                 id="quantity"
                 value={this.state.product.quantity}
@@ -1282,7 +1282,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <div className="p-field">
-              <label htmlFor="price">Max Capacity(T)</label>
+              <label htmlFor="price">Max Capacity (T)</label>
               <InputText
                 id="price"
                 value={this.state.product.price}
@@ -1295,7 +1295,7 @@ export class SupplierAnalysis extends Component {
             </div>
 
             <div className="p-field">
-              <label htmlFor="Percentage">Lead Time(Months)</label>
+              <label htmlFor="Percentage">Lead Time (Months)</label>
               <InputText
                 id="Percentage"
                 value={this.state.product.Percentage}

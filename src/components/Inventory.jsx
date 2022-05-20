@@ -144,7 +144,7 @@ import plantJsonData from "../data/plantData.json"
   );
   const header3 = (
     <div className="table-header-container">
-       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-2000</h5>
+       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- 2000</h5>
        <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in Tonnes</h10>
     </div>
     

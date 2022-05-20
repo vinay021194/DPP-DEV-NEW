@@ -115,7 +115,12 @@ export const AppMenu = (props) => {
   const [selectedCities1, setSelectedCities1] = useState(null);
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
-  const city = [{ name: "700047" }, { name: "678456" }, { name: "789045" }, { name: "600234" }, { name: "645908" }, { name: "768971" }];
+  const city = [
+   { name: "600234" }, { name: "645908" },{ name: "678456" },
+    { name: "700047" },{ name: "768971" },{ name: "789045" }];
+
+
+
   const state = [{ name: "700047" }, { name: "678456" }, { name: "789045" }, { name: "600234" }, { name: "645908" }, { name: "768971" }];
 
   const onCityChange = (e) => {
@@ -125,6 +130,9 @@ export const AppMenu = (props) => {
       console.log("inside clear all")
       selectedCities = [];
     }
+    else if (e.target.value ==="All" && e.checked) selectedCities = ["All","Urgent","Depleting fast","Sufficient"]
+
+    else if (e.target.value ==="All" && e.checked !== true) selectedCities = []
     else if (e.checked) selectedCities.push(e.value);
     else selectedCities.splice(selectedCities.indexOf(e.value), 1);
     console.log("selectedCities====>",selectedCities)
@@ -140,13 +148,24 @@ export const AppMenu = (props) => {
   };
   return (
     <div className="layout-menu-container">
-      <div style={{marginLeft:'50px', fontSize:'20px' ,fontFamily:'Poppins', color:'lightgray'}} >
+      <div style={{marginLeft:'50px', fontSize:'15px' ,fontFamily:'Poppins', color:'lightgray'}} >
       <span>Filter By</span>
       </div>
       <hr/>
       <div style={{marginLeft:'25px' ,fontFamily:'Poppins'}}>
         <strong>Material Status</strong>
         </div>
+        <div className="gridcheck">
+
+        <Checkbox inputId="cb4" value="All" onChange={onCityChange} checked={cities.includes("All","Urgent","Depleting fast","Sufficient")} style={{ marginRight: "15px" }}></Checkbox>
+
+        <label htmlFor="cb4" className="p-checkbox-label">
+
+          All
+
+        </label>
+
+      </div>
  <div className="gridcheck">
     <Checkbox inputId="cb1" 
      value="Urgent"
@@ -182,7 +201,7 @@ export const AppMenu = (props) => {
 </div>
 <div className="gridcheck">
 
-        <Button className="nextbutton" label="Clear All " value="clear"
+        <Button className="nextbutton1" label="Clear All " value="clear"
 
          onClick={onCityChange} />
 
