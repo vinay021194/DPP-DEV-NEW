@@ -6,99 +6,136 @@
             "material_description_1": "Polyethylene",
             "material_type (SAP)": "ROH",
             "material_group (organisation)": "D11987",
-            "base_unit_of_measure (UOM)": "TO",
+            "base_unit_of_measure (UOM)": "T",
             "industry_sector": "C",
             "mdrm_class (class)": "GENERAL",
             "aliases": "700233, 672219",
             "plant": "2000",
             "plant_name": "Edison",
             "opening_stock": "62",
-            "openning_stock_uom": "TO",
+            "openning_stock_uom": "T",
             "safety_stock": "40",
             "warehouse_capacity": "100",
-            "safety_warehouse_uom": "TO",
+            "safety_warehouse_uom": "T",
             "overall_incoming_quantity": "0",
             "on_route_curr_mon": "0",
-            "status_level_plant": "Sufficient for the next 1 months",
+            "status_level_plant": "Urgent",
             "status_level_material": "Urgent",
-            "status_level_inventory": "55% above safety stock",
+            "status_level_inventory": "55.0% above safety stock",
             "inventory_material_level": "127",
-            
             "expend": [
                 {
                 "material": "700047",
                 "plant": "2000",
                 "plant_name": "Edison",
-                "status_level_plant": "Sufficient for the next 1 months"
-            },
-            {
-                "material": "700047",
-                "plant": "3000",
-                "plant_name": "Kansas",
-                "status_level_plant": "Sufficient for the next 2 months"
+                "status_level_plant": "Urgent"
             }
+           
         ]
-        },
-       
-        {
-            "material": "678456",
-            "material_description_1": "CA-OX",
-            "material_type (SAP)": "UNBW",
-            "material_group (organisation)": "12451600",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "CATALYST",
-            "aliases": "None",
-            "status_level_material": "Sufficient",
-            "inventory_material_level": "210"
-        },
-        {
-            "material": "789045",
-            "material_description_1": "CHRCL",
-            "material_type (SAP)": "ERSA",
-            "material_group (organisation)": "13111780",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "A",
-            "mdrm_class (class)": "GENERAL",
-            "aliases": "800576",
-            "status_level_material": "Sufficient",
-            "inventory_material_level": "204"
-        },
-        {
-            "material": "600234",
-            "material_description_1": "VX190",
-            "material_type (SAP)": "HALB",
-            "material_group (organisation)": "34893423",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "GENERAL",
-            "aliases": "712890, 742567",
-            "status_level_material": "Sufficient",
-            "inventory_material_level": "198"
-        },
-        {
-            "material": "645908",
-            "material_description_1": "Boiler Water",
-            "material_type (SAP)": "FHMI",
-            "material_group (organisation)": "89089000",
-            "base_unit_of_measure (UOM)": "TO",
-            "industry_sector": "C",
-            "mdrm_class (class)": "CHEMICAL",
-            "aliases": "None",
-            "status_level_material": "Depleting fast",
-            "inventory_material_level": "154"
         },
         {
             "material": "768971",
             "material_description_1": "Styrene Monomer",
             "material_type (SAP)": "FHMI",
             "material_group (organisation)": "34201615",
-            "base_unit_of_measure (UOM)": "TO",
+            "base_unit_of_measure (UOM)": "T",
             "industry_sector": "B",
             "mdrm_class (class)": "CATALYST",
             "aliases": "None",
+            "plant": "3000",
+            "plant_name": "Kansas City",
+            "opening_stock": "65",
+            "openning_stock_uom": "T",
+            "safety_stock": "42",
+            "warehouse_capacity": "120",
+            "safety_warehouse_uom": "T",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Depleting fast",
             "status_level_material": "Depleting fast",
-            "inventory_material_level": "147"
+            "status_level_inventory": "54.7% above safety stock",
+            "inventory_material_level": "110",
+            "expend": [
+                {
+                "material": "768971",
+                "plant": "2000",
+                "plant_name": "Kansas City",
+                "status_level_plant": "Depleting fast"
+            }
+           
+        ]
+        },
+        {
+            "material": "678456",
+            "material_description_1": "CA-OX",
+            "material_type (SAP)": "UNBW",
+            "material_group (organisation)": "12451600",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "C",
+            "mdrm_class (class)": "CATALYST",
+            "aliases": "None",
+            "plant": "4000",
+            "plant_name": "Tulsa",
+            "opening_stock": "100",
+            "openning_stock_uom": "T",
+            "safety_stock": "42",
+            "warehouse_capacity": "110",
+            "safety_warehouse_uom": "T",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Sufficient",
+            "status_level_material": "Sufficient",
+            "inventory_material_level": "210",
+            "expend": [
+                {
+                "material": "678456",
+                "plant": "2000",
+                "plant_name": "Tulsa",
+                "status_level_plant": "Sufficient"
+            }          
+        ]
+        },
+        {
+            "material": "789045",
+            "material_description_1": "CHRCL",
+            "material_type (SAP)": "ERSA",
+            "material_group (organisation)": "13111780",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "A",
+            "mdrm_class (class)": "GENERAL",
+            "aliases": "800576",
+            "plant": "2100",
+            "plant_name": "Nashville",
+            "opening_stock": "100",
+            "openning_stock_uom": "T",
+            "safety_stock": "42",
+            "warehouse_capacity": "115",
+            "safety_warehouse_uom": "T",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Sufficient",
+            "status_level_material": "Sufficient",
+            "inventory_material_level": "204",
+            "expend": [
+                {
+                "material": "789045",
+                "plant": "2000",
+                "plant_name": "Nashville",
+                "status_level_plant": "Sufficient"
+            }
+        ]
+        },
+        {
+            "material": "600234",
+            "material_description_1": "VX190",
+            "material_type (SAP)": "HALB",
+            "material_group (organisation)": "34893423",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "C",
+            "mdrm_class (class)": "GENERAL",
+            "aliases": "712890, 742567",
+            "status_level_material": "Sufficient",
+            "inventory_material_level": "198"
         }
     ]
 }

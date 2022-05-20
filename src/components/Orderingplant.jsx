@@ -196,7 +196,7 @@ import { MultiSelect } from "primereact/multiselect";
                    // footer={footer}
                     //header={header3}
                     rows={5}
-                    editMode="cell"
+                    //editMode="cell"
                     >
                     {/* <Column expander style={{ width: '3em' }} /> */}
                    
@@ -208,6 +208,8 @@ import { MultiSelect } from "primereact/multiselect";
                     <Column field="August" header="Aug22"  />
                     <Column field="September" header="Sep22"   />
                     <Column field="October" header="Oct22"  />
+                    <Column field="" header=""  />
+                    
                     
                 </DataTable>
                 </div>

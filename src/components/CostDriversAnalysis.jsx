@@ -64,13 +64,14 @@ export const CostDriversAnalysis = () => {
 
   const sourceOption = [
     {
-      name: "IHS",
-      code: "123",
-    },
-    {
       name: "ICIS",
       code: "345",
     },
+    {
+      name: "IHS",
+      code: "123",
+    },
+   
   ];
   const seriesName = [
     {
@@ -488,12 +489,12 @@ export const CostDriversAnalysis = () => {
               style={{ width: "25em" }}
             />
             <Column field="Accuracy_var" header="Accuracy (%)" />
-            <Column field="first_month_accuracy" header="May22($)"></Column>
-            <Column field="second_month_accuracy" header="Jun22($)"></Column>
-            <Column field="third_month_accuracy" header="Jul22($)" />
-            <Column field="fourth_month_accuracy" header="Aug22($)" />
-            <Column field="fifth_month_accuracy" header="Sep22($)" />
-            <Column field="sixth_month_accuracy" header="Oct22($)" />
+            <Column field="first_month_accuracy" header="May22 ($)"></Column>
+            <Column field="second_month_accuracy" header="Jun22 ($)"></Column>
+            <Column field="third_month_accuracy" header="Jul22 ($)" />
+            <Column field="fourth_month_accuracy" header="Aug22 ($)" />
+            <Column field="fifth_month_accuracy" header="Sep22 ($)" />
+            <Column field="sixth_month_accuracy" header="Oct22 ($)" />
           </DataTable>
         </div>
        

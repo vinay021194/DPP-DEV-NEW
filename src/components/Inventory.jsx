@@ -153,7 +153,7 @@ import plantJsonData from "../data/plantData.json"
 const header4 = (
   <div className="table-header-container">
      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
-     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}>All values are in Tonnes</h10>
+     <h10 style={{ fontWeight:'lighter', fontFamily: "Poppins" }}> All values are in Tonnes</h10>
   </div>
 );
 const header5 = (
@@ -169,6 +169,9 @@ const header5 = (
              <AppTopbar onToggleMenu={onToggleMenu} />
             {/* <Toast ref={toast} /> */}
           <div className='layout-main'>
+          <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" ,display:'flex' ,justifyContent:'center',marginBottom:'20px'}}>
+              Data Overview
+            </h5>
              <div className="card">
                 <DataTable 
                 value={products.Sheet3}
@@ -224,7 +227,7 @@ const header5 = (
                     
                 </DataTable>
                 </div>
-                <div className='card'>
+                {/* <div className='card'>
                <DataTable 
                        value={plantData3000} 
                         dataKey="key"
@@ -239,7 +242,7 @@ const header5 = (
                         <Column field="month_5" header="Sep22" />
                         <Column field="month_6" header="Oct22"  />
                     </DataTable>
-                    </div>
+                    </div> */}
                 <div className='card'>
               <DataTable 
                    value={supplierObject} 

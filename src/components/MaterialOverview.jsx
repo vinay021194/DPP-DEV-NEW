@@ -112,7 +112,13 @@ export const MaterialOverview = (props) => {
   );
 
   const statusOrderBodyTemplate = (rowData) => {
-    return <span className={`product-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_plant}</span>;
+   return(
+<span
+        className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}
+      >
+        {rowData.status_level_plant}
+      </span>
+    ) ;
   };
   const statusBodyTemplate = (rowData) => {
     return(
@@ -134,6 +140,9 @@ export const MaterialOverview = (props) => {
   const rowClass = (rowData) => {
     return {
         'row-accessories': rowData.material !== "700047"
+        
+         
+        
         // 'row-accessories': rowData.material === "789045"
         // 'row-accessories': rowData.material === "600234",
         // 'row-accessories': rowData.material === "645908	",
@@ -150,6 +159,7 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
+         // Disabled={rowData.material !=="700047"}
          
           //paginator
           rows={10}
@@ -164,8 +174,8 @@ export const MaterialOverview = (props) => {
             //
           ></Column>
 
-          <Column field="plant" header="ID"></Column>
-          <Column field="plant_name" header="Name"></Column>
+          <Column field="plant" header=" Plant ID"></Column>
+          <Column field="plant_name" header="Plant Name"></Column>
           <Column field="status_level_plant" header="Status" body={statusOrderBodyTemplate}></Column>
         </DataTable>
       </div>
@@ -216,15 +226,18 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
-            rowClassName={rowClass} 
+           // rowClassName={rowClass} 
             //paginator
             rows={10}
             // rowsPerPageOptions={[5, 10, 25]}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
+            //Disabled={rowData.material !=='700047'}
           >
             <Column expander style={{ width: "3em" }} />
-            <Column field="material" header="ID" ></Column>
+            <Column field="material" header="ID"
+             //Disabled={'material' !=='700047'} 
+             ></Column>
             <Column
               field="material_description_1"
               header="Name"

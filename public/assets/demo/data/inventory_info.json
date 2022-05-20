@@ -16,24 +16,7 @@
             "on_route_curr_mon": "0",
             "status_level_plant": "Sufficient for the next 1 months",
             "status_level_material": "Urgent",
-            "status_level_inventory": "55% above safety stock",
-            "average-value":"19.8T"
-        },
-        {
-            "material": "700047",
-            "plant": "3000",
-            "plant_name": "Kansas",
-            "opening_stock": "65",
-            "openning_stock_uom": "TO",
-            "safety_stock": "42",
-            "warehouse_capacity": "120",
-            "safety_warehouse_uom": "TO",
-            "overall_incoming_quantity": "0",
-            "on_route_curr_mon": "0",
-            "status_level_plant": "Sufficient for the next 2 months",
-            "status_level_material": "Urgent",
-            "status_level_inventory": "55% above safety stock",
-            "average-value":"10.2T"
+            "status_level_inventory": "55% above safety stock"
         }
     ]
 }

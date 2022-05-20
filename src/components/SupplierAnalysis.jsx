@@ -122,34 +122,24 @@ export class SupplierAnalysis extends Component {
     this.supplierFormulaData = 
     [
       {
-        supplier_name: "A",
-        formulae:
-          "1.2 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 140",
-        capacity: 1000,
-        lead_time_months: 1,
+          "supplier_name": "A",
+          "formulae": "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
+          "capacity": "1000",
+          "lead_time_months": "1"
       },
       {
-        supplier_name: "B",
-        formulae:
-          "1.19 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 150",
-        capacity: 980,
-        lead_time_months: 2,
+          "supplier_name": "B",
+          "formulae": "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
+          "capacity": "980",
+          "lead_time_months": "2"
       },
       {
-        supplier_name: "C",
-        formulae:
-          "1.3 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
-        capacity: 1200,
-        lead_time_months: 2,
-      },
-      {
-        supplier_name: "D",
-        formulae:
-          "1.4 * [Polyethylene (US)-HDPE Bulk Contract DEL US Monthly] + 1.2 * [Polypropylene (US)-Copolymer Film Contract US Monthly] + 100",
-        capacity: 1500,
-        lead_time_months: 1,
-      },
-    ];
+          "supplier_name": "C",
+          "formulae": "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
+          "capacity": "1200",
+          "lead_time_months": "3"
+      }
+  ];
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};

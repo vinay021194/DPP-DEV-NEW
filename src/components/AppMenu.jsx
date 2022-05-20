@@ -155,12 +155,12 @@ const onMaterialChange = (e) => {
 }
   return (
     <div className="layout-menu-container">
-      <div style={{marginLeft:'50px', fontSize:'25px' ,fontFamily:'Poppins', color:'lightgray'}} >
+      <div style={{marginLeft:'50px', fontSize:'20px' ,fontFamily:'Poppins', color:'lightgray'}} >
       <span>Filter By</span>
       </div>
       <hr/>
       <div style={{marginLeft:'25px' ,fontFamily:'Poppins'}}>
-        <strong>Material status</strong>
+        <strong>Material Status</strong>
         </div>
  <div className="gridcheck">
     <Checkbox inputId="cb1" 
@@ -204,15 +204,17 @@ const onMaterialChange = (e) => {
     value={selectedCities1} options={city} 
     onChange={onMaterialChange} optionLabel="name"
     placeholder="Select ID" 
-    maxSelectedLabels={5}  />
+    maxSelectedLabels={5} 
+    sorted
+     />
   </div>
-  <hr/>
+  {/* <hr/>
   <div style={{marginLeft:'25px',fontFamily:'Poppins'}}>
         <strong>Plant ID</strong>
-        </div>
-  <div className="gridcol">
+        </div> */}
+  {/* <div className="gridcol">
 <MultiSelect value={selectedState1} options={state} onChange={(e) => setSelectedState1(e.value)} optionLabel="name" placeholder="Select ID" maxSelectedLabels={5} />
-  </div>
+  </div> */}
   
   {/* <div style={{marginLeft:'25px',fontFamily:'Sans-serif'}}>
         <strong>Tags</strong>
