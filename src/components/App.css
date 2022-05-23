@@ -1272,7 +1272,11 @@ div.layout-wrapper {
   
 } */
 .row-p-datatable .p-datatable-thead > tr > th{
-  background-color: rgb(168, 202, 233) !important;
+  background-color: rgb(233, 168, 182) !important;
+  
+}
+.rows-p-datatable .p-datatable-thead > tr > th{
+  background-color: rgba(168, 202, 233, 0.836) !important;
   
 }
 

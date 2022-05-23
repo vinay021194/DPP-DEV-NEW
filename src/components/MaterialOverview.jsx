@@ -159,10 +159,10 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
-          className="row-p-datatable .p-datatable-thead > tr > th"
+         
           
          // Disabled={rowData.material !=="700047"}
-         
+         className="row-p-datatable .p-datatable-thead > tr > th"
           //paginator
           rows={10}
           // rowsPerPageOptions={[5, 10, 25]}
@@ -225,7 +225,8 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
-            className='rowexpanded'
+            className="rows-p-datatable .p-datatable-thead > tr > th"
+           
            // rowClassName={rowClass} 
             //paginator
             rows={10}
