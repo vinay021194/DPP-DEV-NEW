@@ -159,6 +159,8 @@ export const MaterialOverview = (props) => {
           selection={selectedPlant}
           onSelectionChange={(e) => setSelectedPlant(e.value)}
           dataKey="plant"
+          className="row-p-datatable .p-datatable-thead > tr > th"
+          
          // Disabled={rowData.material !=="700047"}
          
           //paginator
@@ -223,6 +225,7 @@ export const MaterialOverview = (props) => {
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
+            className='rowexpanded'
            // rowClassName={rowClass} 
             //paginator
             rows={10}

@@ -1266,3 +1266,14 @@ div.layout-wrapper {
   justify-content: space-between; */
   min-height: 0vh;
 }
+/* .rowexpanded{
+  background-color: red !important;
+  
+  
+} */
+.row-p-datatable .p-datatable-thead > tr > th{
+  background-color: rgb(168, 202, 233) !important;
+  
+}
+
+

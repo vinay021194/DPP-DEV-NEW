@@ -8,11 +8,10 @@ body {
 code {
   font-family: 'poppins';
 }
-.p-datatable .p-datatable-thead > tr > th{
-  /* background-color:  white !important; */
+/* .p-datatable .p-datatable-thead > tr > th{
   color: #6b6a6a;
   border-color: 2px  white !important
-}
+} */
 .p-datatable .p-datatable-header {
   background-color: white!important;
     color: #495057;
@@ -96,3 +95,5 @@ code {
 .productsss-badge.status-sufficient{
   background-color: rgb(41, 241, 164);
 }
+
+
