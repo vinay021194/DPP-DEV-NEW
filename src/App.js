@@ -16,12 +16,12 @@ import "./layout/flags/flags.css";
 import "./layout/layout.scss";
 import "./App.scss";
 
-import {MaterialOverview} from "./components/MaterialOverview";
-import {Materialdatachart} from "./components/Materialdatachart";
-import {CostDriversAnalysis} from "./components/CostDriversAnalysis";
+import { MaterialOverview } from "./components/MaterialOverview";
+import { Materialdatachart } from "./components/Materialdatachart";
+import { CostDriversAnalysis } from "./components/CostDriversAnalysis";
 import { LoginPage } from "./components/LoginPage";
 import { Orderingplant } from "./components/Orderingplant";
-import { Inventory } from "./components/Inventory"
+import { Inventory } from "./components/Inventory";
 import { SupplierAnalysis } from "./components/SupplierAnalysis";
 
 const App = () => {
@@ -99,7 +99,7 @@ const App = () => {
   // };
 
   return (
-    <div >
+    <div>
       {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
 
       {/* <CSSTransition
@@ -138,20 +138,39 @@ const App = () => {
 
       <div className="">
         {/* <Router > */}
-        <Route path="/MaterialOverview" exact component={MaterialOverview} />
-        <Route path="/Materialdatachart" exact component={Materialdatachart} />
-        <Route path="/CostDriversAnalysis" exact component={CostDriversAnalysis} />
+        {/* <Route path="/MaterialOverview" exact component={MaterialOverview} /> */}
+        <Route
+          path="/MaterialOverview"
+          exact
+          render={(props) => <MaterialOverview {...props} />}
+        />
+        <Route
+          path="/Materialdatachart"
+          exact
+          render={(props) => <Materialdatachart {...props} />}
+        />
+        <Route
+          path="/CostDriversAnalysis"
+          exact
+          render={(props) => <CostDriversAnalysis {...props} />}
+        />
         <Route path="/" exact component={LoginPage} />
-        <Route path="/Orderingplant" exact component={Orderingplant} />
-        <Route path="/Inventory" exact component={Inventory} />
-        <Route path="/SupplierAnalysis" exact component={SupplierAnalysis} />
-        
-        
-        {/* </Router> */}
-
+        <Route
+          path="/Orderingplant"
+          exact
+          render={(props) => <Orderingplant {...props} />}
+        />
+        <Route
+          path="/Inventory"
+          exact
+          render={(props) => <Inventory {...props} />}
+        />
+        <Route
+          path="/SupplierAnalysis"
+          exact
+          render={(props) => <SupplierAnalysis {...props} />}
+        />
       </div>
-      
-
     </div>
   );
 };

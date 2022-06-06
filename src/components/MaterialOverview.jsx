@@ -9,7 +9,8 @@ import "./App.css";
 import { AppMenu } from "../components/AppMenu";
 import { AppTopbar } from "../components/AppTopbar";
 import { CSSTransition } from "react-transition-group";
-import { Dropdown } from "primereact/dropdown";
+// import { Dropdown } from "primereact/dropdown";
+// import { Redirect } from "react-router-dom";
 
 export const MaterialOverview = (props) => {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,11 @@ export const MaterialOverview = (props) => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState(null);
   let menuClick = false;
+
+  const rowAccessories = {
+    background: "#f3f3f3",
+    opacity: "1",
+  };
 
   useEffect(() => {
     if (isMounted.current) {
@@ -70,13 +76,18 @@ export const MaterialOverview = (props) => {
 
   const sidebar = useRef();
   const history = useHistory();
-  const logo = layoutColorMode === "dark" ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
+  const logo =
+    layoutColorMode === "dark"
+      ? "assets/layout/images/logo-white.svg"
+      : "assets/layout/images/logo.svg";
 
   const wrapperClass = classNames("layout-wrapper", {
     "layout-overlay": layoutMode === "overlay",
     "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
+    "layout-static-sidebar-inactive":
+      staticMenuInactive && layoutMode === "static",
+    "layout-overlay-sidebar-active":
+      overlayMenuActive && layoutMode === "overlay",
     "layout-mobile-sidebar-active": mobileMenuActive,
     // "p-input-filled": inputStyle === "filled",
     // "p-ripple-disabled": ripple === false,
@@ -107,48 +118,54 @@ export const MaterialOverview = (props) => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins", display: "flex", justifyContent: "center" }}>Material Overview</h5>
+      <h5
+        style={{
+          fontWeight: "bolder",
+          fontFamily: "Poppins",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Material Overview
+      </h5>
     </div>
   );
 
   const statusOrderBodyTemplate = (rowData) => {
-   return(
-<span
+    return (
+      <span
         className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}
       >
         {rowData.status_level_plant}
       </span>
-    ) ;
+    );
   };
   const statusBodyTemplate = (rowData) => {
-    return(
-<span
+    return (
+      <span
         className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}
       >
         {rowData.status_level_material}
       </span>
-    ) ;
-    
-};
+    );
+  };
 
   const next = () => {
-    // console.log("selectedPlant====>", selectedPlant);
     props.history.push("/Materialdatachart", {
       selectedPlant: selectedPlant,
     });
   };
-  const rowClass = (rowData) => {
+
+  const rowClass = (data) => {
     return {
-        'row-accessories': rowData.material !== "700047"
-        
-         
-        
-        // 'row-accessories': rowData.material === "789045"
-        // 'row-accessories': rowData.material === "600234",
-        // 'row-accessories': rowData.material === "645908	",
-        // 'row-accessories': rowData.material === "768971"
-    }
-}
+      "row-accessories": true,
+    };
+  };
+
+  const handlePlantSelect = (e) => {
+    console.log("handlePlantSelect==>", e, selectedPlant);
+    setSelectedPlant(e.value);
+  };
 
   const rowExpansionTemplate = (data) => {
     return (
@@ -156,29 +173,31 @@ export const MaterialOverview = (props) => {
         <DataTable
           value={data.expend}
           responsiveLayout="scroll"
-          selection={selectedPlant}
-          onSelectionChange={(e) => setSelectedPlant(e.value)}
-          dataKey="plant"
-         
-          
-         // Disabled={rowData.material !=="700047"}
-         className="row-p-datatable .p-datatable-thead > tr > th"
-          //paginator
+          selection={
+            selectedPlant &&
+            selectedPlant.filter((ele) => ele.material === "768971")
+          }
+          onSelectionChange={(e) => handlePlantSelect(e)}
+          dataKey="Key"
+          rowClassName={rowClass}
+          className="row-p-datatable .p-datatable-thead > tr > th"
           rows={10}
-          // rowsPerPageOptions={[5, 10, 25]}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate=" {first} to {last} of {totalRecords}"
+          selectionMode="multiple"
         >
           <Column
             selectionMode="multiple"
-            // field="focus"
-            // header="Focus"
-            //
-          ></Column>
-
-          <Column field="plant" header=" Plant ID"></Column>
-          <Column field="plant_name" header="Plant Name"></Column>
-          <Column field="status_level_plant" header="Status" body={statusOrderBodyTemplate}></Column>
+            field="material"
+            dataKey="material"
+          />
+          <Column field="plant" header="Plant ID" />
+          <Column field="plant_name" header="Plant Name" />
+          <Column
+            field="status_level_plant"
+            header="Status"
+            body={statusOrderBodyTemplate}
+          />
         </DataTable>
       </div>
     );
@@ -199,13 +218,12 @@ export const MaterialOverview = (props) => {
         setproductsFiltered(products);
       }
     } else {
-
       if (filters.length > 0) {
         let filteredData = products.filter((data) => {
           //console.log("data====>",data)
           return filters.includes(data.status_level_material);
         });
-        console.log("filteredData===>", filteredData);
+        // console.log("filteredData===>", filteredData);
         setproductsFiltered(filteredData);
       } else {
         setproductsFiltered(products);
@@ -223,11 +241,10 @@ export const MaterialOverview = (props) => {
             onRowToggle={(e) => setExpandedRows(e.data)}
             responsiveLayout="scroll"
             rowExpansionTemplate={rowExpansionTemplate}
-            dataKey=""
+            dataKey="material"
             header={header}
             className="rows-p-datatable .p-datatable-thead > tr > th"
-           
-           // rowClassName={rowClass} 
+            // rowClassName={rowClass}
             //paginator
             rows={10}
             // rowsPerPageOptions={[5, 10, 25]}
@@ -236,25 +253,42 @@ export const MaterialOverview = (props) => {
             //Disabled={rowData.material !=='700047'}
           >
             <Column expander style={{ width: "3em" }} />
-            <Column field="material" header="ID"
-             //Disabled={'material' !=='700047'} 
-             ></Column>
             <Column
-              field="material_description_1"
-              header="Name"
+              field="material"
+              header="ID"
+              //Disabled={'material' !=='700047'}
             ></Column>
-            <Column field="inventory_material_level" header="Inventory"  />
-            <Column field="status_level_material" header="Status"  body={statusBodyTemplate}/>
+            <Column field="material_description_1" header="Name"></Column>
+            <Column field="inventory_material_level" header="Inventory" />
+            <Column
+              field="status_level_material"
+              header="Status"
+              body={statusBodyTemplate}
+            />
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/Materialdatachart">
-            <Button className="nextbutton" label="Next " style={{ margin: "3px 15px" }} onClick={next} />
-          </Link>
+          {/* <Link to="/Materialdatachart"> */}
+          <Button
+            className="nextbutton"
+            label="Next "
+            style={{ margin: "3px 15px" }}
+            onClick={next}
+          />
+          {/* </Link> */}
         </div>
       </div>
-      <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
-        <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
+      <CSSTransition
+        classNames="layout-sidebar"
+        timeout={{ enter: 200, exit: 200 }}
+        in={isSidebarVisible()}
+        unmountOnExit
+      >
+        <div
+          ref={sidebar}
+          className={sidebarClassName}
+          onClick={onSidebarClick}
+        >
           <div
             className="layout-logo"
             style={{
@@ -271,7 +305,9 @@ export const MaterialOverview = (props) => {
               }}
             />
           </div>
-          <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
+          <AppMenu
+            handlefilter={(filters, types) => handlefilter(filters, types)}
+          />
         </div>
       </CSSTransition>
     </div>

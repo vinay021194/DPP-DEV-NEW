@@ -43,7 +43,7 @@ export class SupplierAnalysis extends Component {
       seriesName: this.props.location.state
         ? this.props.location.state.seriesName
         : [],
-      plant:   { name: "2000", code: "2000" },
+      plant: { name: "2000", code: "2000" },
       products: this.props.location.state
         ? this.props.location.state.products
         : [],
@@ -62,11 +62,10 @@ export class SupplierAnalysis extends Component {
       HistoricalChartData: [],
       ForecastedData: [],
       supplierDetails: [],
-      value:{name: 'Global', code: 'Global'}
+      value: { name: "Global", code: "Global" },
     };
 
-      
-      this.values = [{name: 'Global', code: 'Global'}]
+    this.values = [{ name: "Global", code: "Global" }];
 
     this.cities = [
       {
@@ -119,27 +118,29 @@ export class SupplierAnalysis extends Component {
       },
     ];
 
-    this.supplierFormulaData = 
-    [
+    this.supplierFormulaData = [
       {
-          "supplier_name": "A",
-          "formulae": "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
-          "capacity": "1000",
-          "lead_time_months": "1"
+        supplier_name: "A",
+        formulae:
+          "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
+        capacity: "1000",
+        lead_time_months: "1",
       },
       {
-          "supplier_name": "B",
-          "formulae": "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
-          "capacity": "980",
-          "lead_time_months": "2"
+        supplier_name: "B",
+        formulae:
+          "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
+        capacity: "980",
+        lead_time_months: "2",
       },
       {
-          "supplier_name": "C",
-          "formulae": "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
-          "capacity": "1200",
-          "lead_time_months": "3"
-      }
-  ];
+        supplier_name: "C",
+        formulae:
+          "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
+        capacity: "1200",
+        lead_time_months: "3",
+      },
+    ];
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
@@ -205,7 +206,7 @@ export class SupplierAnalysis extends Component {
       return this.setState({ materialInfo: data });
     });
 
-    this.onPlantChange2(this.state.plant)
+    this.onPlantChange2(this.state.plant);
   }
 
   Onsave = () => {
@@ -229,23 +230,16 @@ export class SupplierAnalysis extends Component {
   };
 
   optimize = () => {
-  //  console.log("this.supplierDetails====>",window.supplierObject
-  //  )
+    //  console.log("this.supplierDetails====>",window.supplierObject
+    //  )
     this.props.history.push("/Inventory", {
-      supplierDetails:
-       window.supplierObject,
+      supplierDetails: window.supplierObject,
     });
   };
 
-  
-
-
-
-
-
   onPlantChange2 = (plantValue) => {
     this.setState(
-      { plant: plantValue}
+      { plant: plantValue }
       //console.log("e in onPlantChange", e)
     );
 
@@ -259,7 +253,7 @@ export class SupplierAnalysis extends Component {
         const filterByPlantData = resData.filter(
           (el) => el.plant === plant.name
         );
-       // console.log("filterByPlantData===>", filterByPlantData);
+        // console.log("filterByPlantData===>", filterByPlantData);
         const unitPriceUSD = filterByPlantData.map((el) => {
           let date = el.posting_date
             .split("/") // 3/23/04  ===>
@@ -285,10 +279,6 @@ export class SupplierAnalysis extends Component {
         return this.setState({ HistoricalChartData: chartData });
       });
   };
-  
-
-
-
 
   onPlantChange = (e) => {
     this.setState(
@@ -306,7 +296,7 @@ export class SupplierAnalysis extends Component {
         const filterByPlantData = resData.filter(
           (el) => el.plant === plant.name
         );
-       // console.log("filterByPlantData===>", filterByPlantData);
+        // console.log("filterByPlantData===>", filterByPlantData);
         const unitPriceUSD = filterByPlantData.map((el) => {
           let date = el.posting_date
             .split("/") // 3/23/04  ===>
@@ -1063,7 +1053,14 @@ export class SupplierAnalysis extends Component {
     };
     const header2 = (
       <div className="table-header-container">
-        <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , display:'flex',justifyContent:'left'}}>
+        <h5
+          style={{
+            fontWeight: "bolder",
+            fontFamily: "Poppins",
+            display: "flex",
+            justifyContent: "left",
+          }}
+        >
           Enter Supplier Information{" "}
         </h5>
       </div>
@@ -1073,9 +1070,17 @@ export class SupplierAnalysis extends Component {
       <div>
         <AppTopbar onToggleMenu={"onToggleMenu"} />
         <div className="layout-main">
-        <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" ,display:'flex' ,justifyContent:'center',marginBottom:'20px'}}>
-              Supplier Analysis
-            </h5>
+          <h5
+            style={{
+              fontWeight: "bolder",
+              fontFamily: "poppins",
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "20px",
+            }}
+          >
+            Supplier Analysis
+          </h5>
           <div className="card ">
             <div
               className="row"
@@ -1092,8 +1097,8 @@ export class SupplierAnalysis extends Component {
                   value={this.state.products}
                   //paginator
                   rows={5}
-                 // rowsPerPageOptions={[5, 10, 20]}
-                 // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                  // rowsPerPageOptions={[5, 10, 20]}
+                  // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                   editMode="row"
                   dataKey="id"
                   onRowEditInit={this.onRowEditInit}
@@ -1160,7 +1165,13 @@ export class SupplierAnalysis extends Component {
             </div>
           </div>
           <div className="card">
-            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , margin:'15px'}}>
+            <h5
+              style={{
+                fontWeight: "bolder",
+                fontFamily: "Poppins",
+                margin: "15px",
+              }}
+            >
               Historical Unit Prices
             </h5>
             <div
@@ -1171,16 +1182,19 @@ export class SupplierAnalysis extends Component {
                 fontFamily: "Poppins",
               }}
             >
-              <label   style={{
+              <label
+                style={{
                   // width: "30%",
                   margin: "13px",
                   fontFamily: "Poppins",
                   fontWeight: "bold",
-                  color:'darkslategray'
-                }}>Plants</label>
+                  color: "darkslategray",
+                }}
+              >
+                Plants
+              </label>
               <Dropdown
-               
-                style={{ width: "20%", margin: "5px 10px"  }}
+                style={{ width: "20%", margin: "5px 10px" }}
                 value={this.state.plant}
                 options={this.plants}
                 onChange={(e) => this.onPlantChange(e)}
@@ -1188,18 +1202,21 @@ export class SupplierAnalysis extends Component {
                 placeholder="Choose Plants"
                 display="chip"
                 //defaultValue={this.plants[0]}
-        />
-                
-              
-             <label   style={{
+              />
+
+              <label
+                style={{
                   // width: "30%",
                   margin: "13px",
                   fontFamily: "Poppins",
                   fontWeight: "bold",
-                  color:'darkslategray'
-                }}>Supplier's Region</label>
+                  color: "darkslategray",
+                }}
+              >
+                Supplier's Region
+              </label>
               <Dropdown
-              className="p-dropdow"
+                className="p-dropdow"
                 style={{
                   width: "20%",
                   margin: "5px 10px",
@@ -1225,7 +1242,13 @@ export class SupplierAnalysis extends Component {
               />
             </div>
 
-            <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" , margin:'15px'}}>
+            <h5
+              style={{
+                fontWeight: "bolder",
+                fontFamily: "Poppins",
+                margin: "15px",
+              }}
+            >
               Forecasted Prices
             </h5>
             <div style={{ width: "100%" }}>
@@ -1361,7 +1384,7 @@ export class SupplierAnalysis extends Component {
                 style={{ marginRight: " 15px" }}
               />
             </Link>
-            <a href ="/Inventory">
+            <a href="/Inventory">
               <Button
                 className="nextbutton"
                 label="Next"

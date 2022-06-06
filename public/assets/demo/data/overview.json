@@ -1,7 +1,5 @@
 {
-    "data": 
-    [
-        {
+    "data": [{
             "material": "700047",
             "material_description_1": "Polyethylene",
             "material_type (SAP)": "ROH",
@@ -22,15 +20,15 @@
             "status_level_plant": "Urgent",
             "status_level_material": "Urgent",
             "inventory_material_level": "62",
-            "expend": [
-                {
-                "material": "700047",
-                "plant": "2000",
-                "plant_name": "Edison",
-                "status_level_plant": "Urgent"
-            }
-           
-        ]
+            "expend": [{
+                    "Key": "700047-2000",
+                    "material": "700047",
+                    "plant": "2000",
+                    "plant_name": "Edison",
+                    "status_level_plant": "Urgent"
+                }
+
+            ]
         },
         {
             "material": "768971",
@@ -53,25 +51,26 @@
             "status_level_plant": "Depleting fast",
             "status_level_material": "Depleting fast",
             "inventory_material_level": "110",
-            "expend": [
+            "expend": [{
+                    "Key": "768971-3000",
+                    "material": "768971",
+                    "plant": "3000",
+                    "plant_name": "Kansas City",
+                    "status_level_plant": "Depleting fast"
+                },
                 {
-                "material": "768971",
-                "plant": "3000",
-                "plant_name": "Kansas City",
-                "status_level_plant": "Depleting fast"
-            },
-            {
-                "material": "768971",
-                "plant": "3100",
-                "plant_name": "Topeka",
-                "status_level_plant": "Depleting fast"
-            }
-            
-           
-        ]
-            
+                    "Key": "768971-3001",
+                    "material": "768971",
+                    "plant": "3100",
+                    "plant_name": "Topeka",
+                    "status_level_plant": "Depleting fast"
+                }
+
+
+            ]
+
         },
-        
+
         {
             "material": "678456",
             "material_description_1": "CA-OX",
@@ -93,15 +92,15 @@
             "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
             "inventory_material_level": "100",
-            "expend": [
-                {
-                "material": "678456",
-                "plant": "4000",
-                "plant_name": "Tulsa",
-                "status_level_plant": "Sufficient"
-            }
-           
-        ]
+            "expend": [{
+                    "Key": "678456-4000",
+                    "material": "678456",
+                    "plant": "4000",
+                    "plant_name": "Tulsa",
+                    "status_level_plant": "Sufficient"
+                }
+
+            ]
         },
         {
             "material": "789045",
@@ -124,15 +123,15 @@
             "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
             "inventory_material_level": "110",
-            "expend": [
-                {
-                "material": "789045",
-                "plant": "2100",
-                "plant_name": "Nashville",
-                "status_level_plant": "Sufficient"
-            }
-           
-        ]
+            "expend": [{
+                    "Key": "789045-2100",
+                    "material": "789045",
+                    "plant": "2100",
+                    "plant_name": "Nashville",
+                    "status_level_plant": "Sufficient"
+                }
+
+            ]
         },
         {
             "material": "600234",
@@ -155,15 +154,15 @@
             "status_level_plant": "Sufficient",
             "status_level_material": "Sufficient",
             "inventory_material_level": "100",
-            "expend": [
-                {
-                "material": "600234",
-                "plant": "2100",
-                "plant_name": "Nashville",
-                "status_level_plant": "Sufficient"
-            }
-           
-        ]
+            "expend": [{
+                    "Key": "600234-2100",
+                    "material": "600234",
+                    "plant": "2100",
+                    "plant_name": "Nashville",
+                    "status_level_plant": "Sufficient"
+                }
+
+            ]
         }
     ]
 }

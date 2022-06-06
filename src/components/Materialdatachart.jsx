@@ -12,9 +12,9 @@ import HighchartsReact from "highcharts-react-official";
 import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
 import { Link } from "react-router-dom";
-import plantjsondata from "../data/inventory_info.json"
-import transportdata from "../data/transportdata.json"
-export const Materialdatachart = () => {
+import plantjsondata from "../data/inventory_info.json";
+import transportdata from "../data/transportdata.json";
+export const Materialdatachart = (props) => {
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
@@ -194,81 +194,75 @@ export const Materialdatachart = () => {
         expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
       //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
-    
-    
   }, [expandedRows]);
-  
 
-//   const rowClass = (data) => {
-//       let flag= false;
-//     if(data.keys === 'Projected Inventory'){
-//       console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
-//       if(parseInt(products2.Sheet3[0].safety_stock) <60){
-//         console.log("inside color",)
-//         // flag = true
-//         return(
-//           <span className={`productss-badge status-${50}`}>
-//         {data.Month1}
-        
-//       </span>
-//         )
-//       }
-//     }
-//     // return {
-//     //     'row-accessories': flag
-//     //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
-//     // }
-// }
-// const rowClasss = (data) => {
-//   let flag= false;
-// if(data.keys === 'Projected Inventory'){
-//   console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
-//   if(parseInt(products2.Sheet3[0].safety_stock) <60){
-//     console.log("inside color",)
-//     // flag = true
-//     return(
-//       <span className={`productss-badge status-${50}`}>
-//     {data.Month2}
-    
-//   </span>
-//     )
-//   }
-// }
-// // return {
-// //     'row-accessories': flag
-// //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
-// // }
-// }
+  //   const rowClass = (data) => {
+  //       let flag= false;
+  //     if(data.keys === 'Projected Inventory'){
+  //       console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
+  //       if(parseInt(products2.Sheet3[0].safety_stock) <60){
+  //         console.log("inside color",)
+  //         // flag = true
+  //         return(
+  //           <span className={`productss-badge status-${50}`}>
+  //         {data.Month1}
 
- 
+  //       </span>
+  //         )
+  //       }
+  //     }
+  //     // return {
+  //     //     'row-accessories': flag
+  //     //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
+  //     // }
+  // }
+  // const rowClasss = (data) => {
+  //   let flag= false;
+  // if(data.keys === 'Projected Inventory'){
+  //   console.log("data=====>",parseInt(products2.Sheet3[0].safety_stock) )
+  //   if(parseInt(products2.Sheet3[0].safety_stock) <60){
+  //     console.log("inside color",)
+  //     // flag = true
+  //     return(
+  //       <span className={`productss-badge status-${50}`}>
+  //     {data.Month2}
+
+  //   </span>
+  //     )
+  //   }
+  // }
+  // // return {
+  // //     'row-accessories': flag
+  // //      //data.keys === 'Projected Inventory' && products2.Sheet3[0].safety_stock < 50
+  // // }
+  // }
+
   useEffect(() => {
     isMounted.current = true;
     productService.getMaterialInfo().then((data) => setProducts(data));
     setdemandInfoRegressionSummaryTable(demantData.Sheet1);
-    productService
-      .gettransposedData()
-      .then((data) =>{
-        let TransposedColorData = data.Sheet.map((ele)=>{
-          return{
-            id:ele.id,
-            key_mp: ele.key_mp,
-            keys: ele.keys,
-            Month1:ele.Month1 ,
-            Month2: ele.Month2,
-            Month3:ele.Month3 ,
-            Month4: ele.Month4,
-            Month5: ele.Month5,
-            Month6: ele.Month6,
-            Month7:ele.Month7 ,
-            Month8:ele.Month8 ,
-            Month9:ele.Month9 ,
-            Month10:ele.Month10,
-            Month11:ele.Month11,
-            Month12:ele.Month12 
-          }
-        })
-        setTransposedColorData(TransposedColorData);
-      })
+    productService.gettransposedData().then((data) => {
+      let TransposedColorData = data.Sheet.map((ele) => {
+        return {
+          id: ele.id,
+          key_mp: ele.key_mp,
+          keys: ele.keys,
+          Month1: ele.Month1,
+          Month2: ele.Month2,
+          Month3: ele.Month3,
+          Month4: ele.Month4,
+          Month5: ele.Month5,
+          Month6: ele.Month6,
+          Month7: ele.Month7,
+          Month8: ele.Month8,
+          Month9: ele.Month9,
+          Month10: ele.Month10,
+          Month11: ele.Month11,
+          Month12: ele.Month12,
+        };
+      });
+      setTransposedColorData(TransposedColorData);
+    });
   }, []);
 
   useEffect(() => {
@@ -277,11 +271,10 @@ export const Materialdatachart = () => {
   }, []);
 
   useEffect(() => {
-     onsubmit();
+    onsubmit();
     isMounted.current = true;
     productService.getMaterial().then((data) => setProducts3(data));
   }, []);
-
 
   const onPlantChange = (e) => {
     setPlants(e.value);
@@ -289,8 +282,8 @@ export const Materialdatachart = () => {
 
   const onsubmit = () => {
     setIsSubmited(true);
-    console.log("demandInfoRegressionSummaryTable===>",demantData.Sheet1)
-    let proudctdata= plantjsondata;
+    console.log("demandInfoRegressionSummaryTable===>", demantData.Sheet1);
+    let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);
       let milliseconds = date.getTime();
@@ -313,33 +306,31 @@ export const Materialdatachart = () => {
     let exampleData = Plants.map((sr) =>
       convertedData.filter((el) => el.plant === sr)
     );
-    console.log("transportdata====>",transportdata)
-    let tdata =  transportdata.data.Sheet.map((ele)=>{
-      return{
-        id:ele.id,
+    console.log("transportdata====>", transportdata);
+    let tdata = transportdata.data.Sheet.map((ele) => {
+      return {
+        id: ele.id,
         key_mp: ele.key_mp,
         keys: ele.keys,
-        Month1:ele.Month1 ,
+        Month1: ele.Month1,
         Month2: ele.Month2,
-        Month3:ele.Month3 ,
+        Month3: ele.Month3,
         Month4: ele.Month4,
         Month5: ele.Month5,
         Month6: ele.Month6,
-        Month7:ele.Month7 ,
-        Month8:ele.Month8 ,
-        Month9:ele.Month9 ,
-        Month10:ele.Month10,
-        Month11:ele.Month11,
-        Month12:ele.Month12 
-      }
-    })
+        Month7: ele.Month7,
+        Month8: ele.Month8,
+        Month9: ele.Month9,
+        Month10: ele.Month10,
+        Month11: ele.Month11,
+        Month12: ele.Month12,
+      };
+    });
     let filterData = Plants.map((sr) =>
-    tdata.filter((el) => el.key_mp.includes(sr))
+      tdata.filter((el) => el.key_mp.includes(sr))
     );
-    console.log("filterData==>",filterData)
-    console.log("transposedColorData==>",transposedColorData)
-
-
+    console.log("filterData==>", filterData);
+    console.log("transposedColorData==>", transposedColorData);
 
     const chartData1 = Plants.map((sr, i) => {
       return {
@@ -348,7 +339,7 @@ export const Materialdatachart = () => {
       };
     });
     let filterYearlyData = Plants.map((sr) =>
-    proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr))
+      proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr))
     );
 
     filterData = [].concat(...filterData);
@@ -388,23 +379,35 @@ export const Materialdatachart = () => {
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins", display:'flex', justifyContent:'left' }}>
-        Material 
+      <h5
+        style={{
+          fontWeight: "bolder",
+          fontFamily: "poppins",
+          display: "flex",
+          justifyContent: "left",
+        }}
+      >
+        Material
       </h5>
     </div>
   );
   const headers = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>Quantities are in Tonnes</h10>
-      
+      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>
+        Quantities are in Tonnes
+      </h10>
     </div>
   );
   const headers2 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory Status In Future (Without Buyer Action)</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}> All values are in Tonnes</h10>
-      
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
+        Inventory Status In Future (Without Buyer Action)
+      </h5>
+      <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>
+        {" "}
+        All values are in Tonnes
+      </h10>
     </div>
   );
   const statusOrderBodyTemplate = (rowData) => {
@@ -419,11 +422,11 @@ export const Materialdatachart = () => {
       <div className="orders-subtable">
         {/* <h5>Orders for {data.name}</h5> */}
         <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
-          <Column field="id" header="Plant Id(Name)" ></Column>
-          <Column field="name" header="Safety Stock" ></Column>
-          <Column field="inventory" header="Inventory" ></Column>
-          <Column field="status" header="WareHouse Capacity" ></Column>
-          <Column field="status" header="Status" ></Column>
+          <Column field="id" header="Plant Id(Name)"></Column>
+          <Column field="name" header="Safety Stock"></Column>
+          <Column field="inventory" header="Inventory"></Column>
+          <Column field="status" header="WareHouse Capacity"></Column>
+          <Column field="status" header="Status"></Column>
           {/* <Column field="" header="" body={statusOrderBodyTemplate} ></Column> */}
         </DataTable>
       </div>
@@ -432,16 +435,24 @@ export const Materialdatachart = () => {
 
   return (
     <div>
+      {console.log("selectedPlant inside props====>", props)}
       <AppTopbar onToggleMenu={onToggleMenu} />
-      
+
       <div className="layout-main">
-      <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins", display:'flex', justifyContent:'center',marginBottom:'20px'}}>
-        Demand Prediction
-      </h5>
-    </div>
+        <div className="table-header-container">
+          <h5
+            style={{
+              fontWeight: "bolder",
+              fontFamily: "poppins",
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "20px",
+            }}
+          >
+            Demand Prediction
+          </h5>
+        </div>
         <div className="card">
-          
           <DataTable
             value={products3.Sheet3}
             // expandedRows={expandedRows}
@@ -455,26 +466,20 @@ export const Materialdatachart = () => {
             rows={1}
           >
             <Column style={{ width: "3em" }} />
-            <Column field="material" header="ID" ></Column>
+            <Column field="material" header="ID"></Column>
             {/* <Column field="Discription" header="Discription"  ></Column> */}
-            <Column
-              field="base_unit_of_measure (UOM)"
-              header="UOM"
-              
-            ></Column>
-            <Column field="aliases" header="Aliases"  />
+            <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
+            <Column field="aliases" header="Aliases" />
             {/* <Column field="Criticality" header="Criticality"   /> */}
-            <Column field="material_type (SAP)" header="SAP"  />
+            <Column field="material_type (SAP)" header="SAP" />
             <Column
               field="material_group (organisation)"
               header="Organization"
-              
             />
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
         </div>
         <div className="card">
-          
           <DataTable
             value={products2.Sheet3}
             //  expandedRows={expandedRows}
@@ -500,7 +505,6 @@ export const Materialdatachart = () => {
           </DataTable>
         </div>
         <div className="card">
-        
           <MultiSelect
             style={{ width: "40%", margin: "5px 10px" }}
             value={Plants}
@@ -512,7 +516,7 @@ export const Materialdatachart = () => {
           />
           <strong>From Year</strong>
           <Calendar
-          className="p-dropdow"
+            className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
@@ -520,8 +524,6 @@ export const Materialdatachart = () => {
             placeholder="01-01-2018"
             onChange={(e) => setDate1(e.value)}
             disabled
-            
-            
           />
           <strong>To Year</strong>
           <Calendar
@@ -541,51 +543,51 @@ export const Materialdatachart = () => {
             onClick={onsubmit}
           />
           <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins",margin:"20px" }}>
-      Material Consumption at Plant(s)
-      </h5>
-    </div>
+            <h5
+              style={{
+                fontWeight: "bolder",
+                fontFamily: "poppins",
+                margin: "20px",
+              }}
+            >
+              Material Consumption at Plant(s)
+            </h5>
+          </div>
           <div>
             <HighchartsReact highcharts={Highcharts} options={chart3} />
           </div>
-           
-            <>
-              <div className="">
-                <h5
-                  style={{
-                    fontWeight: "bolder",
-                    fontFamily: "poppins",
-                    display: "flex",
-                    justifyContent: "left",
-                    margin:'20px'
 
-                    
-                  }}
-                >
-                  Average Yearly Consumption
-                </h5>
-              </div>
-              <DataTable
+          <>
+            <div className="">
+              <h5
                 style={{
-                  width: "30%",
+                  fontWeight: "bolder",
+                  fontFamily: "poppins",
                   display: "flex",
                   justifyContent: "left",
-                  
-                  
+                  margin: "20px",
                 }}
-                value={averageYearlyConsumption} //products2.Sheet3
-                dataKey="id"
-                rows={2}
               >
-                <Column field="plant" header=""></Column>
-                <Column field="averagedata" header="" showGridlines></Column>
-              </DataTable>
-            </>
-          
+                Average Yearly Consumption
+              </h5>
+            </div>
+            <DataTable
+              style={{
+                width: "30%",
+                display: "flex",
+                justifyContent: "left",
+              }}
+              value={averageYearlyConsumption} //products2.Sheet3
+              dataKey="id"
+              rows={2}
+            >
+              <Column field="plant" header=""></Column>
+              <Column field="averagedata" header="" showGridlines></Column>
+            </DataTable>
+          </>
         </div>
         {isSubmited && (
           <div className="card">
-            
             <DataTable
               value={filteredTransposedData}
               //paginator
@@ -599,7 +601,7 @@ export const Materialdatachart = () => {
               sortOrder={1}
               responsiveLayout="scroll"
               header={headers2}
-             // rowClassName={rowClass}
+              // rowClassName={rowClass}
               //style={{ color: getColor(filteredTransposedData) }}
             >
               {/* <Column expander style={{ width: '3em' }} /> */}
