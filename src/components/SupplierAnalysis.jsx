@@ -2,41 +2,23 @@ import React, { Component } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
-// <<<<<<< HEAD
-// import { Button } from "primereact/button";
-// import { Dropdown } from "primereact/dropdown";
-// import { Dialog } from "primereact/dialog";
-// import { InputNumber } from "primereact/inputnumber";
-// import { InputText } from "primereact/inputtext";
-// import classNames from "classnames";
-// import Highcharts from "highcharts";
-// =======
 import { AutoComplete } from "primereact/autocomplete";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
 import { Toolbar } from "primereact/toolbar";
-//import { InputTextarea } from 'primereact/inputtextarea';
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
-// import { classNames } from "primereact/utils";
 import classNames from "classnames";
 import Highcharts, { color, Globals } from "highcharts";
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json";
 import { AppTopbar } from "../components/AppTopbar";
 import { Link } from "react-router-dom";
-// <<<<<<< HEAD
-// import ProcService from "../services/ProcService";
-// import { ProductService } from "../services/ProductService";
-
-// =======
 import { MultiSelect } from "primereact/multiselect";
-// import { Dropdown } from 'primereact/dropdown';
 import ProcService from "../services/ProcService";
 import { ProductService } from "../services/ProductService";
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
+
 export class SupplierAnalysis extends Component {
   emptyProduct = {
     id: null,
@@ -53,23 +35,11 @@ export class SupplierAnalysis extends Component {
     this.state = {
       materialCostDriverOutput: [],
       materialInfo: [],
-// <<<<<<< HEAD
       costDriver: this.props.location.state ? this.props.location.state.costDriver : null,
       seriesName: this.props.location.state ? this.props.location.state.seriesName : [],
       plant: { name: "2000", code: "2000" },
       products: this.props.location.state ? this.props.location.state.products : [],
-// =======
-//       costDriver: this.props.location.state
-//         ? this.props.location.state.costDriver
-//         : null,
-//       seriesName: this.props.location.state
-//         ? this.props.location.state.seriesName
-//         : [],
-//       plant: { name: "2000", code: "2000" },
-//       products: this.props.location.state
-//         ? this.props.location.state.products
-//         : [],
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
+
       countries: [],
       product: this.emptyProduct,
       productDialog: false,
@@ -144,51 +114,25 @@ export class SupplierAnalysis extends Component {
     this.supplierFormulaData = [
       {
         supplier_name: "A",
-        formulae:
-          "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
+        formulae: "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
         capacity: "1000",
         lead_time_months: "1",
       },
       {
         supplier_name: "B",
 
-        formulae:
-          "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
+        formulae: "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
         capacity: "980",
         lead_time_months: "2",
       },
       {
         supplier_name: "C",
-        formulae:
-          "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
+        formulae: "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
         capacity: "1200",
         lead_time_months: "3",
       },
     ];
 
-// <<<<<<< HEAD
-//     this.weeklyValues = {
-//       "Polyethylene (Africa)-LLDPE Bulk Africa E Weekly": [
-//         1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
-//         1348.5833333333333,
-//       ],
-
-//       "Polypropylene (US)-Homopolymer Bulk US Monthly": [
-//         1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
-//         1348.5833333333333,
-//       ],
-
-//       "Polypropylene (Middle East)-Film Posted Bulk China Weekly": [
-//         1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667,
-//       ],
-
-//       "Polyethylene (US)-HDPE Bulk Contract DEL US Monthly": [
-//         1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3,
-//       ],
-//     };
-
-// =======
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
     this.originalRows = {};
@@ -201,13 +145,11 @@ export class SupplierAnalysis extends Component {
     this.editProduct = this.editProduct.bind(this);
     this.confirmDeleteProduct = this.confirmDeleteProduct.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
-    // this.leftToolbarTemplate = this.leftToolbarTemplate.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.onRowEditInit = this.onRowEditInit.bind(this);
     this.onRowEditCancel = this.onRowEditCancel.bind(this);
     this.onRowEditCancel2 = this.onRowEditCancel2.bind(this);
     this.onRowEditChange = this.onRowEditChange.bind(this);
-    // this.onEditorInit = this.onEditorInit.bind(this);
     this.onInputNumberChange = this.onInputNumberChange.bind(this);
     this.hideDeleteProductDialog = this.hideDeleteProductDialog.bind(this);
     this.hideDeleteProductsDialog = this.hideDeleteProductsDialog.bind(this);
@@ -215,23 +157,21 @@ export class SupplierAnalysis extends Component {
 
     this.weeklyValues = {
       "Polyethylene (Africa)-LLDPE Bulk Africa E Weekly": [
-        1365.2203389830509, 1337.8064516129032, 1314.311475409836,
-        1319.4754098360656, 1313.8387096774193, 1348.5833333333333,
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
+        1348.5833333333333,
       ],
 
       "Polypropylene (US)-Homopolymer Bulk US Monthly": [
-        1365.2203389830509, 1337.8064516129032, 1314.311475409836,
-        1319.4754098360656, 1313.8387096774193, 1348.5833333333333,
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
+        1348.5833333333333,
       ],
 
       "Polypropylene (Middle East)-Film Posted Bulk China Weekly": [
-        1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417,
-        1387.1666666666667,
+        1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667,
       ],
 
       "Polyethylene (US)-HDPE Bulk Contract DEL US Monthly": [
-        1448.2105263157894, 1436.72131147541, 1440.0166666666667,
-        1451.3387096774193, 1456.4354838709678, 1457.3,
+        1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3,
       ],
     };
   }
@@ -239,17 +179,8 @@ export class SupplierAnalysis extends Component {
   componentDidMount() {
     this.procService
       .getMaterialCostDriverOutput({ material: 7001733 })
-// <<<<<<< HEAD
       .then((data) => this.setState({ materialCostDriverOutput: data.data.Sheet3 }));
     this.procService.getIcisForecastSummaryTable().then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
-// =======
-//       .then((data) =>
-//         this.setState({ materialCostDriverOutput: data.data.Sheet3 })
-//       );
-//     this.procService
-//       .getIcisForecastSummaryTable()
-//       .then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
 
     this.procService.getMaterialInfo({ material: 7001733 }).then((data) => {
       return this.setState({ materialInfo: data });
@@ -344,7 +275,6 @@ export class SupplierAnalysis extends Component {
     });
   };
 
-
   searchCountry(event) {
     setTimeout(() => {
       let filteredCountries;
@@ -378,7 +308,6 @@ export class SupplierAnalysis extends Component {
         placeholder="Select a Status"
         itemTemplate={(option) => {
           return <span className={`product-badge status-${option.value.toLowerCase()}`}>{option.label}</span>;
-
         }}
       />
     );
@@ -390,7 +319,6 @@ export class SupplierAnalysis extends Component {
         type="text"
         value={props.rowData[field]}
         onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)}
-
       />
     );
   }
@@ -534,7 +462,7 @@ export class SupplierAnalysis extends Component {
   }
 
   deleteProduct() {
-// <<<<<<< HEAD
+    // <<<<<<< HEAD
     // supplierDetails
     let products = this.state.products.filter((val) => val.id !== this.state.product.id);
     let filteredSupplierDetails = this.state.supplierDetails.filter(
@@ -545,13 +473,6 @@ export class SupplierAnalysis extends Component {
       ...this.state,
       products,
       supplierDetails: filteredSupplierDetails,
-// =======
-//     let products = this.state.products.filter(
-//       (val) => val.id !== this.state.product.id
-//     );
-//     this.setState({
-//       products,
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
       deleteProductDialog: false,
       product: this.emptyProduct,
     });
@@ -566,9 +487,7 @@ export class SupplierAnalysis extends Component {
   onInputChange(e, name) {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
-    const data = this.supplierFormulaData.filter(
-      (data) => data.supplier_name === e.value
-    );
+    const data = this.supplierFormulaData.filter((data) => data.supplier_name === e.value);
     product["name"] = data[0].supplier_name;
     product["price"] = data[0].capacity;
     product["quantity"] = data[0].formulae;
@@ -656,21 +575,18 @@ export class SupplierAnalysis extends Component {
             indices = [];
 
           let allseries = suppliers.map((p) => {
-            //console.log("inside data===>", p.quantity);
             let startIndex = p.quantity.indexOf("[");
             let lastIndex = p.quantity.indexOf("]");
-
             let seriesname = p.quantity.substring(startIndex + 1, lastIndex);
             return seriesname;
           });
 
-          // let seriesArr = data.seriesName.map((sr) => sr.name);
           let str = el.quantity;
 
           while ((result = regex.exec(str))) {
             indices.push(result.index);
           }
-          //console.log("indices===>", indices);
+
           let res = [];
           for (let i = 0; i < 6; i++) {
             let startIndex = el.quantity.indexOf("[");
@@ -685,7 +601,6 @@ export class SupplierAnalysis extends Component {
               let index = strArr.indexOf("[");
               let startIndex = strArr.indexOf("[");
               let lastIndex = strArr.indexOf("]");
-              //let seriesname =  p.quantity.substring(startIndex+1,lastIndex)
 
               strArr.splice(startIndex, lastIndex + 1, avgMonthData);
               duplicateSeriesArr.shift();
@@ -774,7 +689,6 @@ export class SupplierAnalysis extends Component {
     );
   }
 
-// <<<<<<< HEAD
   dateMaker = (yr, mnt) => {
     const date = new Date(yr, mnt).toLocaleDateString("en-US", {
       month: "short",
@@ -802,74 +716,6 @@ export class SupplierAnalysis extends Component {
 
     if (count < 2 && data) this.convertData();
 
-    // const forcastedValues = supplierDetails.length > 0 ? supplierDetails.map((supplier) => supplier.forecastedObj) : [];
-    // console.log("supplierDetails===>", supplierDetails);
-// =======
-//   /////////
-
-//   render() {
-//     //console.log("state in Demo", this.state);
-
-//     let seriesData = [];
-//     let months = [
-//       "Jan",
-//       "Feb",
-//       "Mar",
-//       "Apr",
-//       "May",
-//       "Jun",
-//       "Jul",
-//       "Aug",
-//       "Sep",
-//       "Oct",
-//       "Nov",
-//       "month2",
-//     ];
-
-//     let date = new Date();
-//     let month = date.getMonth();
-//     let year = date.getFullYear();
-//     let month1 =
-//       month > 11
-//         ? months[month % 11] + "-" + year + 1
-//         : months[month] + "-" + year;
-//     let month2 =
-//       month + 1 > 11
-//         ? months[(month + 1) % 11] + "-" + year + 1
-//         : months[month + 1] + "-" + year;
-//     let month3 =
-//       month + 2 > 11
-//         ? months[(month + 2) % 11] + "-" + year + 1
-//         : months[month + 2] + "-" + year;
-//     let month4 =
-//       month + 3 > 11
-//         ? months[(month + 3) % 11] + "-" + year + 1
-//         : months[month + 3] + "-" + year;
-//     let month5 =
-//       month + 4 > 11
-//         ? months[(month + 4) % 11] + "-" + year + 1
-//         : months[month + 4] + "-" + year;
-//     let month6 =
-//       month + 5 > 11
-//         ? months[(month + 5) % 11] + "-" + year + 1
-//         : months[month + 5] + "-" + year;
-
-//     const {
-//       data,
-//       InventoryInfo,
-//       icisForecastErrorInfoUpdated,
-//       supplierDetails,
-//       count,
-//     } = this.state;
-
-//     if (count < 2 && data) this.convertData();
-
-//     const forcastedValues =
-//       supplierDetails.length > 0
-//         ? supplierDetails.map((supplier) => supplier.forecastedObj)
-//         : [];
-
-// >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
     const forcastSeriesData =
       supplierDetails.length > 0
         ? supplierDetails.map((supplier) => {
@@ -961,14 +807,6 @@ export class SupplierAnalysis extends Component {
       </React.Fragment>
     );
 
-    // const deleteProductsDialogFooter = (
-    //   <React.Fragment>
-    //     <Button label="No" icon="pi pi-times" className="p-button-text" onClick={this.hideDeleteProductsDialog} />
-    //     <Button label="Yes" icon="pi pi-check" className="p-button-text" onClick={this.deleteSelectedProducts} />
-    //   </React.Fragment>
-    // );
-
-
     const historicalPricesOpthion = {
       chart: {
         zoomType: "x",
@@ -1022,32 +860,6 @@ export class SupplierAnalysis extends Component {
       },
     };
 
-    const chartoptions = {
-      chart: {
-        type: "spline",
-      },
-      title: {
-        text: "",
-      },
-      series: [
-        {
-          data: [1, 3, 2, 7, 5, 11, 9],
-        },
-      ],
-    };
-    const chartoptions2 = {
-      chart: {
-        type: "spline",
-      },
-      title: {
-        text: "",
-      },
-      series: [
-        {
-          data: [3, 1, 2, 8, 5, 1, 9],
-        },
-      ],
-    };
     const header2 = (
       <div className="table-header-container">
         <h5
@@ -1087,26 +899,18 @@ export class SupplierAnalysis extends Component {
                 fontFamily: "Poppins",
               }}
             >
-              <div className="col-8" style={{ width: "63%" }}>
+              <div className="col-10" style={{ width: "80%" }}>
                 <Toast ref={(el) => (this.toast = el)} />
                 <DataTable
                   header={header2}
                   value={this.state.products}
-                  //paginator
                   rows={5}
-                  // rowsPerPageOptions={[5, 10, 20]}
-                  // paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                   editMode="row"
                   dataKey="id"
                   onRowEditInit={this.onRowEditInit}
                   onRowEditCancel={this.onRowEditCancel}
                 >
-
-                  <Column
-                    field="name"
-                    header="Supplier Name"
-                    editor={(props) => this.nameEditor("products", props)}
-                  />
+                  <Column field="name" header="Supplier Name" editor={(props) => this.nameEditor("products", props)} />
 
                   <Column
                     field="quantity"
@@ -1123,17 +927,9 @@ export class SupplierAnalysis extends Component {
                     header="Lead Time (Months)"
                     editor={(props) => this.leadTime("products", props)}
                   />
-                  <Column
-                    rowEditor
-                    style={{ width: "13%" }}
-                    // headerStyle={{ width: "7rem" }}
-                    // bodyStyle={{ textAlign: "center" }}
-                  ></Column>
+                  <Column rowEditor style={{ width: "13%" }}></Column>
 
-                  <Column
-                    body={this.actionBodyTemplate}
-                    style={{ width: "10%" }}
-                  ></Column>
+                  <Column body={this.actionBodyTemplate} style={{ width: "10%" }}></Column>
                 </DataTable>
                 <div
                   style={{
@@ -1144,17 +940,11 @@ export class SupplierAnalysis extends Component {
                   }}
                 >
                   <Button
-                    label={this.state.products.length===0?'Add Supplier':'Add More Supplier'}
+                    label={this.state.products.length === 0 ? "Add Supplier" : "Add More Supplier"}
                     icon="pi pi-plus"
                     // className="p-mr-2"
                     onClick={this.openNew}
                   />
-                  {/* <Button
-                    className="btn btn-success btn-lg float-right"
-                    // onClick={() => this.nextPath("/Forcast")}
-                    label="Submit"
-                    onClick={this.Onsave}
-                  /> */}
                 </div>
               </div>
 
@@ -1180,12 +970,9 @@ export class SupplierAnalysis extends Component {
                 margin: "5px 10px",
                 fontFamily: "Poppins",
               }}
-            >
-              
-            </div>
+            ></div>
             <div style={{ width: "100%" }}>
               <HighchartsReact highcharts={Highcharts} options={historicalPricesOpthion} />
-
             </div>
 
             <h5
@@ -1199,11 +986,10 @@ export class SupplierAnalysis extends Component {
             </h5>
             <div style={{ width: "100%" }}>
               <HighchartsReact highcharts={Highcharts} options={forecastedSupplierPriceOpthin} />
-
             </div>
           </div>
 
-          {/* ===================================================== */}
+          {/* ======================================================= */}
 
           <Dialog
             visible={this.state.productDialog}
@@ -1232,7 +1018,6 @@ export class SupplierAnalysis extends Component {
               )}
             </div>
 
-            {/* <div className="p-formgrid p-grid"> */}
             <div className="p-field">
               <label htmlFor="quantity">Formula/Fixed Price (USD/T)</label>
               <InputText
@@ -1243,7 +1028,6 @@ export class SupplierAnalysis extends Component {
               />
               {this.state.submitted && !this.state.product.quantity && (
                 <small className="p-error">Formula/Fixed Price is required.</small>
-
               )}
             </div>
 
@@ -1272,7 +1056,6 @@ export class SupplierAnalysis extends Component {
                 <small className="p-error">Lead Time is required.</small>
               )}
             </div>
-            {/* </div> */}
           </Dialog>
 
           {/* ======================================================= */}
@@ -1290,12 +1073,10 @@ export class SupplierAnalysis extends Component {
               {this.state.product && (
                 <span>
                   Are you sure you want to delete <b>{this.state.product.name}</b>?
-
                 </span>
               )}
             </div>
-        
-          </Dialog> 
+          </Dialog>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link to="/CostDriversAnalysis">
               <Button className="previousbutton" label="Previous" style={{ marginRight: " 15px" }} />
