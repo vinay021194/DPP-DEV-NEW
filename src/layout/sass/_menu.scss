@@ -38,10 +38,11 @@
                 border-radius: 15px; 
             }
             &.active-route {
-                // font-weight: 700;
+                font-weight: 700;
                 //color: var(--primary-color);
                 background-color: #74b9ff;
                 border-radius: 15px;
+                border-bottom: blue 3px;
             }
         }
 

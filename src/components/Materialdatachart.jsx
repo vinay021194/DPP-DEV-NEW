@@ -370,8 +370,7 @@ export const Materialdatachart = (props) => {
   };
   return (
     <div>
-      {console.log("selectedPlant inside props====>", props)}
-      <AppTopbar onToggleMenu={onToggleMenu} />
+      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
 
       <div className="layout-main">
         <div className="table-header-container">

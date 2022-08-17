@@ -96,8 +96,6 @@ export const MaterialOverview = (props) => {
     "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
     "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
     "layout-mobile-sidebar-active": mobileMenuActive,
-    // "p-input-filled": inputStyle === "filled",
-    // "p-ripple-disabled": ripple === false,
   });
 
   const onToggleMenu = (event) => {
@@ -145,15 +143,7 @@ export const MaterialOverview = (props) => {
       </span>
     );
   };
-  // const planttamplete = (rowData) => {
-  //   return (
-  //     <span
 
-  //     >
-  //       <Button label={rowData.material} onClick={() => onClick('displayBasic')} />
-  //     </span>
-  //   );
-  // };
   const statusBodyTemplate = (rowData) => {
     return (
       <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
@@ -175,12 +165,12 @@ export const MaterialOverview = (props) => {
   };
 
   const handlePlantSelect = (e) => {
-    console.log("handlePlantSelect==>", e, selectedPlant);
+    // console.log("handlePlantSelect==>", e, selectedPlant);
     setSelectedPlant(e.value);
   };
 
   const rowExpansionTemplate = (data) => {
-    console.log("rowExpansionTemplate", data);
+    // console.log("rowExpansionTemplate", data);
     return (
       <div className="orders-subtable">
         <DataTable
@@ -238,9 +228,10 @@ export const MaterialOverview = (props) => {
       }
     }
   };
+
   return (
     <div className={wrapperClass} onClick={onWrapperClick}>
-      <AppTopbar onToggleMenu={onToggleMenu} />
+      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
       <div className="layout-main">
         <div className="card">
           <DataTable
@@ -307,7 +298,7 @@ export const MaterialOverview = (props) => {
             />
           </div> */}
           {/* <Link to="/MaterialOverview"> */}
-          <img alt="Logo" src={logo} style={{ width: "200px", margin: "10px 0px 15px 0px" }} />
+          {/* <img alt="Logo" src={logo} style={{ width: "200px", margin: "10px 0px 15px 0px" }} /> */}
           {/* </Link> */}
           <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
         </div>

@@ -316,8 +316,10 @@ a {
       background-color: #e8ebee;
       border-radius: 15px; }
     .layout-menu li a.active-route {
+      font-weight: 700;
       background-color: #74b9ff;
-      border-radius: 15px; }
+      border-radius: 15px;
+      border-bottom: blue 3px; }
   .layout-menu li.active-menuitem > a .menuitem-toggle-icon:before {
     content: ""; }
   .layout-menu > li > a {
@@ -461,7 +463,7 @@ a {
 
 .layout-main {
   transition: margin-left 0.2s;
-  padding: 40px 2rem 2rem 2rem; }
+  padding: 1rem 2rem 2rem 2rem; }
 
 .layout-footer {
   transition: margin-left 0.2s;

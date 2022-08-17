@@ -136,7 +136,6 @@ export const AppMenu = (props) => {
   ];
 
   const onCityChange = (e) => {
-    console.log("e=====>", e.target?.innerText);
     let selectedCities = [...cities];
     if (e.target?.innerText === "CLEAR ALL") {
       console.log("inside clear all");
@@ -153,8 +152,6 @@ export const AppMenu = (props) => {
   };
 
   const onMaterialChange = (e) => {
-    // console.log("ee=====>", e.target.value);
-    console.log("value=====>", props);
     setSelectedCities1(e.value);
     props.handlefilter(e.value, "Multiselect");
   };
@@ -176,8 +173,8 @@ export const AppMenu = (props) => {
 
   return (
     <div className="layout-menu-container">
-      <div style={{ marginLeft: "50px", fontSize: "15px", fontFamily: "Poppins", color: "lightgray" }}>
-        <span>Filter By</span>
+      <div style={{ paddingTop: "15px", marginLeft: "50px", fontSize: "15px", fontFamily: "Poppins" }}>
+        <h5>Filter By</h5>
       </div>
       <hr />
       <div style={{ marginLeft: "25px", fontFamily: "Poppins" }}>

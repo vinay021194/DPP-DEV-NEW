@@ -12,7 +12,7 @@ import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
 // import { Checkbox } from "primereact/checkbox";
-export const CostDriversAnalysis = () => {
+export const CostDriversAnalysis = (props) => {
   const productService = new ProductService();
   const [layoutMode, setLayoutMode] = useState("static");
   // const [checked, setChecked] = useState(false);
@@ -227,7 +227,7 @@ export const CostDriversAnalysis = () => {
 
     //  productService.getIcisForecastSummaryTable2NEW().then((data) => {
     productService.getPricePridectionTable().then((data) => {
-      console.log("table data ====>", data);
+      // console.log("table data ====>", data);
       let modifieData = data.Sheet.map((ele) => {
         return {
           key: ele?.key,
@@ -375,7 +375,7 @@ export const CostDriversAnalysis = () => {
     filterAccuraciesTableData = e.value.map((sr) => filterAccuraciesTableData.filter((el) => el.key === sr.code));
     filterAccuraciesTableData = filterAccuraciesTableData.filter((el) => el.length > 0);
 
-    console.log("filterAccuraciesTableData===>", filterAccuraciesTableData);
+    // console.log("filterAccuraciesTableData===>", filterAccuraciesTableData);
 
     filterAccuraciesTableData = filterAccuraciesTableData.map((ele) => ele[0]);
 
@@ -431,7 +431,7 @@ export const CostDriversAnalysis = () => {
   };
 
   const statusBodyTemplate = (rowData) => {
-    console.log("row Data===>", rowData);
+    // console.log("row Data===>", rowData);
     const tableData = [rowData];
     return (
       <>
@@ -491,7 +491,7 @@ export const CostDriversAnalysis = () => {
 
   return (
     <div>
-      <AppTopbar onToggleMenu={onToggleMenu} />
+      {/* <AppTopbar onToggleMenu={onToggleMenu} props={props} /> */}
       {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <h5

@@ -24,152 +24,48 @@ import { Orderingplant } from "./components/Orderingplant";
 import { Inventory } from "./components/Inventory";
 import { SupplierAnalysis } from "./components/SupplierAnalysis";
 
-const App = () => {
+const App = (props) => {
   const [layoutMode, setLayoutMode] = useState("static");
   const [layoutColorMode, setLayoutColorMode] = useState("dark");
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
-  // const sidebar = useRef();
-  // const history = useHistory();
-  // let menuClick = false;
+  console.log("App props===>", window.location);
+  let menuClick = false;
 
-  // const wrapperClass = classNames("layout-wrapper", {
-  //   "layout-overlay": layoutMode === "overlay",
-  //   "layout-static": layoutMode === "static",
-  //   "layout-static-sidebar-inactive":
-  //     staticMenuInactive && layoutMode === "static",
-  //   "layout-overlay-sidebar-active":
-  //     overlayMenuActive && layoutMode === "overlay",
-  //   "layout-mobile-sidebar-active": mobileMenuActive,
-  //   // "p-input-filled": inputStyle === "filled",
-  //   // "p-ripple-disabled": ripple === false,
-  // });
+  const isDesktop = () => {
+    return window.innerWidth > 1024;
+  };
 
-  // const sidebarClassName = classNames("layout-sidebar", {
-  //   "layout-sidebar-dark": layoutColorMode === "dark",
-  //   "layout-sidebar-light": layoutColorMode === "light",
-  // });
+  const onToggleMenu = (event) => {
+    menuClick = true;
 
-  // const logo =
-  //   layoutColorMode === "dark"
-  //     ? "assets/layout/images/logo-white.svg"
-  //     : "assets/layout/images/logo.svg";
-
-  // const isDesktop = () => {
-  //   return window.innerWidth > 1024;
-  // };
-
-  // const onToggleMenu = (event) => {
-  //   menuClick = true;
-
-  //   if (isDesktop()) {
-  //     if (layoutMode === "overlay") {
-  //       setOverlayMenuActive((prevState) => !prevState);
-  //     } else if (layoutMode === "static") {
-  //       setStaticMenuInactive((prevState) => !prevState);
-  //     }
-  //   } else {
-  //     setMobileMenuActive((prevState) => !prevState);
-  //   }
-  //   event.preventDefault();
-  // };
-
-  // const onWrapperClick = (event) => {
-  //   if (!menuClick) {
-  //     setOverlayMenuActive(false);
-  //     setMobileMenuActive(false);
-  //   }
-  //   menuClick = false;
-  // };
-
-  // const onSidebarClick = () => {
-  //   menuClick = true;
-  // };
-
-  // const isSidebarVisible = () => {
-  //   if (isDesktop()) {
-  //     if (layoutMode === "static") return !staticMenuInactive;
-  //     else if (layoutMode === "overlay") return overlayMenuActive;
-  //     else return true;
-  //   }
-
-  //   return true;
-  // };
+    if (isDesktop()) {
+      if (layoutMode === "overlay") {
+        setOverlayMenuActive((prevState) => !prevState);
+      } else if (layoutMode === "static") {
+        setStaticMenuInactive((prevState) => !prevState);
+      }
+    } else {
+      setMobileMenuActive((prevState) => !prevState);
+    }
+    event.preventDefault();
+  };
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
-
-      {/* <CSSTransition
-        classNames="layout-sidebar"
-        timeout={{ enter: 200, exit: 200 }}
-        in={isSidebarVisible()}
-        unmountOnExit
-      >
-        <div
-          ref={sidebar}
-          className={sidebarClassName}
-          onClick={onSidebarClick}
-        >
-          <div
-            className="layout-logo"
-            style={{
-              cursor: "pointer",
-            }}
-            onClick={() => history.push("/")}
-          >
-            <img
-              alt="Logo"
-              src={logo}
-              style={{
-                width: "200px",
-                margin: "0px 0px 15px 0px",
-              }}
-            />
-          </div>
-          <AppMenu/>
-        </div>
-      </CSSTransition> */}
-
-      {/* <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
-                layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} /> */}
-
       <div className="">
-        {/* <Router > */}
-        {/* <Route path="/MaterialOverview" exact component={MaterialOverview} /> */}
-        <Route
-          path="/MaterialOverview"
-          exact
-          render={(props) => <MaterialOverview {...props} />}
-        />
-        <Route
-          path="/Materialdatachart"
-          exact
-          render={(props) => <Materialdatachart {...props} />}
-        />
-        <Route
-          path="/CostDriversAnalysis"
-          exact
-          render={(props) => <CostDriversAnalysis {...props} />}
-        />
         <Route path="/" exact component={LoginPage} />
-        <Route
-          path="/Orderingplant"
-          exact
-          render={(props) => <Orderingplant {...props} />}
-        />
-        <Route
-          path="/Inventory"
-          exact
-          render={(props) => <Inventory {...props} />}
-        />
-        <Route
-          path="/SupplierAnalysis"
-          exact
-          render={(props) => <SupplierAnalysis {...props} />}
-        />
+        {/* <AppTopbar onToggleMenu={onToggleMenu} {...props} /> */}
+
+        <Route path="/" render={(props) => <AppTopbar onToggleMenu={onToggleMenu} {...props} />} />
+        <Route path="/MaterialOverview" exact render={(props) => <MaterialOverview {...props} />} />
+        <Route path="/Materialdatachart" exact render={(props) => <Materialdatachart {...props} />} />
+        <Route path="/CostDriversAnalysis" exact render={(props) => <CostDriversAnalysis {...props} />} />
+        <Route path="/Orderingplant" exact render={(props) => <Orderingplant {...props} />} />
+        <Route path="/Inventory" exact render={(props) => <Inventory {...props} />} />
+        <Route path="/SupplierAnalysis" exact render={(props) => <SupplierAnalysis {...props} />} />
       </div>
     </div>
   );

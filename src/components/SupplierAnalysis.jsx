@@ -877,7 +877,7 @@ export class SupplierAnalysis extends Component {
 
     return (
       <div>
-        <AppTopbar onToggleMenu={"onToggleMenu"} />
+        {/* <AppTopbar onToggleMenu={"onToggleMenu"} /> */}
         <div className="layout-main">
           <h5
             style={{
