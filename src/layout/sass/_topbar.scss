@@ -16,13 +16,16 @@
         button {
             position: relative;
             color: black;
-            margin-left: 20px;
+            //margin-left: 20px;
             display: inline-block;
             text-decoration: none;
             transition: color $transitionDuration;
+            background-color: white;
+            border: none;
 
             &:hover {
                 color: black;
+                background-color: white;
             }
 
             &:focus {

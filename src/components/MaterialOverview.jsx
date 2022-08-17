@@ -9,12 +9,15 @@ import "./App.css";
 import { AppMenu } from "../components/AppMenu";
 import { AppTopbar } from "../components/AppTopbar";
 import { CSSTransition } from "react-transition-group";
-// import { Dropdown } from "primereact/dropdown";
+import { Dialog } from 'primereact/dialog';
+//import { Toast } from 'primereact/toast';
 // import { Redirect } from "react-router-dom";
 
 export const MaterialOverview = (props) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setproductsFiltered] = useState([]);
+  const [displayBasic, setDisplayBasic] = useState(false);
+  //const toast = useRef(null);
 
   const [expandedRows, setExpandedRows] = useState(null);
   //const toast = useRef(null);
@@ -32,7 +35,18 @@ export const MaterialOverview = (props) => {
     background: "#f3f3f3",
     opacity: "1",
   };
+  const dialogFuncMap = {
+    'displayBasic': setDisplayBasic,
+   
+}
+const onClick = (name, position) => {
+  console.log('onclick',name)
+  dialogFuncMap[`${name}`](true);
 
+}
+const onHide = (name) => {
+  dialogFuncMap[`${name}`](false);
+}
   useEffect(() => {
     if (isMounted.current) {
       //const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
@@ -140,6 +154,15 @@ export const MaterialOverview = (props) => {
       </span>
     );
   };
+  // const planttamplete = (rowData) => {
+  //   return (
+  //     <span
+        
+  //     >
+  //       <Button label={rowData.material} onClick={() => onClick('displayBasic')} />
+  //     </span>
+  //   );
+  // };
   const statusBodyTemplate = (rowData) => {
     return (
       <span
@@ -166,30 +189,42 @@ export const MaterialOverview = (props) => {
     console.log("handlePlantSelect==>", e, selectedPlant);
     setSelectedPlant(e.value);
   };
-
+//   const onCellSelect = (event) => {
+//     toast.current.show({ severity: 'info', summary: `Item Selected In Product`, detail: `${toCapitalize(event.field)}: ${event.value}`, life: 3000 });
+// }
+// const toCapitalize = (str) => {
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+// }
   const rowExpansionTemplate = (data) => {
+    console.log('rowExpansionTemplate',data)
     return (
       <div className="orders-subtable">
+         {/* <Button label=''icon="pi pi-external-link" onClick={() => onClick('displayBasic')} /> */}
+        {/* <Dialog header="Header" visible={displayBasic} style={{ width: '50vw' }}  onHide={() => onHide('displayBasic')}> */}
+        
         <DataTable
           value={data.expend}
           responsiveLayout="scroll"
           selection={
-            selectedPlant &&
-            selectedPlant.filter((ele) => ele.material === "768971")
+            selectedPlant 
+            // &&
+            // selectedPlant.filter((ele) => ele.material === "768971")
           }
           onSelectionChange={(e) => handlePlantSelect(e)}
           dataKey="Key"
           rowClassName={rowClass}
-          className="row-p-datatable .p-datatable-thead > tr > th"
+          style={{background:'green',fontWeight:'bold'}}
+          className=""
           rows={10}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate=" {first} to {last} of {totalRecords}"
-          selectionMode="multiple"
+          selectionMode="single"
         >
           <Column
-            selectionMode="multiple"
-            field="material"
-            dataKey="material"
+            selectionMode="single"
+            // field="material"
+            // dataKey="material"
+          
           />
           <Column field="plant" header="Plant ID" />
           <Column field="plant_name" header="Plant Name" />
@@ -199,6 +234,14 @@ export const MaterialOverview = (props) => {
             body={statusOrderBodyTemplate}
           />
         </DataTable>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {/* <Link to="/Materialdatachart"> */}
+         
+          {/* </Link> */}
+        </div>
+      
+        {/* </Dialog> */}
+       
       </div>
     );
   };
@@ -209,7 +252,7 @@ export const MaterialOverview = (props) => {
         let allMaterial = filters.map((d) => d.name);
         if (filters) {
           let filteredData = products.filter((data) => {
-            //console.log("data====>",data)
+            console.log("data====>",data)
             return allMaterial.includes(data.material);
           });
           setproductsFiltered(filteredData);
@@ -235,31 +278,38 @@ export const MaterialOverview = (props) => {
       <AppTopbar onToggleMenu={onToggleMenu} />
       <div className="layout-main">
         <div className="card">
+        
+        {/* <Toast ref={toast} /> */}
           <DataTable
             value={productsFiltered}
-            expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
+            expandedRows={displayBasic}
+            onRowToggle={(e) => setDisplayBasic(e.data)}
             responsiveLayout="scroll"
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey="material"
             header={header}
             className="rows-p-datatable .p-datatable-thead > tr > th"
-            // rowClassName={rowClass}
-            //paginator
             rows={10}
-            // rowsPerPageOptions={[5, 10, 25]}
-            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLrowink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
-            //Disabled={rowData.material !=='700047'}
+            onRowClick={(e) => setDisplayBasic(e.data)}
+            selectionPageOnly paginator ={5}
+             selectionMode="single" 
+            //  cellSelection selection={displayBasic} 
+            //  onSelectionChange={(e) => setDisplayBasic(e.data)}
+            //  onCellSelect={rowExpansionTemplate} 
+            
           >
             <Column expander style={{ width: "3em" }} />
             <Column
               field="material"
               header="ID"
+              //body={planttamplete}
+              // body={hyperlinkTemp}
               //Disabled={'material' !=='700047'}
             ></Column>
             <Column field="material_description_1" header="Name"></Column>
-            <Column field="inventory_material_level" header="Inventory" />
+            <Column field="inventory_material_level" header=" Total Inventory (T)" />
             <Column
               field="status_level_material"
               header="Status"
@@ -267,16 +317,19 @@ export const MaterialOverview = (props) => {
             />
           </DataTable>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {/* <Link to="/Materialdatachart"> */}
-          <Button
+        {/* <Button
             className="nextbutton"
             label="Next "
-            style={{ margin: "3px 15px" }}
+            style={{ marginLeft: "46em" ,display:'flex',justifyContent:'center' }}
+            onClick={next}
+          /> */}
+            <Button
+            className="nextbutton"
+            label="Next "
+            style={{ marginLeft: "460px" ,display:'flex',justifyContent:'center' }}
             onClick={next}
           />
-          {/* </Link> */}
-        </div>
+       
       </div>
       <CSSTransition
         classNames="layout-sidebar"
@@ -308,8 +361,13 @@ export const MaterialOverview = (props) => {
           <AppMenu
             handlefilter={(filters, types) => handlefilter(filters, types)}
           />
+          
         </div>
+        
       </CSSTransition>
+     
+    
     </div>
+    
   );
 };

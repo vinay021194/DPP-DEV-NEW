@@ -20,6 +20,9 @@ code {
     padding: 1rem 1rem;
     font-weight: 600;
 }
+.row-p-datatable .p-datatable-thead > tr > th{
+  background-color: rgb(233, 168, 182) ;
+}
 /* .p-button {
   background-color:   #74b9ff !important;
   border: 1px solid #74b9ff!important;

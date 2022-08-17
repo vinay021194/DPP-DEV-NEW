@@ -7,6 +7,8 @@ import { MultiSelect } from "primereact/multiselect";
 import { color } from "highcharts";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
+import { AutoComplete } from 'primereact/autocomplete';
+
 
 // const AppSubmenu = (props) => {
 //   const [activeIndex, setActiveIndex] = useState(null);
@@ -115,9 +117,14 @@ export const AppMenu = (props) => {
   const [selectedCities1, setSelectedCities1] = useState(null);
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
+  const [filteredCountries, setFilteredCountries] = useState(null);
   const city = [
-   { name: "600234" }, { name: "645908" },{ name: "678456" },
-    { name: "700047" },{ name: "768971" },{ name: "789045" }];
+    { name: "600234" },
+    // { name: "645908" },
+    { name: "678456" },
+    { name: "700047" },
+    { name: "768971" },
+    { name: "789045" }];
 
 
 
@@ -142,10 +149,32 @@ export const AppMenu = (props) => {
   };
 
   const onMaterialChange = (e) => {
-    console.log("ee=====>", e.target.value);
+    // console.log("ee=====>", e.target.value);
+    console.log("value=====>",props)
     setSelectedCities1(e.value);
-    props.handlefilter(e.value, "Multiselect");
+    props.handlefilter(e.value,'Multiselect');
   };
+
+  
+
+  const searchCountry = (event) => {
+    setTimeout(() => {
+        let _filteredCountries;
+        if (!event.query.trim().length) {
+            _filteredCountries = [...city];
+        }
+        else {
+            _filteredCountries = city.filter((item) => {
+                return item.name.toLowerCase().startsWith(event.query.toLowerCase());
+            });
+        }
+
+        setFilteredCountries(_filteredCountries);
+    }, 250);
+}
+
+ 
+
   return (
     <div className="layout-menu-container">
       <div style={{marginLeft:'50px', fontSize:'15px' ,fontFamily:'Poppins', color:'lightgray'}} >
@@ -199,24 +228,34 @@ export const AppMenu = (props) => {
     
 </div>
 <div className="gridcheck">
-
         <Button className="nextbutton1" label="Clear All " value="clear"
-
          onClick={onCityChange} />
-
       </div>
 <hr/>
 <div style={{marginLeft:'25px',fontFamily:'Poppins'}}>
         <strong>Material ID</strong>
         </div>
 <div className="gridcol">
-<MultiSelect
-    value={selectedCities1} options={city} 
-    onChange={onMaterialChange} optionLabel="name"
-    placeholder="Select ID" 
-    maxSelectedLabels={5} 
+{/* <AutoComplete 
+    value={selectedCities1} 
+    suggestions={city} 
+     onChange={onMaterialChange} 
+     completeMethod={setSelectedCities1} 
+    field="name"
+    dropdown forceSelection
+    // itemTemplate={itemTemplate}
     sorted
-     />
+     /> */}
+     <AutoComplete value={selectedCities1} 
+     suggestions={filteredCountries} 
+     completeMethod={searchCountry} 
+     dropdown field="name" 
+     multiple 
+     onChange={onMaterialChange} 
+     aria-label="Countries"
+     sorted
+     
+      />
   </div>
   {/* <hr/>
   <div style={{marginLeft:'25px',fontFamily:'Poppins'}}>

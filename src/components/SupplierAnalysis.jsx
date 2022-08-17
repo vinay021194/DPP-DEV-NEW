@@ -1144,18 +1144,19 @@ export class SupplierAnalysis extends Component {
                     margin: "10px 30px",
                   }}
                 >
+                  
                   <Button
-                    label="Add More Supplier"
+                    label={this.state.products.length===0?'Add Supplier':'Add More Supplier'}
                     icon="pi pi-plus"
                     // className="p-mr-2"
                     onClick={this.openNew}
                   />
-                  <Button
+                  {/* <Button
                     className="btn btn-success btn-lg float-right"
                     // onClick={() => this.nextPath("/Forcast")}
                     label="Submit"
                     onClick={this.Onsave}
-                  />
+                  /> */}
                 </div>
               </div>
 
@@ -1182,7 +1183,7 @@ export class SupplierAnalysis extends Component {
                 fontFamily: "Poppins",
               }}
             >
-              <label
+              {/* <label
                 style={{
                   // width: "30%",
                   margin: "13px",
@@ -1229,11 +1230,8 @@ export class SupplierAnalysis extends Component {
                 placeholder="Region"
                 display="chip"
                 disabled
-              />
-              {/* <Button
-                 label="submit"
-                 style={{ margin: "3px 15px"  }}
-            /> */}
+              /> */}
+           
             </div>
             <div style={{ width: "100%" }}>
               <HighchartsReact

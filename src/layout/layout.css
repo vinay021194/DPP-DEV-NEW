@@ -96,12 +96,14 @@ a {
     .layout-topbar .layout-topbar-icons button {
       position: relative;
       color: black;
-      margin-left: 20px;
       display: inline-block;
       text-decoration: none;
-      transition: color 0.2s; }
+      transition: color 0.2s;
+      background-color: white;
+      border: none; }
       .layout-topbar .layout-topbar-icons button:hover {
-        color: black; }
+        color: black;
+        background-color: white; }
       .layout-topbar .layout-topbar-icons button:focus {
         outline: 0 none;
         outline-offset: 0;

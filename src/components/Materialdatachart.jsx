@@ -50,7 +50,7 @@ export const Materialdatachart = (props) => {
   });
 
   // console.log("plantData==>", plantData);
-  // console.log("Plants==>", Plants);
+   console.log("props==>", props);
 
   let convertedData = demandInfoRegressionSummaryTable.map((el) => {
     let date = new Date(el.period);
@@ -350,13 +350,7 @@ export const Materialdatachart = (props) => {
     setHistoricalConsumptionSeriesData(chartData1);
   };
 
-  const onRowExpand = (event) => {
-    //toast.current.show({severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000});
-  };
-
-  const onRowCollapse = (event) => {
-    // toast.current.show({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
-  };
+ 
 
   const isDesktop = () => {
     return window.innerWidth > 1024;
@@ -432,7 +426,17 @@ export const Materialdatachart = (props) => {
       </div>
     );
   };
+  
+  // const now = new Date();
+  // const today = now.getMonth()+1;
+  // console.log(today+1)
+  // new Date(yr, mnt).toLocaleDateString("en-US", {
 
+  //   month: "short",
+
+  //   year: "2-digit",
+
+  // });
   return (
     <div>
       {console.log("selectedPlant inside props====>", props)}
@@ -457,13 +461,12 @@ export const Materialdatachart = (props) => {
             value={products3.Sheet3}
             // expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
-            onRowExpand={onRowExpand}
-            onRowCollapse={onRowCollapse}
             responsiveLayout="scroll"
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
             header={header}
             rows={1}
+            showGridlines
           >
             <Column style={{ width: "3em" }} />
             <Column field="material" header="ID"></Column>
@@ -590,35 +593,35 @@ export const Materialdatachart = (props) => {
           <div className="card">
             <DataTable
               value={filteredTransposedData}
+              rowGroupMode="rowspan"
               //paginator
-              rows={12}
+               rows={12}
               //rowsPerPageOptions={[4, 12, 20]}
               //paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-              rowGroupMode="rowspan"
               groupRowsBy="key_mp"
               sortMode="single"
               sortField="key_mp"
               sortOrder={1}
-              responsiveLayout="scroll"
               header={headers2}
+              
               // rowClassName={rowClass}
               //style={{ color: getColor(filteredTransposedData) }}
             >
               {/* <Column expander style={{ width: '3em' }} /> */}
-              <Column field="key_mp" header="Material-Plant"></Column>
-              <Column field="keys" header=""></Column>
-              <Column field="Month1" header="May22" />
-              <Column field="Month2" header="Jun22" />
-              <Column field="Month3" header="Jul22" />
-              <Column field="Month4" header="Aug22" />
-              <Column field="Month5" header="Sep22" />
-              <Column field="Month6" header="Oct22" />
-              <Column field="Month7" header="Nov22" />
-              <Column field="Month8" header="Dec22" />
-              <Column field="Month9" header="Jan23" />
-              <Column field="Month10" header="Feb23" />
-              <Column field="Month11" header="Mar23" />
-              <Column field="Month12" header="Apr23" />
+              <Column field="key_mp" header="Material-Plant" style={{border: '1px solid lightgray'}}></Column>
+              <Column field="keys" header="" style={{border: '1px solid lightgray'}}></Column>
+              <Column field="Month1" header="May22" style={{border: '1px solid lightgray'}} />
+              <Column field="Month2" header="Jun22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month3" header="Jul22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month4" header="Aug22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month5" header="Sep22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month6" header="Oct22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month7" header="Nov22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month8" header="Dec22" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month9" header="Jan23" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month10" header="Feb23" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month11" header="Mar23" style={{border: '1px solid lightgray'}}/>
+              <Column field="Month12" header="Apr23" style={{border: '1px solid lightgray'}}/>
             </DataTable>
           </div>
         )}
@@ -634,6 +637,13 @@ export const Materialdatachart = (props) => {
             <Button
               className="nextbutton"
               label="Next"
+              style={{ marginLeft: " 15px" }}
+            />
+          </Link>
+          <Link to="/SupplierAnalysis">
+            <Button
+              className="nextbutton"
+              label="Supplier Analysis"
               style={{ marginLeft: " 15px" }}
             />
           </Link>

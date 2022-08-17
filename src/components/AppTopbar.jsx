@@ -1,7 +1,34 @@
 import React from "react";
 import { InputText } from "primereact/inputtext";
+import{SplitButton} from 'primereact/splitbutton'
+import { Toast } from 'primereact/toast';
+
 
 export const AppTopbar = (props) => {
+  const items = [
+    {
+        label: 'Profile',
+        icon: 'pi pi-user',
+       
+    },
+   
+    {
+        label: 'Add User',
+        icon: 'pi pi-user-plus',
+     
+    },
+    {   label: 'Edit User',
+        icon: 'pi pi-user-edit',
+      
+    },
+   
+    {
+      label: 'Logout',
+      icon: 'pi pi-sign-out',
+  
+  },
+]
+
   return (
     <div className="layout-topbar clearfix">
       {/* <button
@@ -32,10 +59,11 @@ export const AppTopbar = (props) => {
           <span className="layout-topbar-item-text">Settings</span>
           <span className="layout-topbar-icon pi pi-cog" />
         </button> */}
-        <button type="button" className="p-link">
+        {/* <button type="button" className="p-link">
           <span className="layout-topbar-item-text">User</span>
           <span className="layout-topbar-icon pi pi-user" />
-        </button>
+        </button> */}
+         <SplitButton label="User" icon="pi pi-user"className="p-button-text mr-2 mb-2" model={items}></SplitButton>
       </div>
     </div>
   );

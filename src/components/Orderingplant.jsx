@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import { Column } from 'primereact/column';
 import { ProductService } from "../services/ProductService";
 import { Button } from "primereact/button";
 import "./App.css";
@@ -175,6 +175,7 @@ export const Orderingplant = () => {
             // onRowToggle={(e) => setExpandedRows(e.data)}
             // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
             // rowExpansionTemplate={rowExpansionTemplate}
+            responsiveLayout="scroll"
             dataKey="id"
             header={header2}
             rows={1}
@@ -201,9 +202,12 @@ export const Orderingplant = () => {
             //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
             //   rowExpansionTemplate={rowExpansionTemplate}
             dataKey="id"
+            showGridlines
+            responsiveLayout="scroll"
             // footer={footer}
             //header={header3}
             rows={6}
+            
             //editMode="cell"
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
