@@ -1,0 +1,24 @@
+{
+    "data":
+    {
+      "Sheet3":
+      [
+        {
+            "material": "700047",
+            "plant": "2000",
+            "plant_name": "Edison",
+            "opening_stock": "62",
+            "openning_stock_uom": "TO",
+            "safety_stock": "40",
+            "warehouse_capacity": "100",
+            "safety_warehouse_uom": "TO",
+            "overall_incoming_quantity": "0",
+            "on_route_curr_mon": "0",
+            "status_level_plant": "Sufficient for the next 1 months",
+            "status_level_material": "Urgent",
+            "status_level_inventory": "55% above safety stock",
+            "averagedata":"19.8T"
+        }
+    ]
+  }
+  }

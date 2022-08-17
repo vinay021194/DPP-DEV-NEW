@@ -1,0 +1,15 @@
+{
+    "Sheet1":
+    [
+      {"Supplier": "A",
+        "May": "19.71 ",
+        "June": "41.77",
+        "July": "0",
+        "August": "29.94",
+        "September": "0",
+        "October": "0",
+        "Total Quantity": "91.43",
+        "Plant": "2000"
+     }
+     ]
+}

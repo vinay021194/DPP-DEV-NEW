@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: 'poppins';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'poppins';
+}
+/* .p-datatable .p-datatable-thead > tr > th{
+  color: #6b6a6a;
+  border-color: 2px  white !important
+} */
+.p-datatable .p-datatable-header {
+  background-color: white!important;
+    color: #495057;
+    border: none;
+    border-width: 0 0 0 0;
+    padding: 1rem 1rem;
+    font-weight: 600;
+}
+/* .p-button {
+  background-color:   #74b9ff !important;
+  border: 1px solid #74b9ff!important;
+} */
+/* .layout-menu li a:focus{
+  background-color: #74b9ff!important;
+  border-radius: 15px;
+  
+} */
+/* .layout-menu li a:hover{
+  background-color:  #74b9ff !important;
+  transition: 0.2s;
+  border-radius: 15px;
+} */
+.resetbutton{
+  background-color:  rgb(163, 162, 162) !important;
+  border-color: rgb(163, 162, 162) !important
+}
+.p-component{
+  font-family: 'poppins'!important;
+}
+/* .product-badge.status-2000{
+  background-color: #FF8064;
+}
+.product-badge.status-3000{
+  background-color:#FF8064;
+} */
+.products-badge.status-2000{
+  background-color: rgb(41, 241, 164);
+}
+.products-badge.status-3000{
+  background-color: rgb(41, 241, 164);
+}
+.p-checkbox .p-checkbox-box {
+  border: 2px solid #ced4da;
+  background: #ffffff;
+  width: 20px;
+  height: 20px;
+  color: #495057;
+  border-radius: 10px !important;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: #00AC4F !important;
+  background: #ffffff !important;
+}
+.p-checkbox .p-checkbox-box .p-checkbox-icon {
+  transition-duration: 0.2s;
+  color: #00AC4F !important;
+  font-size: 14px;
+}
+/* .card .row-accessories {
+  background-color: rgba(201, 24, 24, 0.795) !important;
+} */
+
+
+.productss-badge.status-urgent{
+  background-color: #FF8064;
+}
+.productss-badge.status-depleting.fast{
+  background-color:#f1a22c;
+}
+.productss-badge.status-sufficient{
+  background-color: rgb(41, 241, 164);
+}
+
+.productsss-badge.status-urgent{
+  background-color: #FF8064;
+}
+.productsss-badge.status-depleting.fast{
+  background-color:#f1a22c;
+}
+.productsss-badge.status-sufficient{
+  background-color: rgb(41, 241, 164);
+}
+
+
