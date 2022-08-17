@@ -358,12 +358,12 @@ export const Materialdatachart = (props) => {
       <div className="orders-subtable">
         {/* <h5>Orders for {data.name}</h5> */}
         <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
-          <Column field="id" header="Plant Id(Name)"></Column>
-          <Column field="name" header="Safety Stock"></Column>
-          <Column field="inventory" header="Inventory"></Column>
-          <Column field="status" header="WareHouse Capacity"></Column>
-          <Column field="status" header="Status"></Column>
-          {/* <Column field="" header="" body={statusOrderBodyTemplate} ></Column> */}
+          <Column field="id" header="Plant Id(Name)" />
+          <Column field="name" header="Safety Stock" />
+          <Column field="inventory" header="Inventory" />
+          <Column field="status" header="WareHouse Capacity" />
+          <Column field="status" header="Status" />
+          {/* <Column field="" header="" body={statusOrderBodyTemplate}  /> */}
         </DataTable>
       </div>
     );
@@ -400,9 +400,9 @@ export const Materialdatachart = (props) => {
             showGridlines
           >
             <Column style={{ width: "3em" }} />
-            <Column field="material" header="ID"></Column>
-            {/* <Column field="Discription" header="Discription"  ></Column> */}
-            <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
+            <Column field="material" header="ID" />
+            {/* <Column field="Discription" header="Discription"   /> */}
+            <Column field="base_unit_of_measure (UOM)" header="UOM" />
             <Column field="aliases" header="Aliases" />
             {/* <Column field="Criticality" header="Criticality"   /> */}
             <Column field="material_type (SAP)" header="SAP" />
@@ -423,9 +423,9 @@ export const Materialdatachart = (props) => {
           >
             {/* <Column expander style={{ width: '3em' }} /> */}
 
-            <Column field="plant" header="Plant ID"></Column>
-            <Column field="plant_name" header="Plant Name"></Column>
-            <Column field="safety_stock" header="Safety Stock"></Column>
+            <Column field="plant" header="Plant ID" />
+            <Column field="plant_name" header="Plant Name" />
+            <Column field="safety_stock" header="Safety Stock" />
             <Column field="opening_stock" header="Unrestricted Stock" />
             <Column field="warehouse_capacity" header="Warehouse capacity" />
             <Column field="status_level_inventory" header="Status" body={statusOrderBodyTemplate} />
@@ -503,8 +503,8 @@ export const Materialdatachart = (props) => {
               dataKey="id"
               rows={2}
             >
-              <Column field="plant" header=""></Column>
-              <Column field="averagedata" header="" showGridlines></Column>
+              <Column field="plant" header="" />
+              <Column field="averagedata" header="" showGridlines />
             </DataTable>
           </>
         </div>
@@ -528,20 +528,20 @@ export const Materialdatachart = (props) => {
               //style={{ color: getColor(filteredTransposedData) }}
             >
               {/* <Column expander style={{ width: '3em' }} /> */}
-              <Column field="key_mp" header="Material-Plant"></Column>
-              <Column field="keys" header=""></Column>
-              <Column field="Month1" header={dateMaker(year, month)} />
-              <Column field="Month2" header={dateMaker(year, month + 1)} />
-              <Column field="Month3" header={dateMaker(year, month + 2)} />
-              <Column field="Month4" header={dateMaker(year, month + 3)} />
-              <Column field="Month5" header={dateMaker(year, month + 4)} />
-              <Column field="Month6" header={dateMaker(year, month + 5)} />
-              <Column field="Month7" header={dateMaker(year, month + 6)} />
-              <Column field="Month8" header={dateMaker(year, month + 7)} />
-              <Column field="Month9" header={dateMaker(year, month + 8)} />
-              <Column field="Month10" header={dateMaker(year, month + 9)} />
-              <Column field="Month11" header={dateMaker(year, month + 10)} />
-              <Column field="Month12" header={dateMaker(year, month + 11)} />
+              <Column field="key_mp" header="Material-Plant" style={{ border: "1px solid lightgray" }} />
+              <Column field="keys" header="" style={{ border: "1px solid lightgray" }} />
+              <Column field="Month1" header={dateMaker(year, month)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month2" header={dateMaker(year, month + 1)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month3" header={dateMaker(year, month + 2)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month4" header={dateMaker(year, month + 3)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month5" header={dateMaker(year, month + 4)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month6" header={dateMaker(year, month + 5)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month7" header={dateMaker(year, month + 6)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month8" header={dateMaker(year, month + 7)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month9" header={dateMaker(year, month + 8)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month10" header={dateMaker(year, month + 9)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month11" header={dateMaker(year, month + 10)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month12" header={dateMaker(year, month + 11)} style={{ border: "1px solid lightgray" }} />
             </DataTable>
           </div>
         )}

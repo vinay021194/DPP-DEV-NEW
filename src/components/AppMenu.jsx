@@ -9,14 +9,117 @@ import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { AutoComplete } from "primereact/autocomplete";
 
+// const AppSubmenu = (props) => {
+//   const [activeIndex, setActiveIndex] = useState(null);
+
+//   const onMenuItemClick = (event, item, index) => {
+//     //avoid processing disabled items
+//     if (item.disabled) {
+//       event.preventDefault();
+//       return true;
+//     }
+
+//     //execute command
+//     if (item.command) {
+//       item.command({ originalEvent: event, item: item });
+//     }
+
+//     if (index === activeIndex) setActiveIndex(null);
+//     else setActiveIndex(index);
+
+//     if (props.onMenuItemClick) {
+//       props.onMenuItemClick({
+//         originalEvent: event,
+//         item: item,
+//       });
+//     }
+//   };
+
+//   const renderLinkContent = (item) => {
+//     let submenuIcon = item.items && (
+//       <i className="pi pi-fw pi-angle-down menuitem-toggle-icon"></i>
+//     );
+//     let badge = item.badge && (
+//       <span className="menuitem-badge">{item.badge}</span>
+//     );
+
+//     return (
+//       <React.Fragment>
+//         <i className={item.icon}></i>
+//         <span>{item.label}</span>
+//         {submenuIcon}
+//         {badge}
+//       </React.Fragment>
+//     );
+//   };
+
+//   const renderLink = (item, i) => {
+//     let content = renderLinkContent(item);
+
+//     if (item.to) {
+//       return (
+//         <NavLink
+//           activeClassName="active-route"
+//           to={item.to}
+//           onClick={(e) => onMenuItemClick(e, item, i)}
+//           exact
+//           target={item.target}
+//         >
+//           {content}
+//         </NavLink>
+//       );
+//     } else {
+//       return (
+//         <a
+//           href={item.url}
+//           onClick={(e) => onMenuItemClick(e, item, i)}
+//           target={item.target}
+//         >
+//           {content}
+//         </a>
+//       );
+//     }
+//   };
+
+//   let items =
+//     props.items &&
+//     props.items.map((item, i) => {
+//       let active = activeIndex === i;
+//       let styleClass = classNames(item.badgeStyleClass, {
+//         "active-menuitem": active && !item.to,
+//       });
+
+//       return (
+//         <li className={styleClass} key={i}>
+//           {item.items && props.root === true && <div className="arrow"></div>}
+//           {renderLink(item, i)}
+//           <CSSTransition
+//             classNames="p-toggleable-content"
+//             timeout={{ enter: 1000, exit: 450 }}
+//             in={active}
+//             unmountOnExit
+//           >
+//             <AppSubmenu
+//               items={item.items}
+//               onMenuItemClick={props.onMenuItemClick}
+//             />
+//           </CSSTransition>
+//         </li>
+//       );
+//     });
+
+//   return items ? <ul className={props.className}>{items}</ul> : null;
+// };
+
 export const AppMenu = (props) => {
   const [cities, setCities] = useState([]);
   const [selectedCities1, setSelectedCities1] = useState(null);
   const [selectedState1, setSelectedState1] = useState(null);
   const [selectedTown1, setSelectedTown1] = useState(null);
+  const [filteredCountries, setFilteredCountries] = useState(null);
   const city = [
     { name: "600234" },
-    { name: "645908" },
+    // { name: "645908" },
     { name: "678456" },
     { name: "700047" },
     { name: "768971" },
@@ -50,15 +153,25 @@ export const AppMenu = (props) => {
   };
 
   const onMaterialChange = (e) => {
+    // console.log("ee=====>", e.target.value);
+    console.log("value=====>", props);
     setSelectedCities1(e.value);
-    props.handlefilter(e.value);
+    props.handlefilter(e.value, "Multiselect");
   };
-  const itemTemplate = (city) => {
-    return (
-      <div className="country-item">
-        <div>{city.name}</div>
-      </div>
-    );
+
+  const searchCountry = (event) => {
+    setTimeout(() => {
+      let _filteredCountries;
+      if (!event.query.trim().length) {
+        _filteredCountries = [...city];
+      } else {
+        _filteredCountries = city.filter((item) => {
+          return item.name.toLowerCase().startsWith(event.query.toLowerCase());
+        });
+      }
+
+      setFilteredCountries(_filteredCountries);
+    }, 250);
   };
 
   return (
@@ -129,17 +242,16 @@ export const AppMenu = (props) => {
       <div className="gridcol">
         <AutoComplete
           value={selectedCities1}
-          suggestions={city}
-          onChange={onMaterialChange}
-          completeMethod={setSelectedCities1}
-          field="City"
+          suggestions={filteredCountries}
+          completeMethod={searchCountry}
           dropdown
-          forceSelection
-          itemTemplate={itemTemplate}
+          field="name"
+          multiple
+          onChange={onMaterialChange}
+          aria-label="Countries"
           sorted
         />
       </div>
-    
     </div>
   );
 };
