@@ -9,7 +9,7 @@ import "./App.css";
 import { AppMenu } from "../components/AppMenu";
 import { AppTopbar } from "../components/AppTopbar";
 import { CSSTransition } from "react-transition-group";
-import { Dialog } from 'primereact/dialog';
+import { Dialog } from "primereact/dialog";
 //import { Toast } from 'primereact/toast';
 // import { Redirect } from "react-router-dom";
 
@@ -36,17 +36,15 @@ export const MaterialOverview = (props) => {
     opacity: "1",
   };
   const dialogFuncMap = {
-    'displayBasic': setDisplayBasic,
-   
-}
-const onClick = (name, position) => {
-  console.log('onclick',name)
-  dialogFuncMap[`${name}`](true);
-
-}
-const onHide = (name) => {
-  dialogFuncMap[`${name}`](false);
-}
+    displayBasic: setDisplayBasic,
+  };
+  const onClick = (name, position) => {
+    console.log("onclick", name);
+    dialogFuncMap[`${name}`](true);
+  };
+  const onHide = (name) => {
+    dialogFuncMap[`${name}`](false);
+  };
   useEffect(() => {
     if (isMounted.current) {
       //const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
@@ -90,18 +88,13 @@ const onHide = (name) => {
 
   const sidebar = useRef();
   const history = useHistory();
-  const logo =
-    layoutColorMode === "dark"
-      ? "assets/layout/images/logo-white.svg"
-      : "assets/layout/images/logo.svg";
+  const logo = layoutColorMode === "dark" ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
 
   const wrapperClass = classNames("layout-wrapper", {
     "layout-overlay": layoutMode === "overlay",
     "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive":
-      staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active":
-      overlayMenuActive && layoutMode === "overlay",
+    "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
+    "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
     "layout-mobile-sidebar-active": mobileMenuActive,
     // "p-input-filled": inputStyle === "filled",
     // "p-ripple-disabled": ripple === false,
@@ -147,27 +140,15 @@ const onHide = (name) => {
 
   const statusOrderBodyTemplate = (rowData) => {
     return (
-      <span
-        className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}
-      >
+      <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>
         {rowData.status_level_plant}
       </span>
     );
   };
-  // const planttamplete = (rowData) => {
-  //   return (
-  //     <span
-        
-  //     >
-  //       <Button label={rowData.material} onClick={() => onClick('displayBasic')} />
-  //     </span>
-  //   );
-  // };
+
   const statusBodyTemplate = (rowData) => {
     return (
-      <span
-        className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}
-      >
+      <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
         {rowData.status_level_material}
       </span>
     );
@@ -189,31 +170,32 @@ const onHide = (name) => {
     console.log("handlePlantSelect==>", e, selectedPlant);
     setSelectedPlant(e.value);
   };
-//   const onCellSelect = (event) => {
-//     toast.current.show({ severity: 'info', summary: `Item Selected In Product`, detail: `${toCapitalize(event.field)}: ${event.value}`, life: 3000 });
-// }
-// const toCapitalize = (str) => {
-//   return str.charAt(0).toUpperCase() + str.slice(1);
-// }
+  //   const onCellSelect = (event) => {
+  //     toast.current.show({ severity: 'info', summary: `Item Selected In Product`, detail: `${toCapitalize(event.field)}: ${event.value}`, life: 3000 });
+  // }
+  // const toCapitalize = (str) => {
+  //   return str.charAt(0).toUpperCase() + str.slice(1);
+  // }
   const rowExpansionTemplate = (data) => {
-    console.log('rowExpansionTemplate',data)
+    console.log("rowExpansionTemplate", data);
     return (
       <div className="orders-subtable">
-         {/* <Button label=''icon="pi pi-external-link" onClick={() => onClick('displayBasic')} /> */}
-        <Dialog header="Header" visible={displayBasic} style={{ width: '50vw' }}  onHide={() => onHide('displayBasic')}>
-        
+        {/* <Button label=''icon="pi pi-external-link" onClick={() => onClick('displayBasic')} /> */}
+
+        {/* <Dialog header="Header" visible={displayBasic} style={{ width: '50vw' }}  onHide={() => onHide('displayBasic')}> */}
+
         <DataTable
           value={data.expend}
           responsiveLayout="scroll"
           selection={
-            selectedPlant 
+            selectedPlant
             // &&
-            // selectedPlant.filter((ele) => ele.material === "700047")
           }
           onSelectionChange={(e) => handlePlantSelect(e)}
           dataKey="Key"
           rowClassName={rowClass}
-          className="row-p-datatable .p-datatable-thead > tr > th"
+          style={{ background: "green", fontWeight: "bold" }}
+          className=""
           rows={10}
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate=" {first} to {last} of {totalRecords}"
@@ -223,27 +205,18 @@ const onHide = (name) => {
             selectionMode="single"
             // field="material"
             // dataKey="material"
-          
           />
           <Column field="plant" header="Plant ID" />
           <Column field="plant_name" header="Plant Name" />
-          <Column
-            field="status_level_plant"
-            header="Status"
-            body={statusOrderBodyTemplate}
-          />
+          <Column field="status_level_plant" header="Status" body={statusOrderBodyTemplate} />
         </DataTable>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {/* <Link to="/Materialdatachart"> */}
-          <Button
-            className="nextbutton"
-            label="Next "
-            style={{ margin: "3px 15px" }}
-            onClick={next}
-          />
+
           {/* </Link> */}
         </div>
-        </Dialog>
+
+        {/* </Dialog> */}
       </div>
     );
   };
@@ -254,7 +227,6 @@ const onHide = (name) => {
         let allMaterial = filters.map((d) => d.name);
         if (filters) {
           let filteredData = products.filter((data) => {
-            //console.log("data====>",data)
             return allMaterial.includes(data.material);
           });
           setproductsFiltered(filteredData);
@@ -280,8 +252,7 @@ const onHide = (name) => {
       <AppTopbar onToggleMenu={onToggleMenu} />
       <div className="layout-main">
         <div className="card">
-        
-        {/* <Toast ref={toast} /> */}
+          {/* <Toast ref={toast} /> */}
           <DataTable
             value={productsFiltered}
             expandedRows={displayBasic}
@@ -295,13 +266,12 @@ const onHide = (name) => {
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLrowink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
             onRowClick={(e) => setDisplayBasic(e.data)}
-            selectionPageOnly paginator ={5}
-            
-             selectionMode="single" 
-            //  cellSelection selection={displayBasic} 
+            selectionPageOnly
+            paginator={5}
+            selectionMode="single"
+            //  cellSelection selection={displayBasic}
             //  onSelectionChange={(e) => setDisplayBasic(e.data)}
-            //  onCellSelect={rowExpansionTemplate} 
-            
+            //  onCellSelect={rowExpansionTemplate}
           >
             <Column expander style={{ width: "3em" }} />
             <Column
@@ -312,15 +282,24 @@ const onHide = (name) => {
               //Disabled={'material' !=='700047'}
             ></Column>
             <Column field="material_description_1" header="Name"></Column>
-            <Column field="inventory_material_level" header=" Total Inventory" />
-            <Column
-              field="status_level_material"
-              header="Status"
-              body={statusBodyTemplate}
-            />
+
+            <Column field="inventory_material_level" header=" Total Inventory (T)" />
+            <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
           </DataTable>
         </div>
-       
+
+        {/* <Button
+            className="nextbutton"
+            label="Next "
+            style={{ marginLeft: "46em" ,display:'flex',justifyContent:'center' }}
+            onClick={next}
+          /> */}
+        <Button
+          className="nextbutton"
+          label="Next "
+          style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }}
+          onClick={next}
+        />
       </div>
       <CSSTransition
         classNames="layout-sidebar"
@@ -328,11 +307,7 @@ const onHide = (name) => {
         in={isSidebarVisible()}
         unmountOnExit
       >
-        <div
-          ref={sidebar}
-          className={sidebarClassName}
-          onClick={onSidebarClick}
-        >
+        <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
           <div
             className="layout-logo"
             style={{
@@ -349,9 +324,7 @@ const onHide = (name) => {
               }}
             />
           </div>
-          <AppMenu
-            handlefilter={(filters, types) => handlefilter(filters, types)}
-          />
+          <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
         </div>
       </CSSTransition>
     </div>

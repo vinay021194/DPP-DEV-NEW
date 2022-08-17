@@ -31,7 +31,6 @@ export const Inventory = (props) => {
 
   let currenYyear = new Date().getFullYear() * 1;
   let currenMonth = new Date().getMonth() * 1;
-
   let menuClick = false;
   const options = {
     chart: {
@@ -77,31 +76,17 @@ export const Inventory = (props) => {
     productService
       .getPlantinventoryTable()
       .then((data) => setplantData3000(data.Sheet1.filter((data) => data.plant === "3000")));
-
-    // let datap = plantData.filter(data=> data.plant =  "2000")
-    // console.log('datap',datap)
   }, []);
 
   // eslint-disable-line react-hooks/exhaustive-deps
 
-  // const onRowExpand = (event) => {
-  //   //toast.current.show({severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000});
-  // };
-
-  // const onRowCollapse = (event) => {
-  //   // toast.current.show({severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000});
-  // };
-
-  // const expandAll = () => {
-  //   let _expandedRows = {};
-  //   products.forEach((p) => (_expandedRows[`${p.id}`] = true));
-
-  //   setExpandedRows(_expandedRows);
-  // };
-
-  // const collapseAll = () => {
-  //   setExpandedRows(null);
-  // };
+  const dateMaker = (yr, mnt) => {
+    const date = new Date(yr, mnt).toLocaleDateString("en-US", {
+      month: "short",
+      year: "2-digit",
+    });
+    return date;
+  };
 
   // const formatCurrency = (value) => {
   //     return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
@@ -120,7 +105,6 @@ export const Inventory = (props) => {
   const isDesktop = () => {
     return window.innerWidth > 1024;
   };
-
   const onToggleMenu = (event) => {
     menuClick = true;
 
@@ -148,7 +132,6 @@ export const Inventory = (props) => {
       <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All quantities are in Tonnes</h10>
     </div>
   );
-
   const header3 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- 2000</h5>
@@ -156,27 +139,18 @@ export const Inventory = (props) => {
     </div>
   );
 
-  // const header4 = (
-  //   <div className="table-header-container">
-  //     <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
-  //     <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}> All values are in Tonnes</h10>
-  //   </div>
-  // );
-
+  const header4 = (
+    <div className="table-header-container">
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
+      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}> All values are in Tonnes</h10>
+    </div>
+  );
   const header5 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
       <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All prices are in US$/Tonne</h10>
     </div>
   );
-
-  const dateMaker = (yr, mnt) => {
-    const date = new Date(yr, mnt).toLocaleDateString("en-US", {
-      month: "short",
-      year: "2-digit",
-    });
-    return date;
-  };
 
   return (
     <div>
@@ -210,6 +184,7 @@ export const Inventory = (props) => {
             {/* <Column field="Criticality" header="Criticality"   /> */}
             <Column field="material_type (SAP)" header="SAP" />
             <Column field="material_group (organisation)" header="Organization" />
+
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
         </div>
@@ -234,22 +209,6 @@ export const Inventory = (props) => {
             <Column field="month_6" header={dateMaker(currenYyear, currenMonth + 5)} />
           </DataTable>
         </div>
-        {/* <div className='card'>
-               <DataTable 
-                       value={plantData3000} 
-                        dataKey="key"
-                        header={header4}
-                        rows={2}
-                        >
-                        <Column field="data" header="" ></Column>
-                        <Column field="month_1" header="May22" ></Column>
-                        <Column field="month_2" header="Jun22"  />
-                        <Column field="month_3" header="Jul22"   />
-                        <Column field="month_4" header="Aug22"  />
-                        <Column field="month_5" header="Sep22" />
-                        <Column field="month_6" header="Oct22"  />
-                    </DataTable>
-                    </div> */}
         <div className="card">
           <DataTable value={supplierObject} dataKey="id" header={header5} rows={3}>
             <Column field="name" header="Supplier"></Column>
@@ -267,6 +226,7 @@ export const Inventory = (props) => {
             <Button className="previousbutton" label="Previous" style={{}} />
           </Link>
           {/* <Button
+
             className="nextbutton"
             label="Edit"
             style={{ marginLeft: " 15px" }}

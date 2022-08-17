@@ -50,7 +50,6 @@ export const Orderingplant = () => {
     console.log("window.supplierObject===>", window.supplierObject);
     if (isMounted.current) {
       const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-      //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
     window.supplierObject2 = window.supplierObject;
   }, [expandedRows]);
@@ -149,6 +148,7 @@ export const Orderingplant = () => {
             {/* <Column field="" header="Buyer-Group" ></Column> */}
             <Column field="material_type (SAP)" header="Type" />
             <Column field="material_description_1" header="Description"></Column>
+
             <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
             <Column field="mdrm_class (class)" header="UNSPSC Description" />
           </DataTable>
@@ -203,10 +203,12 @@ export const Orderingplant = () => {
             //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
             //   rowExpansionTemplate={rowExpansionTemplate}
             dataKey="id"
+            showGridlines
+            responsiveLayout="scroll"
             // footer={footer}
             //header={header3}
             rows={6}
-            showGridlines
+
             //editMode="cell"
           >
             {/* <Column expander style={{ width: '3em' }} /> */}

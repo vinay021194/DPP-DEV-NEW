@@ -6,6 +6,8 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { Button } from "primereact/button";
 import "./App.css";
+
+import { Dialog } from "primereact/dialog";
 import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
@@ -20,6 +22,7 @@ export const CostDriversAnalysis = () => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [costDriverSeriesData, setcostDriverSeriesData] = useState(false);
   const [icisForecastSummaryTable, seticisForecastSummaryTable] = useState(false);
+
   const [costDriver, setcostDriver] = useState(false);
   const [costDriverSeries, setcostDriverSeries] = useState(false);
   const [source, setSource] = useState(false);
@@ -30,6 +33,8 @@ export const CostDriversAnalysis = () => {
   const [accuraciesJsonData, setAccuraciesJsonData] = useState([]);
   const [pricePridectionTable, setPricePridectionTableData] = useState([]);
   const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] = useState([]);
+  const [displayBasic, setDisplayBasic] = useState(false);
+  const [position, setPosition] = useState("center");
 
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
@@ -77,6 +82,13 @@ export const CostDriversAnalysis = () => {
     var unique = Array.from(new Set(allseries.map(JSON.stringify))).map(JSON.parse);
     setDropdown(unique);
     setcostDriver(event.value);
+  };
+  const onClick = (name, position) => {
+    dialogFuncMap[`${name}`](true);
+
+    if (position) {
+      setPosition(position);
+    }
   };
 
   const sourceOption = [
@@ -166,6 +178,13 @@ export const CostDriversAnalysis = () => {
     { name: "Polyethylene (US)", code: "Polyethylene (US)" },
   ];
 
+  const dialogFuncMap = {
+    displayBasic: setDisplayBasic,
+  };
+  const onHide = (name) => {
+    dialogFuncMap[`${name}`](false);
+  };
+
   let menuClick = false;
   const isMounted = useRef(false);
 
@@ -183,6 +202,7 @@ export const CostDriversAnalysis = () => {
           key: ele.key,
           best_model: ele.best_model,
           top_influencers: ele.top_influencers.replaceAll("[", "").replaceAll("]", "").split(","),
+
           fifth_month_accuracy: (ele.fifth_month_accuracy * 1).toFixed(2),
           first_month_accuracy: (ele.first_month_accuracy * 1).toFixed(2),
           fourth_month_accuracy: (ele.fourth_month_accuracy * 1).toFixed(2),
@@ -233,6 +253,7 @@ export const CostDriversAnalysis = () => {
 
   // let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
   // let plotBandsEnd = new Date("2023-05-01 03:00:00").getTime();
+
   // plotBandsStart = Math.min(...filteredData.map((item) => item.x));
   // plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
 
@@ -272,16 +293,6 @@ export const CostDriversAnalysis = () => {
           color: "#D5DFE9",
           from: plotBandsStart,
           to: plotBandsEnd,
-          // label: {
-          //   useHTML: true,
-          //   textAlign: "center",
-          //   text: plotBandText,
-          //   style: {
-          //     color: "#4280B4",
-          //     fontWeight: "bold",
-          //     fontSize: "10px",
-          //   },
-          // },
         },
       ],
 
@@ -410,6 +421,7 @@ export const CostDriversAnalysis = () => {
           {rowData.top_influencers[1] && <span>2. {rowData.top_influencers[1]}</span>}
           <br />
           {rowData.top_influencers[2] && <span>3. {rowData.top_influencers[2]}</span>}
+
           <br />
         </div>
       );
@@ -446,23 +458,25 @@ export const CostDriversAnalysis = () => {
             <tbody className="p-datatable-tbody">
               <tr role="row" className={rowData.best_model === "ARIMA" ? "bestModel" : ""}>
                 <td role="cell" className="paddingThTd">
-                  ARIMA
+                  <Button label="ARIMA" className="p-button-link" onClick={() => onClick("displayBasic")} />
                 </td>
                 <td role="cell" className="paddingThTd">
                   {rowData.accuracy_arima}
                 </td>
               </tr>
+
               <tr role="row" className={rowData.best_model === "VAR" ? "bestModel" : ""}>
                 <td role="cell" className="paddingThTd">
-                  VAR
+                  <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} />
                 </td>
                 <td role="cell" className="paddingThTd">
                   {rowData.Accuracy_var}
                 </td>
               </tr>
+
               <tr role="row" className={rowData.best_model === "VECM" ? "bestModel" : ""}>
                 <td role="cell" className="paddingThTd">
-                  VECM
+                  <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} />
                 </td>
                 <td role="cell" className="paddingThTd">
                   {rowData.accuracy_vecm}
@@ -578,6 +592,15 @@ export const CostDriversAnalysis = () => {
           </Link>
         </div>
       </div>
+      <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </Dialog>
     </div>
   );
 };

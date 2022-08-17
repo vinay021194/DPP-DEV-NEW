@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { CSSTransition } from "react-transition-group";
-import { Link } from "react-router-dom";
-import { Button } from "primereact/button";
 
-export const AppProfile = (props) => {
+export const AppProfile = () => {
   const [expanded, setExpanded] = useState(false);
 
   const onClick = (event) => {
@@ -42,16 +40,6 @@ export const AppProfile = (props) => {
               <span>Logout</span>
             </button>
           </li>
-          {/* <button type="button" className="p-link">
-            <i className="pi pi-fw pi-power-off" />
-            <Link to="/">
-              <span>Logout</span>
-            </Link>
-          </button> */}
-          <Link to="/SupplierAnalysis">
-            <Button className="nextbutton" label="Supplier Analysis" style={{ marginLeft: " 15px" }} />
-          </Link>
-          {/* <Button className="pi pi-fw pi-power-off" label="Logout " /> */}
         </ul>
       </CSSTransition>
     </div>

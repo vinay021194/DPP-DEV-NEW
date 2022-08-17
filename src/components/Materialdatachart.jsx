@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { DataTable } from "primereact/datatable";
-import { useHistory } from "react-router-dom";
 import { Column } from "primereact/column";
 import { Calendar } from "primereact/calendar";
 import { ProductService } from "../services/ProductService";
@@ -14,6 +13,7 @@ import demantData from "../data/demand_info_regression_summary.json";
 import { Link } from "react-router-dom";
 import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
+
 export const Materialdatachart = (props) => {
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
@@ -57,29 +57,56 @@ export const Materialdatachart = (props) => {
     "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
   let plantData = [...new Map(demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])).values()];
+
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
   });
 
+  //   // console.log("plantData==>", plantData);
+  //    console.log("props==>", props);
+
+  //   let convertedData = demandInfoRegressionSummaryTable.map((el) => {
+  //     let date = new Date(el.period);
+  //     let milliseconds = date.getTime();
+  //     return {
+  //       executedOn: el.executed_on,
+  //       plant: el.plant,
+  //       x: milliseconds,
+  //       y: Number(el.quantity),
+  //       total_cons_converted_mp_level: el.total_cons_converted_mp_level,
+  //       period_type: el.period_type,
+  //     };
+  //   });
+
+  //   let filteredData = convertedData.filter(
+  //     (ele) => ele.period_type === "Forecast"
+  //   );
+
+  //   let plotBandsStart = new Date().getMilliseconds();
+  //   let plotBandsEnd = new Date().getMilliseconds();
+  //   plotBandsStart = Math.min(...filteredData.map((item) => item.x));
+  //   plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
+
+  // >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
   let menuClick = false;
 
-  // let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-  // const options = {
-  //   chart: {
-  //     type: "spline",
-  //   },
-  //   title: {
-  //     text: "My chart",
-  //   },
-  //   series: [
-  //     {
-  //       data: [1, 3, 2, 7, 5, 11, 9],
-  //     },
-  //   ],
-  // };
+  const options = {
+    chart: {
+      type: "spline",
+    },
+    title: {
+      text: "My chart",
+    },
+    series: [
+      {
+        data: [1, 3, 2, 7, 5, 11, 9],
+      },
+    ],
+  };
 
   const chart3 = {
     chart: {
@@ -168,7 +195,6 @@ export const Materialdatachart = (props) => {
   useEffect(() => {
     if (isMounted.current) {
       const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-      //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
   }, [expandedRows]);
 
@@ -221,7 +247,6 @@ export const Materialdatachart = (props) => {
     let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);
-
       let milliseconds = date.getTime();
       return {
         executedOn: el.executed_on,
@@ -238,6 +263,7 @@ export const Materialdatachart = (props) => {
     }
 
     let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
+
     console.log("transportdata====>", transportdata);
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -342,7 +368,6 @@ export const Materialdatachart = (props) => {
       </div>
     );
   };
-
   return (
     <div>
       {console.log("selectedPlant inside props====>", props)}
@@ -499,7 +524,6 @@ export const Materialdatachart = (props) => {
               sortField="key_mp"
               sortOrder={1}
               header={headers2}
-
               // rowClassName={rowClass}
               //style={{ color: getColor(filteredTransposedData) }}
             >

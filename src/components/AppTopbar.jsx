@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-// import { InputText } from "primereact/inputtext";
 import { SplitButton } from "primereact/splitbutton";
-// import { Toast } from "primereact/toast";
 import { Link } from "react-router-dom";
-import { TabMenu } from "primereact/tabmenu";
 
 export const AppTopbar = (props) => {
   const [activeIndex, setActiveIndex] = useState(3);
@@ -49,12 +46,15 @@ export const AppTopbar = (props) => {
       {/* <TabMenu model={items2} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} /> */}
 
       {/* <a className="navbar-brand"
+
        href="#"
         style={{padding:"4px;margin:auto"}}
         >
           <img src="assets/layout/images/logo-white.svg"
           style={{height:"100%", width: "auto" }}
+<<<<<<< HEAD
            title="SSA"/></a> */}
+
       <div className="layout-topbar-icons">
         {/* <span className="layout-topbar-search">
           <InputText type="text" placeholder="Search" />
