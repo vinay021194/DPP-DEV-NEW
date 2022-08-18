@@ -31,7 +31,7 @@ const App = (props) => {
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
-  console.log("App props===>", window.location);
+  // console.log("App props===>", window.location);
   let menuClick = false;
 
   const isDesktop = () => {

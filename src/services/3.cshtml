@@ -118,7 +118,7 @@
 
                     var timeInterwal = $("#chart").val();
 
-                    console.log("timeInterwal ===>", timeInterwal)
+                    @* console.log("timeInterwal ===>", timeInterwal) *@
 
                     var chart = timeInterwal == "Weekly" ? 'Weekly Returns :  <b>' + this.point.weeklyReturn + '</b>' : 'Monthly Returns :  <b>' + this.point.monthly_returns + '</b>'
 
@@ -182,7 +182,7 @@
 
     function onTimeSelect(e) {
 
-        console.log("eee=>", e.dataItem.Value)
+        @* console.log("eee=>", e.dataItem.Value) *@
 
         timeInterwal = e.dataItem.Value;
 
@@ -228,7 +228,7 @@
 
             success: function (data) {
 
-                console.log("data===>", data)
+                @* console.log("data===>", data) *@
 
                 var actualvalues = data.map(d => {
 
@@ -378,7 +378,7 @@
 
                 }]
 
-                console.log("SeriesChartData==>", SeriesChartData)
+                @* console.log("SeriesChartData==>", SeriesChartData) *@
 
                 createChart();
 
@@ -406,7 +406,7 @@
 
     function select(e) {
 
-        console.log("here ===>", e)
+        @* console.log("here ===>", e) *@
 
         var dropdownlist = $("#materialId").data("kendoDropDownList");
 

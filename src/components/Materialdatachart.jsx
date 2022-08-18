@@ -44,6 +44,8 @@ export const Materialdatachart = (props) => {
   let plotBandsStart = new Date(year, month, 1).getTime();
   let plotBandsEnd = new Date(endYear, lastMonth, 28).getTime();
   let diffDate = plotBandsEnd - lastDate;
+  let maxDate = new Date(endYear, lastMonth, 28);
+  let minDate = new Date(maxDate.getTime() - 160079200000);
 
   const dateMaker = (yr, mnt) => {
     const date = new Date(yr, mnt).toLocaleDateString("en-US", {
@@ -62,51 +64,8 @@ export const Materialdatachart = (props) => {
     return { label: ele.plant, value: ele.plant };
   });
 
-  //   // console.log("plantData==>", plantData);
-  //    console.log("props==>", props);
-
-  //   let convertedData = demandInfoRegressionSummaryTable.map((el) => {
-  //     let date = new Date(el.period);
-  //     let milliseconds = date.getTime();
-  //     return {
-  //       executedOn: el.executed_on,
-  //       plant: el.plant,
-  //       x: milliseconds,
-  //       y: Number(el.quantity),
-  //       total_cons_converted_mp_level: el.total_cons_converted_mp_level,
-  //       period_type: el.period_type,
-  //     };
-  //   });
-
-  //   let filteredData = convertedData.filter(
-  //     (ele) => ele.period_type === "Forecast"
-  //   );
-
-  //   let plotBandsStart = new Date().getMilliseconds();
-  //   let plotBandsEnd = new Date().getMilliseconds();
-  //   plotBandsStart = Math.min(...filteredData.map((item) => item.x));
-  //   plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
-
-  // >>>>>>> d1537585328637c1e6fbd4396a4f4207c119448d
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
-  let menuClick = false;
-
-  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-  const options = {
-    chart: {
-      type: "spline",
-    },
-    title: {
-      text: "My chart",
-    },
-    series: [
-      {
-        data: [1, 3, 2, 7, 5, 11, 9],
-      },
-    ],
-  };
 
   const chart3 = {
     chart: {
@@ -235,6 +194,8 @@ export const Materialdatachart = (props) => {
     onsubmit();
     isMounted.current = true;
     productService.getMaterial().then((data) => setProducts3(data));
+    setDate1(minDate);
+    setDate2(maxDate);
   }, []);
 
   const onPlantChange = (e) => {
@@ -257,14 +218,14 @@ export const Materialdatachart = (props) => {
       };
     });
     if (date1 && date2) {
-      convertedData = convertedData.filter(
-        (data) => new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2)
-      );
+      const startTime = new Date(date1).getTime();
+      const endTime = new Date(date2).getTime();
+      convertedData = convertedData.filter((data) => data.x > startTime && data.x < endTime);
     }
 
     let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
-    console.log("transportdata====>", transportdata);
+    // console.log("transportdata====>", transportdata);
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
         id: ele.id,
@@ -297,7 +258,7 @@ export const Materialdatachart = (props) => {
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
-    console.log("filterData===>", filterData);
+    // console.log("filterData===>", filterData);
     setAverageYearlyConsumption(filterYearlyData);
     setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
@@ -305,21 +266,6 @@ export const Materialdatachart = (props) => {
 
   const isDesktop = () => {
     return window.innerWidth > 1024;
-  };
-
-  const onToggleMenu = (event) => {
-    menuClick = true;
-
-    if (isDesktop()) {
-      if (layoutMode === "overlay") {
-        setOverlayMenuActive((prevState) => !prevState);
-      } else if (layoutMode === "static") {
-        setStaticMenuInactive((prevState) => !prevState);
-      }
-    } else {
-      setMobileMenuActive((prevState) => !prevState);
-    }
-    event.preventDefault();
   };
 
   const header = (
@@ -336,23 +282,27 @@ export const Materialdatachart = (props) => {
       </h5>
     </div>
   );
+
   const headers = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory</h5>
       <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>Quantities are in Tonnes</h10>
     </div>
   );
+
   const headers2 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory Status In Future (Without Buyer Action)</h5>
       <h10 style={{ fontWeight: "lighter", fontFamily: "poppins" }}> All values are in Tonnes</h10>
     </div>
   );
+
   const statusOrderBodyTemplate = (rowData) => {
     return (
       <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
     );
   };
+
   const rowExpansionTemplate = (data) => {
     return (
       <div className="orders-subtable">
@@ -368,6 +318,7 @@ export const Materialdatachart = (props) => {
       </div>
     );
   };
+
   return (
     <div>
       {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
@@ -442,25 +393,32 @@ export const Materialdatachart = (props) => {
           />
           <strong>From Year</strong>
           <Calendar
-            className="p-dropdow"
+            // className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date1}
-            placeholder="01-01-2018"
+            // placeholder={minDate.toLocaleDateString("en-GB")}
             onChange={(e) => setDate1(e.value)}
-            disabled
+            minDate={minDate}
+            maxDate={maxDate}
+            dateFormat="dd/mm/yy"
+            yearRange="2015:2025"
+            // disabled
           />
           <strong>To Year</strong>
           <Calendar
-            className="p-dropdow"
+            // className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date2}
-            placeholder="01-01-2023"
+            // placeholder={maxDate.toLocaleDateString("en-GB")}
             onChange={(e) => setDate2(e.value)}
-            disabled
+            minDate={minDate}
+            maxDate={maxDate}
+            dateFormat="dd/mm/yy"
+            // disabled
           />
           <Button id="btn" label="submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
           <div className="table-header-container">

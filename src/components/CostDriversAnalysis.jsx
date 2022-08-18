@@ -544,41 +544,49 @@ export const CostDriversAnalysis = (props) => {
           </div>
         </div>
         <div className="card">
-          <DataTable value={AccuraciesTableData} header={header} rows={10}>
-            <Column field="key" header="Index" />
-            <Column field="best_model" header="Model Accuracies" style={{ width: "16em" }} body={statusBodyTemplate} />
+          <DataTable value={AccuraciesTableData} header={header} rows={10} showGridlines>
+            <Column field="key" header="Index" style={{ border: "1px solid lightgray" }} />
+            <Column
+              field="best_model"
+              header="Model Accuracies"
+              style={{ border: "1px solid lightgray", width: "16em" }}
+              body={statusBodyTemplate}
+            />
             <Column
               field="top_influencers"
               header="Most Influencial Predictor"
               body={topInfluencersTemplate}
-              style={{ width: "20em" }}
+              style={{ border: "1px solid lightgray", width: "20em" }}
             />
-            {/* <Column field="Accuracy_var" header="Accuracy (%)" /> */}
-            <Column field="first_month_accuracy" header={dateMaker(year, month) + " ($)"} style={{ width: "7.5em" }} />
+            <Column
+              field="first_month_accuracy"
+              header={dateMaker(year, month) + " ($)"}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
+            />
             <Column
               field="second_month_accuracy"
               header={dateMaker(year, month + 1) + " ($)"}
-              style={{ width: "7.5em" }}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
             />
             <Column
               field="third_month_accuracy"
               header={dateMaker(year, month + 2) + " ($)"}
-              style={{ width: "7.5em" }}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
             />
             <Column
               field="fourth_month_accuracy"
               header={dateMaker(year, month + 3) + " ($)"}
-              style={{ width: "7.5em" }}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
             />
             <Column
               field="fifth_month_accuracy"
               header={dateMaker(year, month + 4) + " ($)"}
-              style={{ width: "7.5em" }}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
             />
             <Column
               field="sixth_month_accuracy"
               header={dateMaker(year, month + 5) + " ($)"}
-              style={{ width: "7.5em" }}
+              style={{ border: "1px solid lightgray", width: "7.5em" }}
             />
           </DataTable>
         </div>

@@ -7,7 +7,7 @@ import { Button } from "primereact/button";
 import { useEffect } from "react";
 
 export const AppTopbar = (props) => {
-  console.log("AppTopBar props===>", props);
+  // console.log("AppTopBar props===>", props);
   const [activeMenu, setActiveMenu] = useState(props?.location?.pathname);
 
   useEffect(() => setActiveMenu(props?.location?.pathname), [props]);
@@ -50,7 +50,7 @@ export const AppTopbar = (props) => {
   const activeClass = "p-button-text mx-3 active-route";
 
   const handleActiveMenu = (e, label) => {
-    console.log("handleActiveMenu===>", label);
+    // console.log("handleActiveMenu===>", label);
     setActiveMenu(label);
   };
 
