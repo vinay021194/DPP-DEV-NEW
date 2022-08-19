@@ -53,6 +53,10 @@ export const MaterialOverview = (props) => {
   }, [expandedRows]);
 
   useEffect(() => {
+    // localStorage.setItem("Material", "");
+    // localStorage.setItem("plant", "");
+    // localStorage.setItem("Material-Plant", "");
+    localStorage.clear();
     isMounted.current = true;
     // productService.getProductsWithOrdersSmall().then(data => setProducts(data));
     productService.getMaterialInfo().then((data) => {
@@ -137,19 +141,11 @@ export const MaterialOverview = (props) => {
   );
 
   const statusOrderBodyTemplate = (rowData) => {
-    return (
-      <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>
-        {rowData.status_level_plant}
-      </span>
-    );
+    return <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>{rowData.status_level_plant}</span>;
   };
 
   const statusBodyTemplate = (rowData) => {
-    return (
-      <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
-        {rowData.status_level_material}
-      </span>
-    );
+    return <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>{rowData.status_level_material}</span>;
   };
 
   const next = () => {
@@ -165,22 +161,20 @@ export const MaterialOverview = (props) => {
   };
 
   const handlePlantSelect = (e) => {
-    // console.log("handlePlantSelect==>", e, selectedPlant);
+    // console.log("handlePlantSelect==>", e.value);
+    localStorage.setItem("Material", e.value.material);
+    localStorage.setItem("plant", e.value.plant);
+    localStorage.setItem("Material-Plant", e.value);
     setSelectedPlant(e.value);
   };
 
   const rowExpansionTemplate = (data) => {
-    // console.log("rowExpansionTemplate", data);
     return (
       <div className="orders-subtable">
         <DataTable
           value={data.expend}
           responsiveLayout="scroll"
-          selection={
-            selectedPlant
-            // &&
-            // selectedPlant.filter((ele) => ele.material === "768971")
-          }
+          selection={selectedPlant}
           onSelectionChange={(e) => handlePlantSelect(e)}
           dataKey="Key"
           rowClassName={rowClass}
@@ -250,9 +244,6 @@ export const MaterialOverview = (props) => {
             selectionPageOnly
             paginator={5}
             selectionMode="single"
-            //  cellSelection selection={displayBasic}
-            //  onSelectionChange={(e) => setDisplayBasic(e.data)}
-            //  onCellSelect={rowExpansionTemplate}
           >
             <Column expander style={{ width: "3em" }} />
             <Column
@@ -267,39 +258,10 @@ export const MaterialOverview = (props) => {
             <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
           </DataTable>
         </div>
-        <Button
-          className="nextbutton"
-          label="Next "
-          style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }}
-          onClick={next}
-        />
+        <Button className="nextbutton" label="Next " style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }} onClick={next} />
       </div>
-      <CSSTransition
-        classNames="layout-sidebar"
-        timeout={{ enter: 200, exit: 200 }}
-        in={isSidebarVisible()}
-        unmountOnExit
-      >
+      <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
         <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
-          {/* <div
-            className="layout-logo"
-            style={{
-              cursor: "pointer",
-            }}
-            onClick={() => history.push("/MaterialOverview")}
-          >
-            <img
-              alt="Logo"
-              src={logo}
-              style={{
-                width: "200px",
-                margin: "0px 0px 15px 0px",
-              }}
-            />
-          </div> */}
-          {/* <Link to="/MaterialOverview"> */}
-          {/* <img alt="Logo" src={logo} style={{ width: "200px", margin: "10px 0px 15px 0px" }} /> */}
-          {/* </Link> */}
           <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
         </div>
       </CSSTransition>

@@ -55,27 +55,32 @@ export const Inventory = (props) => {
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getMaterial().then((data) => setProducts(data));
-    setsupplierObject(
-      props.location.state?.supplierDetails ? props.location.state?.supplierDetails : window.supplierObject2
-    );
+    //productService.getMaterial().then((data) => setProducts(data));
+    productService.getMaterial().then((data) => {
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
+      console.log("Material info: " + materilaData);
+      // setProducts(materilaData)
+      setProducts(materilaData);
+    });
+    setsupplierObject(props.location.state?.supplierDetails ? props.location.state?.supplierDetails : window.supplierObject2);
     window.supplierObject = props.location.state?.supplierDetails;
   }, []);
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getInventoryInfo().then((data) => setProducts2(data));
+    productService.getInventoryInfo().then((data) => {
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material") && data.plant === localStorage.getItem("plant"));
+      console.log("Material info: " + materilaData);
+
+      setProducts2(materilaData);
+    });
   }, []);
 
   useEffect(() => {
     isMounted.current = true;
     productService.getPlantinventoryTable().then((data) => setPlantData(data));
-    productService
-      .getPlantinventoryTable()
-      .then((data) => setplantData2000(data.Sheet1.filter((data) => data.plant === "2000")));
-    productService
-      .getPlantinventoryTable()
-      .then((data) => setplantData3000(data.Sheet1.filter((data) => data.plant === "3000")));
+    productService.getPlantinventoryTable().then((data) => setplantData2000(data.Sheet1.filter((data) => data.plant === localStorage.getItem("plant"))));
+    // productService.getPlantinventoryTable().then((data) => setplantData3000(data.Sheet1.filter((data) => data.plant === "3000")));
   }, []);
 
   // eslint-disable-line react-hooks/exhaustive-deps
@@ -97,9 +102,7 @@ export const Inventory = (props) => {
   // }
 
   const statusOrderBodyTemplate = (rowData) => {
-    return (
-      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
-    );
+    return <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
   };
 
   const isDesktop = () => {
@@ -170,7 +173,7 @@ export const Inventory = (props) => {
         </h5>
         <div className="card">
           <DataTable
-            value={products.Sheet3}
+            value={products}
             responsiveLayout="scroll"
             // rowExpansionTemplate={rowExpansionTemplate}
             dataKey="id"
@@ -189,7 +192,7 @@ export const Inventory = (props) => {
           </DataTable>
         </div>
         <div className="card">
-          <DataTable value={products2.Sheet3} dataKey="id" header={header2} rows={4}>
+          <DataTable value={products2} dataKey="id" header={header2} rows={4}>
             <Column field="plant" header="Plant ID"></Column>
             <Column field="plant_name" header="Plant Name"></Column>
             <Column field="safety_stock" header="Safety Stock"></Column>

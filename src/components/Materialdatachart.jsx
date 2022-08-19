@@ -53,8 +53,7 @@ export const Materialdatachart = (props) => {
     return date;
   };
 
-  let plotBandText =
-    "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
+  let plotBandText = "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
   let plantData = [...new Map(demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])).values()];
 
@@ -200,7 +199,7 @@ export const Materialdatachart = (props) => {
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getMaterialInfo().then((data) => setProducts(data));
+    productService.getMaterialInfo().then((data) => {});
     setdemandInfoRegressionSummaryTable(demantData.Sheet1);
     productService.gettransposedData().then((data) => {
       let TransposedColorData = data.Sheet.map((ele) => {
@@ -228,13 +227,18 @@ export const Materialdatachart = (props) => {
 
   useEffect(() => {
     isMounted.current = true;
-    productService.getInventoryInfo().then((data) => setProducts2(data));
+    productService.getInventoryInfo().then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
   }, []);
 
   useEffect(() => {
     onsubmit();
     isMounted.current = true;
-    productService.getMaterial().then((data) => setProducts3(data));
+    productService.getMaterial().then((data) => {
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
+      console.log("Material info: " + materilaData);
+      // setProducts(materilaData)
+      setProducts3(materilaData);
+    });
   }, []);
 
   const onPlantChange = (e) => {
@@ -257,9 +261,7 @@ export const Materialdatachart = (props) => {
       };
     });
     if (date1 && date2) {
-      convertedData = convertedData.filter(
-        (data) => new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2)
-      );
+      convertedData = convertedData.filter((data) => new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2));
     }
 
     let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
@@ -349,9 +351,7 @@ export const Materialdatachart = (props) => {
     </div>
   );
   const statusOrderBodyTemplate = (rowData) => {
-    return (
-      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
-    );
+    return <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
   };
   const rowExpansionTemplate = (data) => {
     return (
@@ -388,7 +388,7 @@ export const Materialdatachart = (props) => {
         </div>
         <div className="card">
           <DataTable
-            value={products3.Sheet3}
+            value={products3}
             // expandedRows={expandedRows}
             onRowToggle={(e) => setExpandedRows(e.data)}
             responsiveLayout="scroll"
@@ -411,7 +411,7 @@ export const Materialdatachart = (props) => {
         </div>
         <div className="card">
           <DataTable
-            value={products2.Sheet3}
+            value={products2}
             //  expandedRows={expandedRows}
             // onRowToggle={(e) => setExpandedRows(e.data)}
             // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
@@ -431,37 +431,11 @@ export const Materialdatachart = (props) => {
           </DataTable>
         </div>
         <div className="card">
-          <MultiSelect
-            style={{ width: "40%", margin: "5px 10px" }}
-            value={Plants}
-            options={plantData}
-            onChange={onPlantChange}
-            optionLabel="label"
-            placeholder="Select a Plant"
-            display="chip"
-          />
+          <MultiSelect style={{ width: "40%", margin: "5px 10px" }} value={Plants} options={plantData} onChange={onPlantChange} optionLabel="label" placeholder="Select a Plant" display="chip" />
           <strong>From Year</strong>
-          <Calendar
-            className="p-dropdow"
-            style={{ width: "15%", margin: "5px 10px" }}
-            id="icon"
-            showIcon
-            value={date1}
-            placeholder="01-01-2018"
-            onChange={(e) => setDate1(e.value)}
-            disabled
-          />
+          <Calendar className="p-dropdow" style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date1} placeholder="01-01-2018" onChange={(e) => setDate1(e.value)} disabled />
           <strong>To Year</strong>
-          <Calendar
-            className="p-dropdow"
-            style={{ width: "15%", margin: "5px 10px" }}
-            id="icon"
-            showIcon
-            value={date2}
-            placeholder="01-01-2023"
-            onChange={(e) => setDate2(e.value)}
-            disabled
-          />
+          <Calendar className="p-dropdow" style={{ width: "15%", margin: "5px 10px" }} id="icon" showIcon value={date2} placeholder="01-01-2023" onChange={(e) => setDate2(e.value)} disabled />
           <Button id="btn" label="submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
           <div className="table-header-container">
             <h5

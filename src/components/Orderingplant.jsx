@@ -55,7 +55,14 @@ export const Orderingplant = () => {
   }, [expandedRows]);
   useEffect(() => {
     isMounted.current = true;
-    productService.getMaterial().then((data) => setProducts3(data));
+    // productService.getMaterial().then((data) => setProducts3(data));
+
+    productService.getMaterial().then((data) => {
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
+      console.log("Material info: " + materilaData);
+      // setProducts(materilaData)
+      setProducts3(materilaData);
+    });
   }, []);
 
   useEffect(() => {
@@ -133,7 +140,7 @@ export const Orderingplant = () => {
         </h5>
         <div className="card">
           <DataTable
-            value={products3.Sheet3}
+            value={products3}
             //  expandedRows={expandedRows}
             // onRowToggle={(e) => setExpandedRows(e.data)}
             //     onRowExpand={onRowExpand}
@@ -229,12 +236,7 @@ export const Orderingplant = () => {
             <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
           </Link>
 
-          <Button
-            className="nextbutton"
-            label="Download Ordering schedule "
-            style={{ marginLeft: " 15px" }}
-            icon="pi pi-lock"
-          />
+          <Button className="nextbutton" label="Download Ordering schedule " style={{ marginLeft: " 15px" }} icon="pi pi-lock" />
         </div>
       </div>
     </div>

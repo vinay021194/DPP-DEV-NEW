@@ -11,6 +11,11 @@ import { Dialog } from "primereact/dialog";
 import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
+import icisForecastSummaryData from "../data/icis_forecast_summary_table_2.json";
+import icisForecastSummaryData1 from "../data/icis_forecast_summary_table.json";
+
+import pricepredictionData from "../data/price_pridection_table.json";
+
 // import { Checkbox } from "primereact/checkbox";
 export const CostDriversAnalysis = (props) => {
   const productService = new ProductService();
@@ -53,14 +58,20 @@ export const CostDriversAnalysis = (props) => {
     return date;
   };
 
-  let plotBandText =
-    "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
+  let plotBandText = "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
-  const onCostDriverChange = (event) => {
+  const onCostDriverChange = (event, localvalues) => {
     setcostDriverSeries([]);
     setcostDriverSeriesData([]);
-    let allCostDrivers = event.value.map((d) => d.name);
-    let allseries = icisForecastSummaryTable.Sheet.filter((data) => {
+    let allCostDrivers = "";
+    console.log(localvalues);
+    console.log(event);
+    if (localvalues) {
+      allCostDrivers = localvalues.map((d) => d.name);
+    } else {
+      allCostDrivers = event.value.map((d) => d.name);
+    }
+    let allseries = icisForecastSummaryData.data.Sheet.filter((data) => {
       return allCostDrivers.includes(data.material);
     });
     // allseries = allseries.map((data) => data.series);
@@ -73,16 +84,16 @@ export const CostDriversAnalysis = (props) => {
     });
 
     allseries = [...new Set(allseries)];
-
-    // let result = seriesName.filter((o) =>
-    //   allseries.some((data) => o.name === data)
-    // );
-    // console.log("results===>",result)
-
     var unique = Array.from(new Set(allseries.map(JSON.stringify))).map(JSON.parse);
     setDropdown(unique);
-    setcostDriver(event.value);
+    if (!localvalues) {
+      setcostDriver(event.value);
+      localStorage.setItem("CostDriver", JSON.stringify(event.value));
+    } else {
+      setcostDriver(localvalues);
+    }
   };
+
   const onClick = (name, position) => {
     dialogFuncMap[`${name}`](true);
 
@@ -189,6 +200,7 @@ export const CostDriversAnalysis = (props) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
+    console.log("icisForecastSummaryData==>", icisForecastSummaryData);
     isMounted.current = true;
     productService
       .getIcisForecastSummaryTable2()
@@ -249,6 +261,17 @@ export const CostDriversAnalysis = (props) => {
       });
       setAccuraciesJsonData(modifieData);
     });
+
+    let costdriver = localStorage.getItem("CostDriver");
+    let costdriverSeries = localStorage.getItem("costDriverSeries");
+    costdriver = JSON.parse(costdriver);
+    costdriverSeries = JSON.parse(costdriverSeries);
+    if (costdriver && costdriverSeries) {
+      setcostDriver(costdriver);
+      setcostDriverSeries(costdriverSeries);
+      onCostDriverChange(null, costdriver);
+      oncostDriverSeriesChange(null, costdriverSeries, costdriver);
+    }
   }, []);
 
   // let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
@@ -302,15 +325,7 @@ export const CostDriversAnalysis = (props) => {
     tooltip: {
       valueDecimals: 2,
       formatter: function () {
-        return (
-          "Series name :  <b>" +
-          this.series.name +
-          "</b> </br> Avg Price :  <b>" +
-          this.y +
-          "</b> </br> Date : <b>" +
-          new Date(this.x).toUTCString() +
-          "</b>"
-        );
+        return "Series name :  <b>" + this.series.name + "</b> </br> Avg Price :  <b>" + this.y + "</b> </br> Date : <b>" + new Date(this.x).toUTCString() + "</b>";
       },
     },
 
@@ -329,50 +344,73 @@ export const CostDriversAnalysis = (props) => {
   };
 
   const onSourcechange = (e) => {
-    // console.log(e.value);
+    console.log(e.value);
+    localStorage.setItem("source", e.value);
     setSource(e.value);
   };
 
-  const oncostDriverSeriesChange = (e) => {
-    const icisForecastSummaryTabledata = costDriversChartData;
-    let allmaterial = icisForecastSummaryTable.Sheet.map((data) => {
+  const oncostDriverSeriesChange = (e, localvalues, costdrives) => {
+    const icisForecastSummaryTabledata = icisForecastSummaryData1;
+    let allmaterial = icisForecastSummaryData.data.Sheet.map((data) => {
       return data.serial_name; //key
     });
-    // console.log("icisForecastSummaryTabledata===>", e);
+    let seriesValue = localvalues ? localvalues : e.value;
+    console.log("seriesvlaues===>", seriesValue);
+    console.log("icisForecastSummaryTabledata===>", icisForecastSummaryTabledata);
     allmaterial = [...new Set(allmaterial)]; //distinct key
-    let exampleData = e.value.map((sr) =>
-      icisForecastSummaryTabledata
-        .filter((el) => el.key === sr.code)
-        .map((d) => {
-          let date = d.date
-            .split("/") // 3/23/04    ===>
-            .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
-            .join("/"); //  [3, 23, 04] ==> 3/23/2004
-          date = new Date(date);
-          let milliseconds = date.getTime();
-          milliseconds = diffDate > 0 ? milliseconds + Math.abs(diffDate) : milliseconds - Math.abs(diffDate);
+    let exampleData = seriesValue.map((sr) =>
+      icisForecastSummaryTabledata.Sheet1.filter((el) => el.key === sr.code).map((d) => {
+        let date = d.date
+          .split("/") // 3/23/04    ===>
+          .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
+          .join("/"); //  [3, 23, 04] ==> 3/23/2004
+        date = new Date(date);
+        let milliseconds = date.getTime();
+        milliseconds = diffDate > 0 ? milliseconds + Math.abs(diffDate) : milliseconds - Math.abs(diffDate);
 
-          const dataObj = [milliseconds, Number(d.price)];
-          return dataObj;
-        })
+        const dataObj = [milliseconds, Number(d.price)];
+        return dataObj;
+      })
     );
-
-    const chartData1 = e.value.map((sr, i) => {
+    console.log("exampleData", exampleData);
+    const chartData1 = seriesValue.map((sr, i) => {
       return {
         name: sr.name,
         data: exampleData[i],
       };
     });
+    console.log("chartData1", chartData1);
 
-    // console.log("accuraciesJsonData ===>", accuraciesJsonData);
+    let modifieData = pricepredictionData.data.Sheet.map((ele) => {
+      return {
+        key: ele?.key,
+        best_model: ele?.best_model,
+        top_influencers: ele?.top_influencers.replaceAll("[", "").replaceAll("'", "").replaceAll("]", "").split(","),
+        fifth_month_accuracy: (ele?.["2022-09"] * 1).toFixed(2),
+        first_month_accuracy: (ele?.["2022-05"] * 1).toFixed(2),
+        fourth_month_accuracy: (ele?.["2022-08"] * 1).toFixed(2),
+        second_month_accuracy: (ele?.["2022-06"] * 1).toFixed(2),
+        sixth_month_accuracy: (ele?.["2022-10"] * 1).toFixed(2),
+        //test_month_accuracy: (ele.ele['2022-05'] * 1).toFixed(2),
+        third_month_accuracy: (ele?.["2022-07"] * 1).toFixed(2),
+        serial_name: ele?.series_name,
+        material: ele?.material_name,
+        Accuracy_var: (ele?.accuracy_var * 1).toFixed(2),
+        accuracy_vecm: (ele?.accuracy_vecm * 1).toFixed(2),
+        accuracy_arima: (ele?.accuracy_arima * 1).toFixed(2),
+      };
+    });
+    console.log("modifieData ===>", modifieData);
+    let costDriverData = costdrives ? costdrives : costDriver;
+    console.log("costDriverData ===>", costDriverData);
 
-    let filterAccuraciesTableData = costDriver.map((sr) => accuraciesJsonData.filter((el) => el.material === sr.name));
+    let filterAccuraciesTableData = costDriverData.map((sr) => modifieData.filter((el) => el.material === sr.name));
 
-    // console.log("filterAccuraciesTableData11====>", filterAccuraciesTableData);
+    console.log("filterAccuraciesTableData11====>", filterAccuraciesTableData);
 
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
 
-    filterAccuraciesTableData = e.value.map((sr) => filterAccuraciesTableData.filter((el) => el.key === sr.code));
+    filterAccuraciesTableData = seriesValue.map((sr) => filterAccuraciesTableData.filter((el) => el.key === sr.code));
     filterAccuraciesTableData = filterAccuraciesTableData.filter((el) => el.length > 0);
 
     // console.log("filterAccuraciesTableData===>", filterAccuraciesTableData);
@@ -380,7 +418,9 @@ export const CostDriversAnalysis = (props) => {
     filterAccuraciesTableData = filterAccuraciesTableData.map((ele) => ele[0]);
 
     setAccuraciesTableData(filterAccuraciesTableData);
-    setcostDriverSeries(e.value);
+    setcostDriverSeries(seriesValue);
+
+    localStorage.setItem("costDriverSeries", JSON.stringify(seriesValue));
     setcostDriverSeriesData(chartData1);
   };
 
@@ -547,39 +587,14 @@ export const CostDriversAnalysis = (props) => {
           <DataTable value={AccuraciesTableData} header={header} rows={10}>
             <Column field="key" header="Index" />
             <Column field="best_model" header="Model Accuracies" style={{ width: "16em" }} body={statusBodyTemplate} />
-            <Column
-              field="top_influencers"
-              header="Most Influencial Predictor"
-              body={topInfluencersTemplate}
-              style={{ width: "20em" }}
-            />
+            <Column field="top_influencers" header="Most Influencial Predictor" body={topInfluencersTemplate} style={{ width: "20em" }} />
             {/* <Column field="Accuracy_var" header="Accuracy (%)" /> */}
             <Column field="first_month_accuracy" header={dateMaker(year, month) + " ($)"} style={{ width: "7.5em" }} />
-            <Column
-              field="second_month_accuracy"
-              header={dateMaker(year, month + 1) + " ($)"}
-              style={{ width: "7.5em" }}
-            />
-            <Column
-              field="third_month_accuracy"
-              header={dateMaker(year, month + 2) + " ($)"}
-              style={{ width: "7.5em" }}
-            />
-            <Column
-              field="fourth_month_accuracy"
-              header={dateMaker(year, month + 3) + " ($)"}
-              style={{ width: "7.5em" }}
-            />
-            <Column
-              field="fifth_month_accuracy"
-              header={dateMaker(year, month + 4) + " ($)"}
-              style={{ width: "7.5em" }}
-            />
-            <Column
-              field="sixth_month_accuracy"
-              header={dateMaker(year, month + 5) + " ($)"}
-              style={{ width: "7.5em" }}
-            />
+            <Column field="second_month_accuracy" header={dateMaker(year, month + 1) + " ($)"} style={{ width: "7.5em" }} />
+            <Column field="third_month_accuracy" header={dateMaker(year, month + 2) + " ($)"} style={{ width: "7.5em" }} />
+            <Column field="fourth_month_accuracy" header={dateMaker(year, month + 3) + " ($)"} style={{ width: "7.5em" }} />
+            <Column field="fifth_month_accuracy" header={dateMaker(year, month + 4) + " ($)"} style={{ width: "7.5em" }} />
+            <Column field="sixth_month_accuracy" header={dateMaker(year, month + 5) + " ($)"} style={{ width: "7.5em" }} />
           </DataTable>
         </div>
 
@@ -594,11 +609,9 @@ export const CostDriversAnalysis = (props) => {
       </div>
       <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Dialog>
     </div>
