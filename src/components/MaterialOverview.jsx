@@ -39,7 +39,7 @@ export const MaterialOverview = (props) => {
     displayBasic: setDisplayBasic,
   };
   const onClick = (name, position) => {
-    console.log("onclick", name);
+    // console.log("onclick", name);
     dialogFuncMap[`${name}`](true);
   };
   const onHide = (name) => {
@@ -201,7 +201,7 @@ export const MaterialOverview = (props) => {
         let allMaterial = filters.map((d) => d.name);
         if (filters) {
           let filteredData = products.filter((data) => {
-            console.log("data====>", data);
+            // console.log("data====>", data);
             return allMaterial.includes(data.material);
           });
           setproductsFiltered(filteredData);

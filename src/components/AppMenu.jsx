@@ -138,14 +138,14 @@ export const AppMenu = (props) => {
   const onCityChange = (e) => {
     let selectedCities = [...cities];
     if (e.target?.innerText === "CLEAR ALL") {
-      console.log("inside clear all");
+      // console.log("inside clear all");
       selectedCities = [];
     } else if (e.target.value === "All" && e.checked)
       selectedCities = ["All", "Urgent", "Depleting fast", "Sufficient"];
     else if (e.target.value === "All" && e.checked !== true) selectedCities = [];
     else if (e.checked) selectedCities.push(e.value);
     else selectedCities.splice(selectedCities.indexOf(e.value), 1);
-    console.log("selectedCities====>", selectedCities);
+    // console.log("selectedCities====>", selectedCities);
 
     setCities(selectedCities);
     props.handlefilter(selectedCities, "checkbox");

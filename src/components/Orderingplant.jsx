@@ -47,7 +47,7 @@ export const Orderingplant = () => {
   let menuClick = false;
 
   useEffect(() => {
-    console.log("window.supplierObject===>", window.supplierObject);
+    // console.log("window.supplierObject===>", window.supplierObject);
     if (isMounted.current) {
       const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
     }

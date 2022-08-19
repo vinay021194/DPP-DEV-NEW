@@ -13,7 +13,6 @@ import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
 import icisForecastSummaryData from "../data/icis_forecast_summary_table_2.json";
 import icisForecastSummaryData1 from "../data/icis_forecast_summary_table.json";
-
 import pricepredictionData from "../data/price_pridection_table.json";
 
 // import { Checkbox } from "primereact/checkbox";

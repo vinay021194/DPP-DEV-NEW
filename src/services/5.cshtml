@@ -84,7 +84,7 @@
 
     function highcharts(data, dateData) {
 
-        console.log("inside highchart function==>", data)
+        @* console.log("inside highchart function==>", data) *@
 
         Highcharts.chart('container', {
 
@@ -236,9 +236,9 @@
 
                 ChartData.push(obj)
 
-                console.log("ChartData===>", ChartData)
+                @* console.log("ChartData===>", ChartData)
 
-                console.log("dateData===>", dateData)
+                console.log("dateData===>", dateData) *@
 
                 highcharts(ChartData, dateData);
 
