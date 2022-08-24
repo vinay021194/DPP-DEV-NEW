@@ -19,6 +19,7 @@ import "./App.scss";
 import { MaterialOverview } from "./components/MaterialOverview";
 import { Materialdatachart } from "./components/Materialdatachart";
 import { CostDriversAnalysis } from "./components/CostDriversAnalysis";
+import { MostInfluencialAnalysis } from "./components/MostInfluencialAnalysis";
 import { LoginPage } from "./components/LoginPage";
 import { Orderingplant } from "./components/Orderingplant";
 import { Inventory } from "./components/Inventory";
@@ -63,6 +64,7 @@ const App = (props) => {
         <Route path="/MaterialOverview" exact render={(props) => <MaterialOverview {...props} />} />
         <Route path="/Materialdatachart" exact render={(props) => <Materialdatachart {...props} />} />
         <Route path="/CostDriversAnalysis" exact render={(props) => <CostDriversAnalysis {...props} />} />
+        <Route path="/MostInfluencialAnalysis" exact render={(props) => <MostInfluencialAnalysis {...props} />} />
         <Route path="/Orderingplant" exact render={(props) => <Orderingplant {...props} />} />
         <Route path="/Inventory" exact render={(props) => <Inventory {...props} />} />
         <Route path="/SupplierAnalysis" exact render={(props) => <SupplierAnalysis {...props} />} />
