@@ -7,9 +7,9 @@ import { ProductService } from "../services/ProductService";
 import { Button } from "primereact/button";
 import "./App.css";
 import { AppMenu } from "../components/AppMenu";
-import { AppTopbar } from "../components/AppTopbar";
+
 import { CSSTransition } from "react-transition-group";
-import { Dialog } from "primereact/dialog";
+
 //import { Toast } from 'primereact/toast';
 // import { Redirect } from "react-router-dom";
 

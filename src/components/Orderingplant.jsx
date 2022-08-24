@@ -19,7 +19,6 @@ export const Orderingplant = () => {
   const productService = new ProductService();
 
   const [layoutMode, setLayoutMode] = useState("static");
-  const [layoutColorMode, setLayoutColorMode] = useState("dark");
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
@@ -120,7 +119,6 @@ export const Orderingplant = () => {
       <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h10>
     </div>
   );
-  const footer = <div className="table-header">All Units is in Tonnes</div>;
 
   return (
     <div>

@@ -2,50 +2,15 @@ import React, { useState } from "react";
 import { SplitButton } from "primereact/splitbutton";
 import { Link } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
-import { TabMenu } from "primereact/tabmenu";
 import { Button } from "primereact/button";
 import { useEffect } from "react";
-
+import {items} from "../appConstant"
+import {menuItems} from "../appConstant"
 export const AppTopbar = (props) => {
   // console.log("AppTopBar props===>", props);
   const [activeMenu, setActiveMenu] = useState(props?.location?.pathname);
 
   useEffect(() => setActiveMenu(props?.location?.pathname), [props]);
-
-  const items = [
-    {
-      index: 1,
-      label: "Profile",
-      icon: "pi pi-user",
-    },
-
-    {
-      index: 2,
-      label: "Add User",
-      icon: "pi pi-user-plus",
-    },
-
-    {
-      index: 3,
-      label: "Edit User",
-      icon: "pi pi-user-edit",
-    },
-    {
-      index: 4,
-      label: "Logout",
-      icon: "pi pi-sign-out",
-      command: () => {
-        window.location = "/";
-      },
-    },
-  ];
-
-  const menuItems = [
-    { label: "Material Overview", icon: "pi pi-fw pi-home", to: "/MaterialOverview" },
-    { label: "Demand Prediction", icon: "pi pi-fw pi-pencil", to: "/Materialdatachart" },
-    { label: "Cost Drivers Analysis", icon: "pi pi-fw pi-calendar", to: "/CostDriversAnalysis" },
-    { label: "Supplier Analysis", icon: "pi pi-fw pi-calendar", to: "/SupplierAnalysis" },
-  ];
 
   const activeClass = "p-button-text mx-3 active-route";
 

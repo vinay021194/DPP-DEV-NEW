@@ -6,14 +6,14 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { Button } from "primereact/button";
 import "./App.css";
-
 import { Dialog } from "primereact/dialog";
-import { AppTopbar } from "./AppTopbar";
 import { MultiSelect } from "primereact/multiselect";
 import { Link } from "react-router-dom";
 import icisForecastSummaryData from "../data/icis_forecast_summary_table_2.json";
 import icisForecastSummaryData1 from "../data/icis_forecast_summary_table.json";
 import pricepredictionData from "../data/price_pridection_table.json";
+import {costDrivers} from "../appConstant"
+import {sourceOption} from "../appConstant"
 
 // import { Checkbox } from "primereact/checkbox";
 export const CostDriversAnalysis = (props) => {
@@ -100,94 +100,6 @@ export const CostDriversAnalysis = (props) => {
       setPosition(position);
     }
   };
-
-  const sourceOption = [
-    {
-      name: "ICIS",
-      code: "345",
-    },
-    {
-      name: "IHS",
-      code: "123",
-    },
-  ];
-  const seriesName = [
-    {
-      name: "LLDPE Bulk Africa E Weekly",
-      code: "LLDPE Bulk Africa E Weekly",
-    },
-    {
-      name: "PE LLDPE Film Butene CFR Peru International 0 - 6 Weeks",
-      code: "PE LLDPE Film Butene CFR Peru International 0 - 6 Weeks",
-    },
-    {
-      name: "Flat Yarn Contract China Weekly",
-      code: "Flat Yarn Contract China Weekly",
-    },
-    {
-      name: "Propylene Bulk NWE Monthly",
-      code: "Propylene Bulk NWE Monthly",
-    },
-    {
-      name: "HDPE Blow Mould Posted EU Weekly",
-      code: "HDPE Blow Mould Posted EU Weekly",
-    },
-    {
-      name: "LDPE High Grade Contract US Monthly",
-      code: "LDPE High Grade Contract US Monthly",
-    },
-    {
-      name: "Copolymer Film Contract US Monthly",
-      code: "Copolymer Film Contract US Monthly",
-    },
-    {
-      name: "LDPE Contract CFR Egypt Weekly",
-      code: "LDPE Contract CFR Egypt Weekly",
-    },
-    {
-      name: "Film Posted Bulk China Weekly",
-      code: "Film Posted Bulk China Weekly",
-    },
-    {
-      name: "HDPE Film Contract EU Weekly",
-      code: "HDPE Film Contract EU Weekly",
-    },
-    {
-      name: "LDPE High Grade Peru International Weekly",
-      code: "LDPE High Grade Peru International Weekly",
-    },
-    {
-      name: "HDPE Bulk Contract DEL US Monthly",
-      code: "HDPE Bulk Contract DEL US Monthly",
-    },
-    {
-      name: "Copolymer Domestic UK Weekly",
-      code: "Copolymer Domestic UK Weekly",
-    },
-  ];
-
-  const costDrivers = [
-    {
-      name: "Polyethylene (Africa)",
-      code: "Polyethylene (Africa)",
-    },
-    {
-      name: "Polypropylene (Middle East)",
-      code: "Polypropylene (Middle East)",
-    },
-    {
-      name: "Polyethylene (Latin America)",
-      code: "Polyethylene (Latin America)",
-    },
-    {
-      name: "Polypropylene (Europe)",
-      code: "Polypropylene (Europe)",
-    },
-    { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
-    { name: "Polypropylene (US)", code: "Polypropylene (US)" },
-    { name: "Polyethylene (US)", code: "Polyethylene (US)" },
-  ];
-
   const dialogFuncMap = {
     displayBasic: setDisplayBasic,
   };

@@ -4,9 +4,7 @@ import { Column } from "primereact/column";
 import { ProductService } from "../services/ProductService";
 import { Button } from "primereact/button";
 import "./App.css";
-import { AppTopbar } from "./AppTopbar";
 import { Link } from "react-router-dom";
-import plantJsonData from "../data/plantData.json";
 
 export const Inventory = (props) => {
   //console.log("props===>",props.location.state.supplierDetails)

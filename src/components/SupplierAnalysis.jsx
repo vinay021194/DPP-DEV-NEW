@@ -2,22 +2,19 @@ import React, { Component } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
-import { AutoComplete } from "primereact/autocomplete";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
-import { Toolbar } from "primereact/toolbar";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 import classNames from "classnames";
 import Highcharts, { color, Globals } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import dataHistorical from "../data/historicalunitpric.json";
-import { AppTopbar } from "../components/AppTopbar";
 import { Link } from "react-router-dom";
-import { MultiSelect } from "primereact/multiselect";
 import ProcService from "../services/ProcService";
 import { ProductService } from "../services/ProductService";
+import {supplierFormulaData} from "../appConstant"
 
 export class SupplierAnalysis extends Component {
   emptyProduct = {
@@ -60,29 +57,29 @@ export class SupplierAnalysis extends Component {
 
     this.values = [{ name: "Global", code: "Global" }];
 
-    this.cities = [
-      {
-        name: "Film Posted DEL India 0-7 Days",
-        code: "Film Posted DEL India 0-7 Days",
-      },
-      {
-        name: "HDPE Blow Mould Domestic FD EU no-data",
-        code: "HDPE Blow Mould Domestic FD EU no-data",
-      },
-      {
-        name: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
-        code: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
-      },
-      {
-        name: "HDPE Film Domestic FD EU no-data",
-        code: "HDPE Film Domestic FD EU no-data",
-      },
-    ];
+    // this.cities = [
+    //   {
+    //     name: "Film Posted DEL India 0-7 Days",
+    //     code: "Film Posted DEL India 0-7 Days",
+    //   },
+    //   {
+    //     name: "HDPE Blow Mould Domestic FD EU no-data",
+    //     code: "HDPE Blow Mould Domestic FD EU no-data",
+    //   },
+    //   {
+    //     name: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
+    //     code: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
+    //   },
+    //   {
+    //     name: "HDPE Film Domestic FD EU no-data",
+    //     code: "HDPE Film Domestic FD EU no-data",
+    //   },
+    // ];
 
-    this.plants = [
-      { name: "2000", code: "2000" },
-      { name: "3000", code: "3000" },
-    ];
+    // this.plants = [
+    //   { name: "2000", code: "2000" },
+    //   { name: "3000", code: "3000" },
+    // ];
 
     this.countries = [
       {
@@ -92,46 +89,26 @@ export class SupplierAnalysis extends Component {
       { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
     ];
 
-    this.supplierFormula = [
-      {
-        name: "A",
-        code: "A",
-      },
-      {
-        name: "A",
-        code: "A",
-      },
-      {
-        name: "A",
-        code: "A",
-      },
-      {
-        name: "A",
-        code: "A",
-      },
-    ];
+    // this.supplierFormula = [
+    //   {
+    //     name: "A",
+    //     code: "A",
+    //   },
+    //   {
+    //     name: "A",
+    //     code: "A",
+    //   },
+    //   {
+    //     name: "A",
+    //     code: "A",
+    //   },
+    //   {
+    //     name: "A",
+    //     code: "A",
+    //   },
+    // ];
 
-    this.supplierFormulaData = [
-      {
-        supplier_name: "A",
-        formulae: "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",
-        capacity: "1000",
-        lead_time_months: "1",
-      },
-      {
-        supplier_name: "B",
-
-        formulae: "1.18 * [Polypropylene (US)-Homopolymer Bulk US Monthly] + 100",
-        capacity: "980",
-        lead_time_months: "2",
-      },
-      {
-        supplier_name: "C",
-        formulae: "1.20 * [Polypropylene (Middle East)-Film Posted Bulk China Weekly] + 120",
-        capacity: "1200",
-        lead_time_months: "3",
-      },
-    ];
+    
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
@@ -463,7 +440,7 @@ export class SupplierAnalysis extends Component {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
     console.log(this.supplierFormulaData);
-    const data = this.supplierFormulaData ? this.supplierFormulaData.filter((data) => data.supplier_name === e.value) : "";
+    const data = supplierFormulaData ? supplierFormulaData.filter((data) => data.supplier_name === e.value) : "";
     product["name"] = data[0].supplier_name;
     product["price"] = data[0].capacity;
     product["quantity"] = data[0].formulae;
@@ -948,7 +925,7 @@ export class SupplierAnalysis extends Component {
               <Dropdown
                 id="name"
                 value={this.state.product.name}
-                options={["A", "B", "C", "D"]}
+                options={["A", "B", "C"]}
                 onChange={(e) => this.onInputChange(e, "name")}
                 required
                 autoFocus
