@@ -45,7 +45,7 @@ function Home(props) {
       >
         {menuItems.map((menu) => (
           <Link to={menu.to}>
-            <Button className="previousbutton p-my-3" label={menu.label} />
+            <Button className="previousbutton p-my-3 homeButtons" label={menu.label} />
           </Link>
         ))}
       </div>

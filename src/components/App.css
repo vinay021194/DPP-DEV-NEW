@@ -1459,3 +1459,8 @@ div.layout-wrapper {
 .submenu-list {
   z-index: 9999;
 }
+
+.homeButtons {
+  width: 230px;
+  font-size: medium;
+}

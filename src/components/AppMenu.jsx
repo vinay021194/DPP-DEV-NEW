@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
-import classNames from "classnames";
 import { Checkbox } from "primereact/checkbox";
-import { MultiSelect } from "primereact/multiselect";
-import { color } from "highcharts";
-import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { AutoComplete } from "primereact/autocomplete";
+import {city} from "../appConstant"
 
 // const AppSubmenu = (props) => {
 //   const [activeIndex, setActiveIndex] = useState(null);
@@ -114,26 +109,7 @@ import { AutoComplete } from "primereact/autocomplete";
 export const AppMenu = (props) => {
   const [cities, setCities] = useState([]);
   const [selectedCities1, setSelectedCities1] = useState(null);
-  const [selectedState1, setSelectedState1] = useState(null);
-  const [selectedTown1, setSelectedTown1] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState(null);
-  const city = [
-    { name: "600234" },
-    // { name: "645908" },
-    { name: "678456" },
-    { name: "700047" },
-    { name: "768971" },
-    { name: "789045" },
-  ];
-
-  const state = [
-    { name: "700047" },
-    { name: "678456" },
-    { name: "789045" },
-    { name: "600234" },
-    { name: "645908" },
-    { name: "768971" },
-  ];
 
   const onCityChange = (e) => {
     let selectedCities = [...cities];
