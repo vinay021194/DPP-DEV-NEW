@@ -14,23 +14,15 @@ import { Link } from "react-router-dom";
 import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
 
-export const Materialdatachart = (props) => {
-  const [products, setProducts] = useState([]);
+function DemandPrediction() {
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
-  //const toast = useRef(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
-  const [layoutMode, setLayoutMode] = useState("static");
-  const [layoutColorMode, setLayoutColorMode] = useState("dark");
-  const [staticMenuInactive, setStaticMenuInactive] = useState(false);
-  const [overlayMenuActive, setOverlayMenuActive] = useState(false);
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [transposedColorData, setTransposedColorData] = useState([]);
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
-  const buttonRef = useRef(null);
   const [isSubmited, setIsSubmited] = useState(false);
   const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
@@ -183,17 +175,11 @@ export const Materialdatachart = (props) => {
       });
       setTransposedColorData(TransposedColorData);
     });
-  }, []);
-
-  useEffect(() => {
-    isMounted.current = true;
     productService
       .getInventoryInfo()
       .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
-  }, []);
 
-  useEffect(() => {
-    onsubmit();
+    //   onsubmit();
     isMounted.current = true;
     productService.getMaterial().then((data) => {
       let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
@@ -201,16 +187,46 @@ export const Materialdatachart = (props) => {
       // setProducts(materilaData)
       setProducts3(materilaData);
     });
-    let startDate = localStorage.getItem("startDate");
-    let endDate = localStorage.getItem("endDate");
-    setDate1(startDate ? new Date(startDate) : minDate);
-    setDate2(endDate ? new Date(endDate) : maxDate);
+
     setTimeout(() => {
+      let startDate = localStorage.getItem("startDate");
+      let endDate = localStorage.getItem("endDate");
+      setDate1(startDate ? new Date(startDate) : minDate);
+      setDate2(endDate ? new Date(endDate) : maxDate);
       if (startDate || endDate) {
         onsubmit();
       }
     }, 100);
   }, []);
+
+  // useEffect(() => {
+  //   isMounted.current = true;
+  //   productService
+  //     .getInventoryInfo()
+  //     .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
+  // }, []);
+
+  // useEffect(() => {
+
+  // //   onsubmit();
+  //   isMounted.current = true;
+  //   productService.getMaterial().then((data) => {
+  //     let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
+  //     // console.log("Material info: " + materilaData);
+  //     // setProducts(materilaData)
+  //     setProducts3(materilaData);
+  //   });
+
+  //   setTimeout(() => {
+  //     let startDate = localStorage.getItem("startDate");
+  //     let endDate = localStorage.getItem("endDate");
+  //     setDate1(startDate ? new Date(startDate) : minDate);
+  //     setDate2(endDate ? new Date(endDate) : maxDate);
+  //     if (startDate || endDate) {
+  //       onsubmit();
+  //     }
+  //   }, 100);
+  // }, []);
 
   const onPlantChange = (e) => {
     setPlants(e.value);
@@ -532,7 +548,7 @@ export const Materialdatachart = (props) => {
             </DataTable>
           </div>
         )}
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        {/* <div style={{ display: "flex", justifyContent: "center" }}>
           <Link to="/orderOptimization/MaterialOverview">
             <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
           </Link>
@@ -542,8 +558,10 @@ export const Materialdatachart = (props) => {
           <Link to="/orderOptimization/SupplierAnalysis">
             <Button className="nextbutton" label="Supplier Analysis" style={{ marginLeft: " 15px" }} />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
-};
+}
+
+export default DemandPrediction;

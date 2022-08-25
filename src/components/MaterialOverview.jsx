@@ -10,6 +10,7 @@ import { AppMenu } from "../components/AppMenu";
 import { AppTopbar } from "../components/AppTopbar";
 import { CSSTransition } from "react-transition-group";
 import { Dialog } from "primereact/dialog";
+import { MultiSelect } from "primereact/multiselect";
 //import { Toast } from 'primereact/toast';
 // import { Redirect } from "react-router-dom";
 
@@ -92,7 +93,7 @@ export const MaterialOverview = (props) => {
 
   const sidebar = useRef();
   const history = useHistory();
-  const logo = layoutColorMode === "dark" ? "assets/layout/images/logo-white.svg" : "assets/layout/images/logo.svg";
+  const logo = layoutColorMode === "dark" ? "/assets/layout/images/logo-white.svg" : "/assets/layout/images/logo.svg";
 
   const wrapperClass = classNames("layout-wrapper", {
     "layout-overlay": layoutMode === "overlay",
@@ -141,15 +142,23 @@ export const MaterialOverview = (props) => {
   );
 
   const statusOrderBodyTemplate = (rowData) => {
-    return <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>{rowData.status_level_plant}</span>;
+    return (
+      <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>
+        {rowData.status_level_plant}
+      </span>
+    );
   };
 
   const statusBodyTemplate = (rowData) => {
-    return <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>{rowData.status_level_material}</span>;
+    return (
+      <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
+        {rowData.status_level_material}
+      </span>
+    );
   };
 
   const next = () => {
-    props.history.push("/Materialdatachart", {
+    props.history.push("/orderOptimization/Materialdatachart", {
       selectedPlant: selectedPlant,
     });
   };
@@ -162,9 +171,9 @@ export const MaterialOverview = (props) => {
 
   const handlePlantSelect = (e) => {
     // console.log("handlePlantSelect==>", e.value);
-    localStorage.setItem("Material", e.value.material);
-    localStorage.setItem("plant", e.value.plant);
-    localStorage.setItem("Material-Plant", e.value);
+    localStorage.setItem("Material", e.value?.material);
+    localStorage.setItem("plant", e.value?.plant);
+    localStorage.setItem("Material-Plant", e.value?.Key);
     setSelectedPlant(e.value);
   };
 
@@ -237,12 +246,12 @@ export const MaterialOverview = (props) => {
             dataKey="material"
             header={header}
             className="rows-p-datatable .p-datatable-thead > tr > th"
-            rows={10}
+            rows={5}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLrowink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
-            onRowClick={(e) => setDisplayBasic(e.data)}
+            // onRowClick={(e) => setDisplayBasic(e.data)}
             selectionPageOnly
-            paginator={5}
+            paginator
             selectionMode="single"
           >
             <Column expander style={{ width: "3em" }} />
@@ -258,9 +267,20 @@ export const MaterialOverview = (props) => {
             <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
           </DataTable>
         </div>
-        <Button className="nextbutton" label="Next " style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }} onClick={next} />
+        <Button
+          className="nextbutton"
+          label="Next "
+          style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }}
+          disabled={selectedPlant ? false : true}
+          onClick={next}
+        />
       </div>
-      <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
+      <CSSTransition
+        classNames="layout-sidebar"
+        timeout={{ enter: 200, exit: 200 }}
+        in={isSidebarVisible()}
+        unmountOnExit
+      >
         <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
           <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
         </div>

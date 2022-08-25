@@ -1,17 +1,11 @@
-import React, { useState, useRef } from "react";
-import classNames from "classnames";
-import { Route, Router, useHistory } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import { AppTopbar } from "./components/AppTopbar";
-import { AppMenu } from "./components/AppMenu";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "prismjs/themes/prism-coy.css";
-// import "@fullcalendar/core/main.css";
-// import "@fullcalendar/daygrid/main.css";
-// import "@fullcalendar/timegrid/main.css";
 import "./layout/flags/flags.css";
 import "./layout/layout.scss";
 import "./App.scss";
@@ -23,6 +17,8 @@ import { LoginPage } from "./components/LoginPage";
 import { Orderingplant } from "./components/Orderingplant";
 import { Inventory } from "./components/Inventory";
 import { SupplierAnalysis } from "./components/SupplierAnalysis";
+import DemandPrediction from "./components/DemandPrediction";
+import Home from "./components/Home";
 
 const App = (props) => {
   const [layoutMode, setLayoutMode] = useState("static");
@@ -54,20 +50,38 @@ const App = (props) => {
   };
 
   return (
-    <div>
-      <div className="">
-        <Route path="/" exact component={LoginPage} />
-        {/* <AppTopbar onToggleMenu={onToggleMenu} {...props} /> */}
-
-        <Route path="/" render={(props) => <AppTopbar onToggleMenu={onToggleMenu} {...props} />} />
-        <Route path="/MaterialOverview" exact render={(props) => <MaterialOverview {...props} />} />
-        <Route path="/Materialdatachart" exact render={(props) => <Materialdatachart {...props} />} />
-        <Route path="/CostDriversAnalysis" exact render={(props) => <CostDriversAnalysis {...props} />} />
-        <Route path="/Orderingplant" exact render={(props) => <Orderingplant {...props} />} />
-        <Route path="/Inventory" exact render={(props) => <Inventory {...props} />} />
-        <Route path="/SupplierAnalysis" exact render={(props) => <SupplierAnalysis {...props} />} />
-      </div>
-    </div>
+  
+        <Switch>
+          <Route path="/" exact render={(props) => <Home onToggleMenu={onToggleMenu} {...props} />} />
+          <Route path="/login" exact component={LoginPage} />
+          <div>
+            <Route path="/" render={(props) => <AppTopbar onToggleMenu={onToggleMenu} {...props} />} />
+            <Route
+              path="/orderOptimization/MaterialOverview"
+              exact
+              render={(props) => <MaterialOverview {...props} />}
+            />
+            <Route
+              path="/orderOptimization/Materialdatachart"
+              exact
+              render={(props) => <Materialdatachart {...props} />}
+            />
+            <Route
+              path="/orderOptimization/CostDriversAnalysis"
+              exact
+              render={(props) => <CostDriversAnalysis {...props} />}
+            />
+            <Route path="/orderOptimization/Orderingplant" exact render={(props) => <Orderingplant {...props} />} />
+            <Route path="/orderOptimization/Inventory" exact render={(props) => <Inventory {...props} />} />
+            <Route
+              path="/orderOptimization/SupplierAnalysis"
+              exact
+              render={(props) => <SupplierAnalysis {...props} />}
+            />
+            <Route path="/demandPrediction" exact render={(props) => <DemandPrediction {...props} />} />
+            <Route path="/costDriversAnalysis" exact render={(props) => <CostDriversAnalysis {...props} />} />
+          </div>
+        </Switch>
   );
 };
 

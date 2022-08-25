@@ -156,19 +156,33 @@ export class SupplierAnalysis extends Component {
     this.onCityChange = this.onCityChange.bind(this);
 
     this.weeklyValues = {
-      "Polyethylene (Africa)-LLDPE Bulk Africa E Weekly": [1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
+      "Polyethylene (Africa)-LLDPE Bulk Africa E Weekly": [
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
+        1348.5833333333333,
+      ],
 
-      "Polypropylene (US)-Homopolymer Bulk US Monthly": [1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193, 1348.5833333333333],
+      "Polypropylene (US)-Homopolymer Bulk US Monthly": [
+        1365.2203389830509, 1337.8064516129032, 1314.311475409836, 1319.4754098360656, 1313.8387096774193,
+        1348.5833333333333,
+      ],
 
-      "Polypropylene (Middle East)-Film Posted Bulk China Weekly": [1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667],
+      "Polypropylene (Middle East)-Film Posted Bulk China Weekly": [
+        1470.7, 1443.25, 1428.0689655172414, 1450.3548387096773, 1417, 1387.1666666666667,
+      ],
 
-      "Polyethylene (US)-HDPE Bulk Contract DEL US Monthly": [1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3],
+      "Polyethylene (US)-HDPE Bulk Contract DEL US Monthly": [
+        1448.2105263157894, 1436.72131147541, 1440.0166666666667, 1451.3387096774193, 1456.4354838709678, 1457.3,
+      ],
     };
   }
 
   componentDidMount() {
-    this.procService.getMaterialCostDriverOutput({ material: 7001733 }).then((data) => this.setState({ materialCostDriverOutput: data.data.Sheet3 }));
-    this.procService.getIcisForecastSummaryTable().then((data) => this.setState({ ForecastedData: data.data.Sheet1 }));
+    this.procService
+      .getMaterialCostDriverOutput({ material: 7001733 })
+      .then((data) => this.setState({ materialCostDriverOutput: data.data.Sheet3 }));
+    this.procService
+      .getIcisForecastSummaryTable()
+      .then((data) => this.setState({ ForecastedData: data?.data?.Sheet1 }));
 
     this.procService.getMaterialInfo({ material: 7001733 }).then((data) => {
       return this.setState({ materialInfo: data });
@@ -176,7 +190,7 @@ export class SupplierAnalysis extends Component {
 
     this.onPlantChange2(this.state.plant);
     let suppliers = localStorage.getItem("suppliers");
-    console.log("suppliers: " + suppliers);
+    // console.log("suppliers: " + suppliers);
     if (suppliers) {
       suppliers = JSON.parse(suppliers);
       this.convertData(suppliers);
@@ -276,7 +290,9 @@ export class SupplierAnalysis extends Component {
       if (!event.query.trim().length) {
         filteredCountries = [...this.state.countries.name];
       } else {
-        filteredCountries = this.countries.filter((country) => country.name.toLowerCase().startsWith(event.query.toLowerCase()));
+        filteredCountries = this.countries.filter((country) =>
+          country.name.toLowerCase().startsWith(event.query.toLowerCase())
+        );
       }
 
       this.setState({ filteredCountries });
@@ -307,7 +323,13 @@ export class SupplierAnalysis extends Component {
   }
 
   inputTextEditor(productKey, props, field) {
-    return <InputText type="text" value={props.rowData[field]} onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)} />;
+    return (
+      <InputText
+        type="text"
+        value={props.rowData[field]}
+        onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)}
+      />
+    );
   }
 
   nameEditor(productKey, props) {
@@ -315,14 +337,30 @@ export class SupplierAnalysis extends Component {
   }
 
   quatityEditor(productKey, props) {
-    return <InputText type="text" value={props.rowData["quantity"]} onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)} />;
+    return (
+      <InputText
+        type="text"
+        value={props.rowData["quantity"]}
+        onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)}
+      />
+    );
   }
 
   priceEditor(productKey, props) {
-    return <InputNumber value={props.rowData["price"]} onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)} />;
+    return (
+      <InputNumber
+        value={props.rowData["price"]}
+        onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)}
+      />
+    );
   }
   leadTime = (productKey, props) => {
-    return <InputNumber value={props.rowData["Percentage"]} onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)} />;
+    return (
+      <InputNumber
+        value={props.rowData["Percentage"]}
+        onValueChange={(e) => this.onEditorValueChange(productKey, props, e.value)}
+      />
+    );
   };
 
   onEditorSubmit(e) {
@@ -396,7 +434,7 @@ export class SupplierAnalysis extends Component {
         product.image = "product-placeholder.svg";
         products.push(product);
         this.convertData(products);
-        console.log("inside else");
+        // console.log("inside else");
         localStorage.setItem("suppliers", JSON.stringify(products));
       }
 
@@ -406,7 +444,7 @@ export class SupplierAnalysis extends Component {
         productDialog: false,
         product: this.emptyProduct,
       };
-      console.log("products: " + products);
+      // console.log("products: " + products);
     }
     this.setState(state);
   }
@@ -438,9 +476,11 @@ export class SupplierAnalysis extends Component {
   deleteProduct() {
     // <<<<<<< HEAD
     // supplierDetails
-    console.log("deleteProduct");
+    // console.log("deleteProduct");
     let products = this.state.products.filter((val) => val.id !== this.state.product.id);
-    let filteredSupplierDetails = this.state.supplierDetails.filter((val) => val.forecastedObj.name !== this.state.product.name);
+    let filteredSupplierDetails = this.state.supplierDetails.filter(
+      (val) => val.forecastedObj.name !== this.state.product.name
+    );
     // console.log("filteredSupplierDetails before===>", filteredSupplierDetails);
     this.setState({
       ...this.state,
@@ -462,8 +502,10 @@ export class SupplierAnalysis extends Component {
   onInputChange(e, name) {
     const val = (e.target && e.target.value) || "";
     let product = { ...this.state.product };
-    console.log(this.supplierFormulaData);
-    const data = this.supplierFormulaData ? this.supplierFormulaData.filter((data) => data.supplier_name === e.value) : "";
+    // console.log(this.supplierFormulaData);
+    const data = this.supplierFormulaData
+      ? this.supplierFormulaData.filter((data) => data.supplier_name === e.value)
+      : "";
     product["name"] = data[0].supplier_name;
     product["price"] = data[0].capacity;
     product["quantity"] = data[0].formulae;
@@ -655,7 +697,12 @@ export class SupplierAnalysis extends Component {
   actionBodyTemplate(rowData) {
     return (
       <React.Fragment>
-        <Button icon="pi pi-trash" className="p-button-text p-button-secondary" onClick={() => this.confirmDeleteProduct(rowData)} style={{ width: "30px" }} />
+        <Button
+          icon="pi pi-trash"
+          className="p-button-text p-button-secondary"
+          onClick={() => this.confirmDeleteProduct(rowData)}
+          style={{ width: "30px" }}
+        />
       </React.Fragment>
     );
   }
@@ -872,12 +919,32 @@ export class SupplierAnalysis extends Component {
             >
               <div className="col-10" style={{ width: "80%" }}>
                 <Toast ref={(el) => (this.toast = el)} />
-                <DataTable header={header2} value={this.state.products} rows={5} editMode="row" dataKey="id" onRowEditInit={this.onRowEditInit} onRowEditCancel={this.onRowEditCancel}>
+                <DataTable
+                  header={header2}
+                  value={this.state.products}
+                  rows={5}
+                  editMode="row"
+                  dataKey="id"
+                  onRowEditInit={this.onRowEditInit}
+                  onRowEditCancel={this.onRowEditCancel}
+                >
                   <Column field="name" header="Supplier Name" editor={(props) => this.nameEditor("products", props)} />
 
-                  <Column field="quantity" header="Formula/Fixed Price (USD/T)" editor={(props) => this.quatityEditor("products", props)} />
-                  <Column field="price" header="Max Capacity (T)" editor={(props) => this.priceEditor("products", props)} />
-                  <Column field="Percentage" header="Lead Time (Months)" editor={(props) => this.leadTime("products", props)} />
+                  <Column
+                    field="quantity"
+                    header="Formula/Fixed Price (USD/T)"
+                    editor={(props) => this.quatityEditor("products", props)}
+                  />
+                  <Column
+                    field="price"
+                    header="Max Capacity (T)"
+                    editor={(props) => this.priceEditor("products", props)}
+                  />
+                  <Column
+                    field="Percentage"
+                    header="Lead Time (Months)"
+                    editor={(props) => this.leadTime("products", props)}
+                  />
                   <Column rowEditor style={{ width: "13%" }}></Column>
 
                   <Column body={this.actionBodyTemplate} style={{ width: "10%" }}></Column>
@@ -942,7 +1009,15 @@ export class SupplierAnalysis extends Component {
 
           {/* ======================================================= */}
 
-          <Dialog visible={this.state.productDialog} style={{ width: "600px" }} header="Please Select" modal className="p-fluid" footer={productDialogFooter} onHide={this.hideDialog}>
+          <Dialog
+            visible={this.state.productDialog}
+            style={{ width: "600px" }}
+            header="Please Select"
+            modal
+            className="p-fluid"
+            footer={productDialogFooter}
+            onHide={this.hideDialog}
+          >
             <div className="p-field">
               <label htmlFor="Material_Number">Supplier Name</label>
               <Dropdown
@@ -956,31 +1031,61 @@ export class SupplierAnalysis extends Component {
                   "p-invalid": this.state.submitted && !this.state.product.name,
                 })}
               />
-              {this.state.submitted && !this.state.product.name && <small className="p-error">Supplier Name is required.</small>}
+              {this.state.submitted && !this.state.product.name && (
+                <small className="p-error">Supplier Name is required.</small>
+              )}
             </div>
 
             <div className="p-field">
               <label htmlFor="quantity">Formula/Fixed Price (USD/T)</label>
-              <InputText id="quantity" value={this.state.product.quantity} onChange={(e) => this.onInputChange(e, "quantity")} required />
-              {this.state.submitted && !this.state.product.quantity && <small className="p-error">Formula/Fixed Price is required.</small>}
+              <InputText
+                id="quantity"
+                value={this.state.product.quantity}
+                onChange={(e) => this.onInputChange(e, "quantity")}
+                required
+              />
+              {this.state.submitted && !this.state.product.quantity && (
+                <small className="p-error">Formula/Fixed Price is required.</small>
+              )}
             </div>
 
             <div className="p-field">
               <label htmlFor="price">Max Capacity (T)</label>
-              <InputText id="price" value={this.state.product.price} onValueChange={(e) => this.onInputNumberChange(e, "price")} required />
-              {this.state.submitted && !this.state.product.price && <small className="p-error">Max Capacity is required.</small>}
+              <InputText
+                id="price"
+                value={this.state.product.price}
+                onValueChange={(e) => this.onInputNumberChange(e, "price")}
+                required
+              />
+              {this.state.submitted && !this.state.product.price && (
+                <small className="p-error">Max Capacity is required.</small>
+              )}
             </div>
 
             <div className="p-field">
               <label htmlFor="Percentage">Lead Time (Months)</label>
-              <InputText id="Percentage" value={this.state.product.Percentage} onValueChange={(e) => this.onInputNumberChange(e, "Percentage")} required />
-              {this.state.submitted && !this.state.product.Percentage && <small className="p-error">Lead Time is required.</small>}
+              <InputText
+                id="Percentage"
+                value={this.state.product.Percentage}
+                onValueChange={(e) => this.onInputNumberChange(e, "Percentage")}
+                required
+              />
+              {this.state.submitted && !this.state.product.Percentage && (
+                <small className="p-error">Lead Time is required.</small>
+              )}
             </div>
           </Dialog>
 
           {/* ======================================================= */}
 
-          <Dialog visible={this.state.deleteProductDialog} style={{ width: "450px" }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={this.hideDeleteProductDialog}>
+          <Dialog
+            visible={this.state.deleteProductDialog}
+            style={{ width: "450px" }}
+            header="Confirm"
+            modal
+            footer={deleteProductDialogFooter}
+            onHide={this.hideDeleteProductDialog}
+          >
             <div className="confirmation-content">
               <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: "2rem" }} />
               {this.state.product && (
@@ -991,10 +1096,10 @@ export class SupplierAnalysis extends Component {
             </div>
           </Dialog>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link to="/CostDriversAnalysis">
+            <Link to="/orderOptimization/CostDriversAnalysis">
               <Button className="previousbutton" label="Previous" style={{ marginRight: " 15px" }} />
             </Link>
-            <a href="/Inventory">
+            <a href="/orderOptimization/Inventory">
               <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} onClick={this.optimize} />
             </a>
           </div>

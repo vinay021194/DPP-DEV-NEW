@@ -16,30 +16,13 @@ export const LoginPage = () => {
           <div className="login100-form validate-form">
             <span className="login100-form-title p-b-43">Login</span>
 
-            <div
-              className="wrap-input100 validate-input"
-              data-validate="Valid  is required: ex@abc.xyz"
-              required
-            >
-              <input
-                className="input100"
-                type="text"
-                placeholder="Purchase Group"
-              />
+            <div className="wrap-input100 validate-input" data-validate="Valid  is required: ex@abc.xyz" required>
+              <input className="input100" type="text" placeholder="Purchase Group" />
               <span className="focus-input100"></span>
             </div>
 
-            <div
-              className="wrap-input100 validate-input"
-              data-validate="Password is required"
-            >
-              <input
-                className="input100"
-                type="password"
-                name="pass"
-                placeholder="Password"
-                required
-              />
+            <div className="wrap-input100 validate-input" data-validate="Password is required">
+              <input className="input100" type="password" name="pass" placeholder="Password" required />
               <span className="focus-input100"></span>
             </div>
 
@@ -52,7 +35,7 @@ export const LoginPage = () => {
             </div>
 
             {/* <a href='/MaterialOverview'> */}
-            <Link to="/MaterialOverview">
+            <Link to="/orderOptimization/MaterialOverview">
               <div className="container-login100-form-btn">
                 <button className="login100-form-btn">Login</button>
               </div>
@@ -76,7 +59,8 @@ export const LoginPage = () => {
             </div>
           </div>
 
-          <div className="login100-more"></div>
+          <div className="login100-more">
+          </div>
         </div>
       </div>
     </div>

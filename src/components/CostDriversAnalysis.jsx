@@ -57,14 +57,13 @@ export const CostDriversAnalysis = (props) => {
     return date;
   };
 
-  let plotBandText = "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
+  let plotBandText =
+    "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
   const onCostDriverChange = (event, localvalues) => {
     setcostDriverSeries([]);
     setcostDriverSeriesData([]);
     let allCostDrivers = "";
-    console.log(localvalues);
-    console.log(event);
     if (localvalues) {
       allCostDrivers = localvalues.map((d) => d.name);
     } else {
@@ -199,7 +198,6 @@ export const CostDriversAnalysis = (props) => {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    console.log("icisForecastSummaryData==>", icisForecastSummaryData);
     isMounted.current = true;
     productService
       .getIcisForecastSummaryTable2()
@@ -324,7 +322,15 @@ export const CostDriversAnalysis = (props) => {
     tooltip: {
       valueDecimals: 2,
       formatter: function () {
-        return "Series name :  <b>" + this.series.name + "</b> </br> Avg Price :  <b>" + this.y + "</b> </br> Date : <b>" + new Date(this.x).toUTCString() + "</b>";
+        return (
+          "Series name :  <b>" +
+          this.series.name +
+          "</b> </br> Avg Price :  <b>" +
+          this.y +
+          "</b> </br> Date : <b>" +
+          new Date(this.x).toUTCString() +
+          "</b>"
+        );
       },
     },
 
@@ -343,7 +349,7 @@ export const CostDriversAnalysis = (props) => {
   };
 
   const onSourcechange = (e) => {
-    console.log(e.value);
+    // console.log(e.value);
     localStorage.setItem("source", e.value);
     setSource(e.value);
   };
@@ -354,8 +360,8 @@ export const CostDriversAnalysis = (props) => {
       return data.serial_name; //key
     });
     let seriesValue = localvalues ? localvalues : e.value;
-    console.log("seriesvlaues===>", seriesValue);
-    console.log("icisForecastSummaryTabledata===>", icisForecastSummaryTabledata);
+    // console.log("seriesvlaues===>", seriesValue);
+    // console.log("icisForecastSummaryTabledata===>", icisForecastSummaryTabledata);
     allmaterial = [...new Set(allmaterial)]; //distinct key
     let exampleData = seriesValue.map((sr) =>
       icisForecastSummaryTabledata.Sheet1.filter((el) => el.key === sr.code).map((d) => {
@@ -371,14 +377,14 @@ export const CostDriversAnalysis = (props) => {
         return dataObj;
       })
     );
-    console.log("exampleData", exampleData);
+    // console.log("exampleData", exampleData);
     const chartData1 = seriesValue.map((sr, i) => {
       return {
         name: sr.name,
         data: exampleData[i],
       };
     });
-    console.log("chartData1", chartData1);
+    // console.log("chartData1", chartData1);
 
     let modifieData = pricepredictionData.data.Sheet.map((ele) => {
       return {
@@ -399,13 +405,13 @@ export const CostDriversAnalysis = (props) => {
         accuracy_arima: (ele?.accuracy_arima * 1).toFixed(2),
       };
     });
-    console.log("modifieData ===>", modifieData);
+    // console.log("modifieData ===>", modifieData);
     let costDriverData = costdrives ? costdrives : costDriver;
-    console.log("costDriverData ===>", costDriverData);
+    // console.log("costDriverData ===>", costDriverData);
 
     let filterAccuraciesTableData = costDriverData.map((sr) => modifieData.filter((el) => el.material === sr.name));
 
-    console.log("filterAccuraciesTableData11====>", filterAccuraciesTableData);
+    // console.log("filterAccuraciesTableData11====>", filterAccuraciesTableData);
 
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
 
@@ -586,31 +592,59 @@ export const CostDriversAnalysis = (props) => {
           <DataTable value={AccuraciesTableData} header={header} rows={10}>
             <Column field="key" header="Index" />
             <Column field="best_model" header="Model Accuracies" style={{ width: "16em" }} body={statusBodyTemplate} />
-            <Column field="top_influencers" header="Most Influencial Predictor" body={topInfluencersTemplate} style={{ width: "20em" }} />
+            <Column
+              field="top_influencers"
+              header="Most Influencial Predictor"
+              body={topInfluencersTemplate}
+              style={{ width: "20em" }}
+            />
             {/* <Column field="Accuracy_var" header="Accuracy (%)" /> */}
             <Column field="first_month_accuracy" header={dateMaker(year, month) + " ($)"} style={{ width: "7.5em" }} />
-            <Column field="second_month_accuracy" header={dateMaker(year, month + 1) + " ($)"} style={{ width: "7.5em" }} />
-            <Column field="third_month_accuracy" header={dateMaker(year, month + 2) + " ($)"} style={{ width: "7.5em" }} />
-            <Column field="fourth_month_accuracy" header={dateMaker(year, month + 3) + " ($)"} style={{ width: "7.5em" }} />
-            <Column field="fifth_month_accuracy" header={dateMaker(year, month + 4) + " ($)"} style={{ width: "7.5em" }} />
-            <Column field="sixth_month_accuracy" header={dateMaker(year, month + 5) + " ($)"} style={{ width: "7.5em" }} />
+            <Column
+              field="second_month_accuracy"
+              header={dateMaker(year, month + 1) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
+            <Column
+              field="third_month_accuracy"
+              header={dateMaker(year, month + 2) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
+            <Column
+              field="fourth_month_accuracy"
+              header={dateMaker(year, month + 3) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
+            <Column
+              field="fifth_month_accuracy"
+              header={dateMaker(year, month + 4) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
+            <Column
+              field="sixth_month_accuracy"
+              header={dateMaker(year, month + 5) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
           </DataTable>
         </div>
-
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/Materialdatachart">
-            <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
-          </Link>
-          <Link to="/SupplierAnalysis">
-            <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} />
-          </Link>
-        </div>
+        {props.location.pathname !== "/costDriversAnalysis" && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link to="/orderOptimization/Materialdatachart">
+              <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
+            </Link>
+            <Link to="/orderOptimization/SupplierAnalysis">
+              <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} />
+            </Link>
+          </div>
+        )}
       </div>
       <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
         </p>
       </Dialog>
     </div>

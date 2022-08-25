@@ -59,7 +59,7 @@ export const Orderingplant = () => {
 
     productService.getMaterial().then((data) => {
       let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
-      console.log("Material info: " + materilaData);
+      // console.log("Material info: " + materilaData);
       // setProducts(materilaData)
       setProducts3(materilaData);
     });
@@ -117,7 +117,7 @@ export const Orderingplant = () => {
   const header2 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Ordering Schedule</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h10>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h6>
     </div>
   );
   const footer = <div className="table-header">All Units is in Tonnes</div>;
@@ -232,11 +232,16 @@ export const Orderingplant = () => {
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/Inventory">
+          <Link to="/orderOptimization/Inventory">
             <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
           </Link>
 
-          <Button className="nextbutton" label="Download Ordering schedule " style={{ marginLeft: " 15px" }} icon="pi pi-lock" />
+          <Button
+            className="nextbutton"
+            label="Download Ordering schedule "
+            style={{ marginLeft: " 15px" }}
+            icon="pi pi-lock"
+          />
         </div>
       </div>
     </div>

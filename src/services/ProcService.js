@@ -13,7 +13,7 @@ export default class ProcService {
 
   getDemandInfoRegression1(params) {
     return axios
-      .get("assets/demo/data/demand_info_regression1.json", {
+      .get("/assets/demo/data/demand_info_regression1.json", {
         params: params,
       })
       .then((res) => {
@@ -64,7 +64,7 @@ export default class ProcService {
 
   getHistoricalUnitPrice(params) {
     return axios
-      .get("assets/demo/data/historical_unit_price.json", {
+      .get("/assets/demo/data/historical_unit_price.json", {
         params: params,
       })
       .then((res) => {
@@ -78,7 +78,7 @@ export default class ProcService {
 
   getIcisAlertInfo(params) {
     return axios
-      .get("assets/demo/data/icis_alert_info.json", {
+      .get("/assets/demo/data/icis_alert_info.json", {
         params: params,
       })
       .then((res) => {
@@ -90,7 +90,7 @@ export default class ProcService {
 
   getIcisForecastErrorInfoUpdated(params) {
     return axios
-      .get("assets/demo/data/icis_forecast_error_info_updated.json", {
+      .get("/assets/demo/data/icis_forecast_error_info_updated.json", {
         params: params,
       })
       .then((res) => {
@@ -104,7 +104,7 @@ export default class ProcService {
 
   getIcisForecastSid(params) {
     return axios
-      .get("assets/demo/data/icis_forecast_sid.json", {
+      .get("/assets/demo/data/icis_forecast_sid.json", {
         params: params,
       })
       .then((res) => {
@@ -126,7 +126,7 @@ export default class ProcService {
 
   getMaterialCostDriverOutput(params) {
     return axios
-      .get("assets/demo/data/material_cost_driver_output.json", {
+      .get("/assets/demo/data/material_cost_driver_output.json", {
         params: params,
       })
       .then((res) => {
@@ -140,7 +140,7 @@ export default class ProcService {
 
   geTonRouteInfo(params) {
     return axios
-      .get("assets/demo/data/on_route_info.json", { params: params })
+      .get("/assets/demo/data/on_route_info.json", { params: params })
       .then((res) => {
         //console.log("geTonRouteInfo ==>", res);
         return res;
@@ -150,7 +150,7 @@ export default class ProcService {
 
   getDemandInfoRegression2(params) {
     return axios
-      .get("assets/demo/data/demand_info_regression1.json", {
+      .get("/assets/demo/data/demand_info_regression1.json", {
         params: params,
       })
       .then((res) => {
@@ -164,7 +164,7 @@ export default class ProcService {
 
   getPlants(params) {
     return axios
-      .get("assets/demo/data/on_route_info.json", { params: params })
+      .get("/assets/demo/data/on_route_info.json", { params: params })
       .then((res) => {
         const unique = [...new Set(res.data.Sheet2.map((item) => item.plant))];
         //console.log("getPlants ==>", res);
@@ -177,7 +177,7 @@ export default class ProcService {
 
   getDemandInfoRegressionSummaryTable(params) {
     return axios
-      .get("assets/demo/data/demand_info_regression_summary_table.json", {
+      .get("/assets/demo/data/demand_info_regression_summary_table.json", {
         params: params,
       })
       .then((res) => {
@@ -191,7 +191,7 @@ export default class ProcService {
 
   getIcisForecastSummaryTable(params) {
     return axios
-      .get("assets/demo/data/icis_forecast_summary_table.json", {
+      .get("/assets/demo/data/icis_forecast_summary_table.json", {
         params: params,
       })
       .then((res) => {
@@ -204,7 +204,7 @@ export default class ProcService {
 
   getOrder(params) {
     return axios
-      .get("assets/demo/data/order.json", {
+      .get("/assets/demo/data/order.json", {
         params: params,
       })
       .then((res) => {

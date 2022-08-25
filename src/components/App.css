@@ -1455,3 +1455,7 @@ div.layout-wrapper {
 .rows-p-datatable .p-datatable-thead > tr > th {
   background-color: rgba(168, 202, 233, 0.836) !important;
 }
+
+.submenu-list {
+  z-index: 9999;
+}

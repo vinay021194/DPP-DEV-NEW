@@ -13,7 +13,7 @@ export const AppProfile = () => {
   return (
     <div className="layout-profile">
       <div>
-        <img src="assets/layout/images/profile.png" alt="Profile" />
+        <img src="/assets/layout/images/profile.png" alt="Profile" />
       </div>
       <button className="p-link layout-profile-link" onClick={onClick}>
         <span className="username">Claire Williams</span>

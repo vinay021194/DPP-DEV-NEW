@@ -58,7 +58,7 @@ export const Inventory = (props) => {
     //productService.getMaterial().then((data) => setProducts(data));
     productService.getMaterial().then((data) => {
       let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
-      console.log("Material info: " + materilaData);
+      // console.log("Material info: " + materilaData);
       // setProducts(materilaData)
       setProducts(materilaData);
     });
@@ -70,7 +70,7 @@ export const Inventory = (props) => {
     isMounted.current = true;
     productService.getInventoryInfo().then((data) => {
       let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material") && data.plant === localStorage.getItem("plant"));
-      console.log("Material info: " + materilaData);
+      // console.log("Material info: " + materilaData);
 
       setProducts2(materilaData);
     });
@@ -132,26 +132,26 @@ export const Inventory = (props) => {
   const header2 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Inventory</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All quantities are in Tonnes</h10>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All quantities are in Tonnes</h6>
     </div>
   );
   const header3 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- 2000</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h10>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h6>
     </div>
   );
 
   const header4 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}> All values are in Tonnes</h10>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}> All values are in Tonnes</h6>
     </div>
   );
   const header5 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
-      <h10 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All prices are in US$/Tonne</h10>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All prices are in US$/Tonne</h6>
     </div>
   );
 
@@ -225,7 +225,7 @@ export const Inventory = (props) => {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/SupplierAnalysis">
+          <Link to="/orderOptimization/SupplierAnalysis">
             <Button className="previousbutton" label="Previous" style={{}} />
           </Link>
           {/* <Button
@@ -235,7 +235,7 @@ export const Inventory = (props) => {
             style={{ marginLeft: " 15px" }}
             icon="pi pi-lock"
           /> */}
-          <Link to="/Orderingplant">
+          <Link to="/orderOptimization/Orderingplant">
             <Button className="nextbutton" label="Generate ordering schedule" style={{ marginLeft: " 15px" }} />
           </Link>
         </div>
