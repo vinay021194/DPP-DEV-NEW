@@ -12,24 +12,17 @@ import { Link } from "react-router-dom";
 import icisForecastSummaryData from "../data/icis_forecast_summary_table_2.json";
 import icisForecastSummaryData1 from "../data/icis_forecast_summary_table.json";
 import pricepredictionData from "../data/price_pridection_table.json";
-import {costDrivers} from "../appConstant"
-import {sourceOption} from "../appConstant"
+import { costDrivers } from "../appConstant";
+import { sourceOption } from "../appConstant";
 
 // import { Checkbox } from "primereact/checkbox";
 export const CostDriversAnalysis = (props) => {
   const productService = new ProductService();
-  const [layoutMode, setLayoutMode] = useState("static");
-  // const [checked, setChecked] = useState(false);
-  // const [check, setCheck] = useState(false);
-  const [staticMenuInactive, setStaticMenuInactive] = useState(false);
-  const [overlayMenuActive, setOverlayMenuActive] = useState(false);
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [costDriverSeriesData, setcostDriverSeriesData] = useState(false);
   const [icisForecastSummaryTable, seticisForecastSummaryTable] = useState(false);
-
-  const [costDriver, setcostDriver] = useState(false);
-  const [costDriverSeries, setcostDriverSeries] = useState(false);
-  const [source, setSource] = useState(false);
+  const [costDriver, setcostDriver] = useState([]);
+  const [costDriverSeries, setcostDriverSeries] = useState([]);
+  const [source, setSource] = useState([{ name: "ICIS", code: "345" }]);
   const [products, setProducts] = useState([]);
   const [seriesdropdown, setDropdown] = useState([]);
   const [AccuraciesTableData, setAccuraciesTableData] = useState([]);
@@ -38,7 +31,7 @@ export const CostDriversAnalysis = (props) => {
   const [pricePridectionTable, setPricePridectionTableData] = useState([]);
   const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] = useState([]);
   const [displayBasic, setDisplayBasic] = useState(false);
-  const [position, setPosition] = useState("center");
+  const [PopUpData, setPopUpData] = useState([]);
 
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
@@ -92,11 +85,11 @@ export const CostDriversAnalysis = (props) => {
     }
   };
 
-  const onClick = (name, position) => {
+  const onClick = (name, rowData) => {
     dialogFuncMap[`${name}`](true);
 
-    if (position) {
-      setPosition(position);
+    if (rowData) {
+      setPopUpData(rowData);
     }
   };
   const dialogFuncMap = {
@@ -106,7 +99,6 @@ export const CostDriversAnalysis = (props) => {
     dialogFuncMap[`${name}`](false);
   };
 
-  let menuClick = false;
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -117,7 +109,6 @@ export const CostDriversAnalysis = (props) => {
       .then((data) => seticisForecastSummaryTable(data));
 
     productService.getIcisForecastSummaryTable2().then((data) => {
-      // console.log("data.Sheet===>", data.Sheet);
       let modifieData = data.Sheet.map((ele) => {
         return {
           key: ele.key,
@@ -136,7 +127,6 @@ export const CostDriversAnalysis = (props) => {
           date: ele.date,
         };
       });
-      // console.log("data=====>", data);
       setProducts(modifieData);
     });
 
@@ -146,9 +136,7 @@ export const CostDriversAnalysis = (props) => {
 
     productService.getIcisForecastSummaryTable().then((data) => setCostDriversChartData(data));
 
-    //  productService.getIcisForecastSummaryTable2NEW().then((data) => {
     productService.getPricePridectionTable().then((data) => {
-      // console.log("table data ====>", data);
       let modifieData = data.Sheet.map((ele) => {
         return {
           key: ele?.key,
@@ -182,12 +170,6 @@ export const CostDriversAnalysis = (props) => {
       oncostDriverSeriesChange(null, costdriverSeries, costdriver);
     }
   }, []);
-
-  // let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
-  // let plotBandsEnd = new Date("2023-05-01 03:00:00").getTime();
-
-  // plotBandsStart = Math.min(...filteredData.map((item) => item.x));
-  // plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
 
   const costDriverAnalysisChart = {
     chart: {
@@ -261,7 +243,6 @@ export const CostDriversAnalysis = (props) => {
   };
 
   const onSourcechange = (e) => {
-    // console.log(e.value);
     localStorage.setItem("source", e.value);
     setSource(e.value);
   };
@@ -272,8 +253,6 @@ export const CostDriversAnalysis = (props) => {
       return data.serial_name; //key
     });
     let seriesValue = localvalues ? localvalues : e.value;
-    // console.log("seriesvlaues===>", seriesValue);
-    // console.log("icisForecastSummaryTabledata===>", icisForecastSummaryTabledata);
     allmaterial = [...new Set(allmaterial)]; //distinct key
     let exampleData = seriesValue.map((sr) =>
       icisForecastSummaryTabledata.Sheet1.filter((el) => el.key === sr.code).map((d) => {
@@ -289,14 +268,12 @@ export const CostDriversAnalysis = (props) => {
         return dataObj;
       })
     );
-    // console.log("exampleData", exampleData);
     const chartData1 = seriesValue.map((sr, i) => {
       return {
         name: sr.name,
         data: exampleData[i],
       };
     });
-    // console.log("chartData1", chartData1);
 
     let modifieData = pricepredictionData.data.Sheet.map((ele) => {
       return {
@@ -317,21 +294,12 @@ export const CostDriversAnalysis = (props) => {
         accuracy_arima: (ele?.accuracy_arima * 1).toFixed(2),
       };
     });
-    // console.log("modifieData ===>", modifieData);
     let costDriverData = costdrives ? costdrives : costDriver;
-    // console.log("costDriverData ===>", costDriverData);
-
     let filterAccuraciesTableData = costDriverData.map((sr) => modifieData.filter((el) => el.material === sr.name));
 
-    // console.log("filterAccuraciesTableData11====>", filterAccuraciesTableData);
-
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
-
     filterAccuraciesTableData = seriesValue.map((sr) => filterAccuraciesTableData.filter((el) => el.key === sr.code));
     filterAccuraciesTableData = filterAccuraciesTableData.filter((el) => el.length > 0);
-
-    // console.log("filterAccuraciesTableData===>", filterAccuraciesTableData);
-
     filterAccuraciesTableData = filterAccuraciesTableData.map((ele) => ele[0]);
 
     setAccuraciesTableData(filterAccuraciesTableData);
@@ -341,35 +309,13 @@ export const CostDriversAnalysis = (props) => {
     setcostDriverSeriesData(chartData1);
   };
 
-  const isDesktop = () => {
-    return window.innerWidth > 1024;
-  };
-
-  const onToggleMenu = (event) => {
-    menuClick = true;
-
-    if (isDesktop()) {
-      if (layoutMode === "overlay") {
-        setOverlayMenuActive((prevState) => !prevState);
-      } else if (layoutMode === "static") {
-        setStaticMenuInactive((prevState) => !prevState);
-      }
-    } else {
-      setMobileMenuActive((prevState) => !prevState);
-    }
-    event.preventDefault();
-  };
-
   const header = (
     <div className="table-header-container">
-      {/* <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-      Accuracy (%)
-      </h5> */}
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Model Accuracies</h5>
     </div>
   );
 
   const topInfluencersTemplate = (rowData) => {
-    //.log("rowData==>", rowData);
     if (rowData && rowData.top_influencers) {
       return (
         <div>
@@ -388,68 +334,13 @@ export const CostDriversAnalysis = (props) => {
   };
 
   const statusBodyTemplate = (rowData) => {
-    // console.log("row Data===>", rowData);
-    const tableData = [rowData];
     return (
-      <>
-        {/* <span>
-          This Index has been forecasted using ARIMA, VAR, and VECM models..
-        </span>{" "}
-        <br />
-        <span>Methos: Selection Criteria:</span>
-        <br />
-        <span>Accuracles of each model:</span>
-        <br /> */}
-        <div className="">
-          <table role="grid">
-            <thead className="p-datatable-thead">
-              <tr role="row">
-                <th role="columnheader" className="paddingThTd">
-                  <span className="p-column-title"> Model</span>
-                </th>
-                <th role="columnheader" className="paddingThTd">
-                  <span className="p-column-title">Accuracy</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="p-datatable-tbody">
-              <tr role="row" className={rowData.best_model === "ARIMA" ? "bestModel" : ""}>
-                <td role="cell" className="paddingThTd">
-                  <Button label="ARIMA" className="p-button-link" onClick={() => onClick("displayBasic")} />
-                </td>
-                <td role="cell" className="paddingThTd">
-                  {rowData.accuracy_arima}
-                </td>
-              </tr>
-
-              <tr role="row" className={rowData.best_model === "VAR" ? "bestModel" : ""}>
-                <td role="cell" className="paddingThTd">
-                  <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} />
-                </td>
-                <td role="cell" className="paddingThTd">
-                  {rowData.Accuracy_var}
-                </td>
-              </tr>
-
-              <tr role="row" className={rowData.best_model === "VECM" ? "bestModel" : ""}>
-                <td role="cell" className="paddingThTd">
-                  <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} />
-                </td>
-                <td role="cell" className="paddingThTd">
-                  {rowData.accuracy_vecm}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </>
+      <Button label={rowData.best_model} className="p-button-link" onClick={() => onClick("displayBasic", rowData)} />
     );
   };
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} props={props} /> */}
-      {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <h5
           style={{
@@ -473,7 +364,6 @@ export const CostDriversAnalysis = (props) => {
               optionLabel="name"
               placeholder="Select a source"
               display="chip"
-              optionDisabled={(options) => options.name === "IHS"}
             />
             <MultiSelect
               style={{ width: "49%", margin: "5px 10px" }}
@@ -501,7 +391,7 @@ export const CostDriversAnalysis = (props) => {
           </div>
         </div>
         <div className="card">
-          <DataTable value={AccuraciesTableData} header={header} rows={10}>
+          <DataTable value={AccuraciesTableData} rows={10}>
             <Column field="key" header="Index" />
             <Column field="best_model" header="Model Accuracies" style={{ width: "16em" }} body={statusBodyTemplate} />
             <Column
@@ -550,14 +440,59 @@ export const CostDriversAnalysis = (props) => {
           </div>
         )}
       </div>
-      <Dialog visible={displayBasic} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </p>
+      <Dialog visible={displayBasic} header={header} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <table role="grid" style={{ textAlign: "center" }}>
+            <thead className="p-datatable-thead">
+              <tr role="row">
+                <th style={{ border: "2px solid gray", width: "150px" }} role="columnheader" className="paddingThTd">
+                  <span className="p-column-title"> Model</span>
+                </th>
+                <th style={{ border: "2px solid gray", width: "150px" }} role="columnheader" className="paddingThTd">
+                  <span className="p-column-title">Accuracy</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="p-datatable-tbody">
+              <tr role="row" className={PopUpData.best_model === "ARIMA" ? "bestModel" : ""}>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  ARIMA
+                  {/* <Button label="ARIMA" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
+                </td>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  {PopUpData.accuracy_arima}
+                </td>
+              </tr>
+
+              <tr role="row" className={PopUpData.best_model === "VAR" ? "bestModel" : ""}>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  VAR
+                  {/* <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
+                </td>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  {PopUpData.Accuracy_var}
+                </td>
+              </tr>
+
+              <tr role="row" className={PopUpData.best_model === "VECM" ? "bestModel" : ""}>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  VECM
+                  {/* <Button label="VECM" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
+                </td>
+                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                  {PopUpData.accuracy_vecm}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </Dialog>
     </div>
   );

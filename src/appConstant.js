@@ -1,35 +1,35 @@
 //Constant for costDriver Analysis Page
 
 export const costDrivers = [
-    {
-      name: "Polyethylene (Africa)",
-      code: "Polyethylene (Africa)",
-    },
-    {
-      name: "Polypropylene (Middle East)",
-      code: "Polypropylene (Middle East)",
-    },
-    {
-      name: "Polyethylene (Latin America)",
-      code: "Polyethylene (Latin America)",
-    },
-    {
-      name: "Polypropylene (Europe)",
-      code: "Polypropylene (Europe)",
-    },
-    { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
-    { name: "Polypropylene (US)", code: "Polypropylene (US)" },
-    { name: "Polyethylene (US)", code: "Polyethylene (US)" },
-  ];
+  {
+    name: "Polyethylene (Africa)",
+    code: "Polyethylene (Africa)",
+  },
+  {
+    name: "Polypropylene (Middle East)",
+    code: "Polypropylene (Middle East)",
+  },
+  {
+    name: "Polyethylene (Latin America)",
+    code: "Polyethylene (Latin America)",
+  },
+  {
+    name: "Polypropylene (Europe)",
+    code: "Polypropylene (Europe)",
+  },
+  { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
+  { name: "Polypropylene (US)", code: "Polypropylene (US)" },
+  { name: "Polyethylene (US)", code: "Polyethylene (US)" },
+];
 export const sourceOption = [
   {
     name: "ICIS",
     code: "345",
   },
-  {
-    name: "IHS",
-    code: "123",
-  },
+  // {
+  //   name: "IHS",
+  //   code: "123",
+  // },
 ];
 
 //Constant for AppTopbar  Page
@@ -68,14 +68,14 @@ export const menuItems = [
 ];
 
 //Constant for AppMenu  Page
-export   const city = [
+export const city = [
   { name: "600234" },
   { name: "678456" },
   { name: "700047" },
   { name: "768971" },
   { name: "789045" },
 ];
- export const supplierFormulaData = [
+export const supplierFormulaData = [
   {
     supplier_name: "A",
     formulae: "1.15 * [Polyethylene (Africa)-LLDPE Bulk Africa E Weekly] + 110",

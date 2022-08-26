@@ -49,10 +49,17 @@ export const MaterialOverview = (props) => {
   }, [expandedRows]);
 
   useEffect(() => {
-    // localStorage.setItem("Material", "");
-    // localStorage.setItem("plant", "");
-    // localStorage.setItem("Material-Plant", "");
-    localStorage.clear();
+    delete localStorage.source;
+    delete localStorage.CostDriver;
+    delete localStorage.costDriverSeries;
+    delete localStorage.Material;
+    delete localStorage.plant;
+    delete localStorage["Material-Plant"];
+    delete localStorage.startDate;
+    delete localStorage.endDate;
+    delete localStorage.suppliers;
+
+    // localStorage.clear();
     isMounted.current = true;
     // productService.getProductsWithOrdersSmall().then(data => setProducts(data));
     productService.getMaterialInfo().then((data) => {

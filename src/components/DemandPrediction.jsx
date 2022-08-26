@@ -354,14 +354,11 @@ function DemandPrediction() {
   };
 
   const handleStartDateChange = (e) => {
-    console.log("handleStartDateChange===>", e.value);
     localStorage.setItem("startDate", e.value);
     setDate1(e.value);
   };
   const handleEndDateChange = (e) => {
-    console.log("handleStartDateChange===>", e.value);
     localStorage.setItem("endDate", e.value);
-
     setDate2(e.value);
   };
 
