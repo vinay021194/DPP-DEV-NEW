@@ -96,3 +96,18 @@ export const supplierFormulaData = [
     lead_time_months: "3",
   },
 ];
+
+export const lendingPageMenuItems = [
+  {
+    label: "Order Optimization",
+    to: "/orderOptimization/MaterialOverview",
+  },
+  {
+    label: "Demand Prediction",
+    to: "/demandPrediction",
+  },
+  {
+    label: "Cost Drivers Analysis",
+    to: "/CostDriversAnalysis",
+  },
+];

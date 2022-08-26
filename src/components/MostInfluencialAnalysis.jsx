@@ -86,7 +86,7 @@ export const MostInfluencialAnalysis = (props) => {
     setDropdown(unique);
     if (!localvalues) {
       setcostDriver(event.value);
-      localStorage.setItem("CostDriver", JSON.stringify(event.value));
+      localStorage.setItem("mostInfluencialAnalysisCostDriver", JSON.stringify(event.value));
     } else {
       setcostDriver(localvalues);
     }
@@ -171,10 +171,9 @@ export const MostInfluencialAnalysis = (props) => {
       setAccuraciesJsonData(modifieData);
     });
 
-    let costdriver = localStorage.getItem("CostDriver");
-    let costdriverSeries = localStorage.getItem("costDriverSeries");
-    costdriver = JSON.parse(costdriver);
-    costdriverSeries = JSON.parse(costdriverSeries);
+    let costdriver = JSON.parse(localStorage.getItem("mostInfluencialAnalysisCostDriver"));
+    let costdriverSeries = JSON.parse(localStorage.getItem("mostInfluencialAnalysisCostDriverSeries"));
+
     if (costdriver && costdriverSeries) {
       setcostDriver(costdriver);
       setcostDriverSeries(costdriverSeries);
@@ -182,12 +181,6 @@ export const MostInfluencialAnalysis = (props) => {
       oncostDriverSeriesChange(null, costdriverSeries, costdriver);
     }
   }, []);
-
-  // let plotBandsStart = new Date("2022-05-01 03:00:00").getTime();
-  // let plotBandsEnd = new Date("2023-05-01 03:00:00").getTime();
-
-  // plotBandsStart = Math.min(...filteredData.map((item) => item.x));
-  // plotBandsEnd = Math.max(...filteredData.map((item) => item.x));
 
   const costDriverAnalysisChart = {
     chart: {
@@ -212,14 +205,6 @@ export const MostInfluencialAnalysis = (props) => {
       title: {
         text: "Date",
       },
-      //categories: data2,
-      // plotBands: [
-      //   {
-      //     color: "#D5DFE9",
-      //     from: plotBandsStart,
-      //     to: plotBandsEnd,
-      //   },
-      // ],
       plotBands: [
         {
           color: "#D5DFE9",
@@ -261,8 +246,7 @@ export const MostInfluencialAnalysis = (props) => {
   };
 
   const onSourcechange = (e) => {
-    localStorage.setItem("source", e.value);
-    setSource(e.value);
+    setSource(e.target.value);
   };
 
   const oncostDriverSeriesChange = (e, localvalues, costdrives) => {
@@ -322,7 +306,7 @@ export const MostInfluencialAnalysis = (props) => {
     setAccuraciesTableData(filterAccuraciesTableData);
     setcostDriverSeries(seriesValue);
 
-    localStorage.setItem("costDriverSeries", JSON.stringify(seriesValue));
+    localStorage.setItem("mostInfluencialAnalysisCostDriverSeries", JSON.stringify(seriesValue));
     setcostDriverSeriesData(chartData1);
   };
 
@@ -347,9 +331,7 @@ export const MostInfluencialAnalysis = (props) => {
 
   const header = (
     <div className="table-header-container">
-      {/* <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-      Accuracy (%)
-      </h5> */}
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Model Accuracies</h5>
     </div>
   );
 
@@ -395,7 +377,6 @@ export const MostInfluencialAnalysis = (props) => {
           Cost Drivers Analysis
         </h5>
         <div className="card">
-          {/* <strong>Source</strong> */}
           <div style={{ display: "flex", margin: "5px 10px" }}>
             <MultiSelect
               style={{ width: "30%", margin: "5px 10px" }}
