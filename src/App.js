@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { AppTopbar } from "./components/AppTopbar";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -23,21 +23,27 @@ import Home from "./components/Home";
 
 const App = (props) => {
   const [layoutMode, setLayoutMode] = useState("static");
-  const [layoutColorMode, setLayoutColorMode] = useState("dark");
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-
-  // console.log("App props===>", window.location);
-  let menuClick = false;
+  const [login, setLogin] = useState(false);
+  useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    if (isLogin) {
+      setLogin(true);
+    }
+  }, []);
+  useEffect(() => {
+    if (!login) {
+      return <Redirect to="/login" />;
+    }
+  }, [login]);
 
   const isDesktop = () => {
     return window.innerWidth > 1024;
   };
 
   const onToggleMenu = (event) => {
-    menuClick = true;
-
     if (isDesktop()) {
       if (layoutMode === "overlay") {
         setOverlayMenuActive((prevState) => !prevState);
@@ -52,10 +58,10 @@ const App = (props) => {
 
   return (
     <Switch>
-      <Route path="/" exact render={(props) => <Home onToggleMenu={onToggleMenu} {...props} />} />
-      <Route path="/login" exact component={LoginPage} />
+      <Route path="/" exact render={(props) => <Home login={login} onToggleMenu={onToggleMenu} {...props} />} />
+      <Route path="/login" exact render={(props) => <LoginPage setLogin={setLogin} {...props} />} />
       <div>
-        <Route path="/" render={(props) => <AppTopbar onToggleMenu={onToggleMenu} {...props} />} />
+        <Route path="/" render={(props) => <AppTopbar onToggleMenu={onToggleMenu} setLogin {...props} />} />
         <Route path="/orderOptimization/MaterialOverview" exact render={(props) => <MaterialOverview {...props} />} />
         <Route path="/orderOptimization/Materialdatachart" exact render={(props) => <Materialdatachart {...props} />} />
         <Route

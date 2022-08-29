@@ -1,9 +1,10 @@
 import { Button } from "primereact/button";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { lendingPageMenuItems } from "./../appConstant";
 
 function Home(props) {
+  const { login } = props;
   const s1 = {
     width: "100%",
     height: window.innerHeight,
@@ -16,7 +17,14 @@ function Home(props) {
     backgroundImage: 'url("/AI2.gif")',
   };
 
-  useEffect(() => localStorage.clear(), []);
+  const isLogin = localStorage.getItem("isLogin");
+
+  // useEffect(() => localStorage.clear(), []);
+
+  if (!login || !isLogin) {
+    // console.log("Home login===>", login);
+    return <Redirect to="/login" />;
+  }
 
   return (
     <div style={{ display: "flex" }}>

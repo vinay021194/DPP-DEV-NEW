@@ -16,60 +16,40 @@ export const Inventory = (props) => {
   const isMounted = useRef(false);
   const productService = new ProductService();
   const [layoutMode, setLayoutMode] = useState("static");
-  const [layoutColorMode, setLayoutColorMode] = useState("dark");
   const [staticMenuInactive, setStaticMenuInactive] = useState(false);
   const [overlayMenuActive, setOverlayMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [date1, setDate1] = useState(null);
-  const [date2, setDate2] = useState(null);
   const [plantData2000, setplantData2000] = useState([]);
-  const [plantData3000, setplantData3000] = useState([]);
-
   const [supplierObject, setsupplierObject] = useState(null);
 
   let currenYyear = new Date().getFullYear() * 1;
   let currenMonth = new Date().getMonth() * 1;
-  let menuClick = false;
-  const options = {
-    chart: {
-      type: "spline",
-    },
-    title: {
-      text: "My chart",
-    },
-    series: [
-      {
-        data: [1, 3, 2, 7, 5, 11, 9],
-      },
-    ],
-  };
 
   useEffect(() => {
     if (isMounted.current) {
       const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-      //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
   }, [expandedRows]);
 
   useEffect(() => {
     isMounted.current = true;
-    //productService.getMaterial().then((data) => setProducts(data));
     productService.getMaterial().then((data) => {
       let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
-      // console.log("Material info: " + materilaData);
-      // setProducts(materilaData)
       setProducts(materilaData);
     });
-    setsupplierObject(props.location.state?.supplierDetails ? props.location.state?.supplierDetails : window.supplierObject2);
+    console.log("props.location.state===>", props.location.state);
+    setsupplierObject(
+      props.location.state?.supplierDetails ? props.location.state?.supplierDetails : window.supplierObject2
+    );
     window.supplierObject = props.location.state?.supplierDetails;
   }, []);
 
   useEffect(() => {
     isMounted.current = true;
     productService.getInventoryInfo().then((data) => {
-      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material") && data.plant === localStorage.getItem("plant"));
-      // console.log("Material info: " + materilaData);
-
+      let materilaData = data.Sheet3.filter(
+        (data) => data.material === localStorage.getItem("Material") && data.plant === localStorage.getItem("plant")
+      );
       setProducts2(materilaData);
     });
   }, []);
@@ -77,11 +57,10 @@ export const Inventory = (props) => {
   useEffect(() => {
     isMounted.current = true;
     productService.getPlantinventoryTable().then((data) => setPlantData(data));
-    productService.getPlantinventoryTable().then((data) => setplantData2000(data.Sheet1.filter((data) => data.plant === localStorage.getItem("plant"))));
-    // productService.getPlantinventoryTable().then((data) => setplantData3000(data.Sheet1.filter((data) => data.plant === "3000")));
+    productService
+      .getPlantinventoryTable()
+      .then((data) => setplantData2000(data.Sheet1.filter((data) => data.plant === localStorage.getItem("plant"))));
   }, []);
-
-  // eslint-disable-line react-hooks/exhaustive-deps
 
   const dateMaker = (yr, mnt) => {
     const date = new Date(yr, mnt).toLocaleDateString("en-US", {
@@ -91,34 +70,10 @@ export const Inventory = (props) => {
     return date;
   };
 
-  // const formatCurrency = (value) => {
-  //     return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-  // }
-
-  // const amountBodyTemplate = (rowData) => {
-  //     return formatCurrency(rowData.amount);
-  // }
-
   const statusOrderBodyTemplate = (rowData) => {
-    return <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>;
-  };
-
-  const isDesktop = () => {
-    return window.innerWidth > 1024;
-  };
-  const onToggleMenu = (event) => {
-    menuClick = true;
-
-    if (isDesktop()) {
-      if (layoutMode === "overlay") {
-        setOverlayMenuActive((prevState) => !prevState);
-      } else if (layoutMode === "static") {
-        setStaticMenuInactive((prevState) => !prevState);
-      }
-    } else {
-      setMobileMenuActive((prevState) => !prevState);
-    }
-    event.preventDefault();
+    return (
+      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
+    );
   };
 
   const header1 = (
@@ -140,12 +95,6 @@ export const Inventory = (props) => {
     </div>
   );
 
-  const header4 = (
-    <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant-3000</h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}> All values are in Tonnes</h6>
-    </div>
-  );
   const header5 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
@@ -155,8 +104,6 @@ export const Inventory = (props) => {
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
-      {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <h5
           style={{
@@ -170,22 +117,12 @@ export const Inventory = (props) => {
           Data Overview
         </h5>
         <div className="card">
-          <DataTable
-            value={products}
-            responsiveLayout="scroll"
-            // rowExpansionTemplate={rowExpansionTemplate}
-            dataKey="id"
-            header={header1}
-            rows={1}
-          >
+          <DataTable value={products} responsiveLayout="scroll" dataKey="id" header={header1} rows={1}>
             <Column field="material" header="ID"></Column>
-            {/* <Column field="Discription" header="Discription"  ></Column> */}
             <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
             <Column field="aliases" header="Aliases" />
-            {/* <Column field="Criticality" header="Criticality"   /> */}
             <Column field="material_type (SAP)" header="SAP" />
             <Column field="material_group (organisation)" header="Organization" />
-
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
         </div>
@@ -226,13 +163,6 @@ export const Inventory = (props) => {
           <Link to="/orderOptimization/SupplierAnalysis">
             <Button className="previousbutton" label="Previous" style={{}} />
           </Link>
-          {/* <Button
-
-            className="nextbutton"
-            label="Edit"
-            style={{ marginLeft: " 15px" }}
-            icon="pi pi-lock"
-          /> */}
           <Link to="/orderOptimization/Orderingplant">
             <Button className="nextbutton" label="Generate ordering schedule" style={{ marginLeft: " 15px" }} />
           </Link>

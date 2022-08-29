@@ -56,7 +56,8 @@ export const items = [
     label: "Logout",
     icon: "pi pi-sign-out",
     command: () => {
-      window.location = "/";
+      localStorage.clear();
+      window.location = "/login";
     },
   },
 ];
