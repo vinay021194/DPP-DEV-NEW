@@ -13,7 +13,6 @@ import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
 import { AutoComplete } from "primereact/autocomplete";
 
-
 function DemandPrediction() {
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
@@ -28,12 +27,12 @@ function DemandPrediction() {
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
   const [Plants, setPlants] = useState([]);
 
-  const[materialinfo,setmMaterialInfo]=useState(null);
+  const [materialinfo, setmMaterialInfo] = useState(null);
   const [filteredMaterialInfo, setfilteredMaterialInfo] = useState(null);
-  const[Plantinfo,setPlantinfo]=useState(null);
+  const [Plantinfo, setPlantinfo] = useState(null);
   const [filteredPlantinfo, setfilteredPlantinfo] = useState(null);
   const [uniqPlant, setUniqPlant] = useState([]);
-   const [Plantinfodata, setPlantinfoData] = useState([]);
+  const [Plantinfodata, setPlantinfoData] = useState([]);
   const [MaterialInfodata, setMaterialInfoData] = useState([]);
   let lastDate = 1680307200000;
   let year = new Date().getFullYear() * 1;
@@ -182,20 +181,21 @@ function DemandPrediction() {
       });
       setTransposedColorData(TransposedColorData);
     });
-    
+
     productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("demandPredictionMaterial"));
+      let materilaData = data.Sheet3.filter(
+        (data) => data.material === localStorage.getItem("demandPredictionMaterial")
+      );
       setProducts3(materilaData);
     });
 
-    console.log('localStorage.getItem("demandPredictionPlants")',localStorage.getItem("demandPredictionPlants"))
-  productService
-    .getInventoryInfo()
-    .then((data) => 
-    setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
+    console.log('localStorage.getItem("demandPredictionPlants")', localStorage.getItem("demandPredictionPlants"));
+    productService
+      .getInventoryInfo()
+      .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
 
     isMounted.current = true;
-  
+
     setTimeout(() => {
       let startDate = localStorage.getItem("startDate");
       let endDate = localStorage.getItem("endDate");
@@ -210,81 +210,84 @@ function DemandPrediction() {
   //   "demandPredictionMaterial":localStorage.getItem('demandPredictionMaterial'),
   //   "demandPredictionPlants":localStorage.getItem('demandPredictionPlants')})
   useEffect(() => {
-    
+    //   setMaterialInfoData(localStorage.getItem('demandPredictionMaterial')||[]);
+    // setPlantinfoData(localStorage.getItem('demandPredictionPlants')||[]);
 
-  //   setMaterialInfoData(localStorage.getItem('demandPredictionMaterial')||[]);
-  // setPlantinfoData(localStorage.getItem('demandPredictionPlants')||[]);
- 
     productService.getPlantInfo().then((data) => {
       const uniq = (items) => [...new Set(items)];
-     const uniqMaterial = uniq(data.map((item) => item.material.toString()));
+      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
       return setmMaterialInfo(uniqMaterial);
     });
     productService.getPlantInfo().then((data) => setPlantinfo(data));
-}, []); 
+  }, []);
 
-useEffect(()=>{
-  productService.getMaterial().then((data) => {
-    let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("demandPredictionMaterial"));
-    setProducts3(materilaData);
-    
-  });
-},[MaterialInfodata])
-
-useEffect(()=>{
-  console.log('inventorylocalStorage.getItem("demandPredictionPlants")',localStorage.getItem("demandPredictionPlants"))
-  productService
-    .getInventoryInfo()
-    .then((data) => {
-      let plantData =data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants"))
-      setProducts2(plantData)
-
+  useEffect(() => {
+    productService.getMaterial().then((data) => {
+      let materilaData = data.Sheet3.filter(
+        (data) => data.material === localStorage.getItem("demandPredictionMaterial")
+      );
+      setProducts3(materilaData);
     });
-},[Plantinfodata])
+  }, [MaterialInfodata]);
 
-const searchMaterial = (event) => {
-  setTimeout(() => {
+  useEffect(() => {
+    console.log(
+      'inventorylocalStorage.getItem("demandPredictionPlants")',
+      localStorage.getItem("demandPredictionPlants")
+    );
+    productService.getInventoryInfo().then((data) => {
+      let plantData = data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants"));
+      setProducts2(plantData);
+    });
+  }, [Plantinfodata]);
+
+  const searchMaterial = (event) => {
+    setTimeout(() => {
       let _filteredMaterialInfo;
       if (!event.query.trim().length) {
         _filteredMaterialInfo = [...materialinfo];
-      }
-      else {
+      } else {
         _filteredMaterialInfo = materialinfo.filter((item) => item.includes(event.query));
       }
       setfilteredMaterialInfo(_filteredMaterialInfo);
-  }, 250);
-}
+    }, 250);
+  };
 
-const searchPlantInfo = (event) => {
-  setTimeout(() => {
+  const searchPlantInfo = (event) => {
+    setTimeout(() => {
       let _filteredPlantinfo;
       if (!event.query.trim().length) {
         _filteredPlantinfo = [...uniqPlant];
-      }
-      else {
+      } else {
         _filteredPlantinfo = uniqPlant.filter((item) => item.includes(event.query));
       }
 
       setfilteredPlantinfo(_filteredPlantinfo);
-  }, 250);
-}
+    }, 250);
+  };
 
-const onMaterialChange = (e) => {
-  setPlantinfoData([]);
-  const  filterPlant = Plantinfo.filter((item)=>item.material==e.value)
-  const uniq = (items) => [...new Set(items)];
-  const uniqPlant = uniq(filterPlant.map((item) => item.plant.toString()));
-  localStorage.setItem('demandPredictionMaterial',e.value)
-  setUniqPlant(uniqPlant)
-  setfilteredPlantinfo(uniqPlant)
-  setMaterialInfoData(e.value);
-  
-};
-const onPlantInfoChange = (e) =>{
-  localStorage.setItem('demandPredictionPlants',e.value)
-  setPlantinfoData(e.value);
-}
-const onPlantChange = (e) => setPlants(e.value); 
+  const onMaterialChange = (e) => {
+    setPlantinfoData([]);
+
+    const filterPlant = Plantinfo.filter((item) => item.material == e.value);
+    const uniq = (items) => [...new Set(items)];
+    const uniqPlant = uniq(filterPlant.map((item) => item.plant.toString()));
+    localStorage.setItem("demandPredictionMaterial", e.value);
+    setUniqPlant(uniqPlant);
+    setfilteredPlantinfo(uniqPlant);
+    setMaterialInfoData(e.value);
+  };
+  const onPlantInfoChange = (e) => {
+    localStorage.setItem("demandPredictionPlants", e.value);
+    setPlantinfoData(e.value);
+    setPlants(e.value);
+    onsubmit();
+  };
+  const onPlantChange = (e) => {
+    localStorage.setItem("demandPredictionPlants", e.value);
+    setPlantinfoData(e.value);
+    setPlants(e.value);
+  };
   const onsubmit = () => {
     setIsSubmited(true);
     let proudctdata = plantjsondata;
@@ -421,29 +424,29 @@ const onPlantChange = (e) => setPlants(e.value);
           </h5>
         </div>
         <div className="card">
-        <AutoComplete
-          value={MaterialInfodata}
-          suggestions={filteredMaterialInfo}
-          completeMethod={searchMaterial}
-          dropdown
-          placeholder="Select Material"
-          onChange={onMaterialChange} 
-          aria-label="materialinfo"
-          sorted
-        />
-        <AutoComplete
-         value={Plantinfodata}
-         suggestions={filteredPlantinfo}
-         completeMethod={searchPlantInfo}
-         dropdown
-         placeholder="Select Plant"
-         onChange={onPlantInfoChange} 
-         aria-label="plantinfo"
-         sorted
-         multiple
-         style={{marginLeft:'30px'}}
-        />
-      </div>
+          <AutoComplete
+            value={MaterialInfodata}
+            suggestions={filteredMaterialInfo}
+            completeMethod={searchMaterial}
+            dropdown
+            placeholder="Select Material"
+            onChange={onMaterialChange}
+            aria-label="materialinfo"
+            sorted
+          />
+          <AutoComplete
+            value={Plantinfodata}
+            suggestions={filteredPlantinfo}
+            completeMethod={searchPlantInfo}
+            dropdown
+            placeholder="Select Plant"
+            onChange={onPlantInfoChange}
+            aria-label="plantinfo"
+            sorted
+            multiple
+            style={{ marginLeft: "30px" }}
+          />
+        </div>
         <div className="card">
           <DataTable
             value={products3}
@@ -466,12 +469,7 @@ const onPlantChange = (e) => setPlants(e.value);
           </DataTable>
         </div>
         <div className="card">
-          <DataTable
-            value={products2}
-            dataKey="id"
-            header={headers}
-            rows={4}
-          >
+          <DataTable value={products2} dataKey="id" header={headers} rows={4}>
             <Column field="plant" header="Plant ID" />
             <Column field="plant_name" header="Plant Name" />
             <Column field="safety_stock" header="Safety Stock" />
@@ -481,14 +479,26 @@ const onPlantChange = (e) => setPlants(e.value);
           </DataTable>
         </div>
         <div className="card">
-          <MultiSelect
-            style={{ width: "40%", margin: "5px 10px" }}
-            value={uniqPlant}
-            options={plantData}
+          {/* <MultiSelect
+            style={{ width: "20%", margin: "5px 10px" }}
+            value={Plantinfodata}
+            options={filteredPlantinfo}
             onChange={onPlantChange}
             optionLabel="label"
-            placeholder="Select a Plant"
+            placeholder="Select Plant"
             display="chip"
+          /> */}
+          <AutoComplete
+            value={Plantinfodata}
+            suggestions={filteredPlantinfo}
+            completeMethod={searchPlantInfo}
+            dropdown
+            placeholder="Select Plant"
+            onChange={onPlantChange}
+            aria-label="plantinfo"
+            sorted
+            multiple
+            style={{ marginLeft: "30px", marginRight: "30px" }}
           />
           <strong>From Year</strong>
           <Calendar
