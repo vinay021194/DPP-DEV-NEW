@@ -5,14 +5,14 @@ import { Calendar } from "primereact/calendar";
 import { ProductService } from "../services/ProductService";
 import { Button } from "primereact/button";
 import "./App.css";
-import { AppTopbar } from "./AppTopbar";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
-import { Link } from "react-router-dom";
 import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
+import { AutoComplete } from "primereact/autocomplete";
+
 
 function DemandPrediction() {
   const [products2, setProducts2] = useState([]);
@@ -26,8 +26,15 @@ function DemandPrediction() {
   const [isSubmited, setIsSubmited] = useState(false);
   const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
-  const [Plants, setPlants] = useState(["2000"]);
+  const [Plants, setPlants] = useState([]);
 
+  const[materialinfo,setmMaterialInfo]=useState(null);
+  const [filteredMaterialInfo, setfilteredMaterialInfo] = useState(null);
+  const[Plantinfo,setPlantinfo]=useState(null);
+  const [filteredPlantinfo, setfilteredPlantinfo] = useState(null);
+  const [uniqPlant, setUniqPlant] = useState([]);
+   const [Plantinfodata, setPlantinfoData] = useState([]);
+  const [MaterialInfodata, setMaterialInfoData] = useState([]);
   let lastDate = 1680307200000;
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
@@ -175,19 +182,20 @@ function DemandPrediction() {
       });
       setTransposedColorData(TransposedColorData);
     });
-    productService
-      .getInventoryInfo()
-      .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
-
-    //   onsubmit();
-    isMounted.current = true;
+    
     productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
-      // console.log("Material info: " + materilaData);
-      // setProducts(materilaData)
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("demandPredictionMaterial"));
       setProducts3(materilaData);
     });
 
+    console.log('localStorage.getItem("demandPredictionPlants")',localStorage.getItem("demandPredictionPlants"))
+  productService
+    .getInventoryInfo()
+    .then((data) => 
+    setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
+
+    isMounted.current = true;
+  
     setTimeout(() => {
       let startDate = localStorage.getItem("startDate");
       let endDate = localStorage.getItem("endDate");
@@ -198,43 +206,87 @@ function DemandPrediction() {
       }
     }, 100);
   }, []);
+  // console.log({
+  //   "demandPredictionMaterial":localStorage.getItem('demandPredictionMaterial'),
+  //   "demandPredictionPlants":localStorage.getItem('demandPredictionPlants')})
+  useEffect(() => {
+    
 
-  // useEffect(() => {
-  //   isMounted.current = true;
-  //   productService
-  //     .getInventoryInfo()
-  //     .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
-  // }, []);
+  //   setMaterialInfoData(localStorage.getItem('demandPredictionMaterial')||[]);
+  // setPlantinfoData(localStorage.getItem('demandPredictionPlants')||[]);
+ 
+    productService.getPlantInfo().then((data) => {
+      const uniq = (items) => [...new Set(items)];
+     const uniqMaterial = uniq(data.map((item) => item.material.toString()));
+      return setmMaterialInfo(uniqMaterial);
+    });
+    productService.getPlantInfo().then((data) => setPlantinfo(data));
+}, []); 
 
-  // useEffect(() => {
+useEffect(()=>{
+  productService.getMaterial().then((data) => {
+    let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("demandPredictionMaterial"));
+    setProducts3(materilaData);
+    
+  });
+},[MaterialInfodata])
 
-  // //   onsubmit();
-  //   isMounted.current = true;
-  //   productService.getMaterial().then((data) => {
-  //     let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
-  //     // console.log("Material info: " + materilaData);
-  //     // setProducts(materilaData)
-  //     setProducts3(materilaData);
-  //   });
+useEffect(()=>{
+  console.log('inventorylocalStorage.getItem("demandPredictionPlants")',localStorage.getItem("demandPredictionPlants"))
+  productService
+    .getInventoryInfo()
+    .then((data) => {
+      let plantData =data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants"))
+      setProducts2(plantData)
 
-  //   setTimeout(() => {
-  //     let startDate = localStorage.getItem("startDate");
-  //     let endDate = localStorage.getItem("endDate");
-  //     setDate1(startDate ? new Date(startDate) : minDate);
-  //     setDate2(endDate ? new Date(endDate) : maxDate);
-  //     if (startDate || endDate) {
-  //       onsubmit();
-  //     }
-  //   }, 100);
-  // }, []);
+    });
+},[Plantinfodata])
 
-  const onPlantChange = (e) => {
-    setPlants(e.value);
-  };
+const searchMaterial = (event) => {
+  setTimeout(() => {
+      let _filteredMaterialInfo;
+      if (!event.query.trim().length) {
+        _filteredMaterialInfo = [...materialinfo];
+      }
+      else {
+        _filteredMaterialInfo = materialinfo.filter((item) => item.includes(event.query));
+      }
+      setfilteredMaterialInfo(_filteredMaterialInfo);
+  }, 250);
+}
 
+const searchPlantInfo = (event) => {
+  setTimeout(() => {
+      let _filteredPlantinfo;
+      if (!event.query.trim().length) {
+        _filteredPlantinfo = [...uniqPlant];
+      }
+      else {
+        _filteredPlantinfo = uniqPlant.filter((item) => item.includes(event.query));
+      }
+
+      setfilteredPlantinfo(_filteredPlantinfo);
+  }, 250);
+}
+
+const onMaterialChange = (e) => {
+  setPlantinfoData([]);
+  const  filterPlant = Plantinfo.filter((item)=>item.material==e.value)
+  const uniq = (items) => [...new Set(items)];
+  const uniqPlant = uniq(filterPlant.map((item) => item.plant.toString()));
+  localStorage.setItem('demandPredictionMaterial',e.value)
+  setUniqPlant(uniqPlant)
+  setfilteredPlantinfo(uniqPlant)
+  setMaterialInfoData(e.value);
+  
+};
+const onPlantInfoChange = (e) =>{
+  localStorage.setItem('demandPredictionPlants',e.value)
+  setPlantinfoData(e.value);
+}
+const onPlantChange = (e) => setPlants(e.value); 
   const onsubmit = () => {
     setIsSubmited(true);
-    // console.log("demandInfoRegressionSummaryTable===>", demantData.Sheet1);
     let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);
@@ -251,15 +303,10 @@ function DemandPrediction() {
       convertedData = convertedData.filter(
         (data) => data.x > new Date(date1).getTime() && data.x < new Date(date2).getTime()
       );
-      // convertedData = convertedData.filter((data) => new Date(data.executedOn) > new Date(date1) && new Date(data.executedOn) < new Date(date2));
-      // const startTime = new Date(date1).getTime();
-      // const endTime = new Date(date2).getTime();
-      // convertedData = convertedData.filter((data) => data.x > startTime && data.x < endTime);
     }
 
     let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
-    // console.log("transportdata====>", transportdata);
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
         id: ele.id,
@@ -292,14 +339,9 @@ function DemandPrediction() {
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
-    // console.log("filterData===>", filterData);
     setAverageYearlyConsumption(filterYearlyData);
     setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
-  };
-
-  const isDesktop = () => {
-    return window.innerWidth > 1024;
   };
 
   const header = (
@@ -367,8 +409,6 @@ function DemandPrediction() {
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
-
       <div className="layout-main">
         <div className="table-header-container">
           <h5
@@ -384,10 +424,34 @@ function DemandPrediction() {
           </h5>
         </div>
         <div className="card">
+        <AutoComplete
+          value={MaterialInfodata}
+          suggestions={filteredMaterialInfo}
+          completeMethod={searchMaterial}
+          dropdown
+          placeholder="Select Material"
+          onChange={onMaterialChange} 
+          aria-label="materialinfo"
+          sorted
+        />
+        <AutoComplete
+         value={Plantinfodata}
+         suggestions={filteredPlantinfo}
+         completeMethod={searchPlantInfo}
+         dropdown
+         placeholder="Select Plant"
+         onChange={onPlantInfoChange} 
+         aria-label="plantinfo"
+         sorted
+         multiple
+         style={{marginLeft:'30px'}}
+        />
+      </div>
+        <div className="card">
           <DataTable
             value={products3}
             // expandedRows={expandedRows}
-            onRowToggle={(e) => setExpandedRows(e.data)}
+            onRowToggle={(e) => setMaterialInfoData(e.value)}
             responsiveLayout="scroll"
             rowExpansionTemplate={rowExpansionTemplate}
             dataKey=""
@@ -397,10 +461,8 @@ function DemandPrediction() {
           >
             <Column style={{ width: "3em" }} />
             <Column field="material" header="ID" />
-            {/* <Column field="Discription" header="Discription"   /> */}
             <Column field="base_unit_of_measure (UOM)" header="UOM" />
             <Column field="aliases" header="Aliases" />
-            {/* <Column field="Criticality" header="Criticality"   /> */}
             <Column field="material_type (SAP)" header="SAP" />
             <Column field="material_group (organisation)" header="Organization" />
             <Column field="mdrm_class (class)" header="Class" />
@@ -409,16 +471,10 @@ function DemandPrediction() {
         <div className="card">
           <DataTable
             value={products2}
-            //  expandedRows={expandedRows}
-            // onRowToggle={(e) => setExpandedRows(e.data)}
-            // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-            // rowExpansionTemplate={rowExpansionTemplate}
             dataKey="id"
             header={headers}
             rows={4}
           >
-            {/* <Column expander style={{ width: '3em' }} /> */}
-
             <Column field="plant" header="Plant ID" />
             <Column field="plant_name" header="Plant Name" />
             <Column field="safety_stock" header="Safety Stock" />
@@ -430,7 +486,7 @@ function DemandPrediction() {
         <div className="card">
           <MultiSelect
             style={{ width: "40%", margin: "5px 10px" }}
-            value={Plants}
+            value={uniqPlant}
             options={plantData}
             onChange={onPlantChange}
             optionLabel="label"
@@ -439,32 +495,26 @@ function DemandPrediction() {
           />
           <strong>From Year</strong>
           <Calendar
-            // className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date1}
-            // placeholder={minDate.toLocaleDateString("en-GB")}
             onChange={(e) => handleStartDateChange(e)}
             minDate={minDate}
             maxDate={maxDate}
             dateFormat="dd/mm/yy"
             yearRange="2015:2025"
-            // disabled
           />
           <strong>To Year</strong>
           <Calendar
-            // className="p-dropdow"
             style={{ width: "15%", margin: "5px 10px" }}
             id="icon"
             showIcon
             value={date2}
-            // placeholder={maxDate.toLocaleDateString("en-GB")}
             onChange={(e) => handleEndDateChange(e)}
             minDate={minDate}
             maxDate={maxDate}
             dateFormat="dd/mm/yy"
-            // disabled
           />
           <Button id="btn" label="submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
           <div className="table-header-container">
@@ -548,17 +598,6 @@ function DemandPrediction() {
             </DataTable>
           </div>
         )}
-        {/* <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/orderOptimization/MaterialOverview">
-            <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
-          </Link>
-          <Link to="/orderOptimization/CostDriversAnalysis">
-            <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} />
-          </Link>
-          <Link to="/orderOptimization/SupplierAnalysis">
-            <Button className="nextbutton" label="Supplier Analysis" style={{ marginLeft: " 15px" }} />
-          </Link>
-        </div> */}
       </div>
     </div>
   );
