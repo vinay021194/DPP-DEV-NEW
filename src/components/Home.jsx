@@ -1,8 +1,10 @@
 import { Button } from "primereact/button";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { lendingPageMenuItems } from "./../appConstant";
 
 function Home(props) {
+  const { login } = props;
   const s1 = {
     width: "100%",
     height: window.innerHeight,
@@ -15,20 +17,15 @@ function Home(props) {
     backgroundImage: 'url("/AI2.gif")',
   };
 
-  let menuItems = [
-    {
-      label: "Order Optimization",
-      to: "/orderOptimization/MaterialOverview",
-    },
-    {
-      label: "Demand Prediction",
-      to: "/demandPrediction",
-    },
-    {
-      label: "Cost Drivers Analysis",
-      to: "/CostDriversAnalysis",
-    },
-  ];
+  const isLogin = localStorage.getItem("isLogin");
+
+  // useEffect(() => localStorage.clear(), []);
+
+  if (!login || !isLogin) {
+    // console.log("Home login===>", login);
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div style={{ display: "flex" }}>
       <div style={s1}></div>
@@ -43,8 +40,8 @@ function Home(props) {
           alignItems: "center",
         }}
       >
-        {menuItems.map((menu) => (
-          <Link to={menu.to}>
+        {lendingPageMenuItems.map((menu) => (
+          <Link to={menu.to} key={menu.to}>
             <Button className="previousbutton p-my-3 homeButtons" label={menu.label} />
           </Link>
         ))}

@@ -122,8 +122,6 @@ export const Orderingplant = () => {
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
-      {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <h5
           style={{
@@ -137,57 +135,23 @@ export const Orderingplant = () => {
           Ordering Schedule
         </h5>
         <div className="card">
-          <DataTable
-            value={products3}
-            //  expandedRows={expandedRows}
-            // onRowToggle={(e) => setExpandedRows(e.data)}
-            //     onRowExpand={onRowExpand}
-            //     onRowCollapse={onRowCollapse}
-            responsiveLayout="scroll"
-            // rowExpansionTemplate={rowExpansionTemplate}
-            dataKey="id"
-            header={header}
-            rows={1}
-          >
+          <DataTable value={products3} responsiveLayout="scroll" dataKey="id" header={header} rows={1}>
             <Column field="material" header="ID"></Column>
-            {/* <Column field="" header="Buyer-Group" ></Column> */}
             <Column field="material_type (SAP)" header="Type" />
             <Column field="material_description_1" header="Description"></Column>
-
             <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
             <Column field="mdrm_class (class)" header="UNSPSC Description" />
           </DataTable>
         </div>
-        <MultiSelect
-          className=""
-          style={{
-            width: "30%",
-            margin: "5px 10px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-          value={selectedCities1}
-          options={city}
-          onChange={onPlantChange}
-          optionLabel="name"
-          placeholder="2000"
-          display="chip"
-        />
         <div className="card">
           <DataTable
             value={supplierData}
-            //  expandedRows={expandedRows}
-            // onRowToggle={(e) => setExpandedRows(e.data)}
-            // onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-            // rowExpansionTemplate={rowExpansionTemplate}
             showGridlines
             responsiveLayout="scroll"
             dataKey="id"
             header={header2}
             rows={1}
           >
-            {/* <Column expander style={{ width: '3em' }} /> */}
-
             <Column field="Plant" header="Plant"></Column>
             <Column field="Supplier" header="Supplier Name"></Column>
             <Column field="May" header={dateMaker(currenYyear, currenMonth)} />
@@ -196,28 +160,11 @@ export const Orderingplant = () => {
             <Column field="August" header={dateMaker(currenYyear, currenMonth + 3)} />
             <Column field="September" header={dateMaker(currenYyear, currenMonth + 4)} />
             <Column field="October" header={dateMaker(currenYyear, currenMonth + 5)} />
-
             <Column field="Total Quantity" header="Total Quantities" />
           </DataTable>
         </div>
         <div className="card">
-          <DataTable
-            value={plantData}
-            //  expandedRows={expandedRows}
-            //   onRowToggle={(e) => setExpandedRows(e.data)}
-            //   onRowExpand={onRowExpand} onRowCollapse={onRowCollapse} responsiveLayout="scroll"
-            //   rowExpansionTemplate={rowExpansionTemplate}
-            dataKey="id"
-            showGridlines
-            responsiveLayout="scroll"
-            // footer={footer}
-            //header={header3}
-            rows={6}
-
-            //editMode="cell"
-          >
-            {/* <Column expander style={{ width: '3em' }} /> */}
-
+          <DataTable value={plantData} dataKey="id" showGridlines responsiveLayout="scroll" rows={6}>
             <Column field="Plant" header="Plant"></Column>
             <Column field="undefined" header="Name"></Column>
             <Column field="May" header={dateMaker(currenYyear, currenMonth)} />
@@ -226,7 +173,6 @@ export const Orderingplant = () => {
             <Column field="August" header={dateMaker(currenYyear, currenMonth + 3)} />
             <Column field="September" header={dateMaker(currenYyear, currenMonth + 4)} />
             <Column field="October" header={dateMaker(currenYyear, currenMonth + 5)} />
-            {/* <Column field=" " header="" /> */}
           </DataTable>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>

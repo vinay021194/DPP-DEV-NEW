@@ -191,7 +191,7 @@ export class SupplierAnalysis extends Component {
   };
 
   optimize = () => {
-    this.props.history.push("/Inventory", {
+    this.props.history.push("/orderOptimization/Inventory", {
       supplierDetails: window.supplierObject,
     });
   };
@@ -1027,9 +1027,9 @@ export class SupplierAnalysis extends Component {
             <Link to="/orderOptimization/CostDriversAnalysis">
               <Button className="previousbutton" label="Previous" style={{ marginRight: " 15px" }} />
             </Link>
-            <a href="/orderOptimization/Inventory">
-              <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} onClick={this.optimize} />
-            </a>
+            {/* <Link to="/orderOptimization/Inventory"> */}
+            <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} onClick={this.optimize} />
+            {/* </Link> */}
           </div>
         </div>
       </div>

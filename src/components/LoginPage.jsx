@@ -1,17 +1,21 @@
-import react from "react";
+import React from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
-//import { Button } from 'primereact/button';
-import { MaterialOverview } from "../components/MaterialOverview";
+import { Button } from "primereact/button";
 
-export const LoginPage = () => {
+export const LoginPage = (props) => {
+  const { setLogin } = props;
+  console.log("props login===>", props);
+
+  const handleLogin = () => {
+    setLogin(true);
+    localStorage.setItem("isLogin", true);
+    props.history.push("/");
+  };
+
   return (
     <div className="limiter">
       <div className="container-login100">
-        {/* <div>
-        <img alt="Logo" src="images/logo-white.png" style={{width: '200px', margin: '0px 0px 15px'}}/>
-       
-      </div> */}
         <div className="wrap-login100">
           <div className="login100-form validate-form">
             <span className="login100-form-title p-b-43">Login</span>
@@ -34,33 +38,16 @@ export const LoginPage = () => {
               </div>
             </div>
 
-            {/* <a href='/MaterialOverview'> */}
-            <Link to="/orderOptimization/MaterialOverview">
-              <div className="container-login100-form-btn">
-                <button className="login100-form-btn">Login</button>
-              </div>
-            </Link>
-            {/* </a>  */}
-
-            {/* <div className="text-center p-t-46 p-b-20">
-						<span className="txt2">
-							or sign up using
-						</span>
-					</div> */}
-
-            <div className="login100-form-social flex-c-m">
-              {/* <a href="#" className="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i className="fa fa-facebook-f" aria-hidden="true"></i>
-						</a> */}
-
-              {/* <a href="#" className="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i className="fa fa-twitter" aria-hidden="true"></i>
-						</a> */}
+            {/* <Link to="/"> */}
+            <div className="container-login100-form-btn">
+              <Button className="login100-form-btn" onClick={handleLogin}>
+                Login
+              </Button>
             </div>
+            {/* </Link> */}
           </div>
 
-          <div className="login100-more">
-          </div>
+          <div className="login100-more"></div>
         </div>
       </div>
     </div>
