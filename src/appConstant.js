@@ -104,7 +104,7 @@ export const lendingPageMenuItems = [
     to: "/orderOptimization/MaterialOverview",
   },
   {
-    label: "Demand Prediction",
+    label: "Demand Analysis",
     to: "/demandPrediction",
   },
   {

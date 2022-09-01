@@ -1,5 +1,6 @@
 {
-    "data": [{
+    "data": [
+        {
             "material": "700047",
             "material_description_1": "Polyethylene",
             "material_type (SAP)": "ROH",
@@ -27,7 +28,6 @@
                     "plant_name": "Edison",
                     "status_level_plant": "Urgent"
                 }
-
             ]
         },
         {
@@ -65,10 +65,7 @@
                     "plant_name": "Topeka",
                     "status_level_plant": "Depleting fast"
                 }
-
-
             ]
-
         },
 
         {
@@ -99,7 +96,6 @@
                     "plant_name": "Tulsa",
                     "status_level_plant": "Sufficient"
                 }
-
             ]
         },
         {

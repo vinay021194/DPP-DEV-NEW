@@ -34,6 +34,9 @@ function DemandPrediction() {
   const [uniqPlant, setUniqPlant] = useState([]);
   const [Plantinfodata, setPlantinfoData] = useState([]);
   const [MaterialInfodata, setMaterialInfoData] = useState([]);
+  const [date1, setDate1] = useState(null);
+  const [date2, setDate2] = useState(null);
+
   let lastDate = 1680307200000;
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
@@ -62,14 +65,10 @@ function DemandPrediction() {
     return { label: ele.plant, value: ele.plant };
   });
 
-  const [date1, setDate1] = useState(null);
-  const [date2, setDate2] = useState(null);
-
   const chart3 = {
     chart: {
       zoomType: "x",
     },
-
     title: {
       text: " ",
     },
@@ -189,10 +188,20 @@ function DemandPrediction() {
       setProducts3(materilaData);
     });
 
-    console.log('localStorage.getItem("demandPredictionPlants")', localStorage.getItem("demandPredictionPlants"));
+    console.log("effect onMount", localStorage.getItem("demandPredictionPlants"));
+
     productService
       .getInventoryInfo()
-      .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
+      .then((data) =>
+        setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants")))
+      );
+
+    productService.getPlantInfo().then((data) => {
+      const uniq = (items) => [...new Set(items)];
+      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
+      return setmMaterialInfo(uniqMaterial);
+    });
+    productService.getPlantInfo().then((data) => setPlantinfo(data));
 
     isMounted.current = true;
 
@@ -206,40 +215,24 @@ function DemandPrediction() {
       }
     }, 100);
   }, []);
-  // console.log({
-  //   "demandPredictionMaterial":localStorage.getItem('demandPredictionMaterial'),
-  //   "demandPredictionPlants":localStorage.getItem('demandPredictionPlants')})
-  useEffect(() => {
-    //   setMaterialInfoData(localStorage.getItem('demandPredictionMaterial')||[]);
-    // setPlantinfoData(localStorage.getItem('demandPredictionPlants')||[]);
-
-    productService.getPlantInfo().then((data) => {
-      const uniq = (items) => [...new Set(items)];
-      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
-      return setmMaterialInfo(uniqMaterial);
-    });
-    productService.getPlantInfo().then((data) => setPlantinfo(data));
-  }, []);
 
   useEffect(() => {
+    console.log("effect MaterialInfodata", localStorage.getItem("demandPredictionPlants"));
     productService.getMaterial().then((data) => {
       let materilaData = data.Sheet3.filter(
         (data) => data.material === localStorage.getItem("demandPredictionMaterial")
       );
       setProducts3(materilaData);
     });
-  }, [MaterialInfodata]);
+  }, [MaterialInfodata, productService]);
 
   useEffect(() => {
-    console.log(
-      'inventorylocalStorage.getItem("demandPredictionPlants")',
-      localStorage.getItem("demandPredictionPlants")
-    );
+    console.log("effect Plantinfodata", localStorage.getItem("demandPredictionPlants"));
     productService.getInventoryInfo().then((data) => {
       let plantData = data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants"));
       setProducts2(plantData);
     });
-  }, [Plantinfodata]);
+  }, [Plantinfodata, productService]);
 
   const searchMaterial = (event) => {
     setTimeout(() => {
@@ -268,7 +261,6 @@ function DemandPrediction() {
 
   const onMaterialChange = (e) => {
     setPlantinfoData([]);
-
     const filterPlant = Plantinfo.filter((item) => item.material == e.value);
     const uniq = (items) => [...new Set(items)];
     const uniqPlant = uniq(filterPlant.map((item) => item.plant.toString()));
@@ -276,18 +268,23 @@ function DemandPrediction() {
     setUniqPlant(uniqPlant);
     setfilteredPlantinfo(uniqPlant);
     setMaterialInfoData(e.value);
+    setPlantinfoData(uniqPlant);
+    // setPlants(uniqPlant);
   };
+
   const onPlantInfoChange = (e) => {
     localStorage.setItem("demandPredictionPlants", e.value);
     setPlantinfoData(e.value);
-    setPlants(e.value);
-    onsubmit();
+    // setPlants(e.value);
+    // onsubmit();
   };
-  const onPlantChange = (e) => {
-    localStorage.setItem("demandPredictionPlants", e.value);
-    setPlantinfoData(e.value);
-    setPlants(e.value);
-  };
+
+  // const onPlantChange = (e) => {
+  //   localStorage.setItem("demandPredictionPlants", e.value);
+  //   setPlantinfoData(e.value);
+  //   setPlants(e.value);
+  // };
+
   const onsubmit = () => {
     setIsSubmited(true);
     let proudctdata = plantjsondata;
@@ -302,13 +299,15 @@ function DemandPrediction() {
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
+
     if (date1 && date2) {
       convertedData = convertedData.filter(
         (data) => data.x > new Date(date1).getTime() && data.x < new Date(date2).getTime()
       );
     }
 
-    let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
+    // let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
+    let exampleData = Plantinfodata.map((sr) => convertedData.filter((el) => el.plant === sr));
 
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -329,16 +328,26 @@ function DemandPrediction() {
         Month12: ele.Month12,
       };
     });
-    let filterData = Plants.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
+    // let filterData = Plants.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
 
-    const chartData1 = Plants.map((sr, i) => {
+    // const chartData1 = Plants.map((sr, i) => {
+    //   return {
+    //     name: sr,
+    //     data: exampleData[i],
+    //   };
+    // });
+
+    // let filterYearlyData = Plants.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
+    let filterData = Plantinfodata.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
+
+    const chartData1 = Plantinfodata.map((sr, i) => {
       return {
         name: sr,
         data: exampleData[i],
       };
     });
 
-    let filterYearlyData = Plants.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
+    let filterYearlyData = Plantinfodata.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
@@ -402,6 +411,7 @@ function DemandPrediction() {
     localStorage.setItem("startDate", e.value);
     setDate1(e.value);
   };
+
   const handleEndDateChange = (e) => {
     localStorage.setItem("endDate", e.value);
     setDate2(e.value);
@@ -446,6 +456,7 @@ function DemandPrediction() {
             multiple
             style={{ marginLeft: "30px" }}
           />
+          <Button id="btn" label="Submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
         </div>
         <div className="card">
           <DataTable
@@ -494,7 +505,7 @@ function DemandPrediction() {
             completeMethod={searchPlantInfo}
             dropdown
             placeholder="Select Plant"
-            onChange={onPlantChange}
+            onChange={onPlantInfoChange}
             aria-label="plantinfo"
             sorted
             multiple
@@ -523,7 +534,7 @@ function DemandPrediction() {
             maxDate={maxDate}
             dateFormat="dd/mm/yy"
           />
-          <Button id="btn" label="submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
+          <Button id="btn" label="Submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
           <div className="table-header-container">
             <h5
               style={{

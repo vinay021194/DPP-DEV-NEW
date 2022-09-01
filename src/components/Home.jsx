@@ -16,13 +16,12 @@ function Home(props) {
     backgroundColor: "rgb(242 245 249)",
     backgroundImage: 'url("/AI2.gif")',
   };
-
   const isLogin = localStorage.getItem("isLogin");
 
-  // useEffect(() => localStorage.clear(), []);
+  delete localStorage.demandPredictionMaterial;
+  delete localStorage.demandPredictionPlants;
 
   if (!login || !isLogin) {
-    // console.log("Home login===>", login);
     return <Redirect to="/login" />;
   }
 
