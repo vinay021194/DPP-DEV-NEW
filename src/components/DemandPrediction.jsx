@@ -90,6 +90,7 @@ function DemandPrediction() {
       }
     }, 100);
   }, []);
+
   const chart3 = {
     chart: {
       zoomType: "x",
@@ -207,10 +208,8 @@ function DemandPrediction() {
     setUniqPlant(uniqPlant);
     setfilteredPlantinfo(uniqPlant);
     setMaterialInfoData(e.value);
-
-    //! DO NOT REMOVE BELOW CODE
-    // localStorage.setItem("demandPredictionPlants", JSON.stringify(uniqPlant));
-    // setPlantinfoData(uniqPlant);
+    localStorage.setItem("demandPredictionPlants", JSON.stringify(uniqPlant));
+    setPlantinfoData(uniqPlant);
   };
 
   const onPlantInfoChange = (e) => {
