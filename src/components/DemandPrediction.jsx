@@ -59,12 +59,37 @@ function DemandPrediction() {
   let plotBandText =
     "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
-  let plantData = [...new Map(demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])).values()];
+  useEffect(() => {
+    isMounted.current = true;
 
-  plantData = plantData.map((ele) => {
-    return { label: ele.plant, value: ele.plant };
-  });
+    let demandPredictionPlants = JSON.parse(localStorage.getItem("demandPredictionPlants"));
+    let demandPredictionMaterial = localStorage.getItem("demandPredictionMaterial");
+    if (demandPredictionPlants) setPlantinfoData(demandPredictionPlants);
+    if (demandPredictionMaterial) {
+      setMaterialInfoData(demandPredictionMaterial);
+      onsubmit();
+    }
 
+    productService.getPlantInfo().then((data) => {
+      const uniq = (items) => [...new Set(items)];
+      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
+      return setmMaterialInfo(uniqMaterial);
+    });
+
+    productService.getPlantInfo().then((data) => setPlantinfo(data));
+
+    isMounted.current = true;
+
+    setTimeout(() => {
+      let startDate = localStorage.getItem("startDate");
+      let endDate = localStorage.getItem("endDate");
+      setDate1(startDate ? new Date(startDate) : minDate);
+      setDate2(endDate ? new Date(endDate) : maxDate);
+      if (startDate || endDate) {
+        onsubmit();
+      }
+    }, 100);
+  }, []);
   const chart3 = {
     chart: {
       zoomType: "x",
@@ -148,92 +173,6 @@ function DemandPrediction() {
     },
   };
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const summary = expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-    }
-  }, [expandedRows]);
-
-  useEffect(() => {
-    isMounted.current = true;
-    productService.getMaterialInfo().then((data) => {});
-    setdemandInfoRegressionSummaryTable(demantData.Sheet1);
-    productService.gettransposedData().then((data) => {
-      let TransposedColorData = data.Sheet.map((ele) => {
-        return {
-          id: ele.id,
-          key_mp: ele.key_mp,
-          keys: ele.keys,
-          Month1: ele.Month1,
-          Month2: ele.Month2,
-          Month3: ele.Month3,
-          Month4: ele.Month4,
-          Month5: ele.Month5,
-          Month6: ele.Month6,
-          Month7: ele.Month7,
-          Month8: ele.Month8,
-          Month9: ele.Month9,
-          Month10: ele.Month10,
-          Month11: ele.Month11,
-          Month12: ele.Month12,
-        };
-      });
-      setTransposedColorData(TransposedColorData);
-    });
-
-    productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter(
-        (data) => data.material === localStorage.getItem("demandPredictionMaterial")
-      );
-      setProducts3(materilaData);
-    });
-
-    console.log("effect onMount", localStorage.getItem("demandPredictionPlants"));
-
-    productService
-      .getInventoryInfo()
-      .then((data) =>
-        setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants")))
-      );
-
-    productService.getPlantInfo().then((data) => {
-      const uniq = (items) => [...new Set(items)];
-      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
-      return setmMaterialInfo(uniqMaterial);
-    });
-    productService.getPlantInfo().then((data) => setPlantinfo(data));
-
-    isMounted.current = true;
-
-    setTimeout(() => {
-      let startDate = localStorage.getItem("startDate");
-      let endDate = localStorage.getItem("endDate");
-      setDate1(startDate ? new Date(startDate) : minDate);
-      setDate2(endDate ? new Date(endDate) : maxDate);
-      if (startDate || endDate) {
-        onsubmit();
-      }
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    console.log("effect MaterialInfodata", localStorage.getItem("demandPredictionPlants"));
-    productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter(
-        (data) => data.material === localStorage.getItem("demandPredictionMaterial")
-      );
-      setProducts3(materilaData);
-    });
-  }, [MaterialInfodata, productService]);
-
-  useEffect(() => {
-    console.log("effect Plantinfodata", localStorage.getItem("demandPredictionPlants"));
-    productService.getInventoryInfo().then((data) => {
-      let plantData = data.Sheet3.filter((data) => data.plant === localStorage.getItem("demandPredictionPlants"));
-      setProducts2(plantData);
-    });
-  }, [Plantinfodata, productService]);
-
   const searchMaterial = (event) => {
     setTimeout(() => {
       let _filteredMaterialInfo;
@@ -268,25 +207,34 @@ function DemandPrediction() {
     setUniqPlant(uniqPlant);
     setfilteredPlantinfo(uniqPlant);
     setMaterialInfoData(e.value);
+    localStorage.setItem("demandPredictionPlants", JSON.stringify(uniqPlant));
+    console.log("uniqPlant===>", uniqPlant);
     setPlantinfoData(uniqPlant);
-    // setPlants(uniqPlant);
   };
 
   const onPlantInfoChange = (e) => {
-    localStorage.setItem("demandPredictionPlants", e.value);
+    localStorage.setItem("demandPredictionPlants", JSON.stringify(e.value));
     setPlantinfoData(e.value);
-    // setPlants(e.value);
-    // onsubmit();
   };
-
-  // const onPlantChange = (e) => {
-  //   localStorage.setItem("demandPredictionPlants", e.value);
-  //   setPlantinfoData(e.value);
-  //   setPlants(e.value);
-  // };
 
   const onsubmit = () => {
     setIsSubmited(true);
+    let plants = JSON.parse(localStorage.getItem("demandPredictionPlants")) || Plantinfodata;
+
+    productService.getMaterial().then((data) => {
+      let materilaData = data.Sheet3.filter(
+        (data) => data.material === localStorage.getItem("demandPredictionMaterial")
+      );
+      setProducts3(materilaData);
+    });
+
+    productService.getInventoryInfo().then((data) => {
+      let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)));
+      filteredIinventortData = [].concat(...filteredIinventortData);
+      console.table(filteredIinventortData);
+      setProducts2(filteredIinventortData);
+    });
+
     let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);
@@ -307,7 +255,7 @@ function DemandPrediction() {
     }
 
     // let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
-    let exampleData = Plantinfodata.map((sr) => convertedData.filter((el) => el.plant === sr));
+    let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -328,29 +276,21 @@ function DemandPrediction() {
         Month12: ele.Month12,
       };
     });
-    // let filterData = Plants.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
 
-    // const chartData1 = Plants.map((sr, i) => {
-    //   return {
-    //     name: sr,
-    //     data: exampleData[i],
-    //   };
-    // });
+    let filterData = plants.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
 
-    // let filterYearlyData = Plants.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
-    let filterData = Plantinfodata.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
-
-    const chartData1 = Plantinfodata.map((sr, i) => {
+    const chartData1 = plants.map((sr, i) => {
       return {
         name: sr,
         data: exampleData[i],
       };
     });
 
-    let filterYearlyData = Plantinfodata.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
+    let filterYearlyData = plants.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
+
     setAverageYearlyConsumption(filterYearlyData);
     setFilteredTransposedData(filterData);
     setHistoricalConsumptionSeriesData(chartData1);
@@ -387,23 +327,9 @@ function DemandPrediction() {
 
   const statusOrderBodyTemplate = (rowData) => {
     return (
-      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
-    );
-  };
-
-  const rowExpansionTemplate = (data) => {
-    return (
-      <div className="orders-subtable">
-        {/* <h5>Orders for {data.name}</h5> */}
-        <DataTable value={data.orders} responsiveLayout="scroll" rows={1}>
-          <Column field="id" header="Plant Id(Name)" />
-          <Column field="name" header="Safety Stock" />
-          <Column field="inventory" header="Inventory" />
-          <Column field="status" header="WareHouse Capacity" />
-          <Column field="status" header="Status" />
-          {/* <Column field="" header="" body={statusOrderBodyTemplate}  /> */}
-        </DataTable>
-      </div>
+      <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
+        {rowData.status_level_inventory}
+      </span>
     );
   };
 
@@ -459,17 +385,7 @@ function DemandPrediction() {
           <Button id="btn" label="Submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
         </div>
         <div className="card">
-          <DataTable
-            value={products3}
-            // expandedRows={expandedRows}
-            onRowToggle={(e) => setMaterialInfoData(e.value)}
-            responsiveLayout="scroll"
-            rowExpansionTemplate={rowExpansionTemplate}
-            dataKey=""
-            header={header}
-            rows={1}
-            showGridlines
-          >
+          <DataTable value={products3} responsiveLayout="scroll" header={header} rows={1} showGridlines>
             <Column style={{ width: "3em" }} />
             <Column field="material" header="ID" />
             <Column field="base_unit_of_measure (UOM)" header="UOM" />
@@ -480,7 +396,7 @@ function DemandPrediction() {
           </DataTable>
         </div>
         <div className="card">
-          <DataTable value={products2} dataKey="id" header={headers} rows={4}>
+          <DataTable value={products2} responsiveLayout="scroll" dataKey="id" header={headers} rows={4}>
             <Column field="plant" header="Plant ID" />
             <Column field="plant_name" header="Plant Name" />
             <Column field="safety_stock" header="Safety Stock" />

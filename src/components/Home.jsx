@@ -18,8 +18,8 @@ function Home(props) {
   };
   const isLogin = localStorage.getItem("isLogin");
 
-  delete localStorage.demandPredictionMaterial;
-  delete localStorage.demandPredictionPlants;
+  // delete localStorage.demandPredictionMaterial;
+  // delete localStorage.demandPredictionPlants;
 
   if (!login || !isLogin) {
     return <Redirect to="/login" />;

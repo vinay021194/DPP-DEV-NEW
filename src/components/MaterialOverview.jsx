@@ -66,6 +66,7 @@ export const MaterialOverview = (props) => {
       return setProducts(data);
     });
     productService.getMaterialInfo().then((data) => {
+      console.table(data);
       return setproductsFiltered(data);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -257,13 +258,7 @@ export const MaterialOverview = (props) => {
             selectionMode="single"
           >
             <Column expander style={{ width: "3em" }} />
-            <Column
-              field="material"
-              header="ID"
-              //body={planttamplete}
-              // body={hyperlinkTemp}
-              //Disabled={'material' !=='700047'}
-            ></Column>
+            <Column field="material" header="ID"></Column>
             <Column field="material_description_1" header="Name"></Column>
             <Column field="inventory_material_level" header=" Total Inventory (T)" />
             <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
