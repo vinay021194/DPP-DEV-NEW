@@ -207,9 +207,10 @@ function DemandPrediction() {
     setUniqPlant(uniqPlant);
     setfilteredPlantinfo(uniqPlant);
     setMaterialInfoData(e.value);
-    localStorage.setItem("demandPredictionPlants", JSON.stringify(uniqPlant));
-    console.log("uniqPlant===>", uniqPlant);
-    setPlantinfoData(uniqPlant);
+
+    //! DO NOT REMOVE BELOW CODE
+    // localStorage.setItem("demandPredictionPlants", JSON.stringify(uniqPlant));
+    // setPlantinfoData(uniqPlant);
   };
 
   const onPlantInfoChange = (e) => {
@@ -254,7 +255,6 @@ function DemandPrediction() {
       );
     }
 
-    // let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
     let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
     let tdata = transportdata.data.Sheet.map((ele) => {
