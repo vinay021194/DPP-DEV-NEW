@@ -10,7 +10,6 @@ export const Inventory = (props) => {
   const [products, setProducts] = useState([]);
   const [products2, setProducts2] = useState([]);
   const [plantData, setPlantData] = useState([]);
-  const [expandedRows, setExpandedRows] = useState(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
   const [plantData2000, setplantData2000] = useState([]);
@@ -20,24 +19,13 @@ export const Inventory = (props) => {
   let currenMonth = new Date().getMonth() * 1;
 
   useEffect(() => {
-    if (isMounted.current) {
-      const summary =
-        expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-    }
-  }, [expandedRows]);
-
-  useEffect(() => {
     isMounted.current = true;
     productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter(
-        (data) => data.material === localStorage.getItem("Material")
-      );
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
       setProducts(materilaData);
     });
     setsupplierObject(
-      props.location.state?.supplierDetails
-        ? props.location.state?.supplierDetails
-        : window.supplierObject2
+      props.location.state?.supplierDetails ? props.location.state?.supplierDetails : window.supplierObject2
     );
     window.supplierObject = props.location.state?.supplierDetails;
   }, []);
@@ -46,9 +34,7 @@ export const Inventory = (props) => {
     isMounted.current = true;
     productService.getInventoryInfo().then((data) => {
       let materilaData = data.Sheet3.filter(
-        (data) =>
-          data.material === localStorage.getItem("Material") &&
-          data.plant === localStorage.getItem("plant")
+        (data) => data.material === localStorage.getItem("Material") && data.plant === localStorage.getItem("plant")
       );
       setProducts2(materilaData);
     });
@@ -59,13 +45,7 @@ export const Inventory = (props) => {
     productService.getPlantinventoryTable().then((data) => setPlantData(data));
     productService
       .getPlantinventoryTable()
-      .then((data) =>
-        setplantData2000(
-          data.Sheet1.filter(
-            (data) => data.plant === localStorage.getItem("plant")
-          )
-        )
-      );
+      .then((data) => setplantData2000(data.Sheet1.filter((data) => data.plant === localStorage.getItem("plant"))));
   }, []);
 
   const dateMaker = (yr, mnt) => {
@@ -78,9 +58,7 @@ export const Inventory = (props) => {
 
   const statusOrderBodyTemplate = (rowData) => {
     return (
-      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>
-        {rowData.status_level_inventory}
-      </span>
+      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
     );
   };
 
@@ -93,30 +71,20 @@ export const Inventory = (props) => {
   const header2 = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Inventory</h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>
-        All quantities are in Tonnes
-      </h6>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All quantities are in Tonnes</h6>
     </div>
   );
   const header3 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-        Plant- 2000
-      </h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>
-        All values are in Tonnes
-      </h6>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- 2000</h5>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h6>
     </div>
   );
 
   const header5 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
-        Forecasted Prices
-      </h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>
-        All prices are in US$/Tonne
-      </h6>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Forecasted Prices</h5>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All prices are in US$/Tonne</h6>
     </div>
   );
 
@@ -135,21 +103,12 @@ export const Inventory = (props) => {
           Data Overview
         </h5>
         <div className="card">
-          <DataTable
-            value={products}
-            responsiveLayout="scroll"
-            dataKey="id"
-            header={header1}
-            rows={1}
-          >
+          <DataTable value={products} responsiveLayout="scroll" dataKey="id" header={header1} rows={1}>
             <Column field="material" header="ID"></Column>
             <Column field="base_unit_of_measure (UOM)" header="UOM"></Column>
             <Column field="aliases" header="Aliases" />
             <Column field="material_type (SAP)" header="SAP" />
-            <Column
-              field="material_group (organisation)"
-              header="Organization"
-            />
+            <Column field="material_group (organisation)" header="Organization" />
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
         </div>
@@ -160,79 +119,29 @@ export const Inventory = (props) => {
             <Column field="safety_stock" header="Safety Stock"></Column>
             <Column field="opening_stock" header="Inventory" />
             <Column field="warehouse_capacity" header="Warehouse capacity" />
-            <Column
-              field="status_level_inventory"
-              header="Status"
-              body={statusOrderBodyTemplate}
-            />
+            <Column field="status_level_inventory" header="Status" body={statusOrderBodyTemplate} />
           </DataTable>
         </div>
         <div className="card">
-          <DataTable
-            value={plantData2000}
-            dataKey="key"
-            header={header3}
-            rows={2}
-          >
+          <DataTable value={plantData2000} dataKey="key" header={header3} rows={2}>
             <Column field="data" header=""></Column>
-            <Column
-              field="month_1"
-              header={dateMaker(currenYyear, currenMonth)}
-            />
-            <Column
-              field="month_2"
-              header={dateMaker(currenYyear, currenMonth + 1)}
-            />
-            <Column
-              field="month_3"
-              header={dateMaker(currenYyear, currenMonth + 2)}
-            />
-            <Column
-              field="month_4"
-              header={dateMaker(currenYyear, currenMonth + 3)}
-            />
-            <Column
-              field="month_5"
-              header={dateMaker(currenYyear, currenMonth + 4)}
-            />
-            <Column
-              field="month_6"
-              header={dateMaker(currenYyear, currenMonth + 5)}
-            />
+            <Column field="month_1" header={dateMaker(currenYyear, currenMonth)} />
+            <Column field="month_2" header={dateMaker(currenYyear, currenMonth + 1)} />
+            <Column field="month_3" header={dateMaker(currenYyear, currenMonth + 2)} />
+            <Column field="month_4" header={dateMaker(currenYyear, currenMonth + 3)} />
+            <Column field="month_5" header={dateMaker(currenYyear, currenMonth + 4)} />
+            <Column field="month_6" header={dateMaker(currenYyear, currenMonth + 5)} />
           </DataTable>
         </div>
         <div className="card">
-          <DataTable
-            value={supplierObject}
-            dataKey="id"
-            header={header5}
-            rows={3}
-          >
+          <DataTable value={supplierObject} dataKey="id" header={header5} rows={3}>
             <Column field="name" header="Supplier"></Column>
-            <Column
-              field="month1"
-              header={dateMaker(currenYyear, currenMonth)}
-            />
-            <Column
-              field="month2"
-              header={dateMaker(currenYyear, currenMonth + 1)}
-            />
-            <Column
-              field="month3"
-              header={dateMaker(currenYyear, currenMonth + 2)}
-            />
-            <Column
-              field="month4"
-              header={dateMaker(currenYyear, currenMonth + 3)}
-            />
-            <Column
-              field="month5"
-              header={dateMaker(currenYyear, currenMonth + 4)}
-            />
-            <Column
-              field="month6"
-              header={dateMaker(currenYyear, currenMonth + 5)}
-            />
+            <Column field="month1" header={dateMaker(currenYyear, currenMonth)} />
+            <Column field="month2" header={dateMaker(currenYyear, currenMonth + 1)} />
+            <Column field="month3" header={dateMaker(currenYyear, currenMonth + 2)} />
+            <Column field="month4" header={dateMaker(currenYyear, currenMonth + 3)} />
+            <Column field="month5" header={dateMaker(currenYyear, currenMonth + 4)} />
+            <Column field="month6" header={dateMaker(currenYyear, currenMonth + 5)} />
           </DataTable>
         </div>
 
@@ -241,11 +150,7 @@ export const Inventory = (props) => {
             <Button className="previousbutton" label="Previous" style={{}} />
           </Link>
           <Link to="/orderOptimization/Orderingplant">
-            <Button
-              className="nextbutton"
-              label="Generate ordering schedule"
-              style={{ marginLeft: " 15px" }}
-            />
+            <Button className="nextbutton" label="Generate ordering schedule" style={{ marginLeft: " 15px" }} />
           </Link>
         </div>
       </div>

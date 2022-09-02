@@ -16,20 +16,14 @@ import transportdata from "../data/transportdata.json";
 export const Materialdatachart = (props) => {
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
-  const [expandedRows, setExpandedRows] = useState(null);
-  //const toast = useRef(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
   const [transposedColorData, setTransposedColorData] = useState([]);
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
-  const [
-    demandInfoRegressionSummaryTable,
-    setdemandInfoRegressionSummaryTable,
-  ] = useState([]);
-  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
-    useState([]);
+  const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
+  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
   const [Plants, setPlants] = useState(["2000"]);
 
   let lastDate = 1680307200000;
@@ -52,17 +46,9 @@ export const Materialdatachart = (props) => {
   };
 
   let plotBandText =
-    "Forecasts for next 6 months ( " +
-    dateMaker(year, month) +
-    "  to " +
-    dateMaker(endYear, lastMonth) +
-    " )";
+    "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
 
-  let plantData = [
-    ...new Map(
-      demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])
-    ).values(),
-  ];
+  let plantData = [...new Map(demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])).values()];
 
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
@@ -151,13 +137,6 @@ export const Materialdatachart = (props) => {
   };
 
   useEffect(() => {
-    if (isMounted.current) {
-      const summary =
-        expandedRows !== null ? "All Rows Expanded" : "All Rows Collapsed";
-    }
-  }, [expandedRows]);
-
-  useEffect(() => {
     isMounted.current = true;
     productService.getMaterialInfo().then((data) => {});
     setdemandInfoRegressionSummaryTable(demantData.Sheet1);
@@ -189,22 +168,14 @@ export const Materialdatachart = (props) => {
     isMounted.current = true;
     productService
       .getInventoryInfo()
-      .then((data) =>
-        setProducts2(
-          data.Sheet3.filter(
-            (data) => data.plant === localStorage.getItem("plant")
-          )
-        )
-      );
+      .then((data) => setProducts2(data.Sheet3.filter((data) => data.plant === localStorage.getItem("plant"))));
   }, []);
 
   useEffect(() => {
     onsubmit();
     isMounted.current = true;
     productService.getMaterial().then((data) => {
-      let materilaData = data.Sheet3.filter(
-        (data) => data.material === localStorage.getItem("Material")
-      );
+      let materilaData = data.Sheet3.filter((data) => data.material === localStorage.getItem("Material"));
 
       setProducts3(materilaData);
     });
@@ -233,25 +204,18 @@ export const Materialdatachart = (props) => {
       return {
         executedOn: el.executed_on,
         plant: el.plant,
-        x:
-          diffDate > 0
-            ? milliseconds + Math.abs(diffDate)
-            : milliseconds - Math.abs(diffDate),
+        x: diffDate > 0 ? milliseconds + Math.abs(diffDate) : milliseconds - Math.abs(diffDate),
         y: Number(el.quantity),
         total_cons_converted_mp_level: el.total_cons_converted_mp_level,
       };
     });
     if (date1 && date2) {
       convertedData = convertedData.filter(
-        (data) =>
-          data.x > new Date(date1).getTime() &&
-          data.x < new Date(date2).getTime()
+        (data) => data.x > new Date(date1).getTime() && data.x < new Date(date2).getTime()
       );
     }
 
-    let exampleData = Plants.map((sr) =>
-      convertedData.filter((el) => el.plant === sr)
-    );
+    let exampleData = Plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -272,9 +236,7 @@ export const Materialdatachart = (props) => {
         Month12: ele.Month12,
       };
     });
-    let filterData = Plants.map((sr) =>
-      tdata.filter((el) => el.key_mp.includes(sr))
-    );
+    let filterData = Plants.map((sr) => tdata.filter((el) => el.key_mp.includes(sr)));
 
     const chartData1 = Plants.map((sr, i) => {
       return {
@@ -283,9 +245,7 @@ export const Materialdatachart = (props) => {
       };
     });
 
-    let filterYearlyData = Plants.map((sr) =>
-      proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr))
-    );
+    let filterYearlyData = Plants.map((sr) => proudctdata.data.Sheet3.filter((el) => el.plant.includes(sr)));
 
     filterData = [].concat(...filterData);
     filterYearlyData = [].concat(...filterYearlyData);
@@ -316,29 +276,20 @@ export const Materialdatachart = (props) => {
   const headers = (
     <div className="table-header-container">
       <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory</h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>
-        Quantities are in Tonnes
-      </h6>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>Quantities are in Tonnes</h6>
     </div>
   );
 
   const headers2 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>
-        Inventory Status In Future (Without Buyer Action)
-      </h5>
-      <h6 style={{ fontWeight: "lighter", fontFamily: "poppins" }}>
-        {" "}
-        All values are in Tonnes
-      </h6>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "poppins" }}>Inventory Status In Future (Without Buyer Action)</h5>
+      <h6 style={{ fontWeight: "lighter", fontFamily: "poppins" }}> All values are in Tonnes</h6>
     </div>
   );
 
   const statusOrderBodyTemplate = (rowData) => {
     return (
-      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>
-        {rowData.status_level_inventory}
-      </span>
+      <span className={`products-badge status-${rowData.plant.toLowerCase()}`}>{rowData.status_level_inventory}</span>
     );
   };
 
@@ -382,25 +333,13 @@ export const Materialdatachart = (props) => {
           </h5>
         </div>
         <div className="card">
-          <DataTable
-            value={products3}
-            onRowToggle={(e) => setExpandedRows(e.data)}
-            responsiveLayout="scroll"
-            rowExpansionTemplate={rowExpansionTemplate}
-            dataKey=""
-            header={header}
-            rows={1}
-            showGridlines
-          >
+          <DataTable value={products3} responsiveLayout="scroll" header={header} rows={1} showGridlines>
             <Column style={{ width: "3em" }} />
             <Column field="material" header="ID" />
             <Column field="base_unit_of_measure (UOM)" header="UOM" />
             <Column field="aliases" header="Aliases" />
             <Column field="material_type (SAP)" header="SAP" />
-            <Column
-              field="material_group (organisation)"
-              header="Organization"
-            />
+            <Column field="material_group (organisation)" header="Organization" />
             <Column field="mdrm_class (class)" header="Class" />
           </DataTable>
         </div>
@@ -411,11 +350,7 @@ export const Materialdatachart = (props) => {
             <Column field="safety_stock" header="Safety Stock" />
             <Column field="opening_stock" header="Unrestricted Stock" />
             <Column field="warehouse_capacity" header="Warehouse capacity" />
-            <Column
-              field="status_level_inventory"
-              header="Status"
-              body={statusOrderBodyTemplate}
-            />
+            <Column field="status_level_inventory" header="Status" body={statusOrderBodyTemplate} />
           </DataTable>
         </div>
         <div className="card">
@@ -451,12 +386,7 @@ export const Materialdatachart = (props) => {
             maxDate={maxDate}
             dateFormat="dd/mm/yy"
           />
-          <Button
-            id="btn"
-            label="submit"
-            style={{ margin: "3px 15px" }}
-            onClick={onsubmit}
-          />
+          <Button id="btn" label="submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
           <div className="table-header-container">
             <h5
               style={{
@@ -514,100 +444,32 @@ export const Materialdatachart = (props) => {
               sortOrder={1}
               header={headers2}
             >
-              <Column
-                field="key_mp"
-                header="Material-Plant"
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="keys"
-                header=""
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month1"
-                header={dateMaker(year, month)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month2"
-                header={dateMaker(year, month + 1)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month3"
-                header={dateMaker(year, month + 2)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month4"
-                header={dateMaker(year, month + 3)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month5"
-                header={dateMaker(year, month + 4)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month6"
-                header={dateMaker(year, month + 5)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month7"
-                header={dateMaker(year, month + 6)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month8"
-                header={dateMaker(year, month + 7)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month9"
-                header={dateMaker(year, month + 8)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month10"
-                header={dateMaker(year, month + 9)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month11"
-                header={dateMaker(year, month + 10)}
-                style={{ border: "1px solid lightgray" }}
-              />
-              <Column
-                field="Month12"
-                header={dateMaker(year, month + 11)}
-                style={{ border: "1px solid lightgray" }}
-              />
+              <Column field="key_mp" header="Material-Plant" style={{ border: "1px solid lightgray" }} />
+              <Column field="keys" header="" style={{ border: "1px solid lightgray" }} />
+              <Column field="Month1" header={dateMaker(year, month)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month2" header={dateMaker(year, month + 1)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month3" header={dateMaker(year, month + 2)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month4" header={dateMaker(year, month + 3)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month5" header={dateMaker(year, month + 4)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month6" header={dateMaker(year, month + 5)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month7" header={dateMaker(year, month + 6)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month8" header={dateMaker(year, month + 7)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month9" header={dateMaker(year, month + 8)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month10" header={dateMaker(year, month + 9)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month11" header={dateMaker(year, month + 10)} style={{ border: "1px solid lightgray" }} />
+              <Column field="Month12" header={dateMaker(year, month + 11)} style={{ border: "1px solid lightgray" }} />
             </DataTable>
           </div>
         )}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link to="/orderOptimization/MaterialOverview">
-            <Button
-              className="previousbutton"
-              label="Previous "
-              style={{ marginRight: " 15px" }}
-            />
+            <Button className="previousbutton" label="Previous " style={{ marginRight: " 15px" }} />
           </Link>
           <Link to="/orderOptimization/CostDriversAnalysis">
-            <Button
-              className="nextbutton"
-              label="Next"
-              style={{ marginLeft: " 15px" }}
-            />
+            <Button className="nextbutton" label="Next" style={{ marginLeft: " 15px" }} />
           </Link>
           <Link to="/orderOptimization/SupplierAnalysis">
-            <Button
-              className="nextbutton"
-              label="Supplier Analysis"
-              style={{ marginLeft: " 15px" }}
-            />
+            <Button className="nextbutton" label="Supplier Analysis" style={{ marginLeft: " 15px" }} />
           </Link>
         </div>
       </div>
