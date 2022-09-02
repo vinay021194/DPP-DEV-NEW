@@ -220,7 +220,6 @@ function DemandPrediction() {
     productService.getInventoryInfo().then((data) => {
       let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)));
       filteredIinventortData = [].concat(...filteredIinventortData);
-      console.table(filteredIinventortData);
       setProducts2(filteredIinventortData);
     });
 
