@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { Link } from "react-router-dom";
 import { Button } from "primereact/button";
 
 export const LoginPage = (props) => {
@@ -20,13 +19,30 @@ export const LoginPage = (props) => {
           <div className="login100-form validate-form">
             <span className="login100-form-title p-b-43">Login</span>
 
-            <div className="wrap-input100 validate-input" data-validate="Valid  is required: ex@abc.xyz" required>
-              <input className="input100" type="text" placeholder="Purchase Group" />
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Valid  is required: ex@abc.xyz"
+              required
+            >
+              <input
+                className="input100"
+                type="text"
+                placeholder="Purchase Group"
+              />
               <span className="focus-input100"></span>
             </div>
 
-            <div className="wrap-input100 validate-input" data-validate="Password is required">
-              <input className="input100" type="password" name="pass" placeholder="Password" required />
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Password is required"
+            >
+              <input
+                className="input100"
+                type="password"
+                name="pass"
+                placeholder="Password"
+                required
+              />
               <span className="focus-input100"></span>
             </div>
 

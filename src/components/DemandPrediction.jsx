@@ -122,13 +122,8 @@ function DemandPrediction() {
       verticalAlign: "bottom",
     },
     tooltip: {
-      //layout: 'horizontal',
-      //align: 'center',
-      //verticalAlign: 'bottom',
       formatter: function () {
         return (
-          // "Color :  <b>" +
-          // this.point.color +
           "</b> </br> Executed on :  <b>" +
           this.point.executedOn +
           "</b> </br>  Date : <b>" +
@@ -375,7 +370,7 @@ function DemandPrediction() {
             multiple
             style={{ marginLeft: "30px" }}
           />
-          <Button id="btn" label="Submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
+          <Button id="btn" label="Submit" style={{ margin: "1px 15px" }} onClick={onsubmit} />
         </div>
         <div className="card">
           <DataTable value={products3} responsiveLayout="scroll" header={header} rows={1} showGridlines>
@@ -399,15 +394,6 @@ function DemandPrediction() {
           </DataTable>
         </div>
         <div className="card">
-          {/* <MultiSelect
-            style={{ width: "20%", margin: "5px 10px" }}
-            value={Plantinfodata}
-            options={filteredPlantinfo}
-            onChange={onPlantChange}
-            optionLabel="label"
-            placeholder="Select Plant"
-            display="chip"
-          /> */}
           <AutoComplete
             value={Plantinfodata}
             suggestions={filteredPlantinfo}
@@ -493,10 +479,6 @@ function DemandPrediction() {
             <DataTable
               value={filteredTransposedData}
               showGridlines
-              //paginator
-              // rows={12}
-              //rowsPerPageOptions={[4, 12, 20]}
-              //paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rowGroupMode="rowspan"
               responsiveLayout="scroll"
               groupRowsBy="key_mp"
@@ -504,10 +486,7 @@ function DemandPrediction() {
               sortField="key_mp"
               sortOrder={1}
               header={headers2}
-              // rowClassName={rowClass}
-              //style={{ color: getColor(filteredTransposedData) }}
             >
-              {/* <Column expander style={{ width: '3em' }} /> */}
               <Column field="key_mp" header="Material-Plant" style={{ border: "1px solid lightgray" }} />
               <Column field="keys" header="" style={{ border: "1px solid lightgray" }} />
               <Column field="Month1" header={dateMaker(year, month)} style={{ border: "1px solid lightgray" }} />

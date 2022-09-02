@@ -18,7 +18,7 @@ function Home(props) {
   };
   const isLogin = localStorage.getItem("isLogin");
 
-  // delete localStorage.demandPredictionMaterial;
+  //delete localStorage.demandPredictionMaterial;
   // delete localStorage.demandPredictionPlants;
 
   if (!login || !isLogin) {

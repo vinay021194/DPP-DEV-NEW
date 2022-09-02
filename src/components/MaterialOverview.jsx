@@ -13,10 +13,8 @@ export const MaterialOverview = (props) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setproductsFiltered] = useState([]);
   const [displayBasic, setDisplayBasic] = useState(false);
-  //const toast = useRef(null);
 
   const [expandedRows, setExpandedRows] = useState(null);
-  //const toast = useRef(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
   const [layoutMode, setLayoutMode] = useState("static");
@@ -27,24 +25,10 @@ export const MaterialOverview = (props) => {
   const [selectedPlant, setSelectedPlant] = useState(null);
   let menuClick = false;
 
-  const rowAccessories = {
-    background: "#f3f3f3",
-    opacity: "1",
-  };
-  const dialogFuncMap = {
-    displayBasic: setDisplayBasic,
-  };
-  const onClick = (name, position) => {
-    // console.log("onclick", name);
-    dialogFuncMap[`${name}`](true);
-  };
-  const onHide = (name) => {
-    dialogFuncMap[`${name}`](false);
-  };
+
+
   useEffect(() => {
     if (isMounted.current) {
-      //const summary = expandedRows !== null ? 'All Rows Expanded' : 'All Rows Collapsed';
-      //toast.current.show({severity: 'success', summary: `${summary}`, life: 3000});
     }
   }, [expandedRows]);
 
@@ -96,13 +80,18 @@ export const MaterialOverview = (props) => {
 
   const sidebar = useRef();
   const history = useHistory();
-  const logo = layoutColorMode === "dark" ? "/assets/layout/images/logo-white.svg" : "/assets/layout/images/logo.svg";
+  const logo =
+    layoutColorMode === "dark"
+      ? "/assets/layout/images/logo-white.svg"
+      : "/assets/layout/images/logo.svg";
 
   const wrapperClass = classNames("layout-wrapper", {
     "layout-overlay": layoutMode === "overlay",
     "layout-static": layoutMode === "static",
-    "layout-static-sidebar-inactive": staticMenuInactive && layoutMode === "static",
-    "layout-overlay-sidebar-active": overlayMenuActive && layoutMode === "overlay",
+    "layout-static-sidebar-inactive":
+      staticMenuInactive && layoutMode === "static",
+    "layout-overlay-sidebar-active":
+      overlayMenuActive && layoutMode === "overlay",
     "layout-mobile-sidebar-active": mobileMenuActive,
   });
 
@@ -146,7 +135,9 @@ export const MaterialOverview = (props) => {
 
   const statusOrderBodyTemplate = (rowData) => {
     return (
-      <span className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}>
+      <span
+        className={`productsss-badge status-${rowData.status_level_plant.toLowerCase()}`}
+      >
         {rowData.status_level_plant}
       </span>
     );
@@ -154,7 +145,9 @@ export const MaterialOverview = (props) => {
 
   const statusBodyTemplate = (rowData) => {
     return (
-      <span className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}>
+      <span
+        className={`productss-badge status-${rowData.status_level_material.toLowerCase()}`}
+      >
         {rowData.status_level_material}
       </span>
     );
@@ -173,7 +166,6 @@ export const MaterialOverview = (props) => {
   };
 
   const handlePlantSelect = (e) => {
-    // console.log("handlePlantSelect==>", e.value);
     localStorage.setItem("Material", e.value?.material);
     localStorage.setItem("plant", e.value?.plant);
     localStorage.setItem("Material-Plant", e.value?.Key);
@@ -200,7 +192,11 @@ export const MaterialOverview = (props) => {
           <Column selectionMode="single" />
           <Column field="plant" header="Plant ID" />
           <Column field="plant_name" header="Plant Name" />
-          <Column field="status_level_plant" header="Status" body={statusOrderBodyTemplate} />
+          <Column
+            field="status_level_plant"
+            header="Status"
+            body={statusOrderBodyTemplate}
+          />
         </DataTable>
         <div style={{ display: "flex", justifyContent: "center" }}></div>
       </div>
@@ -213,7 +209,6 @@ export const MaterialOverview = (props) => {
         let allMaterial = filters.map((d) => d.name);
         if (filters) {
           let filteredData = products.filter((data) => {
-            // console.log("data====>", data);
             return allMaterial.includes(data.material);
           });
           setproductsFiltered(filteredData);
@@ -224,10 +219,8 @@ export const MaterialOverview = (props) => {
     } else {
       if (filters.length > 0) {
         let filteredData = products.filter((data) => {
-          //console.log("data====>",data)
           return filters.includes(data.status_level_material);
         });
-        // console.log("filteredData===>", filteredData);
         setproductsFiltered(filteredData);
       } else {
         setproductsFiltered(products);
@@ -237,7 +230,6 @@ export const MaterialOverview = (props) => {
 
   return (
     <div className={wrapperClass} onClick={onWrapperClick}>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} /> */}
       <div className="layout-main">
         <div className="card">
           <DataTable
@@ -252,7 +244,6 @@ export const MaterialOverview = (props) => {
             rows={5}
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLrowink LastPageLink CurrentPageReport RowsPerPageDropdown"
             currentPageReportTemplate=" {first} to {last} of {totalRecords}"
-            // onRowClick={(e) => setDisplayBasic(e.data)}
             selectionPageOnly
             paginator
             selectionMode="single"
@@ -260,14 +251,25 @@ export const MaterialOverview = (props) => {
             <Column expander style={{ width: "3em" }} />
             <Column field="material" header="ID"></Column>
             <Column field="material_description_1" header="Name"></Column>
-            <Column field="inventory_material_level" header=" Total Inventory (T)" />
-            <Column field="status_level_material" header="Status" body={statusBodyTemplate} />
+            <Column
+              field="inventory_material_level"
+              header=" Total Inventory (T)"
+            />
+            <Column
+              field="status_level_material"
+              header="Status"
+              body={statusBodyTemplate}
+            />
           </DataTable>
         </div>
         <Button
           className="nextbutton"
           label="Next "
-          style={{ marginLeft: "460px", display: "flex", justifyContent: "center" }}
+          style={{
+            marginLeft: "460px",
+            display: "flex",
+            justifyContent: "center",
+          }}
           disabled={selectedPlant ? false : true}
           onClick={next}
         />
@@ -278,8 +280,14 @@ export const MaterialOverview = (props) => {
         in={isSidebarVisible()}
         unmountOnExit
       >
-        <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
-          <AppMenu handlefilter={(filters, types) => handlefilter(filters, types)} />
+        <div
+          ref={sidebar}
+          className={sidebarClassName}
+          onClick={onSidebarClick}
+        >
+          <AppMenu
+            handlefilter={(filters, types) => handlefilter(filters, types)}
+          />
         </div>
       </CSSTransition>
     </div>

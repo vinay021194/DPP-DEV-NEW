@@ -19,7 +19,12 @@ export const AppProfile = () => {
         <span className="username">Claire Williams</span>
         <i className="pi pi-fw pi-cog" />
       </button>
-      <CSSTransition classNames="p-toggleable-content" timeout={{ enter: 1000, exit: 450 }} in={expanded} unmountOnExit>
+      <CSSTransition
+        classNames="p-toggleable-content"
+        timeout={{ enter: 1000, exit: 450 }}
+        in={expanded}
+        unmountOnExit
+      >
         <ul className={classNames({ "layout-profile-expanded": expanded })}>
           <li>
             <button type="button" className="p-link">

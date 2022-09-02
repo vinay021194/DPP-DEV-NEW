@@ -8,24 +8,18 @@ import { Button } from "primereact/button";
 import "./App.css";
 import { Dialog } from "primereact/dialog";
 import { MultiSelect } from "primereact/multiselect";
-import { Link } from "react-router-dom";
 import icisForecastSummaryData from "../data/icis_forecast_summary_table_2.json";
 import icisForecastSummaryData1 from "../data/icis_forecast_summary_table.json";
 import pricepredictionData from "../data/price_pridection_table.json";
 import { costDrivers } from "../appConstant";
 import { sourceOption } from "../appConstant";
 
-// import { Checkbox } from "primereact/checkbox";
 export const MostInfluencialAnalysis = (props) => {
   const productService = new ProductService();
-  const [layoutMode, setLayoutMode] = useState("static");
-  // const [checked, setChecked] = useState(false);
-  // const [check, setCheck] = useState(false);
-  const [staticMenuInactive, setStaticMenuInactive] = useState(false);
-  const [overlayMenuActive, setOverlayMenuActive] = useState(false);
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
+
   const [costDriverSeriesData, setcostDriverSeriesData] = useState(false);
-  const [icisForecastSummaryTable, seticisForecastSummaryTable] = useState(false);
+  const [icisForecastSummaryTable, seticisForecastSummaryTable] =
+    useState(false);
 
   const [costDriver, setcostDriver] = useState([]);
   const [costDriverSeries, setcostDriverSeries] = useState([]);
@@ -36,7 +30,8 @@ export const MostInfluencialAnalysis = (props) => {
   const [costDriversChartData, setCostDriversChartData] = useState([]);
   const [accuraciesJsonData, setAccuraciesJsonData] = useState([]);
   const [pricePridectionTable, setPricePridectionTableData] = useState([]);
-  const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] = useState([]);
+  const [demandRegressionSummaryTable2, setdemandRegressionSummaryTable2] =
+    useState([]);
   const [displayBasic, setDisplayBasic] = useState(false);
   const [PopUpData, setPopUpData] = useState([]);
 
@@ -58,7 +53,11 @@ export const MostInfluencialAnalysis = (props) => {
   };
 
   let plotBandText =
-    "Forecasts for next 6 months ( " + dateMaker(year, month) + "  to " + dateMaker(endYear, lastMonth) + " )";
+    "Forecasts for next 6 months ( " +
+    dateMaker(year, month) +
+    "  to " +
+    dateMaker(endYear, lastMonth) +
+    " )";
 
   const onCostDriverChange = (event, localvalues) => {
     setcostDriverSeries([]);
@@ -72,7 +71,6 @@ export const MostInfluencialAnalysis = (props) => {
     let allseries = icisForecastSummaryData.data.Sheet.filter((data) => {
       return allCostDrivers.includes(data.material);
     });
-    // allseries = allseries.map((data) => data.series);
     allseries = allseries.map((data) => {
       let obj = {
         name: data.series,
@@ -82,11 +80,16 @@ export const MostInfluencialAnalysis = (props) => {
     });
 
     allseries = [...new Set(allseries)];
-    var unique = Array.from(new Set(allseries.map(JSON.stringify))).map(JSON.parse);
+    var unique = Array.from(new Set(allseries.map(JSON.stringify))).map(
+      JSON.parse
+    );
     setDropdown(unique);
     if (!localvalues) {
       setcostDriver(event.value);
-      localStorage.setItem("mostInfluencialAnalysisCostDriver", JSON.stringify(event.value));
+      localStorage.setItem(
+        "mostInfluencialAnalysisCostDriver",
+        JSON.stringify(event.value)
+      );
     } else {
       setcostDriver(localvalues);
     }
@@ -117,12 +120,14 @@ export const MostInfluencialAnalysis = (props) => {
       .then((data) => seticisForecastSummaryTable(data));
 
     productService.getIcisForecastSummaryTable2().then((data) => {
-      // console.log("data.Sheet===>", data.Sheet);
       let modifieData = data.Sheet.map((ele) => {
         return {
           key: ele.key,
           best_model: ele.best_model,
-          top_influencers: ele.top_influencers.replaceAll("[", "").replaceAll("]", "").split(","),
+          top_influencers: ele.top_influencers
+            .replaceAll("[", "")
+            .replaceAll("]", "")
+            .split(","),
 
           fifth_month_accuracy: (ele.fifth_month_accuracy * 1).toFixed(2),
           first_month_accuracy: (ele.first_month_accuracy * 1).toFixed(2),
@@ -136,30 +141,36 @@ export const MostInfluencialAnalysis = (props) => {
           date: ele.date,
         };
       });
-      // console.log("data=====>", data);
       setProducts(modifieData);
     });
 
-    productService.getdemandRegressionSummaryTable2().then((data) => setdemandRegressionSummaryTable2(data));
+    productService
+      .getdemandRegressionSummaryTable2()
+      .then((data) => setdemandRegressionSummaryTable2(data));
 
-    productService.getPricePridectionTable().then((data) => setPricePridectionTableData(data.Sheet));
+    productService
+      .getPricePridectionTable()
+      .then((data) => setPricePridectionTableData(data.Sheet));
 
-    productService.getIcisForecastSummaryTable().then((data) => setCostDriversChartData(data));
+    productService
+      .getIcisForecastSummaryTable()
+      .then((data) => setCostDriversChartData(data));
 
-    //  productService.getIcisForecastSummaryTable2NEW().then((data) => {
     productService.getPricePridectionTable().then((data) => {
-      // console.log("table data ====>", data);
       let modifieData = data.Sheet.map((ele) => {
         return {
           key: ele?.key,
           best_model: ele?.best_model,
-          top_influencers: ele?.top_influencers.replaceAll("[", "").replaceAll("'", "").replaceAll("]", "").split(","),
+          top_influencers: ele?.top_influencers
+            .replaceAll("[", "")
+            .replaceAll("'", "")
+            .replaceAll("]", "")
+            .split(","),
           fifth_month_accuracy: (ele?.["2022-09"] * 1).toFixed(2),
           first_month_accuracy: (ele?.["2022-05"] * 1).toFixed(2),
           fourth_month_accuracy: (ele?.["2022-08"] * 1).toFixed(2),
           second_month_accuracy: (ele?.["2022-06"] * 1).toFixed(2),
           sixth_month_accuracy: (ele?.["2022-10"] * 1).toFixed(2),
-          //test_month_accuracy: (ele.ele['2022-05'] * 1).toFixed(2),
           third_month_accuracy: (ele?.["2022-07"] * 1).toFixed(2),
           serial_name: ele?.series_name,
           material: ele?.material_name,
@@ -171,8 +182,12 @@ export const MostInfluencialAnalysis = (props) => {
       setAccuraciesJsonData(modifieData);
     });
 
-    let costdriver = JSON.parse(localStorage.getItem("mostInfluencialAnalysisCostDriver"));
-    let costdriverSeries = JSON.parse(localStorage.getItem("mostInfluencialAnalysisCostDriverSeries"));
+    let costdriver = JSON.parse(
+      localStorage.getItem("mostInfluencialAnalysisCostDriver")
+    );
+    let costdriverSeries = JSON.parse(
+      localStorage.getItem("mostInfluencialAnalysisCostDriverSeries")
+    );
 
     if (costdriver && costdriverSeries) {
       setcostDriver(costdriver);
@@ -257,14 +272,19 @@ export const MostInfluencialAnalysis = (props) => {
     let seriesValue = localvalues ? localvalues : e.value;
     allmaterial = [...new Set(allmaterial)]; //distinct key
     let exampleData = seriesValue.map((sr) =>
-      icisForecastSummaryTabledata.Sheet1.filter((el) => el.key === sr.code).map((d) => {
+      icisForecastSummaryTabledata.Sheet1.filter(
+        (el) => el.key === sr.code
+      ).map((d) => {
         let date = d.date
           .split("/") // 3/23/04    ===>
           .map((d, i) => (i === 2 ? 20 + d : d)) //  20 +"04" == 2004
           .join("/"); //  [3, 23, 04] ==> 3/23/2004
         date = new Date(date);
         let milliseconds = date.getTime();
-        milliseconds = diffDate > 0 ? milliseconds + Math.abs(diffDate) : milliseconds - Math.abs(diffDate);
+        milliseconds =
+          diffDate > 0
+            ? milliseconds + Math.abs(diffDate)
+            : milliseconds - Math.abs(diffDate);
 
         const dataObj = [milliseconds, Number(d.price)];
         return dataObj;
@@ -281,13 +301,16 @@ export const MostInfluencialAnalysis = (props) => {
       return {
         key: ele?.key,
         best_model: ele?.best_model,
-        top_influencers: ele?.top_influencers.replaceAll("[", "").replaceAll("'", "").replaceAll("]", "").split(","),
+        top_influencers: ele?.top_influencers
+          .replaceAll("[", "")
+          .replaceAll("'", "")
+          .replaceAll("]", "")
+          .split(","),
         fifth_month_accuracy: (ele?.["2022-09"] * 1).toFixed(2),
         first_month_accuracy: (ele?.["2022-05"] * 1).toFixed(2),
         fourth_month_accuracy: (ele?.["2022-08"] * 1).toFixed(2),
         second_month_accuracy: (ele?.["2022-06"] * 1).toFixed(2),
         sixth_month_accuracy: (ele?.["2022-10"] * 1).toFixed(2),
-        //test_month_accuracy: (ele.ele['2022-05'] * 1).toFixed(2),
         third_month_accuracy: (ele?.["2022-07"] * 1).toFixed(2),
         serial_name: ele?.series_name,
         material: ele?.material_name,
@@ -297,54 +320,51 @@ export const MostInfluencialAnalysis = (props) => {
       };
     });
     let costDriverData = costdrives ? costdrives : costDriver;
-    let filterAccuraciesTableData = costDriverData.map((sr) => modifieData.filter((el) => el.material === sr.name));
+    let filterAccuraciesTableData = costDriverData.map((sr) =>
+      modifieData.filter((el) => el.material === sr.name)
+    );
     filterAccuraciesTableData = [].concat(...filterAccuraciesTableData);
-    filterAccuraciesTableData = seriesValue.map((sr) => filterAccuraciesTableData.filter((el) => el.key === sr.code));
-    filterAccuraciesTableData = filterAccuraciesTableData.filter((el) => el.length > 0);
+    filterAccuraciesTableData = seriesValue.map((sr) =>
+      filterAccuraciesTableData.filter((el) => el.key === sr.code)
+    );
+    filterAccuraciesTableData = filterAccuraciesTableData.filter(
+      (el) => el.length > 0
+    );
     filterAccuraciesTableData = filterAccuraciesTableData.map((ele) => ele[0]);
 
     setAccuraciesTableData(filterAccuraciesTableData);
     setcostDriverSeries(seriesValue);
 
-    localStorage.setItem("mostInfluencialAnalysisCostDriverSeries", JSON.stringify(seriesValue));
+    localStorage.setItem(
+      "mostInfluencialAnalysisCostDriverSeries",
+      JSON.stringify(seriesValue)
+    );
     setcostDriverSeriesData(chartData1);
-  };
-
-  const isDesktop = () => {
-    return window.innerWidth > 1024;
-  };
-
-  const onToggleMenu = (event) => {
-    menuClick = true;
-
-    if (isDesktop()) {
-      if (layoutMode === "overlay") {
-        setOverlayMenuActive((prevState) => !prevState);
-      } else if (layoutMode === "static") {
-        setStaticMenuInactive((prevState) => !prevState);
-      }
-    } else {
-      setMobileMenuActive((prevState) => !prevState);
-    }
-    event.preventDefault();
   };
 
   const header = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Model Accuracies</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>
+        Model Accuracies
+      </h5>
     </div>
   );
 
   const topInfluencersTemplate = (rowData) => {
-    //.log("rowData==>", rowData);
     if (rowData && rowData.top_influencers) {
       return (
         <div>
-          {rowData.top_influencers[0] && <span>1. {rowData.top_influencers[0]}</span>}
+          {rowData.top_influencers[0] && (
+            <span>1. {rowData.top_influencers[0]}</span>
+          )}
           <br />
-          {rowData.top_influencers[1] && <span>2. {rowData.top_influencers[1]}</span>}
+          {rowData.top_influencers[1] && (
+            <span>2. {rowData.top_influencers[1]}</span>
+          )}
           <br />
-          {rowData.top_influencers[2] && <span>3. {rowData.top_influencers[2]}</span>}
+          {rowData.top_influencers[2] && (
+            <span>3. {rowData.top_influencers[2]}</span>
+          )}
 
           <br />
         </div>
@@ -356,14 +376,16 @@ export const MostInfluencialAnalysis = (props) => {
 
   const statusBodyTemplate = (rowData) => {
     return (
-      <Button label={rowData.best_model} className="p-button-link" onClick={() => onClick("displayBasic", rowData)} />
+      <Button
+        label={rowData.best_model}
+        className="p-button-link"
+        onClick={() => onClick("displayBasic", rowData)}
+      />
     );
   };
 
   return (
     <div>
-      {/* <AppTopbar onToggleMenu={onToggleMenu} props={props} /> */}
-      {/* <Toast ref={toast} /> */}
       <div className="layout-main">
         <h5
           style={{
@@ -409,13 +431,21 @@ export const MostInfluencialAnalysis = (props) => {
           </div>
 
           <div style={{ width: "99%" }}>
-            <HighchartsReact highcharts={Highcharts} options={costDriverAnalysisChart} />
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={costDriverAnalysisChart}
+            />
           </div>
         </div>
         <div className="card">
           <DataTable value={AccuraciesTableData} header={header} rows={10}>
             <Column field="key" header="Index" />
-            <Column field="best_model" header="Model Accuracies" style={{ width: "16em" }} body={statusBodyTemplate} />
+            <Column
+              field="best_model"
+              header="Model Accuracies"
+              style={{ width: "13em" }}
+              body={statusBodyTemplate}
+            />
             <Column
               field="top_influencers"
               header="Most Influencial Predictor"
@@ -423,7 +453,11 @@ export const MostInfluencialAnalysis = (props) => {
               style={{ width: "20em" }}
             />
             {/* <Column field="Accuracy_var" header="Accuracy (%)" /> */}
-            <Column field="first_month_accuracy" header={dateMaker(year, month) + " ($)"} style={{ width: "7.5em" }} />
+            <Column
+              field="first_month_accuracy"
+              header={dateMaker(year, month) + " ($)"}
+              style={{ width: "7.5em" }}
+            />
             <Column
               field="second_month_accuracy"
               header={dateMaker(year, month + 1) + " ($)"}
@@ -452,7 +486,12 @@ export const MostInfluencialAnalysis = (props) => {
           </DataTable>
         </div>
       </div>
-      <Dialog visible={displayBasic} header={header} style={{ width: "50vw" }} onHide={() => onHide("displayBasic")}>
+      <Dialog
+        visible={displayBasic}
+        header={header}
+        style={{ width: "50vw" }}
+        onHide={() => onHide("displayBasic")}
+      >
         <div
           style={{
             display: "flex",
@@ -464,41 +503,79 @@ export const MostInfluencialAnalysis = (props) => {
           <table role="grid" style={{ textAlign: "center" }}>
             <thead className="p-datatable-thead">
               <tr role="row">
-                <th style={{ border: "2px solid gray", width: "150px" }} role="columnheader" className="paddingThTd">
+                <th
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="columnheader"
+                  className="paddingThTd"
+                >
                   <span className="p-column-title"> Model</span>
                 </th>
-                <th style={{ border: "2px solid gray", width: "150px" }} role="columnheader" className="paddingThTd">
+                <th
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="columnheader"
+                  className="paddingThTd"
+                >
                   <span className="p-column-title">Accuracy</span>
                 </th>
               </tr>
             </thead>
             <tbody className="p-datatable-tbody">
-              <tr role="row" className={PopUpData.best_model === "ARIMA" ? "bestModel" : ""}>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+              <tr
+                role="row"
+                className={PopUpData.best_model === "ARIMA" ? "bestModel" : ""}
+              >
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   ARIMA
-                  {/* <Button label="ARIMA" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
                 </td>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   {PopUpData.accuracy_arima}
                 </td>
               </tr>
 
-              <tr role="row" className={PopUpData.best_model === "VAR" ? "bestModel" : ""}>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+              <tr
+                role="row"
+                className={PopUpData.best_model === "VAR" ? "bestModel" : ""}
+              >
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   VAR
-                  {/* <Button label="VAR" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
                 </td>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   {PopUpData.Accuracy_var}
                 </td>
               </tr>
 
-              <tr role="row" className={PopUpData.best_model === "VECM" ? "bestModel" : ""}>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+              <tr
+                role="row"
+                className={PopUpData.best_model === "VECM" ? "bestModel" : ""}
+              >
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   VECM
-                  {/* <Button label="VECM" className="p-button-link" onClick={() => onClick("displayBasic")} /> */}
                 </td>
-                <td style={{ border: "2px solid gray", width: "150px" }} role="cell" className="paddingThTd">
+                <td
+                  style={{ border: "2px solid gray", width: "150px" }}
+                  role="cell"
+                  className="paddingThTd"
+                >
                   {PopUpData.accuracy_vecm}
                 </td>
               </tr>
