@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import { SplitButton } from "primereact/splitbutton";
 import { Link } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
-import { useEffect } from "react";
-import { items, menuItems } from "../appConstant";
+//import { useEffect } from "react";
+import { items } from "../appConstant";
 export const AppTopbar = (props) => {
-  const [activeMenu, setActiveMenu] = useState(props?.location?.pathname);
+//  const [activeMenu, setActiveMenu] = useState(props?.location?.pathname);
 
-  useEffect(() => {
-    setActiveMenu(props?.location?.pathname);
-  }, [props]);
+  // useEffect(() => {
+  //   setActiveMenu(props?.location?.pathname);
+  // }, [props]);
 
-  const handleActiveMenu = (e, label) => {
-    // console.log("handleActiveMenu===>", label);
-    setActiveMenu(label);
-  };
+  // const handleActiveMenu = (e, label) => {
+  //   setActiveMenu(label);
+  // };
 
   const start = (
     <div style={{ display: "flex" }} className="p-mr-5">
       <Link to="/">
-        <img src="/assets/layout/images/logo-white.svg" height="40" title="SSA" />
+        <img
+          src="/assets/layout/images/logo-white.svg"
+          height="40"
+          title="SSA"
+        />
       </Link>
     </div>
   );
@@ -28,9 +31,18 @@ export const AppTopbar = (props) => {
   const end = (
     <>
       <Link to="/">
-        <Button label="Home" icon="pi pi-home" className="p-button-text mr-2 mb-2" />
+        <Button
+          label="Home"
+          icon="pi pi-home"
+          className="p-button-text mr-2 mb-2"
+        />
       </Link>
-      <SplitButton label="User" icon="pi pi-user" className="p-button-text mr-2 mb-2" model={items}></SplitButton>
+      <SplitButton
+        label="User"
+        icon="pi pi-user"
+        className="p-button-text mr-2 mb-2"
+        model={items}
+      ></SplitButton>
     </>
   );
 
@@ -42,7 +54,6 @@ export const AppTopbar = (props) => {
         zIndex: "999",
       }}
     >
-      {/* <Menubar model={menuItems} start={start} end={end} /> */}
       <Menubar start={start} end={end} />
     </div>
   );

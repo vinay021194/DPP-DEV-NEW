@@ -7,7 +7,6 @@ import { Button } from "primereact/button";
 import "./App.css";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { MultiSelect } from "primereact/multiselect";
 import demantData from "../data/demand_info_regression_summary.json";
 import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
@@ -16,16 +15,14 @@ import { AutoComplete } from "primereact/autocomplete";
 function DemandPrediction() {
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
-  const [expandedRows, setExpandedRows] = useState(null);
   const isMounted = useRef(false);
   const productService = new ProductService();
-  const [transposedColorData, setTransposedColorData] = useState([]);
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
-  const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
+ // const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
-  const [Plants, setPlants] = useState([]);
+ // const [Plants, setPlants] = useState([]);
 
   const [materialinfo, setmMaterialInfo] = useState(null);
   const [filteredMaterialInfo, setfilteredMaterialInfo] = useState(null);
@@ -229,7 +226,7 @@ function DemandPrediction() {
     });
 
     productService.getInventoryInfo().then((data) => {
-      let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)));
+      let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)))
       filteredIinventortData = [].concat(...filteredIinventortData);
       console.table(filteredIinventortData);
       setProducts2(filteredIinventortData);
@@ -254,7 +251,7 @@ function DemandPrediction() {
       );
     }
 
-    let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr));
+    let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr))
 
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -381,7 +378,7 @@ function DemandPrediction() {
             multiple
             style={{ marginLeft: "30px" }}
           />
-          <Button id="btn" label="Submit" style={{ margin: "3px 15px" }} onClick={onsubmit} />
+          <Button id="btn" label="Submit" style={{ margin: "1px 15px" }} onClick={onsubmit} />
         </div>
         <div className="card">
           <DataTable value={products3} responsiveLayout="scroll" header={header} rows={1} showGridlines>

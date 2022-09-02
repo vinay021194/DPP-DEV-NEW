@@ -57,31 +57,7 @@ export class SupplierAnalysis extends Component {
 
     this.values = [{ name: "Global", code: "Global" }];
 
-    // this.cities = [
-    //   {
-    //     name: "Film Posted DEL India 0-7 Days",
-    //     code: "Film Posted DEL India 0-7 Days",
-    //   },
-    //   {
-    //     name: "HDPE Blow Mould Domestic FD EU no-data",
-    //     code: "HDPE Blow Mould Domestic FD EU no-data",
-    //   },
-    //   {
-    //     name: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
-    //     code: "Flat Yarn (Raffia) Spot DEL India W 0-7 Days",
-    //   },
-    //   {
-    //     name: "HDPE Film Domestic FD EU no-data",
-    //     code: "HDPE Film Domestic FD EU no-data",
-    //   },
-    // ];
-
-    // this.plants = [
-    //   { name: "2000", code: "2000" },
-    //   { name: "3000", code: "3000" },
-    // ];
-
-    this.countries = [
+       this.countries = [
       {
         name: "Polypropylene (Middle East)",
         code: "Polypropylene (Middle East)",
@@ -89,24 +65,7 @@ export class SupplierAnalysis extends Component {
       { name: "Polyethylene (Europe)", code: "Polyethylene (Europe)" },
     ];
 
-    // this.supplierFormula = [
-    //   {
-    //     name: "A",
-    //     code: "A",
-    //   },
-    //   {
-    //     name: "A",
-    //     code: "A",
-    //   },
-    //   {
-    //     name: "A",
-    //     code: "A",
-    //   },
-    //   {
-    //     name: "A",
-    //     code: "A",
-    //   },
-    // ];
+    
 
     this.searchCountry = this.searchCountry.bind(this);
     this.editingCellRows = {};
@@ -409,7 +368,6 @@ export class SupplierAnalysis extends Component {
         product.image = "product-placeholder.svg";
         products.push(product);
         this.convertData(products);
-        // console.log("inside else");
         localStorage.setItem("suppliers", JSON.stringify(products));
       }
 
@@ -419,7 +377,6 @@ export class SupplierAnalysis extends Component {
         productDialog: false,
         product: this.emptyProduct,
       };
-      // console.log("products: " + products);
     }
     this.setState(state);
   }
@@ -449,14 +406,11 @@ export class SupplierAnalysis extends Component {
   }
 
   deleteProduct() {
-    // <<<<<<< HEAD
-    // supplierDetails
-    // console.log("deleteProduct");
+   
     let products = this.state.products.filter((val) => val.id !== this.state.product.id);
     let filteredSupplierDetails = this.state.supplierDetails.filter(
       (val) => val.forecastedObj.name !== this.state.product.name
     );
-    // console.log("filteredSupplierDetails before===>", filteredSupplierDetails);
     this.setState({
       ...this.state,
       products,
@@ -487,21 +441,18 @@ export class SupplierAnalysis extends Component {
   }
 
   onInputNumberChange(e, name) {
-    // const val = e.value || 0;
-    // let product = { ...this.state.product };
-    // product[`${name}`] = val;
-    // this.setState({ product });
+  
   }
 
   convertData = (products) => {
-    //const { data } = this.state;
+
     let data = dataHistorical.Sheet2;
     if (data) {
       let suppliers = products;
       let forecastedObj = {};
       let leadTimeObj = {};
       let supplierMaxCapacity = {};
-      //console.log("suppliers  =====>", suppliers);
+    
       let convertedData = suppliers.map((el) => {
         if (Number(el.quantity)) {
           forecastedObj = {
@@ -600,7 +551,7 @@ export class SupplierAnalysis extends Component {
           supplierMaxCapacity = {
             name: el.name,
             field: "Supplier Max. Capacity",
-            //OptimizeName : "Capacity",
+          
             month1: el.price,
             month2: el.price,
             month3: el.price,
@@ -613,7 +564,7 @@ export class SupplierAnalysis extends Component {
       });
 
       window.supplierObject = convertedData.map((data) => data.forecastedObj);
-      //console.log("convertedData =====>", window.supplierObject);
+    
 
       return this.setState({
         supplierDetails: convertedData,
@@ -676,7 +627,6 @@ export class SupplierAnalysis extends Component {
                 [month6, supplier.forecastedObj.month6],
               ],
             };
-            //console.log("forcastSeriesData ====>", objData);
             return objData;
           })
         : [];
@@ -763,7 +713,6 @@ export class SupplierAnalysis extends Component {
         align: "center",
       },
       yAxis: {
-        // type: "datetime",
         title: {
           text: "USD/T",
         },
@@ -823,7 +772,7 @@ export class SupplierAnalysis extends Component {
 
     return (
       <div>
-        {/* <AppTopbar onToggleMenu={"onToggleMenu"} /> */}
+      
         <div className="layout-main">
           <h5
             style={{
