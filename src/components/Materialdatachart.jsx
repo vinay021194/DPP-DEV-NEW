@@ -28,9 +28,9 @@ export const Materialdatachart = (props) => {
   ] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
     useState([]);
-  const [Plants, setPlants] = useState([]);
+  const [Plants, setPlants] = useState([ localStorage.getItem("plant")] || []);
 
-
+  console.log("props===>")
   let lastDate = 1680307200000;
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
@@ -57,9 +57,17 @@ export const Materialdatachart = (props) => {
 
   console.log("plantdata==>",plantData)
 
+  plantData = plantData.filter(data => data.plant === localStorage.getItem('plant'))
+
+  console.log("plantdata after==>",plantData)
+  console.log("localStorage.getItem('plant')==>",localStorage.getItem('plant'))
+
+
+
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
   });
+
 
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
@@ -195,9 +203,12 @@ export const Materialdatachart = (props) => {
         onsubmit();
       }
     }, 100);
+    setPlants([ localStorage.getItem("plant")]);
+
   }, []);
 
   const onPlantChange = (e) => {
+    console.log("e.value===>",e.value)
     setPlants(e.value);
   };
 

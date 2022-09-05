@@ -156,13 +156,14 @@ export class SupplierAnalysis extends Component {
   };
 
   onPlantChange2 = (plantValue) => {
-    this.setState({ plant: plantValue });
+    this.setState({ plant: localStorage.getItem('plant') });
     this.procService.getHistoricalUnitPrice({ material: 7001733 }).then((res) => {
-      const plant = plantValue;
+      const plant = localStorage.getItem('plant');
       let currentyear = new Date().getFullYear() * 1;
       let currentMonth = new Date().getMonth() * 1;
       let resData = dataHistorical.Sheet2;
-      const filterByPlantData = resData.filter((el) => el.plant === plant.name);
+      const filterByPlantData = resData.filter((el) => el.plant === plant);
+      console.log("filterByPlantData===>",filterByPlantData)
       const unitPriceUSD = filterByPlantData.map((el) => {
         let date = el.posting_date
           .split("/") // 3/23/04  ===>
