@@ -76,7 +76,7 @@ export const Inventory = (props) => {
   );
   const header3 = (
     <div className="table-header-container">
-      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- 2000</h5>
+      <h5 style={{ fontWeight: "bolder", fontFamily: "Poppins" }}>Plant- {localStorage.getItem("plant")}</h5>
       <h6 style={{ fontWeight: "lighter", fontFamily: "Poppins" }}>All values are in Tonnes</h6>
     </div>
   );

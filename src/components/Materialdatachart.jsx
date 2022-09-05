@@ -22,16 +22,12 @@ export const Materialdatachart = (props) => {
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
 
-  const [
-    demandInfoRegressionSummaryTable,
-    setdemandInfoRegressionSummaryTable,
-  ] = useState([]);
-  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
-    useState([]);
-  const [Plants, setPlants] = useState([ localStorage.getItem("plant")] || []);
+  const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
+  const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
+  const [Plants, setPlants] = useState([localStorage.getItem("plant")] || []);
 
-  console.log("props===>")
-  let lastDate = 1680307200000;
+  console.log("props===>");
+  let lastDate = new Date(2022, 11, 1).getTime();
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
   let endYear = (month + 5) % 12 < month ? year + 1 : year;
@@ -55,19 +51,16 @@ export const Materialdatachart = (props) => {
 
   let plantData = [...new Map(demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])).values()];
 
-  console.log("plantdata==>",plantData)
+  console.log("plantdata==>", plantData);
 
-  plantData = plantData.filter(data => data.plant === localStorage.getItem('plant'))
+  plantData = plantData.filter((data) => data.plant === localStorage.getItem("plant"));
 
-  console.log("plantdata after==>",plantData)
-  console.log("localStorage.getItem('plant')==>",localStorage.getItem('plant'))
-
-
+  console.log("plantdata after==>", plantData);
+  console.log("localStorage.getItem('plant')==>", localStorage.getItem("plant"));
 
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
   });
-
 
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
@@ -203,19 +196,18 @@ export const Materialdatachart = (props) => {
         onsubmit();
       }
     }, 100);
-    setPlants([ localStorage.getItem("plant")]);
-
+    setPlants([localStorage.getItem("plant")]);
   }, []);
 
   const onPlantChange = (e) => {
-    console.log("e.value===>",e.value)
+    console.log("e.value===>", e.value);
     setPlants(e.value);
   };
 
   const onsubmit = () => {
     setIsSubmited(true);
     // console.log("demandInfoRegressionSummaryTable===>", demantData.Sheet1);
-    
+
     let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);

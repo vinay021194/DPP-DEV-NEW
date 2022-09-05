@@ -31,7 +31,7 @@ function DemandPrediction() {
   const [date1, setDate1] = useState(null);
   const [date2, setDate2] = useState(null);
 
-  let lastDate = 1680307200000;
+  let lastDate = new Date(2022, 11, 1).getTime();
   let year = new Date().getFullYear() * 1;
   let month = new Date().getMonth() * 1;
   let endYear = (month + 5) % 12 < month ? year + 1 : year;
