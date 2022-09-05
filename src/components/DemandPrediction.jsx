@@ -20,10 +20,7 @@ function DemandPrediction() {
   const [filteredTransposedData, setFilteredTransposedData] = useState([]);
   const [averageYearlyConsumption, setAverageYearlyConsumption] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
- // const [demandInfoRegressionSummaryTable, setdemandInfoRegressionSummaryTable] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] = useState([]);
- // const [Plants, setPlants] = useState([]);
-
   const [materialinfo, setmMaterialInfo] = useState(null);
   const [filteredMaterialInfo, setfilteredMaterialInfo] = useState(null);
   const [Plantinfo, setPlantinfo] = useState(null);
@@ -125,13 +122,8 @@ function DemandPrediction() {
       verticalAlign: "bottom",
     },
     tooltip: {
-      //layout: 'horizontal',
-      //align: 'center',
-      //verticalAlign: 'bottom',
       formatter: function () {
         return (
-          // "Color :  <b>" +
-          // this.point.color +
           "</b> </br> Executed on :  <b>" +
           this.point.executedOn +
           "</b> </br>  Date : <b>" +
@@ -226,9 +218,8 @@ function DemandPrediction() {
     });
 
     productService.getInventoryInfo().then((data) => {
-      let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)))
+      let filteredIinventortData = plants.map((sr) => data.Sheet3.filter((el) => el.plant.includes(sr)));
       filteredIinventortData = [].concat(...filteredIinventortData);
-      console.table(filteredIinventortData);
       setProducts2(filteredIinventortData);
     });
 
@@ -251,7 +242,7 @@ function DemandPrediction() {
       );
     }
 
-    let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr))
+    let exampleData = plants.map((sr) => convertedData.filter((el) => el.plant === sr));
 
     let tdata = transportdata.data.Sheet.map((ele) => {
       return {
@@ -402,15 +393,6 @@ function DemandPrediction() {
           </DataTable>
         </div>
         <div className="card">
-          {/* <MultiSelect
-            style={{ width: "20%", margin: "5px 10px" }}
-            value={Plantinfodata}
-            options={filteredPlantinfo}
-            onChange={onPlantChange}
-            optionLabel="label"
-            placeholder="Select Plant"
-            display="chip"
-          /> */}
           <AutoComplete
             value={Plantinfodata}
             suggestions={filteredPlantinfo}
@@ -496,10 +478,6 @@ function DemandPrediction() {
             <DataTable
               value={filteredTransposedData}
               showGridlines
-              //paginator
-              // rows={12}
-              //rowsPerPageOptions={[4, 12, 20]}
-              //paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rowGroupMode="rowspan"
               responsiveLayout="scroll"
               groupRowsBy="key_mp"
@@ -507,10 +485,7 @@ function DemandPrediction() {
               sortField="key_mp"
               sortOrder={1}
               header={headers2}
-              // rowClassName={rowClass}
-              //style={{ color: getColor(filteredTransposedData) }}
             >
-              {/* <Column expander style={{ width: '3em' }} /> */}
               <Column field="key_mp" header="Material-Plant" style={{ border: "1px solid lightgray" }} />
               <Column field="keys" header="" style={{ border: "1px solid lightgray" }} />
               <Column field="Month1" header={dateMaker(year, month)} style={{ border: "1px solid lightgray" }} />
