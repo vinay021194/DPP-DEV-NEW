@@ -51,6 +51,36 @@
                 "industry_sector": "B",
                 "mdrm_class (class)": "CATALYST",
                 "aliases": "None"
+            },
+            {
+                "material": "901032",
+                "material_description_1": "Caustic Soda, White",
+                "material_type (SAP)": "ROH",
+                "material_group (organisation)": "GM5946",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "A",
+                "mdrm_class (class)": "Chemical Bases",
+                "aliases": "147058"
+            },
+            {
+                "material": "879486",
+                "material_description_1": "Phthalic Anhydride",
+                "material_type (SAP)": "ROH",
+                "material_group (organisation)": "GM8329",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "A",
+                "mdrm_class (class)": "Phthalic Anhydride",
+                "aliases": "108252"
+            },
+            {
+                "material": "129364",
+                "material_description_1": "Titanium Dioxide",
+                "material_type (SAP)": "ROH",
+                "material_group (organisation)": "GM7024",
+                "base_unit_of_measure (UOM)": "TO",
+                "industry_sector": "A",
+                "mdrm_class (class)": "Titanium Dioxide",
+                "aliases": "4356418"
             }
         ]
     }

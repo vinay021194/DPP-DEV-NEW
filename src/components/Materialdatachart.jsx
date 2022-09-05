@@ -12,7 +12,6 @@ import demantData from "../data/demand_info_regression_summary.json";
 import { Link } from "react-router-dom";
 import plantjsondata from "../data/inventory_info.json";
 import transportdata from "../data/transportdata.json";
-
 export const Materialdatachart = (props) => {
   const [products2, setProducts2] = useState([]);
   const [products3, setProducts3] = useState([]);
@@ -30,7 +29,7 @@ export const Materialdatachart = (props) => {
   ] = useState([]);
   const [HistoricalConsumptionSeriesData, setHistoricalConsumptionSeriesData] =
     useState([]);
-  const [Plants, setPlants] = useState(["2000"]);
+  const [Plants, setPlants] = useState([]);
 
   let lastDate = 1680307200000;
   let year = new Date().getFullYear() * 1;
@@ -63,6 +62,8 @@ export const Materialdatachart = (props) => {
       demandInfoRegressionSummaryTable.map((item) => [item["plant"], item])
     ).values(),
   ];
+
+  console.log("plantdata==>",plantData)
 
   plantData = plantData.map((ele) => {
     return { label: ele.plant, value: ele.plant };
@@ -226,6 +227,7 @@ export const Materialdatachart = (props) => {
   const onsubmit = () => {
     setIsSubmited(true);
     // console.log("demandInfoRegressionSummaryTable===>", demantData.Sheet1);
+    
     let proudctdata = plantjsondata;
     let convertedData = demantData.Sheet1.map((el) => {
       let date = new Date(el.period);

@@ -25,8 +25,6 @@ export const MaterialOverview = (props) => {
   const [selectedPlant, setSelectedPlant] = useState(null);
   let menuClick = false;
 
-
-
   useEffect(() => {
     if (isMounted.current) {
     }
@@ -203,16 +201,17 @@ export const MaterialOverview = (props) => {
     );
   };
 
-  const handlefilter = (filters, types) => {
+  const handlefilter = (filters=[], types) => {
+
+
+    
     if (types === "Multiselect") {
       if (filters.length > 0) {
-        let allMaterial = filters.map((d) => d.name);
-        if (filters) {
-          let filteredData = products.filter((data) => {
-            return allMaterial.includes(data.material);
-          });
-          setproductsFiltered(filteredData);
-        }
+        let filteredData = products.filter((data) => {
+          return filters.includes(data.material);
+        });
+        setproductsFiltered(filteredData);
+      } else if (filters.length > 0) {
       } else {
         setproductsFiltered(products);
       }
@@ -226,7 +225,83 @@ export const MaterialOverview = (props) => {
         setproductsFiltered(products);
       }
     }
+    if (types === "singleselect") {
+      if (filters.length > 0) {
+        let filteredData = products.filter((data) => {
+          console.log('filteredData',data.expend.plant) 
+          return filters.includes(data.plant);
+          
+        });
+        console.log('filteredData',filteredData) 
+        setproductsFiltered(filteredData);
+      } else {
+        setproductsFiltered(products);
+      }
+    }
   };
+
+
+
+
+  // const handlePlantfilter = (filters, types) => {
+  //   if (types === "Multiselect") {
+
+  //     if (filters.length > 0) {
+  //       let filteredData = products.filter((data) => {
+  //         return filters.includes(data.plant);
+  //       });
+  //       setproductsFiltered(filteredData);
+  //     }
+
+  //     else {
+  //       setproductsFiltered(products);
+  //     }
+  //   }
+  // //   else if(types === "singleselect"){
+  // //     // console.log('singleselect',)
+  // //     // if(filters.length > 0){
+  // //     //  console.log('filters',)
+  // //     //  let allMaterial = filters.map((d) => d.name);
+  // //     //  console.log('allMaterial',allMaterial)
+  // //      if (filters) {
+  // //        let filteredData = products.filter((data) => {
+  // //         // console.log('filteredData',)
+  // //          return filters.includes(data.expend.plant);
+  // //        });
+  // //        setproductsFiltered(filteredData);
+
+  // //    }
+  // //  }
+
+  // };
+
+  // const handlePlantfilter = (filters=[], types) => {
+  //   if (types === "singleselect") {
+  //     if (filters.length > 0) {
+  //       let allPlant = filters.map((d) => d.name);
+  //       if (filters) {
+  //         let filteredPlantData = products.filter((data) => {
+  //           console.log('filteredPlantData',data.material)
+  //           return allPlant.includes(data.material);
+
+  //         });
+  //         setproductsFiltered(filteredPlantData);
+  //         //console.log('filteredPlantData',allMaterial)
+  //       }
+  //     } else {
+  //       setproductsFiltered(products);
+  //     }
+  //   } else {
+  //     if (filters.length > 0) {
+  //       let filteredPlantData = products.filter((data) => {
+  //         return filters.includes(data.status_level_material);
+  //       });
+  //       setproductsFiltered(filteredPlantData);
+  //     } else {
+  //       setproductsFiltered(products);
+  //     }
+  //   }
+  // };
 
   return (
     <div className={wrapperClass} onClick={onWrapperClick}>
@@ -287,6 +362,7 @@ export const MaterialOverview = (props) => {
         >
           <AppMenu
             handlefilter={(filters, types) => handlefilter(filters, types)}
+            // handlePlantfilter={(filters, types) => handlePlantfilter(filters, types)}
           />
         </div>
       </CSSTransition>

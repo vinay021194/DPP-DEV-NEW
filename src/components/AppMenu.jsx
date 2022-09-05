@@ -1,13 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import { AutoComplete } from "primereact/autocomplete";
-import { city } from "../appConstant";
+import { ProductService } from "../services/ProductService";
+
 
 export const AppMenu = (props) => {
   const [cities, setCities] = useState([]);
-  const [selectedCities1, setSelectedCities1] = useState(null);
-  const [filteredCountries, setFilteredCountries] = useState(null);
+  const [selectedMaterial, setSelectedMaterial] = useState(null);
+  const [selectPlant, setSelectPlant] = useState(null);
+  const [filteredMaterial, setFilteredMaterial] = useState(null);
+  const [filteredPlant, setfilteredPlant] = useState(null);
+  const[materials,setMaterials]= useState(null)
+  const[plants,setPlants]= useState(null)
+  const [uniqPlant, setUniqPlant] = useState([]);
+  const productService = new ProductService();
+
+  useEffect(()=>{
+    productService.getMaterialInfo().then((data) => {
+      const uniq = (items) => [...new Set(items)];
+      const uniqMaterial = uniq(data.map((item) => item.material.toString()));
+      console.log("uniqMaterial",uniqMaterial)
+      // const key = 'age';
+
+//  const uniqMaterial = [...new Map(data.map(item =>
+//   [item[key], item])).values()];
+      return setMaterials(uniqMaterial);
+      
+    });
+    productService.getMaterialInfo().then((data) => {
+      const uniq = (items) => [...new Set(items)];
+      const uniqPlants = uniq(data.map((item) => item.plant.toString()));
+      console.log("uniqPlants",uniqPlants)
+      return setPlants(uniqPlants);
+      
+    });
+    
+  },[])
 
   const onCityChange = (e) => {
     let selectedCities = [...cities];
@@ -25,27 +54,40 @@ export const AppMenu = (props) => {
   };
 
   const onMaterialChange = (e) => {
-    setSelectedCities1(e.value);
-    props.handlefilter(e.value, "Multiselect");
-  };
-  const onPlantChange = (e) => {
-    setSelectedCities1(e.value);
+    setSelectedMaterial(e.value);
     props.handlefilter(e.value, "Multiselect");
   };
 
-  const searchCountry = (event) => {
+  const onPlantChange = (e) => {
+    setSelectPlant(e.value);
+    props.handlefilter(e.value,"singleselect");
+    console.log('handlePlantfilter',props)
+  };
+
+  const searchMaterial = (event) => {
     setTimeout(() => {
-      let _filteredCountries;
+      let _filteredMaterial;
       if (!event.query.trim().length) {
-        _filteredCountries = [...city];
+        _filteredMaterial = [...materials];
       } else {
-        _filteredCountries = city.filter((item) => {
-          return item.name.toLowerCase().startsWith(event.query.toLowerCase());
-        });
+        _filteredMaterial = materials.filter((item) =>{
+         return item.material})};
+      setFilteredMaterial(_filteredMaterial);
+    }, );
+      
+  };
+
+  const searchPlant = (event) => {
+    setTimeout(() => {
+      let _filteredPlant;
+      if (!event.query.trim().length) {
+        _filteredPlant = [...plants];
+      } else {
+        _filteredPlant = plants.filter((item) => item.includes(event.query));
       }
 
-      setFilteredCountries(_filteredCountries);
-    }, 250);
+      setfilteredPlant(_filteredPlant);
+    }, );
   };
 
   return (
@@ -132,27 +174,26 @@ export const AppMenu = (props) => {
       </div>
       <div className="gridcol">
         <AutoComplete
-          value={selectedCities1}
-          suggestions={filteredCountries}
-          completeMethod={searchCountry}
+          value={selectedMaterial}
+          suggestions={filteredMaterial}
+          completeMethod={searchMaterial}
           dropdown
-          field="name"
+         // field="material"
           multiple
           onChange={onMaterialChange}
-          aria-label="Countries"
+          aria-label="materials"
           sorted
         />
       </div>
       <div className="gridcol">
         <AutoComplete
-          value={selectedCities1}
-          suggestions={filteredCountries}
-          completeMethod={searchCountry}
+          value={selectPlant}
+          suggestions={filteredPlant}
+          completeMethod={searchPlant}
           dropdown
-          field="name"
-          multiple
+          // field="plant"
           onChange={onPlantChange}
-          aria-label="Countries"
+          aria-label="plants"
           sorted
         />
       </div>

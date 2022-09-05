@@ -1,70 +1,86 @@
 {
-    "Sheet2": [
+    "Sheet2":
+    [
         {
-            "material": "7001733",
-            "plant": "1200",
-            "opening_stock": "0",
-            "openning_stock_uom": "TO",
-            "safety_stock": "0",
-            "warehouse_capacity": "0",
-            "safety_warehouse_uom": "NaN",
-            "overall_incoming_quantity": "0",
-            "on_route_curr_mon": "0"
-        },
-        {
-            "material": "7001733",
-            "plant": "1500",
-            "opening_stock": "9.37",
-            "openning_stock_uom": "TO",
-            "safety_stock": "55.34",
-            "warehouse_capacity": "166.01",
-            "safety_warehouse_uom": "TO",
-            "overall_incoming_quantity": "0",
-            "on_route_curr_mon": "0"
-        },
-        {
-            "material": "7001733",
-            "plant": "1800",
-            "opening_stock": "22",
-            "openning_stock_uom": "TO",
-            "safety_stock": "0",
-            "warehouse_capacity": "0",
-            "safety_warehouse_uom": "NaN",
-            "overall_incoming_quantity": "0",
-            "on_route_curr_mon": "0"
-        },
-        {
-            "material": "7001733",
+            "material": "700047",
             "plant": "2000",
-            "opening_stock": "27.69",
+            "plant_name": "Edison",
+            "opening_stock": "62",
+            "safety_stock": "40",
+            "warehouse_capacity": "100",
+            "status_level_plant": "Urgent",
+            "status_level_material": "Urgent",
+            "status_level_inventory": "Urgent",
             "openning_stock_uom": "TO",
-            "safety_stock": "0",
-            "warehouse_capacity": "0",
-            "safety_warehouse_uom": "NaN",
-            "overall_incoming_quantity": "0",
-            "on_route_curr_mon": "0"
-        },
-        {
-            "material": "7001733",
-            "plant": "3300",
-            "opening_stock": "36.26",
-            "openning_stock_uom": "TO",
-            "safety_stock": "38.97",
-            "warehouse_capacity": "116.92",
             "safety_warehouse_uom": "TO",
-            "overall_incoming_quantity": "121",
-            "on_route_curr_mon": "121"
-        },
-        {
-            "material": "7001733",
-            "plant": "4100",
-            "opening_stock": "12.63",
-            "openning_stock_uom": "TO",
-            "safety_stock": "0",
-            "warehouse_capacity": "0",
-            "safety_warehouse_uom": "NaN",
             "overall_incoming_quantity": "0",
             "on_route_curr_mon": "0"
+        },
+        {
+            "material": "879486",
+            "plant": "E800",
+            "plant_name": "Bakersfield",
+            "opening_stock": "15898.34",
+            "safety_stock": "10068.95",
+            "warehouse_capacity": "20137.89",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "plant_name": "Newark",
+            "opening_stock": "304.0579",
+            "safety_stock": "192.57",
+            "warehouse_capacity": "385.14",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "plant_name": "Riverside",
+            "opening_stock": "4.463158",
+            "safety_stock": "2.83",
+            "warehouse_capacity": "5.65",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "plant_name": "Orlando",
+            "opening_stock": "2727.921",
+            "safety_stock": "1727.68",
+            "warehouse_capacity": "3455.37",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
+        },
+        {
+            "material": "901032",
+            "plant": "A400",
+            "plant_name": "Tallahassee",
+            "opening_stock": "26.84211",
+            "safety_stock": "17",
+            "warehouse_capacity": "34",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
+        },
+        {
+            "material": "129364",
+            "plant": "D800",
+            "plant_name": "Jacksonville",
+            "opening_stock": "22.79474",
+            "safety_stock": "14.44",
+            "warehouse_capacity": "28.87",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast"
         }
     ]
 }

@@ -76,6 +76,13 @@ export const city = [
   { name: "768971" },
   { name: "789045" },
 ];
+export const plant = [
+  { name: "2000" },
+  { name: "2100" },
+  { name: "3000" },
+  { name: "3100" },
+  { name: "4000" },
+];
 export const supplierFormulaData = [
   {
     supplier_name: "A",

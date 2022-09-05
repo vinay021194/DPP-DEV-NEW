@@ -159,6 +159,116 @@
                 }
 
             ]
+        },
+        {
+           
+            "material": "901032",
+            "material_description_1": "Caustic Soda, White",
+            "material_type (SAP)": "ROH",
+            "material_group (organisation)": "GM5946",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "A",
+            "mdrm_class (class)": "Chemical Bases",
+            "aliases": "147058",
+            "plant": "A500",
+            "plant_name": "Newark",
+            "opening_stock": "304.0579",
+            "safety_stock": "192.57",
+            "warehouse_capacity": "385.14",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast",
+            "inventory_material_level": "330.9",
+            "expend": [{
+                "Key": "901032-A500",
+                "material": "901032",
+                "plant": "A500",
+                "plant_name": "Newark",
+                "status_level_plant": "Depleting Fast"
+            },
+            {
+                "Key": "901032-A400",
+                "material": "901032",
+                "plant": "A400",
+                "plant_name": "Tallahassee",
+                "status_level_plant": "Depleting Fast"
+            }
+          
+        ]
+        },
+       
+        {
+           
+            "material": "879486",
+            "material_description_1": "Phthalic Anhydride",
+            "material_type (SAP)": "ROH",
+            "material_group (organisation)": "GM8329",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "A",
+            "mdrm_class (class)": "Phthalic Anhydride",
+            "aliases": "108252",
+            "plant": "E800",
+            "plant_name": "Bakersfield",
+            "opening_stock": "15898.34",
+            "safety_stock": "10068.95",
+            "warehouse_capacity": "20137.89",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast",
+            "inventory_material_level": "18626.26",
+            "expend": [{
+                "Key": "879486-E800",
+                "material": "879486",
+                "plant": "E800",
+                "plant_name": "Bakersfield",
+                "status_level_plant": "Depleting Fast"
+            },
+            {
+                "Key": "879486-E600",
+                "material": "879486",
+                "plant": "E600",
+                "plant_name": "Orlando",
+                "status_level_plant": "Depleting Fast"
+            }
+        ]
+        },
+       
+        {
+            
+            "material": "129364",
+            "material_description_1": "Titanium Dioxide",
+            "material_type (SAP)": "ROH",
+            "material_group (organisation)": "GM7024",
+            "base_unit_of_measure (UOM)": "T",
+            "industry_sector": "A",
+            "mdrm_class (class)": "Titanium Dioxide",
+            "aliases": "4356418",
+            "plant": "D900",
+            "plant_name": "Riverside",
+            "opening_stock": "4.463158",
+            "safety_stock": "2.83",
+            "warehouse_capacity": "5.65",
+            "status_level_plant": "Depleting Fast",
+            "status_level_material": "Depleting Fast",
+            "status_level_inventory": "Depleting Fast",
+            "inventory_material_level": "27.25789",
+            "expend": [{
+                  "Key": "129364-D900",
+                  "material": "129364",
+                  "plant": "D900",
+                  "plant_name": "Riverside",
+                  "status_level_plant": "Depleting Fast"
+            },
+            {
+                "Key": "129364-D800",
+                "material": "129364",
+                "plant": "D800",
+                 "plant_name": "Jacksonville",
+                "status_level_plant": "Depleting Fast"
+            }
+        ]
         }
+       
+        
     ]
 }

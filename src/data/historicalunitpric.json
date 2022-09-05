@@ -1640,16 +1640,25 @@
             "material_uom": "TO"
         },
         {
+            "material": "700047",
+            "plant": "2000",
             "posting_date": "1/4/21",
-            "unit_price_usd": "1200"
+            "unit_price_usd": "1200",
+            "material_uom": "TO"
         },
         {
+            "material": "700047",
+            "plant": "2000",
             "posting_date": "3/4/21",
-            "unit_price_usd": "1230"
+            "unit_price_usd": "1230",
+            "material_uom": "TO"
         },
         {
+            "material": "700047",
+            "plant": "2000",
             "posting_date": "5/4/21",
-            "unit_price_usd": "1280"
+            "unit_price_usd": "1280",
+            "material_uom": "TO"
         },
         {
             "material": "700047",
@@ -1775,6 +1784,3793 @@
             "plant": "2000",
             "posting_date": "5/6/22",
             "unit_price_usd": "1355",
+            "material_uom": "TO"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "2/15/18",
+            "unit_price_usd": "1.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "9/28/20",
+            "unit_price_usd": "1.63",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "3/19/21",
+            "unit_price_usd": "1.8",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "3/29/21",
+            "unit_price_usd": "1.87",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "4/7/21",
+            "unit_price_usd": "1.81",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "9/13/21",
+            "unit_price_usd": "1.99",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "7/25/18",
+            "unit_price_usd": "1.6",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/19/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/21/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/14/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/12/19",
+            "unit_price_usd": "0.67",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/12/19",
+            "unit_price_usd": "0.67",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/25/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/3/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/18/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/1/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/1/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/28/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/27/21",
+            "unit_price_usd": "0.55",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/2/21",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/17/16",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/28/16",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/26/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/28/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/30/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/7/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/19/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/7/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/18/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/17/18",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/27/18",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/18/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/21/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/28/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/4/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/4/18",
+            "unit_price_usd": "0.48",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/9/18",
+            "unit_price_usd": "0.48",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/9/18",
+            "unit_price_usd": "0.48",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/11/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/13/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/13/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/13/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/7/19",
+            "unit_price_usd": "0.51",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/7/19",
+            "unit_price_usd": "0.51",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/22/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/22/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/15/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/15/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/15/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/15/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/5/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/5/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/5/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "11/1/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/20/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/21/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/20/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/20/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/20/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/11/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/27/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/28/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/16/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/12/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/26/21",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/3/21",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/12/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/27/11",
+            "unit_price_usd": "1135.47",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/27/11",
+            "unit_price_usd": "1135.47",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/27/11",
+            "unit_price_usd": "1135.47",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/16/11",
+            "unit_price_usd": "1431.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/9/11",
+            "unit_price_usd": "1466.1",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/11",
+            "unit_price_usd": "1513.71",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/5/11",
+            "unit_price_usd": "1922.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/12/11",
+            "unit_price_usd": "1441.1",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/7/11",
+            "unit_price_usd": "1565.88",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/4/11",
+            "unit_price_usd": "1891.56",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/19/11",
+            "unit_price_usd": "1428.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/25/11",
+            "unit_price_usd": "1947.27",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/11/11",
+            "unit_price_usd": "1413.27",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/11/11",
+            "unit_price_usd": "1985.99",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/11",
+            "unit_price_usd": "1920.89",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/11/12",
+            "unit_price_usd": "1352.04",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/5/12",
+            "unit_price_usd": "1703.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/5/12",
+            "unit_price_usd": "1703.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/1/12",
+            "unit_price_usd": "1803.12",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/10/12",
+            "unit_price_usd": "1818.42",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/12",
+            "unit_price_usd": "1824.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/12",
+            "unit_price_usd": "1794.2",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/11/12",
+            "unit_price_usd": "1492.74",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/16/12",
+            "unit_price_usd": "1424.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/13/12",
+            "unit_price_usd": "1782.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/12",
+            "unit_price_usd": "1704.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/7/12",
+            "unit_price_usd": "1815",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/8/12",
+            "unit_price_usd": "1761.01",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/8/12",
+            "unit_price_usd": "1761.01",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/5/13",
+            "unit_price_usd": "140523.77",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/10/13",
+            "unit_price_usd": "1839.51",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/13",
+            "unit_price_usd": "1819.75",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/5/13",
+            "unit_price_usd": "1889.45",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/14/13",
+            "unit_price_usd": "2045.79",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/8/13",
+            "unit_price_usd": "1771.13",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/13",
+            "unit_price_usd": "1721.46",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/26/13",
+            "unit_price_usd": "1818.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/26/13",
+            "unit_price_usd": "1515.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/5/13",
+            "unit_price_usd": "1634.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/10/13",
+            "unit_price_usd": "1642.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/15/13",
+            "unit_price_usd": "1685.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/13",
+            "unit_price_usd": "1589.31",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/9/13",
+            "unit_price_usd": "1738.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/22/13",
+            "unit_price_usd": "1911.82",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/22/13",
+            "unit_price_usd": "1911.82",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/7/13",
+            "unit_price_usd": "6923.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/13",
+            "unit_price_usd": "1641.36",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/18/13",
+            "unit_price_usd": "1948.19",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/13",
+            "unit_price_usd": "1627.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/14",
+            "unit_price_usd": "1627.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/9/14",
+            "unit_price_usd": "2127",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/14",
+            "unit_price_usd": "1662.1",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/12/14",
+            "unit_price_usd": "2135.49",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/14",
+            "unit_price_usd": "1671.57",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/15/14",
+            "unit_price_usd": "2098.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/15/14",
+            "unit_price_usd": "2098.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/14",
+            "unit_price_usd": "1559.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/13/14",
+            "unit_price_usd": "2108",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/1/14",
+            "unit_price_usd": "2115.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/20/14",
+            "unit_price_usd": "2124",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/20/14",
+            "unit_price_usd": "2124",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/14",
+            "unit_price_usd": "1575.7",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/14",
+            "unit_price_usd": "2140",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/14",
+            "unit_price_usd": "1575.7",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/14",
+            "unit_price_usd": "2142.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/19/14",
+            "unit_price_usd": "2146.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/14",
+            "unit_price_usd": "2091.9",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/14",
+            "unit_price_usd": "1588.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/15",
+            "unit_price_usd": "1465.23",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/15/15",
+            "unit_price_usd": "1516",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/15/15",
+            "unit_price_usd": "1516",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/15",
+            "unit_price_usd": "1243.53",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/9/15",
+            "unit_price_usd": "1399",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/15",
+            "unit_price_usd": "1056.71",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/15",
+            "unit_price_usd": "1654.32",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/15",
+            "unit_price_usd": "1817.21",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/15",
+            "unit_price_usd": "1056.71",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/15",
+            "unit_price_usd": "2036",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/15",
+            "unit_price_usd": "1121.86",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/10/15",
+            "unit_price_usd": "1789",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/15",
+            "unit_price_usd": "1555",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/15",
+            "unit_price_usd": "1348.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/15",
+            "unit_price_usd": "1053.01",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/10/15",
+            "unit_price_usd": "1068.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/29/16",
+            "unit_price_usd": "1037.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/6/16",
+            "unit_price_usd": "1578.76",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/14/16",
+            "unit_price_usd": "1037.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/3/16",
+            "unit_price_usd": "1646.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/16",
+            "unit_price_usd": "1128.69",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/5/16",
+            "unit_price_usd": "1260",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/9/16",
+            "unit_price_usd": "1751.39",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/5/16",
+            "unit_price_usd": "1784.26",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/16",
+            "unit_price_usd": "988.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/2/16",
+            "unit_price_usd": "1703.2",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/16",
+            "unit_price_usd": "1721.17",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/16",
+            "unit_price_usd": "1721.17",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/16",
+            "unit_price_usd": "1074.87",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/16",
+            "unit_price_usd": "1668.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/16",
+            "unit_price_usd": "1639.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/16",
+            "unit_price_usd": "1148.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/16",
+            "unit_price_usd": "1165.83",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/17",
+            "unit_price_usd": "1194.88",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/17",
+            "unit_price_usd": "1616.93",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/17",
+            "unit_price_usd": "1249.94",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/17",
+            "unit_price_usd": "1103.26",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/17",
+            "unit_price_usd": "1829.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/17",
+            "unit_price_usd": "1207.63",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/17",
+            "unit_price_usd": "1549.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/28/17",
+            "unit_price_usd": "1663.69",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/28/17",
+            "unit_price_usd": "1663.69",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/17",
+            "unit_price_usd": "1769.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/17",
+            "unit_price_usd": "1242.48",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/17",
+            "unit_price_usd": "1270.11",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/17",
+            "unit_price_usd": "1321.81",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/18",
+            "unit_price_usd": "1352.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/18",
+            "unit_price_usd": "1760.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/18",
+            "unit_price_usd": "1352.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/18",
+            "unit_price_usd": "1760.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/18",
+            "unit_price_usd": "1760.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/18",
+            "unit_price_usd": "1771.78",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/18",
+            "unit_price_usd": "1771.78",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/18",
+            "unit_price_usd": "1395.7",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/18",
+            "unit_price_usd": "1771.78",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/18",
+            "unit_price_usd": "1749.39",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/18",
+            "unit_price_usd": "1447.63",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/18",
+            "unit_price_usd": "1877.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/18",
+            "unit_price_usd": "1637.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/18",
+            "unit_price_usd": "1477.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/18",
+            "unit_price_usd": "1369.53",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/19",
+            "unit_price_usd": "1369.53",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/19",
+            "unit_price_usd": "1369.53",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/19",
+            "unit_price_usd": "1235.66",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/19",
+            "unit_price_usd": "1486.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/19",
+            "unit_price_usd": "1452.26",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/19",
+            "unit_price_usd": "1327.85",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/19",
+            "unit_price_usd": "1238.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/19",
+            "unit_price_usd": "1238.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/19",
+            "unit_price_usd": "1356",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/19",
+            "unit_price_usd": "1271",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/19",
+            "unit_price_usd": "1378.9",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/19",
+            "unit_price_usd": "1286.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/19",
+            "unit_price_usd": "1155.36",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/19",
+            "unit_price_usd": "1259.19",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/19",
+            "unit_price_usd": "1254.84",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/19",
+            "unit_price_usd": "1209.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/19",
+            "unit_price_usd": "1209.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/29/20",
+            "unit_price_usd": "1137.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/20",
+            "unit_price_usd": "754.86",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/20",
+            "unit_price_usd": "1152.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/20",
+            "unit_price_usd": "1025.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/20",
+            "unit_price_usd": "1025.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/20",
+            "unit_price_usd": "1024.63",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/20",
+            "unit_price_usd": "1130.68",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/20",
+            "unit_price_usd": "1001.65",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/20",
+            "unit_price_usd": "1151.04",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/20",
+            "unit_price_usd": "1082.87",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/20",
+            "unit_price_usd": "1082.87",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/20",
+            "unit_price_usd": "1172.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/20",
+            "unit_price_usd": "1178.51",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/21",
+            "unit_price_usd": "1368",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/21",
+            "unit_price_usd": "1368",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/21",
+            "unit_price_usd": "1316.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/21",
+            "unit_price_usd": "1519.88",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/21",
+            "unit_price_usd": "1519.88",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/21",
+            "unit_price_usd": "1344.35",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/21",
+            "unit_price_usd": "1344.35",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/21",
+            "unit_price_usd": "1407.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/21",
+            "unit_price_usd": "1417.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/21",
+            "unit_price_usd": "1417.15",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/21",
+            "unit_price_usd": "1493.45",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/21",
+            "unit_price_usd": "1493.45",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/21",
+            "unit_price_usd": "1554.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/21",
+            "unit_price_usd": "1554.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/21",
+            "unit_price_usd": "1568.17",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/21",
+            "unit_price_usd": "1622.08",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/21",
+            "unit_price_usd": "1599.2",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/21",
+            "unit_price_usd": "1599.2",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/22",
+            "unit_price_usd": "1663.9",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/22",
+            "unit_price_usd": "1604.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/22",
+            "unit_price_usd": "1831.85",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/22",
+            "unit_price_usd": "1767.33",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/22",
+            "unit_price_usd": "1575.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/22",
+            "unit_price_usd": "1575.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/22",
+            "unit_price_usd": "1497.58",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/22",
+            "unit_price_usd": "1497.58",
+            "material_uom": "TO"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "3/29/21",
+            "unit_price_usd": "1.87",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "7/2/21",
+            "unit_price_usd": "1.91",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "7/25/18",
+            "unit_price_usd": "1.6",
+            "material_uom": "KG"
+        },
+        {
+            "material": "129364",
+            "plant": "D900",
+            "posting_date": "12/5/18",
+            "unit_price_usd": "1.6",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "11/25/16",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "11/7/16",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/1/16",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/20/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/12/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/19/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/12/19",
+            "unit_price_usd": "0.67",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/12/19",
+            "unit_price_usd": "0.67",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/25/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "12/2/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/3/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/3/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/3/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/6/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/1/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/2/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/27/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/27/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/28/20",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "7/27/21",
+            "unit_price_usd": "0.55",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/11/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/11/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/16/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/23/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/17",
+            "unit_price_usd": "0.37",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/26/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/22/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/29/17",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/11/18",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/8/18",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/13/18",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/8/18",
+            "unit_price_usd": "0.85",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/28/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/2/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/3/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/14/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/18/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/18/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/27/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/27/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/26/18",
+            "unit_price_usd": "0.4",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/11/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/23/18",
+            "unit_price_usd": "0.49",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/7/19",
+            "unit_price_usd": "0.51",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "1/7/19",
+            "unit_price_usd": "0.51",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/22/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/22/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/26/19",
+            "unit_price_usd": "0.43",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/5/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/10/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "10/10/19",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "11/1/19",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/20/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/22/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/23/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/11/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/11/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/12/20",
+            "unit_price_usd": "0.34",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/27/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "2/27/20",
+            "unit_price_usd": "0.41",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/5/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/5/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "3/16/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "4/12/21",
+            "unit_price_usd": "0.38",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "5/26/21",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "6/3/21",
+            "unit_price_usd": "0.45",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/12/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "8/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "901032",
+            "plant": "A500",
+            "posting_date": "9/3/21",
+            "unit_price_usd": "0.53",
+            "material_uom": "KG"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/30/11",
+            "unit_price_usd": "1306.06",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/3/11",
+            "unit_price_usd": "1496.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/12/11",
+            "unit_price_usd": "1559",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/1/11",
+            "unit_price_usd": "1895.94",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/7/11",
+            "unit_price_usd": "1474.44",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/19/11",
+            "unit_price_usd": "1611",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/11",
+            "unit_price_usd": "1981.81",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/13/11",
+            "unit_price_usd": "1351.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/13/11",
+            "unit_price_usd": "1450",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/11/11",
+            "unit_price_usd": "1308.89",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/18/12",
+            "unit_price_usd": "1515.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/5/12",
+            "unit_price_usd": "1920.89",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/10/12",
+            "unit_price_usd": "1818.42",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/1/12",
+            "unit_price_usd": "1803.12",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/6/12",
+            "unit_price_usd": "1930.24",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/6/12",
+            "unit_price_usd": "1930.24",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/16/12",
+            "unit_price_usd": "1677.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/12",
+            "unit_price_usd": "1858.34",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/16/12",
+            "unit_price_usd": "1677.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/8/12",
+            "unit_price_usd": "1452.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/8/12",
+            "unit_price_usd": "1452.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/11/12",
+            "unit_price_usd": "1492.74",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/12",
+            "unit_price_usd": "1780.36",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/16/12",
+            "unit_price_usd": "1424.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/7/12",
+            "unit_price_usd": "1725.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/12",
+            "unit_price_usd": "1704.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/9/12",
+            "unit_price_usd": "1782.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/12",
+            "unit_price_usd": "1773.21",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/12",
+            "unit_price_usd": "18939.66",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/5/13",
+            "unit_price_usd": "598.4",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/10/13",
+            "unit_price_usd": "1839.51",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/5/13",
+            "unit_price_usd": "1889.45",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/13",
+            "unit_price_usd": "1721.46",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/14/13",
+            "unit_price_usd": "2045.79",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/21/13",
+            "unit_price_usd": "1771.13",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/13",
+            "unit_price_usd": "1612.37",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/15/13",
+            "unit_price_usd": "1685.62",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/13",
+            "unit_price_usd": "1520.98",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/19/13",
+            "unit_price_usd": "1735.02",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/19/13",
+            "unit_price_usd": "1735.02",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/9/13",
+            "unit_price_usd": "1738.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/13",
+            "unit_price_usd": "1550.52",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/13",
+            "unit_price_usd": "1601.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/16/14",
+            "unit_price_usd": "1907.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/16/14",
+            "unit_price_usd": "1907.29",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/9/14",
+            "unit_price_usd": "2127",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/12/14",
+            "unit_price_usd": "2135.48",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/14",
+            "unit_price_usd": "1560.02",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/16/14",
+            "unit_price_usd": "2115.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/14",
+            "unit_price_usd": "2140",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/14",
+            "unit_price_usd": "2142.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/14",
+            "unit_price_usd": "1588.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/19/14",
+            "unit_price_usd": "2146.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/14",
+            "unit_price_usd": "1588.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/14",
+            "unit_price_usd": "2091.9",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/7/14",
+            "unit_price_usd": "1893",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/7/14",
+            "unit_price_usd": "1893",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/14",
+            "unit_price_usd": "1465.23",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/14",
+            "unit_price_usd": "1646",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/14",
+            "unit_price_usd": "1646",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/9/15",
+            "unit_price_usd": "1399",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/15",
+            "unit_price_usd": "1056.71",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/15",
+            "unit_price_usd": "1817.21",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/25/15",
+            "unit_price_usd": "1960.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/25/15",
+            "unit_price_usd": "1960.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/15",
+            "unit_price_usd": "1058.76",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/15",
+            "unit_price_usd": "2036",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/10/15",
+            "unit_price_usd": "1789",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/15",
+            "unit_price_usd": "1053.01",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/15",
+            "unit_price_usd": "1555",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/15",
+            "unit_price_usd": "1348.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/15",
+            "unit_price_usd": "1005.21",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/4/15",
+            "unit_price_usd": "1348.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/4/15",
+            "unit_price_usd": "1348.3",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/6/15",
+            "unit_price_usd": "1452.37",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/6/15",
+            "unit_price_usd": "1452.37",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/6/16",
+            "unit_price_usd": "1578.76",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/3/16",
+            "unit_price_usd": "1646.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/29/16",
+            "unit_price_usd": "1012.39",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/29/16",
+            "unit_price_usd": "1416.94",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/16",
+            "unit_price_usd": "1751.39",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/16",
+            "unit_price_usd": "988.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/16",
+            "unit_price_usd": "988.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/2/16",
+            "unit_price_usd": "1703.2",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/16",
+            "unit_price_usd": "989.86",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/16",
+            "unit_price_usd": "1724",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/16",
+            "unit_price_usd": "1724",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/16",
+            "unit_price_usd": "1073.76",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/16",
+            "unit_price_usd": "1133.93",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/16",
+            "unit_price_usd": "1479.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/16",
+            "unit_price_usd": "1724",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/17",
+            "unit_price_usd": "1119.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/17",
+            "unit_price_usd": "1520.77",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/17",
+            "unit_price_usd": "1676.09",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/17",
+            "unit_price_usd": "1829.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/17",
+            "unit_price_usd": "1698",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/17",
+            "unit_price_usd": "1698",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/17",
+            "unit_price_usd": "1274.61",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/17",
+            "unit_price_usd": "1698",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/17",
+            "unit_price_usd": "1264.12",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/17",
+            "unit_price_usd": "1549.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/28/17",
+            "unit_price_usd": "1242.48",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/17",
+            "unit_price_usd": "1769.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/17",
+            "unit_price_usd": "1726.98",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/17",
+            "unit_price_usd": "1686.38",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/17",
+            "unit_price_usd": "1854.26",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/17",
+            "unit_price_usd": "1346.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/18",
+            "unit_price_usd": "1808.75",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/18",
+            "unit_price_usd": "1430.81",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/18",
+            "unit_price_usd": "1787.57",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/18",
+            "unit_price_usd": "1787.57",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/18",
+            "unit_price_usd": "1419.42",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/18",
+            "unit_price_usd": "1771.78",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/18",
+            "unit_price_usd": "1493.23",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/18",
+            "unit_price_usd": "1770.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/18",
+            "unit_price_usd": "1770.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/18",
+            "unit_price_usd": "2003.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/18",
+            "unit_price_usd": "2003.5",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/18",
+            "unit_price_usd": "1495.11",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/18",
+            "unit_price_usd": "1877.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/18",
+            "unit_price_usd": "1637.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/18",
+            "unit_price_usd": "1538.68",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/18",
+            "unit_price_usd": "1554.31",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/18",
+            "unit_price_usd": "1554.31",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/18",
+            "unit_price_usd": "1369.53",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/18",
+            "unit_price_usd": "1541.74",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/19",
+            "unit_price_usd": "1541.74",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/19",
+            "unit_price_usd": "1449.58",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/19",
+            "unit_price_usd": "1449.58",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/19",
+            "unit_price_usd": "1222.95",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/19",
+            "unit_price_usd": "1325.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/19",
+            "unit_price_usd": "1452.26",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/19",
+            "unit_price_usd": "1523.92",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/19",
+            "unit_price_usd": "1523.92",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/19",
+            "unit_price_usd": "1394.36",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/19",
+            "unit_price_usd": "1378.9",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/19",
+            "unit_price_usd": "1335.42",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/19",
+            "unit_price_usd": "1216.14",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/19",
+            "unit_price_usd": "1216.14",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/19",
+            "unit_price_usd": "1294.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/19",
+            "unit_price_usd": "1098.61",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/19",
+            "unit_price_usd": "1098.61",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/20",
+            "unit_price_usd": "1163.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/20",
+            "unit_price_usd": "1163.22",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/20",
+            "unit_price_usd": "1297",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/29/20",
+            "unit_price_usd": "1294.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/20",
+            "unit_price_usd": "1331.27",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/20",
+            "unit_price_usd": "984.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/20",
+            "unit_price_usd": "984.03",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/20",
+            "unit_price_usd": "1314.33",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/20",
+            "unit_price_usd": "754.86",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/20",
+            "unit_price_usd": "1124.61",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/20",
+            "unit_price_usd": "1124.61",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/20",
+            "unit_price_usd": "1130.68",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/20",
+            "unit_price_usd": "1150.23",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/20",
+            "unit_price_usd": "1172.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/20",
+            "unit_price_usd": "1186.13",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/20",
+            "unit_price_usd": "1186.13",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/20",
+            "unit_price_usd": "1158.55",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/20",
+            "unit_price_usd": "1369.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/20",
+            "unit_price_usd": "1369.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/20",
+            "unit_price_usd": "1165.08",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/20",
+            "unit_price_usd": "1356.79",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "12/31/20",
+            "unit_price_usd": "1356.79",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/21",
+            "unit_price_usd": "1172.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/21",
+            "unit_price_usd": "1212.91",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/21",
+            "unit_price_usd": "1316.72",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/21",
+            "unit_price_usd": "1521.32",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/21",
+            "unit_price_usd": "1521.33",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/21",
+            "unit_price_usd": "1354.05",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/21",
+            "unit_price_usd": "1514.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/21",
+            "unit_price_usd": "1514.41",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/21",
+            "unit_price_usd": "1423.7",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/21",
+            "unit_price_usd": "1407.8",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "7/31/21",
+            "unit_price_usd": "1418.87",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/21",
+            "unit_price_usd": "1434.91",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/21",
+            "unit_price_usd": "1418.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "8/31/21",
+            "unit_price_usd": "1418.67",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "9/30/21",
+            "unit_price_usd": "1509.25",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "10/31/21",
+            "unit_price_usd": "1539.07",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/21",
+            "unit_price_usd": "1568.17",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "11/30/21",
+            "unit_price_usd": "1600.48",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/22",
+            "unit_price_usd": "1679.95",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "1/31/22",
+            "unit_price_usd": "1427.6",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "2/28/22",
+            "unit_price_usd": "1604.59",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/22",
+            "unit_price_usd": "1786.37",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/22",
+            "unit_price_usd": "1786.37",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "3/31/22",
+            "unit_price_usd": "1698.35",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "4/30/22",
+            "unit_price_usd": "1831.85",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "5/31/22",
+            "unit_price_usd": "1905.81",
+            "material_uom": "TO"
+        },
+        {
+            "material": "879486",
+            "plant": "E600",
+            "posting_date": "6/30/22",
+            "unit_price_usd": "1941.27",
             "material_uom": "TO"
         }
     ]
